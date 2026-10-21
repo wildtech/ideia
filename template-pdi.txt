@@ -5,7 +5,7 @@ Papéis e expectativas (RCI). Quem é responsável (R), quem precisa ser consult
 Meu primeiro objetivo. Um nome curto para o que se quer alcançar. Cada objetivo do plano é uma seção com os campos abaixo; para um segundo objetivo, repita a seção ("Meu segundo objetivo", e assim por diante).
 Finalidade da habilidade. Qual é a finalidade: Desenvolver uma habilidade nova ou Potencializar uma que já existe?
 Estratégias. Quais estratégias serão usadas: Conteúdos, Experiências, Pessoas, Redes? Pode ser mais de uma.
-Arquiteturas de aprendizagem. Quais arquiteturas de aprendizagem serão usadas? Ver o mapa A3 (link do mapa: A definir).
+Arquiteturas de aprendizagem. Quais arquiteturas de aprendizagem serão usadas? Ver o mapa A3: https://drive.google.com/file/d/1BKJXuaYZWMt8vYLFlxkDN82ZbNDbi99B/view?usp=drive_link
 Data limite. Até quando o objetivo deve ser alcançado (dd/mm/aaaa)?
 Contexto do projeto / problema. Por que este objetivo? Qual o contexto, o problema ou a oportunidade por trás dele? Queremos um documento vivo: ele mantém a discussão em aberto pelo tempo necessário e registra como se chegou a cada decisão e que caminhos foram testados.
 Atividades. O que será feito para chegar ao objetivo? Use uma lista ou uma tabela atividade | responsável | status | observações, ou indique o link de uma ferramenta que acompanhe (estilo Jira ou planilha) para dar visibilidade. Status de cada atividade: em andamento, bloqueada, concluída (com a data de conclusão) ou backlog. Nos textos de rascunho dá para usar 🏃🏽 (em andamento), 🛑 (bloqueada) e ✅ (concluída); no documento compilado, prefira escrever o status por extenso na coluna Status.
