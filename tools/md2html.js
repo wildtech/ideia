@@ -26,7 +26,7 @@ const templatePath = path.resolve(projectDir, theme.template);
 const C = theme.colors;
 const FONT = theme.font || "Source Sans Pro";
 const HEADING_FONT = theme.headingFont || FONT;
-// layout "umovme" (padrão): logo no canto, marca d'água e barra degradê, seções numeradas e em maiúsculas.
+// layout "classic" (padrão): logo no canto, marca d'água e barra degradê, seções numeradas e em maiúsculas.
 // layout "simple": logo centralizado no topo, sem marca d'água, rodapé de texto (theme.footer) e seções sem numeração
 //   (a menos que numberSections seja true). Opções: logoMedia (imagem do template, padrão image1.png), logoText (texto ou emoji no lugar da imagem, como o 💡 do
 //   template genérico) com logoTextSize (px, padrão 120), footer (lista de linhas Markdown).

@@ -50,6 +50,18 @@ O template visual padrão é o genérico (`template-generico-projeto-doc`). O da
 
 Os templates de conteúdo são arquivos de texto (`template-<nome>.txt`) com as seções, uma pergunta e indicações para cada uma. Já vêm quatro: **iniciativa**, **Business Model Canvas** (para modelar uma ideia de negócio), **10-20-30** (para apresentar uma ideia) e **PDI** (plano de desenvolvimento individual, com o olhar da aprendizagem autodirigida). Você pode criar os seus.
 
+## Como contribuir
+
+Contribuições são bem-vindas: novos **templates de conteúdo**, melhorias nos **templates visuais**, correções e melhorias nas **ferramentas**, e ajustes de texto. Abra uma *issue* para conversar sobre a ideia ou envie direto um *pull request*.
+
+- **Novo template de conteúdo:** crie `template-<nome>.txt` na raiz, no mesmo formato dos existentes (uma seção por linha, com a pergunta e as indicações). **Indique no fim do arquivo de onde as perguntas e seções foram retiradas** (um texto, um livro, um modelo), com o link quando existir. Registre o template nas tabelas do `README.md` e do `AGENTS.md`. O `AGENTS.md` ("Criando um novo template de conteúdo") explica o passo a passo.
+- **Template visual:** envie um template **genérico**, sem marca, logo ou endereço de terceiros. Templates com marca ficam nos repositórios de quem os criou.
+- **Ferramentas (`tools/`):** rode `cd tools && npm install` e `node tools/build.js projetos/exemplo`, e confira o resultado nos três formatos (docx, html e pdf) antes de enviar. Mudanças nas ferramentas não devem alterar o resultado dos projetos que já existem.
+- **Não envie** projetos pessoais, dados pessoais ou de terceiros, nem conteúdo que você não tenha direito de compartilhar. Os projetos de cada pessoa ficam no repositório dela; aqui entra só a base.
+- **Licença:** ao contribuir, você concorda que o seu trabalho seja licenciado como o restante do repositório (CC BY 4.0 para documentos e templates, MIT para `tools/`), com crédito a você quando fizer sentido.
+
+Para tudo isso, o seu agente de IA pode ajudar: peça para ele ler o `AGENTS.md`, criar o template ou o ajuste, e preparar o *pull request* (se você usa o GitHub, com a CLI `gh`).
+
 ## Evoluir a partir deste repositório
 
 Este repositório é a **origem** da estrutura (`tools/`, templates e regras). Para criar um repositório seu com assuntos específicos, faça um fork (ou use **Use this template**), mova para ele os seus projetos e, quando quiser, traga as melhorias da origem de volta.

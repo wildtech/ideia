@@ -168,6 +168,7 @@ O repositório será publicado como **template do GitHub**, para que as pessoas 
 | **Isenção de responsabilidade** | Aviso no README de que o conteúdo é oferecido como está, sem garantias |
 | **Template visual distribuído** | O genérico, como padrão quando a pessoa não indica o seu, e o da Wildtech, apenas como exemplo de uso de um template com marca |
 | **Marca da Wildtech** | Nome, logo e endereço da Wildtech não são cobertos pela licença; aparecem só como exemplo de uso |
+| **Contribuições** | Aceitas (templates de conteúdo, templates visuais genéricos, ferramentas e textos), por issue ou pull request; regras na seção "Como contribuir" do README, com a exigência de indicar a fonte de cada template novo |
 | **Origem e derivados** | O repositório `ideia` é a origem da base (ferramentas, templates e regras); repositórios com assuntos específicos nascem de um fork dele |
 | **Idioma** | Português do Brasil |
 | **Local de publicação** | GitHub: [wildtech/ideia](https://github.com/wildtech/ideia) |
@@ -175,7 +176,7 @@ O repositório será publicado como **template do GitHub**, para que as pessoas 
 #### Como chegamos nesta decisão
 
 - **Licença:** a primeira ideia foi uma licença Creative Commons, para permitir uso e derivação com crédito. Como o repositório mistura conteúdo e código, a recomendação, aceita, foi usar licença dupla: CC BY 4.0 para o conteúdo e MIT para as ferramentas.
-- **Template visual:** o padrão é o genérico, que é o da Wildtech com outro logo (um emoji 💡), e o da Wildtech ficou como exemplo de uso. Adaptá-los exigiu tornar os compiladores configuráveis (numeração de seção, recuo, logo no corpo, rodapé), o que também os deixa prontos para outras marcas.
+- **Template visual:** o padrão é o genérico, que parte do template da Wildtech com outro logo (um emoji 💡) e um rodapé neutro, e o da Wildtech ficou como exemplo de uso. Adaptá-los exigiu tornar os compiladores configuráveis (numeração de seção, recuo, logo no corpo, rodapé), o que também os deixa prontos para outras marcas.
 - **Template de conteúdo:** o arquivo foi renomeado para `template-iniciativa.txt`, abrindo espaço para outros modelos. Os de Business Model Canvas, 10-20-30 e PDI seguiram o mesmo formato (uma seção por linha, com a pergunta e as indicações) e os dois primeiros saíram do mesmo texto de referência, que traz as duas abordagens, enquanto o PDI saiu do modelo de PDI do Daniel Wildt.
 - **Como declarar o template de cada projeto:** uma linha **Template:** no topo do documento, lida pelo assistente. Sem a linha, vale iniciativa.
 
@@ -184,11 +185,10 @@ O repositório será publicado como **template do GitHub**, para que as pessoas 
 ### Pontos em aberto
 
 > **Ainda em aberto:**
-> - **Como receber contribuições:** aceitar templates de outras pessoas ou manter só o conjunto oficial.
 > - **Templates depois dos quatro primeiros**, e em que ordem.
 > - **Retorno do primeiro teste:** o que medir e como registrar, inclusive se as perguntas dos novos templates funcionam para quem não é técnico.
 >
-> **Já decidido:** público (pessoas não técnicas), formato do onboarding (README e roteiro no `AGENTS.md`), tratamento de imagens (insumo que vira texto), local de publicação, licença e como declarar o template de cada projeto.
+> **Já decidido:** público (pessoas não técnicas), formato do onboarding (README e roteiro no `AGENTS.md`), tratamento de imagens (insumo que vira texto), local de publicação, licença, como declarar o template de cada projeto e como receber contribuições (aceitas, com a seção "Como contribuir" no README).
 
 ---
 

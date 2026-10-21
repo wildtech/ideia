@@ -4,7 +4,7 @@
 // Uso: node tools/md2docx.js <pasta-do-projeto> [arquivo.md] [saida.docx]
 //
 //   <pasta-do-projeto> deve conter um theme.json com:
-//     "template": caminho do .docx de base, relativo à pasta do projeto (ex.: "../../template-umovme-projeto-doc.docx")
+//     "template": caminho do .docx de base, relativo à pasta do projeto (ex.: "../../template-generico-projeto-doc.docx")
 //     "colors":   cores usadas em tabelas e destaques
 //   Sem arquivo.md, usa <pasta>/<nome-da-pasta>.md. Sem saida, grava em <pasta>/out/.
 //
@@ -28,7 +28,7 @@ const templatePath = path.resolve(projectDir, theme.template);
 const C = theme.colors;
 const FONT = theme.font || "Source Sans Pro";
 const HEADING_FONT = theme.headingFont || FONT;
-// Opções do tema (padrão = comportamento do template da uMovme):
+// Opções do tema (os padrões valem para o layout "classic"):
 //   numberSections: numera as seções (1., 2., ...) com a numeração nº 1 do template
 //   uppercaseTitles: título e seções em maiúsculas
 //   headerDate: troca o texto "dd/mmm/yyyy" do cabeçalho do template pela data da geração
@@ -39,7 +39,7 @@ const KEEP_LEADING = theme.keepLeadingParagraphs || 0;
 const HEADER_DATE = theme.headerDate === true;
 const caps = (t) => (UPPER ? t.toUpperCase() : t);
 
-// Layout do template (padrão da uMovme): texto recuado em 850 twips; margens 1134 / 1132; página A4.
+// Layout do template (padrão, "classic"): texto recuado em 850 twips; margens 1134 / 1132; página A4.
 // Outros templates ajustam no theme.json: "indent" (recuo do texto) e "margins" ([esquerda, direita]).
 const INDENT = theme.indent ?? 850;
 const [MARGIN_L, MARGIN_R] = theme.margins || [1134, 1132];

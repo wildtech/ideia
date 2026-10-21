@@ -168,7 +168,7 @@ O `projetos/exemplo/theme.json` é o modelo, e usa o template genérico (o padr�
   "margins": [1008, 1008],
   "headerDate": true,
   "logoText": "💡",
-  "footer": ["**Wildtech** - Start wild, keep wild", "[www.wildtech.com.br](https://www.wildtech.com.br)"],
+  "footer": ["**Empresa** - slogan", "https endereçoempresa"],
   "colors": {
     "titleBlue": "222222", "primary": "503030", "accent": "B85C00",
     "text": "222222", "textStrong": "000000",
@@ -184,7 +184,7 @@ O `projetos/exemplo/theme.json` é o modelo, e usa o template genérico (o padr�
 
 | Opção | O que faz | Padrão |
 | :--- | :--- | :--- |
-| `layout` | `"simple"` (logo centralizado no topo e rodapé de texto) ou `"umovme"` (logo no canto, marca d'água e barra degradê; exige as imagens `image1` a `image3` no template). **Use `simple`** com o template da Wildtech e com templates próprios | `"umovme"` |
+| `layout` | `"simple"` (logo centralizado no topo e rodapé de texto) ou `"classic"` (logo no canto, marca d'água e barra degradê; exige as imagens `image1` a `image3` no template). **Use `simple`** com o template genérico, o da Wildtech e templates próprios | `"classic"` |
 | `numberSections` | numera as seções (1., 2., ...) | `true` (`false` no `simple`) |
 | `uppercaseTitles` | título e seções em maiúsculas | `true` (`false` no `simple`) |
 | `headingFont` | fonte dos títulos | igual a `font` |
@@ -256,6 +256,15 @@ Esta é a regra que o criador do template (Daniel Wildt) usa. **Ajuste conforme 
 - Faça commits **somente quando a pessoa pedir**.
 - **O push é sempre feito pela pessoa.** Nunca execute `git push`. (Quem quiser mais flexibilidade pode trocar por: "faça o push da branch de trabalho quando a pessoa pedir", ou liberar o push depois do commit.)
 - `.DS_Store`, `node_modules/` e `out/` estão no `.gitignore`. Os arquivos gerados não são versionados; para distribuir um documento, gere de novo a partir do `.md`.
+
+## Contribuições
+
+O repositório aceita contribuições (templates de conteúdo, templates visuais genéricos, ferramentas e textos). As regras estão na seção "Como contribuir" do `README.md`. Se a pessoa quiser contribuir, ajude-a a:
+
+1. Seguir "Criando um novo template de conteúdo" e **registrar a fonte** das perguntas e seções no fim do arquivo.
+2. Registrar o template nas tabelas do `README.md` e do `AGENTS.md`.
+3. Rodar `node tools/build.js projetos/exemplo` e conferir os três formatos.
+4. Preparar o commit e o *pull request* só quando ela pedir e confirmar o conteúdo (com a CLI `gh`, se ela usa GitHub; veja "Integrações opcionais"). Nada de dados pessoais, marcas de terceiros ou projetos pessoais.
 
 ## Licença e crédito
 
