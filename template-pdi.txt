@@ -12,4 +12,4 @@ Atividades. O que será feito para chegar ao objetivo? Use uma lista ou uma tabe
 Revisão do plano. O que foi aprendido até aqui? O objetivo continua fazendo sentido? Marcar com (?) o que ainda é dúvida e organizar para que funcione de forma iterativa e incremental: pense em uma primeira entrega, valide e aprenda.
 Documentos de apoio: referência dos documentos que complementam, servem de apoio ou foram gerados a partir deste material (opcional), como o mapa A3.
 
-Este template vem a partir do modelo de PDI "template-pdi" (Google Docs), do Daniel Wildt, que traz os campos de cada objetivo: finalidade da habilidade, estratégias, arquiteturas de aprendizagem, data limite, contexto e atividades.
+Este template tem como base o modelo de PDI do Daniel Wildt, com o olhar da aprendizagem autodirigida, que traz os campos de cada objetivo: finalidade da habilidade, estratégias, arquiteturas de aprendizagem, data limite, contexto e atividades.

@@ -176,7 +176,7 @@ O repositório será publicado como **template do GitHub**, para que as pessoas 
 
 - **Licença:** a primeira ideia foi uma licença Creative Commons, para permitir uso e derivação com crédito. Como o repositório mistura conteúdo e código, a recomendação, aceita, foi usar licença dupla: CC BY 4.0 para o conteúdo e MIT para as ferramentas.
 - **Template visual:** o padrão é o genérico, que é o da Wildtech com outro logo (um emoji 💡), e o da Wildtech ficou como exemplo de uso. Adaptá-los exigiu tornar os compiladores configuráveis (numeração de seção, recuo, logo no corpo, rodapé), o que também os deixa prontos para outras marcas.
-- **Template de conteúdo:** o arquivo foi renomeado para `template-iniciativa.txt`, abrindo espaço para outros modelos. Os de Business Model Canvas, 10-20-30 e PDI seguiram o mesmo formato (uma seção por linha, com a pergunta e as indicações) e os dois primeiros saíram do mesmo texto de referência, que traz as duas abordagens, enquanto o PDI saiu do modelo `template-pdi` do Google Docs.
+- **Template de conteúdo:** o arquivo foi renomeado para `template-iniciativa.txt`, abrindo espaço para outros modelos. Os de Business Model Canvas, 10-20-30 e PDI seguiram o mesmo formato (uma seção por linha, com a pergunta e as indicações) e os dois primeiros saíram do mesmo texto de referência, que traz as duas abordagens, enquanto o PDI saiu do modelo de PDI do Daniel Wildt.
 - **Como declarar o template de cada projeto:** uma linha **Template:** no topo do documento, lida pelo assistente. Sem a linha, vale iniciativa.
 
 ---
@@ -197,7 +197,7 @@ O repositório será publicado como **template do GitHub**, para que as pessoas 
 - [Repositório wildtech/ideia](https://github.com/wildtech/ideia): onde a estrutura é publicada.
 - `AGENTS.md`: regras de uso, formato do Markdown e opções de tema do repositório.
 - `template-iniciativa.txt`: roteiro de seções, perguntas e indicações da iniciativa. Origem do modelo: [Escreva, escreva e escreva](https://blog.danielwildt.com/2020/12/23/escreva-escreva-e-escreva/).
-- `template-pdi.txt`: roteiro de plano de desenvolvimento individual, a partir do modelo `template-pdi` (Google Docs), com o olhar da aprendizagem autodirigida.
+- `template-pdi.txt`: roteiro de plano de desenvolvimento individual, a partir do modelo de PDI do Daniel Wildt, com o olhar da aprendizagem autodirigida.
 - `template-businessmodelcanvas.txt` e `template-10-20-30.txt`: roteiros para modelar e apresentar uma ideia de negócio. Origem: [Perguntas para um modelo de negócios?](https://blog.danielwildt.com/2016/05/05/perguntas-para-um-modelo-de-negocios/).
 - `template-generico-projeto-doc.docx` e `template-generico-projeto-doc.pdf`: template visual padrão. `template-wildtech-projeto-doc.*`: exemplo de template com marca.
 - Documento do onboarding: A definir. Quando existir, será um documento próprio, linkado aqui.
