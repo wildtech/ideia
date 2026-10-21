@@ -1,0 +1,23 @@
+{
+  "name": "ideia-tools",
+  "version": "1.0.0",
+  "description": "Compiladores de Markdown para docx, html e pdf do repositório ideia",
+  "main": "index.js",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "keywords": [
+    "markdown",
+    "docx",
+    "pdf",
+    "templates"
+  ],
+  "author": "Daniel Wildt",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "docx": "^9.9.0",
+    "jszip": "^3.10.2",
+    "pngjs": "^7.0.0"
+  }
+}

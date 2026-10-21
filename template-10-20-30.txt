@@ -1,0 +1,23 @@
+Título da apresentação.
+Nome da ideia, do produto ou da empresa que está sendo apresentada, e para quem é a apresentação (indicações, sócio, investidor ou clientes).
+Período de acompanhamento e data limite. Ano e período em que a apresentação está sendo preparada, e a data da apresentação, se existir.
+Sobre / Contexto. De onde vem esta ideia e por que ela será apresentada? Queremos um documento vivo: ele mantém a discussão em aberto pelo tempo necessário e registra como se chegou a cada resposta.
+Papéis e expectativas (RCI). Quem é responsável (R), quem precisa ser consultado (C) e quem precisa ser informado (I). Só existem estes três papéis.
+Regra 10-20-30. A apresentação tem 10 slides, dura no máximo 20 minutos e usa fonte de tamanho mínimo 30. A estrutura serve para olhar para um negócio e entender rápido o seu funcionamento. O limite de tempo e o tamanho da fonte garantem o uso de ideias, e não de textos longos ou da leitura dos slides. Cada seção abaixo é um slide: aqui se escreve o que ele vai dizer.
+1. O problema. Qual é o problema sendo resolvido?
+2. A solução. Qual a solução que está sendo dada ao problema?
+3. O modelo de negócios. Qual o modelo de negócios da solução?
+4. A mágica (tecnologia). Qual a mágica, ou seja, a tecnologia existente na solução?
+5. Marketing e vendas. Como funciona a estrutura de marketing e vendas?
+6. Concorrentes. Quais são os concorrentes?
+7. O time. Quem é o seu time? Mostre com quem a sua empresa é feita.
+8. Projeções e marcos. Quais são as projeções existentes e os marcos previstos de entrega?
+9. Status e linha do tempo. Qual o status e a linha do tempo atual?
+10. Resumo e chamada para ação. Faça o resumo e pergunte-se o que você busca: indicações, sócio, investidor ou clientes.
+Revisão do roteiro. Cabe em 20 minutos? Cada slide cabe em poucas palavras, em fonte 30? O que ainda é dúvida fica marcado com (?). Organize para que funcione de forma iterativa e incremental: pense em uma primeira versão, apresente, valide e aprenda.
+Documentos de apoio: referência dos documentos que complementam, servem de apoio ou foram gerados a partir deste material (opcional), como os slides em si.
+
+O roteiro de 10 slides é o 10-20-30, de Guy Kawasaki. Para entender o negócio por trás da apresentação, o Business Model Canvas (template-businessmodelcanvas.txt) é um bom ponto de partida.
+
+Este template, as perguntas e as indicações de cada seção vêm a partir deste texto:
+https://blog.danielwildt.com/2016/05/05/perguntas-para-um-modelo-de-negocios/

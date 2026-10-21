@@ -1,0 +1,12 @@
+Título da iniciativa.
+Ano e período de acompanhamento do assunto. Estrutura de datas, e indicação se existir uma data limite para o assunto (pode ser a próxima data limite caso a iniciativa tenha estágios). 
+Sobre / Contexto / O que aconteceu? Este documento fala sobre o que? Qual o problema ou iniciativa em questão sendo tratado aqui? Queremos ter uma estrutura de escrita que ajude a documentar ao mesmo tempo que mantemos a discussão em aberto pelo tempo que ela for necessária. Ao mesmo tempo, queremos gerar direcionamentos e saber dizer como chegamos onde chegamos e que caminhos foram tentados e testados. 
+Papéis e expectativas. (RACI para avaliar quem precisa atuar e quem está como apoio / ajuda na hora de saber como engajar e marcar agendas de checkpoint. UPDATE Dezembro 2020: “drop” do “A”, onde agora só considero Responsável, Consultado e Informado como opções)
+Objetivo / Onde queremos chegar? Quais objetivos queremos alcançar? Temos algum indicador? Indicar aqui o que se tem de informação de como estamos e como avançamos.  
+Apoio, atividades em andamento, revisão literatura
+Documentos de apoio: referência dos documentos que complementam, servem de apoio ou foram gerados a partir deste material. 
+Atividades em andamento: Ou monta tabela com atividade | responsável | observações, ou indica link para ferramenta que acompanha as atividades (exemplo jira, trello ou basecamp).
+Tópicos: A partir daqui, pensar em tópicos que podem ser considerados em próximas seções. Se existe uma tomada de decisão, considerar montar uma matriz de posicionamento para indicar opções em análise. Outros exemplos de tópicos possíveis: Como era (estado atual) / Contexto do problema, dados de apoio, revisão literatura (conceitos, histórias). IMPORTANTE: Se o resultado é um outro documento, indique o link para o documento em questão. Não misture, e aproveite os estilos de linguagem / escrita. Use este documento aqui para documentar o processo. Se o que você está fazendo resulta em um manual, ou recomendações ou uma FAQ, organize um documento oficial sobre isso e já use ele dentro do contexto em questão. Organize para que funcione de forma iterativa e incremental. Pense em uma primeira entrega, valide e aprenda. Exemplo um documento que apresenta como evolução uma FAQ, onde se adiciona perguntas que foram sendo entendidas com a vida real. 
+
+Este template vem a partir deste texto:
+https://blog.danielwildt.com/2020/12/23/escreva-escreva-e-escreva/

@@ -1,0 +1,21 @@
+Título da ideia ou do negócio.
+Nome da ideia, do produto ou da empresa que está sendo modelada. Indicar se é um negócio que já existe (a empresa atual) ou uma ideia nova que se pretende criar.
+Período de acompanhamento e data limite. Ano e período em que o modelo está sendo trabalhado, e se existe uma data limite para validar a ideia (pode ser a próxima data limite, caso haja estágios).
+Sobre / Contexto / O que aconteceu? De onde vem esta ideia ou este negócio? Qual o ponto de partida? Queremos um documento vivo: ele mantém a discussão em aberto pelo tempo necessário e registra como se chegou a cada resposta e que caminhos foram testados.
+Papéis e expectativas (RCI). Quem é responsável (R), quem precisa ser consultado (C) e quem precisa ser informado (I). Só existem estes três papéis.
+Segmento de clientes / mercado. Escolha o seu nicho. Dizer que o seu serviço ou produto pode ser usado por todo mundo pode ser bem perigoso.
+Valor a ser proporcionado ao segmento escolhido. Qual a sua entrega? Onde você ajuda? Que problema você resolve para o segmento escolhido?
+Canais para captar e chegar no segmento. Onde estão os seus clientes? Pensar em redes sociais, mailing list, mídias físicas, associações comerciais ou universidades.
+Retenção de clientes. Como você faz a pessoa seguir voltando e usando o seu produto? Depois que alguém se interessa ou vira cliente, como mantê-lo usando o produto e, com o cliente em faturamento, como mantê-lo pagando pelo serviço?
+Fluxos de entrada de valores. Como a empresa recebe valores pelo serviço prestado? Pensar no modelo de funcionamento da empresa: freemium ou propaganda podem parecer interessantes em um primeiro momento, mas é importante pensar no modelo de faturamento e de geração de ganhos. Como ela vai sobreviver?
+Custos para manter uma operação. Quais são os custos, incluindo os custos compartilhados? Trabalhar de casa e usar a própria internet, a própria luz e o tempo livre não significa custo zero: para manter um negócio é preciso mostrar com clareza os custos existentes. Estabelecer um valor mínimo para as horas usadas para manter o negócio em funcionamento. Não existe almoço de graça.
+Atividades que devem ser desenvolvidas. O que precisa ser feito para o negócio funcionar? Incluir as horas necessárias para mantê-lo funcionando.
+Recursos necessários. O que é preciso para manter o negócio em ação? Uma impressora? Assessoria de imprensa?
+Canais e alianças que ajudarão na evolução do modelo. Quem apoia no crescimento do produto ou serviço? Canais de parceiros?
+Validação e próximos passos. Testar as respostas na empresa atual ou em um negócio que você pretende criar, para validar o conceito. O que já foi testado, o que ainda é hipótese e qual a primeira entrega? Marcar com (?) o que ainda não se sabe e organizar para que funcione de forma iterativa e incremental: pense em uma primeira entrega, valide e aprenda.
+Documentos de apoio: referência dos documentos que complementam, servem de apoio ou foram gerados a partir deste material (opcional).
+
+As nove perguntas do modelo (segmento de clientes, valor, canais, retenção, entrada de valores, custos, atividades, recursos e alianças) são o Business Model Canvas, de Alex Osterwalder.
+
+Este template, as perguntas e as indicações de cada seção vêm a partir deste texto:
+https://blog.danielwildt.com/2016/05/05/perguntas-para-um-modelo-de-negocios/

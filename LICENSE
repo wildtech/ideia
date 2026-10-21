@@ -1,0 +1,39 @@
+Documentos e templates deste repositório
+=========================================
+
+Copyright (c) 2026 Daniel Wildt (Wildtech)
+
+Exceto onde indicado de outra forma, os documentos, os templates (arquivos
+template-*.txt, template-*-projeto-doc.docx e .pdf), o projeto de exemplo e os
+textos deste repositório são licenciados sob a Licença Creative Commons
+Atribuição 4.0 Internacional (CC BY 4.0).
+
+Você pode:
+  - Compartilhar: copiar e redistribuir o material em qualquer meio ou formato.
+  - Adaptar: remixar, transformar e criar a partir do material, inclusive para
+    fins comerciais.
+
+Sob as seguintes condições:
+  - Atribuição: você deve dar o crédito apropriado, prover um link para a
+    licença e indicar se mudanças foram feitas. Indique como origem:
+    "Daniel Wildt / Wildtech, https://github.com/wildtech/ideia".
+  - Sem restrições adicionais: você não pode aplicar termos jurídicos ou
+    medidas tecnológicas que restrinjam outros de fazerem o que a licença permite.
+
+Texto completo da licença (português):
+https://creativecommons.org/licenses/by/4.0/legalcode.pt
+Resumo: https://creativecommons.org/licenses/by/4.0/deed.pt-br
+
+A marca, o logotipo, o nome e o endereço da Wildtech (por exemplo, nos
+templates visuais template-wildtech-projeto-doc.* e no rodapé de
+template-generico-projeto-doc.*) são da Wildtech e NÃO são cobertos por esta
+licença: permanecem reservados. Esses arquivos estão aqui apenas como EXEMPLO
+DE USO dos templates. Ao criar derivados, troque o template visual e o rodapé
+pelos da sua marca, e não use a marca da Wildtech de forma que sugira
+vínculo ou aprovação.
+
+AVISO: o material é oferecido "como está", sem garantias de qualquer tipo,
+expressas ou implícitas. Em nenhuma hipótese o autor é responsável por
+reivindicações, danos ou outras responsabilidades decorrentes do uso do material.
+
+As ferramentas em tools/ têm licença própria (MIT): ver tools/LICENSE.

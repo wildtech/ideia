@@ -1,0 +1,15 @@
+Título do plano.
+Plano de Desenvolvimento Individual (PDI) de quem vai aprender, com o nome e o sobrenome da pessoa. O olhar é o da aprendizagem autodirigida: a própria pessoa escolhe o que quer desenvolver e como.
+Período de acompanhamento. Ano e período do plano, com a data limite de cada objetivo.
+Papéis e expectativas (RCI). Quem é responsável (R), quem precisa ser consultado (C), por exemplo quem apoia a aprendizagem, e quem precisa ser informado (I). Só existem estes três papéis.
+Meu primeiro objetivo. Um nome curto para o que se quer alcançar. Cada objetivo do plano é uma seção com os campos abaixo; para um segundo objetivo, repita a seção ("Meu segundo objetivo", e assim por diante).
+Finalidade da habilidade. Qual é a finalidade: Desenvolver uma habilidade nova ou Potencializar uma que já existe?
+Estratégias. Quais estratégias serão usadas: Conteúdos, Experiências, Pessoas, Redes? Pode ser mais de uma.
+Arquiteturas de aprendizagem. Quais arquiteturas de aprendizagem serão usadas? Ver o mapa A3 (link do mapa: A definir).
+Data limite. Até quando o objetivo deve ser alcançado (dd/mm/aaaa)?
+Contexto do projeto / problema. Por que este objetivo? Qual o contexto, o problema ou a oportunidade por trás dele? Queremos um documento vivo: ele mantém a discussão em aberto pelo tempo necessário e registra como se chegou a cada decisão e que caminhos foram testados.
+Atividades. O que será feito para chegar ao objetivo? Use uma lista ou uma tabela atividade | responsável | status | observações, ou indique o link de uma ferramenta que acompanhe (estilo Jira ou planilha) para dar visibilidade. Status de cada atividade: em andamento, bloqueada, concluída (com a data de conclusão) ou backlog. Nos textos de rascunho dá para usar 🏃🏽 (em andamento), 🛑 (bloqueada) e ✅ (concluída); no documento compilado, prefira escrever o status por extenso na coluna Status.
+Revisão do plano. O que foi aprendido até aqui? O objetivo continua fazendo sentido? Marcar com (?) o que ainda é dúvida e organizar para que funcione de forma iterativa e incremental: pense em uma primeira entrega, valide e aprenda.
+Documentos de apoio: referência dos documentos que complementam, servem de apoio ou foram gerados a partir deste material (opcional), como o mapa A3.
+
+Este template vem a partir do modelo de PDI "template-pdi" (Google Docs), do Daniel Wildt, que traz os campos de cada objetivo: finalidade da habilidade, estratégias, arquiteturas de aprendizagem, data limite, contexto e atividades.
