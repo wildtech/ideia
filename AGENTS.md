@@ -16,6 +16,8 @@ ideia/
 ├── template-iniciativa.txt                [base] template de conteúdo: seções, perguntas e indicações de uma iniciativa
 ├── template-businessmodelcanvas.txt       [base] template de conteúdo: modelar uma ideia de negócio (Business Model Canvas)
 ├── template-10-20-30.txt                  [base] template de conteúdo: roteiro de apresentação em 10 slides (Guy Kawasaki)
+├── template-pitch.txt                     [base] template de conteúdo: pitch no formato Shape Up, do Basecamp
+├── guia-pitch.md                         [base] guia detalhado de como escrever um pitch (apoia o template-pitch.txt)
 ├── template-pdi.txt                       [base] template de conteúdo: plano de desenvolvimento individual (aprendizagem autodirigida)
 ├── template-generico-projeto-doc.docx     [base] template visual PADRÃO (logo 💡, fontes, cabeçalho, rodapé), usado na compilação
 ├── template-generico-projeto-doc.pdf      [base] referência visual do template padrão
@@ -45,6 +47,7 @@ ideia/
 | `template-iniciativa.txt` | Documentar uma iniciativa, um projeto ou uma decisão (o padrão) |
 | `template-businessmodelcanvas.txt` | Modelar uma ideia de negócio, com as 9 perguntas do Business Model Canvas |
 | `template-10-20-30.txt` | Preparar uma apresentação de uma ideia ou negócio em 10 slides, 20 minutos, fonte 30 |
+| `template-pitch.txt` | Validar um problema e uma solução antes das specs, no formato Shape Up (problema, apetite, solução, armadilhas, fora de escopo) |
 | `template-pdi.txt` | Montar um plano de desenvolvimento individual, com o olhar da aprendizagem autodirigida |
 
   A pessoa também pode criar os seus (ver "Criando um novo template de conteúdo"). Para uma ideia de negócio nova, o caminho natural é o Business Model Canvas primeiro e o 10-20-30 depois, para apresentar o que o canvas organizou.
@@ -61,7 +64,7 @@ Use este roteiro quando a pessoa pedir para começar, criar um projeto ou "organ
 Passos:
 
 1. **Verificar o computador.** Confirme que há Node.js (`node --version`) e um navegador Chrome, Chromium ou Edge. Se faltar, explique como instalar, e na primeira vez rode `cd tools && npm install`.
-2. **Escolher o template de conteúdo.** Pergunte o que a pessoa quer fazer e recomende: documentar uma iniciativa (iniciativa), modelar uma ideia de negócio (Business Model Canvas), preparar uma apresentação (10-20-30) ou montar um plano de desenvolvimento individual (PDI). Se ela quiser outro modelo, veja "Criando um novo template de conteúdo".
+2. **Escolher o template de conteúdo.** Pergunte o que a pessoa quer fazer e recomende: documentar uma iniciativa (iniciativa), modelar uma ideia de negócio (Business Model Canvas), preparar uma apresentação (10-20-30), validar uma ideia antes das specs (pitch) ou montar um plano de desenvolvimento individual (PDI). Se ela quiser outro modelo, veja "Criando um novo template de conteúdo".
 3. **Escolher o template visual.** Se a pessoa não indicar um, **use o genérico** (`template-generico-projeto-doc.docx`), que é o padrão do repositório. Se ela quiser a identidade visual dela, ajude a criar o template (ver "Tema do projeto"). O da Wildtech é só um exemplo de template com marca: não o use para a pessoa.
 4. **Perguntar o necessário para o documento:**
    - nome do projeto (vira o nome da pasta e do arquivo; sem espaços e acentos, em minúsculas, com hífen);
@@ -99,12 +102,13 @@ Todo documento declara o template de conteúdo que segue, em uma linha no topo, 
 **Template:** iniciativa
 ```
 
-Valores: `iniciativa`, `businessmodelcanvas`, `10-20-30`, `pdi` ou o nome de um template criado pela pessoa. Sem a linha, vale `iniciativa`.
+Valores: `iniciativa`, `businessmodelcanvas`, `10-20-30`, `pitch`, `pdi` ou o nome de um template criado pela pessoa. Sem a linha, vale `iniciativa`.
 
-- **Seções:** com `businessmodelcanvas`, `10-20-30` e `pdi`, abra o `template-<nome>.txt` e use **uma seção (`###`) para cada item do arquivo**, na mesma ordem. O título da seção é o nome do item, e o texto dela responde à pergunta e segue as indicações. Não invente seções fora do template; acrescente "Tópicos" extras só no fim, se precisar.
+- **Seções:** com `businessmodelcanvas`, `10-20-30`, `pitch` e `pdi`, abra o `template-<nome>.txt` e use **uma seção (`###`) para cada item do arquivo**, na mesma ordem. O título da seção é o nome do item, e o texto dela responde à pergunta e segue as indicações. Não invente seções fora do template; acrescente "Tópicos" extras só no fim, se precisar.
 - **As regras gerais abaixo** (RCI, documento vivo, não inventar informação, **(?)**) valem para todos os templates. As seções fixas listadas na regra 2 valem só para `iniciativa`.
 - No `pdi`, as seções são: período, papéis (RCI), **uma seção por objetivo** ("Meu primeiro objetivo", "Meu segundo objetivo", ...), revisão do plano e documentos de apoio. Dentro de cada objetivo, os campos do template (finalidade da habilidade, estratégias, arquiteturas de aprendizagem, data limite) viram linhas consecutivas no início da seção, seguidas do contexto e da tabela de atividades (atividade | responsável | status | observações).
 - No `10-20-30`, cada slide vira uma seção, escrita como o que o slide vai dizer, em poucas palavras. Confira se o roteiro cabe em 20 minutos.
+- No `pitch`, as seções são: período, papéis (RCI), **Problema**, **Apetite**, **Solução**, **Armadilhas**, **Fora de escopo**, revisão do pitch e documentos de apoio. O Problema é uma história específica, o Apetite é uma decisão (não uma estimativa) e a Solução descreve o fluxo em atos, sem blocos de código nem imagens (o compilador não os trata).
 
 ## Regras para documentos de projeto
 

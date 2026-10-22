@@ -1,0 +1,20 @@
+Título do pitch.
+Nome da ideia, do app ou da funcionalidade que está sendo proposta, e para quem é o pitch (quem vai decidir se vale investir).
+Período de acompanhamento e data limite. Ano e período em que o pitch está sendo escrito, e a data da decisão, se existir.
+Sobre / Contexto. De onde vem esta ideia e por que ela está sendo proposta agora? Queremos um documento vivo: ele mantém a discussão em aberto pelo tempo necessário e registra como se chegou a cada resposta.
+Papéis e expectativas (RCI). Quem é responsável (R), quem precisa ser consultado (C) e quem precisa ser informado (I). Só existem estes três papéis.
+Regra do pitch. Um pitch valida que o problema vale a pena resolver e que a solução é viável antes de qualquer spec detalhada ou linha de código. Ele segue o formato do Shape Up, do Basecamp (https://basecamp.com/shapeup/1.5-chapter-06). Use para um app novo (obrigatório) ou uma funcionalidade grande, com mais de uma semana de trabalho. Cada seção abaixo é uma parte do pitch. Uma pessoa de fora do projeto deve entender o problema e a solução lendo uma vez, sem pressupor familiaridade com a plataforma ou o código.
+1. Problema. Qual história específica mostra por que o status quo não funciona? Escreva uma cena concreta: quem está tentando fazer o quê, o que acontece hoje e por que isso é ruim. Não use uma lista de reclamações nem uma generalização. Exemplo fraco: "Os consultores têm dificuldade de obter dados do cliente." Exemplo bom: "Um consultor se prepara para uma reunião. Para montar o diagnóstico, entra em cinco telas, anota números à mão e monta uma apresentação. Leva 2 horas e o resultado varia de consultor para consultor."
+2. Apetite. Quanto tempo e esforço vale investir nesta solução? É uma decisão de negócio, não uma estimativa técnica (exemplos: "2 semanas de uma pessoa de desenvolvimento", "6 semanas de equipe pequena"). Se a solução não cabe no apetite, reduza o escopo, e não aumente o apetite.
+3. Solução. Quais são os elementos centrais da solução, de um jeito que qualquer pessoa entenda sem contexto técnico? Descreva o fluxo em atos (Ato 1: entrada, Ato 2: processamento, Ato 3: resultado) e liste os elementos centrais em bullets curtos. Use esboços de traço grosso (fat marker sketches), sem wireframes detalhados nem telas de alta fidelidade: o objetivo é comunicar a ideia, não especificar o design. Como o compilador não trata blocos de código nem imagens, descreva o esboço em texto ou referencie a imagem em Documentos de apoio.
+4. Armadilhas (rabbit holes). Quais problemas específicos já foram identificados no raciocínio e, se ignorados, viram trabalho não planejado? Não são riscos genéricos: são pontos técnicos ou de produto reais. Escreva uma frase para cada armadilha e, quando possível, a mitigação. Esta seção pode ser mais técnica.
+5. Fora de escopo (no-gos). O que explicitamente não faz parte desta solução? Liste as funcionalidades que alguém vai sugerir durante o desenvolvimento e que devem ser recusadas no escopo atual, pelo menos as mais óbvias. Declarar isso no pitch evita desvios na implementação.
+Revisão do pitch. O problema é uma história específica? O apetite está declarado como decisão? A solução mostra o fluxo principal? As armadilhas são reais, e não hipóteses genéricas? Os no-gos incluem o mais óbvio? O que ainda é dúvida fica marcado com (?). Organize para que funcione de forma iterativa e incremental: pense em uma primeira versão, valide e aprenda.
+Documentos de apoio: referência dos documentos que complementam, servem de apoio ou foram gerados a partir deste material (opcional), como esboços e as specs que nascem depois da aprovação.
+
+Para entender o negócio por trás de uma ideia nova, o Business Model Canvas (template-businessmodelcanvas.txt) é um bom ponto de partida; o pitch vem depois, antes das specs.
+
+O guia detalhado de escrita, com checklist, está em guia-pitch.md.
+
+Este template vem do formato de pitch do Shape Up (Basecamp):
+https://basecamp.com/shapeup/1.5-chapter-06

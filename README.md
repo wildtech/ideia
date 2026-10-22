@@ -36,6 +36,8 @@ Se o Chrome não for encontrado, defina a variável `CHROME` com o caminho do ex
 | `template-iniciativa.txt` | Template de conteúdo: seções, perguntas e indicações de uma iniciativa |
 | `template-businessmodelcanvas.txt` | Template de conteúdo: modelar uma ideia de negócio (Business Model Canvas) |
 | `template-10-20-30.txt` | Template de conteúdo: roteiro de apresentação em 10 slides, 20 minutos, fonte 30 (Guy Kawasaki) |
+| `template-pitch.txt` | Template de conteúdo: pitch no formato Shape Up (Basecamp), com problema, apetite, solução, armadilhas e fora de escopo |
+| `guia-pitch.md` | Guia detalhado de como escrever um pitch (cinco seções e checklist), apoio do `template-pitch.txt` |
 | `template-pdi.txt` | Template de conteúdo: plano de desenvolvimento individual, com o olhar da aprendizagem autodirigida |
 | `template-generico-projeto-doc.docx` e `.pdf` | Template visual **padrão** (logo, fontes, cabeçalho e rodapé) e a referência de como deve ficar |
 | `template-wildtech-projeto-doc.docx` e `.pdf` | Exemplo de um template visual com marca (a da Wildtech) |
@@ -48,7 +50,7 @@ O template visual padrão é o genérico (`template-generico-projeto-doc`). O da
 
 ## Novos templates
 
-Os templates de conteúdo são arquivos de texto (`template-<nome>.txt`) com as seções, uma pergunta e indicações para cada uma. Já vêm quatro: **iniciativa**, **Business Model Canvas** (para modelar uma ideia de negócio), **10-20-30** (para apresentar uma ideia) e **PDI** (plano de desenvolvimento individual, com o olhar da aprendizagem autodirigida). Você pode criar os seus.
+Os templates de conteúdo são arquivos de texto (`template-<nome>.txt`) com as seções, uma pergunta e indicações para cada uma. Já vêm cinco: **iniciativa**, **Business Model Canvas** (para modelar uma ideia de negócio), **10-20-30** (para apresentar uma ideia), **pitch** (validar um problema e uma solução antes das specs, no formato Shape Up) e **PDI** (plano de desenvolvimento individual, com o olhar da aprendizagem autodirigida). Você pode criar os seus.
 
 ## Como contribuir
 
