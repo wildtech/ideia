@@ -1,3 +1,25 @@
+# Sistema
 .DS_Store
+Thumbs.db
+
+# Dependências e builds
 node_modules/
+dist/
+coverage/
+.vite/
+*.tsbuildinfo
+
+# Saída gerada dos documentos (docx, html e pdf), regenerada a partir do .md
 out/
+
+# Segredos e configuração local
+.env
+.env.*
+!.env.example
+
+# Bancos locais e logs
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.log
