@@ -1,0 +1,12 @@
+{
+  "extends": "neutro",
+  "name": "Creative Commons (exemplo)",
+  "logo": "logo.jpg",
+  "font": "Open Sans",
+  "footer": ["**Exemplo: Creative Commons**", "creativecommons.org"],
+  "colors": {
+    "titleBlue": "111111",
+    "primary": "1F8A70",
+    "accent": "A83232"
+  }
+}

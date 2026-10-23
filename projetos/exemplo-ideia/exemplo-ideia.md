@@ -81,7 +81,7 @@ Facilitar o desenvolvimento e a documentação de iniciativas, partindo de texto
 | Roteiros: Business Model Canvas, 10-20-30, PDI e pitch | Daniel Wildt | Concluída (primeira versão) | Perguntas e seções tiradas dos textos e modelos de referência; falta testar com uso real |
 | Saída em PowerPoint (`.pptx`) a partir do tema | Daniel Wildt | A definir | Segunda rodada, se as pessoas precisarem editar os slides |
 | `AGENTS-extra.md` e o modelo `AGENTS-extra.example.md` | Daniel Wildt | Em validação | Separa o que é base do que é de quem usa |
-| Tema simples (só cores e logo, herdando do tema `neutro`) | Daniel Wildt | Concluída (primeira versão) | Exemplo em `temas/exemplo-leve/`; falta testar com um logo real |
+| Tema simples (só cores e logo, herdando do tema `neutro`) | Daniel Wildt | Concluída (primeira versão) | Exemplos em `temas/exemplo-leve/` (genérico) e `temas/exemplo-cc/` (com o logo da Creative Commons); falta testar com um logo real |
 
 ---
 
@@ -304,5 +304,5 @@ O repositório será publicado como **template do GitHub**, para que as pessoas 
 - `roteiros/businessmodelcanvas.txt` e `roteiros/10-20-30.txt`: para modelar e apresentar uma ideia de negócio. Origem: [Perguntas para um modelo de negócios?](https://blog.danielwildt.com/2016/05/05/perguntas-para-um-modelo-de-negocios/).
 - `roteiros/pitch.txt` e `guias/pitch.md`: roteiro e guia de pitch, a partir do formato do Shape Up (Basecamp).
 - `roteiros/tldr.txt`: roteiro do resumo.
-- `temas/generico/`: tema padrão. `temas/neutro/`: base dos temas simples. `temas/exemplo-leve/`: exemplo de tema simples, usado no projeto `exemplo-cc` (a escolha da licença Creative Commons dos documentos). `temas/wildtech/`: exemplo de tema com marca.
+- `temas/generico/`: tema padrão. `temas/neutro/`: base dos temas simples. `temas/exemplo-leve/`: exemplo genérico de tema simples. `temas/exemplo-cc/`: tema simples do projeto `exemplo-cc` (a escolha da licença Creative Commons dos documentos). `temas/wildtech/`: exemplo de tema com marca.
 - Documento do onboarding: A definir. Quando existir, será um documento próprio, linkado aqui.

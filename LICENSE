@@ -36,10 +36,11 @@ DE USO dos temas. Ao criar derivados, troque o tema e o rodapé
 pelos da sua marca, e não use a marca da Wildtech de forma que sugira
 vínculo ou aprovação.
 
-O logo em temas/exemplo-leve/logo.jpg é uma imagem de divulgação da Creative
+O logo em temas/exemplo-cc/logo.jpg é uma imagem de divulgação da Creative
 Commons (o nome, os botões e o logo da Creative Commons são marcas da Creative
-Commons). Ele aparece apenas como EXEMPLO de um tema simples, no projeto
-projetos/exemplo-cc/, sem vínculo nem endosso da Creative Commons, e NÃO é
+Commons). Ele aparece apenas como EXEMPLO de um tema simples, no tema
+temas/exemplo-cc/ e no projeto projetos/exemplo-cc/, sem vínculo nem endosso
+da Creative Commons, e NÃO é
 coberto por esta licença. Quem usar a marca da Creative Commons deve seguir a
 política de uso dela.
 

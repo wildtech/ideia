@@ -1,9 +1,6 @@
 {
   "nome": "Creative Commons: licença dos documentos",
-  "tema": "exemplo-leve",
-  "ajustes": {
-    "footer": ["**Exemplo: Creative Commons**", "creativecommons.org"]
-  },
+  "tema": "exemplo-cc",
   "saidas": [
     { "fonte": "exemplo-cc.md", "tipo": "documento", "formatos": ["docx", "html", "pdf"] },
     { "fonte": "exemplo-cc-slides.md", "tipo": "apresentacao", "formatos": ["html", "pdf"] }

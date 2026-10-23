@@ -37,7 +37,8 @@ ideia/
 ├── temas/                    [base e conteúdo] identidade visual; uma pasta por tema
 │   └── <tema>/               tema.json (cores, fontes, logo, rodapé, opções) e, se houver, base.docx, referencia.pdf e slides.css
 │       neutro (base dos temas simples), generico (padrão), wildtech (exemplo de tema com marca),
-│       exemplo-leve (exemplo de tema simples: só cores e logo); os temas de quem usa ficam aqui também
+│       exemplo-leve (exemplo de tema simples: só cores e logo), exemplo-cc (tema simples com o logo da Creative Commons,
+│       usado no projeto exemplo-cc); os temas de quem usa ficam aqui também
 ├── tools/                    [base] compiladores (licença MIT, ver tools/LICENSE)
 │   ├── tema.js               carrega o tema e as saídas de um projeto
 │   ├── md-parse.js           parser Markdown compartilhado
@@ -368,7 +369,7 @@ Melhorias nos arquivos `[base]` devem ir para a origem do template, e não ficar
 
 ## Licença e crédito
 
-- Documentos, roteiros e temas do template: Creative Commons Atribuição 4.0 (CC BY 4.0), ver `LICENSE`. A licença cobre só os arquivos `[base]`: os projetos e o `AGENTS-extra.md` de quem usa são de quem os criou. O logo da Creative Commons (em `temas/exemplo-leve/`) é marca dela e não está coberto: aparece só como ilustração.
+- Documentos, roteiros e temas do template: Creative Commons Atribuição 4.0 (CC BY 4.0), ver `LICENSE`. A licença cobre só os arquivos `[base]`: os projetos e o `AGENTS-extra.md` de quem usa são de quem os criou. O logo da Creative Commons (em `temas/exemplo-cc/`) é marca dela e não está coberto: aparece só como ilustração.
 - `tools/`: MIT, ver `tools/LICENSE`.
 - Quem usar, adaptar ou publicar este template ou um derivado deve **dar crédito à origem**: Daniel Wildt / Wildtech, https://github.com/wildtech/ideia. Mantenha esse crédito no README do repositório derivado.
 - A marca, o logo e o endereço da Wildtech não estão incluídos na licença; aparecem só como exemplo de uso.

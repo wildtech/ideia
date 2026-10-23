@@ -1,12 +1,12 @@
 {
   "extends": "neutro",
   "name": "Exemplo leve",
-  "logo": "logo.jpg",
+  "logo": "logo.png",
   "font": "Open Sans",
   "footer": ["**Minha organização**", "www.exemplo.com.br"],
   "colors": {
-    "titleBlue": "111111",
-    "primary": "1F8A70",
-    "accent": "A83232"
+    "titleBlue": "134E4A",
+    "primary": "0F766E",
+    "accent": "B45309"
   }
 }
