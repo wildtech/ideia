@@ -133,7 +133,7 @@ async function loadLogo() {
 }
 
 // ---------- CSS ----------
-const css = (logo) => `
+const css = (logo, total) => `
 :root{--title:#${C.titleBlue};--primary:#${C.primary};--accent:#${C.accent};--text:#${C.text};--strong:#${C.textStrong};--box:#${C.calloutFill || "f3f3f3"}}
 html,body{background:#fff}
 .reveal{font-family:"${FONT}","Segoe UI",Helvetica,Arial,sans-serif;font-size:40px;color:var(--text)}
@@ -167,7 +167,20 @@ html,body{background:#fff}
 .reveal .progress{color:var(--primary)}
 .reveal .controls{color:var(--primary)}
 .reveal .slide-number{color:var(--text);background:transparent;font-size:18px}
-${theme.logoText || logo ? ".reveal .slide-background .logo-bg{}" : ""}
+
+/* PDF: impressão estática (sem JavaScript). O md2pdf.js abre o arquivo com ?static-print; cada slide vira uma página 16:9. */
+@page{size:1280px 720px;margin:0}
+html.static-print,html.static-print body{background:#fff;height:auto;overflow:visible}
+html.static-print .reveal{position:static;width:auto;height:auto;overflow:visible;font-size:40px}
+html.static-print .reveal .slides{position:static!important;width:auto!important;height:auto!important;transform:none!important;perspective:none!important;display:block!important;margin:0!important;left:auto!important;top:auto!important;inset:auto!important}
+html.static-print .reveal .slides>section{display:block!important;position:relative!important;top:auto!important;left:auto!important;width:1280px!important;height:720px!important;opacity:1!important;visibility:visible!important;transform:none!important;box-sizing:border-box;padding:44px 72px 100px;overflow:hidden;background:#fff;break-after:page;page-break-after:always;counter-increment:slide}
+html.static-print .reveal .slides>section:last-child{break-after:auto;page-break-after:auto}
+html.static-print .reveal .backgrounds,html.static-print .reveal .controls,html.static-print .reveal .progress,html.static-print .reveal .slide-number,html.static-print .reveal aside.notes{display:none!important}
+${logo ? `html.static-print .reveal .slides>section:not(.capa)::before{content:"";position:absolute;right:40px;bottom:30px;width:140px;height:56px;background:url(${logo}) right bottom/contain no-repeat}` : ""}
+html.static-print .reveal .slides>section::after{content:counter(slide) " / ${total}";position:absolute;left:72px;bottom:30px;font-size:18px;color:var(--text)}
+html.static-print .reveal .slides>section.capa::after{content:none}
+html.static-print .reveal section.capa{display:flex!important;flex-direction:column;justify-content:center;align-items:center}
+html.static-print .reveal section.destaque,html.static-print .reveal section.fechamento{display:flex!important;flex-direction:column;justify-content:center}
 `;
 
 (async () => {
@@ -198,6 +211,15 @@ ${theme.logoText || logo ? ".reveal .slide-background .logo-bg{}" : ""}
 
   const R = path.dirname(require.resolve("reveal.js/package.json"));
   const read = (p) => fs.readFileSync(path.join(R, p), "utf8");
+  // O reveal.css traz um @media print genérico, com !important, que força fontes de 20pt e títulos pretos e anularia o tema
+  // na impressão. O PDF dos slides é controlado aqui (modo ?static-print), então esse bloco é removido.
+  const semPrintGenerico = (css) => {
+    const i = css.indexOf("@media print{");
+    if (i < 0) return css;
+    let depth = 0, j = i + "@media print".length;
+    for (; j < css.length; j++) { if (css[j] === "{") depth++; else if (css[j] === "}" && --depth === 0) { j++; break; } }
+    return css.slice(0, i) + css.slice(j);
+  };
   // slides.css de cada tema da cadeia (do mais distante ao mais próximo), se houver
   const extra = (temaDirs || []).map((d) => path.join(d, "slides.css")).filter((f) => fs.existsSync(f)).map((f) => fs.readFileSync(f, "utf8")).join("\n");
   const titulo = slides[0].layout === "capa" ? slides[0].title : path.basename(mdPath, ".md");
@@ -209,8 +231,8 @@ ${theme.logoText || logo ? ".reveal .slide-background .logo-bg{}" : ""}
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>${esc(titulo)}</title>
 <style>${read("dist/reset.css")}</style>
-<style>${read("dist/reveal.css")}</style>
-<style>${css(logo)}${extra}</style>
+<style>${semPrintGenerico(read("dist/reveal.css"))}</style>
+<style>${css(logo, slides.length)}${extra}</style>
 </head>
 <body>
 <div class="reveal"><div class="slides">
@@ -218,7 +240,10 @@ ${sections}
 </div></div>
 <script>${read("dist/reveal.js")}</script>
 <script>
-Reveal.initialize({ hash: true, width: 1280, height: 720, margin: 0.05, center: false, transition: "fade", slideNumber: "c/t", controls: true, progress: true, pdfSeparateFragments: false });
+if (/[?&]static-print/.test(location.search)) {
+  // impressão para PDF: sem o reveal, cada slide é uma página (ver o CSS "static-print")
+  document.documentElement.classList.add("static-print");
+} else Reveal.initialize({ hash: true, width: 1280, height: 720, margin: 0.05, center: false, transition: "fade", slideNumber: "c/t", controls: true, progress: true, pdfSeparateFragments: false });
 </script>
 </body>
 </html>

@@ -49,6 +49,7 @@ ideia/
 │   └── package.json          dependências (docx, jszip, pngjs, reveal.js)
 └── projetos/                 [conteúdo] um projeto por pasta
     ├── exemplo/              [base] projeto de exemplo, que descreve o próprio template; serve de modelo
+    ├── exemplo-cc/           [base] segundo exemplo, com um tema simples: a escolha da licença Creative Commons dos documentos
     └── <projeto>/
         ├── projeto.json          tema, saídas e artefatos do projeto
         ├── <projeto>.md          documento completo (fonte da verdade), com o roteiro no topo e um resumo (TL;DR)
@@ -314,7 +315,7 @@ node tools/build.js projetos/exemplo
 - **docx:** mantém cabeçalho, rodapé e a página do template e troca só o corpo do documento.
 - **html (documento):** arquivo único e autocontido, no visual do template. O logo é extraído do `base.docx` e embutido.
 - **html (apresentação):** arquivo único com o reveal.js embutido, funciona offline. Navegue com as setas; `?showNotes=true` mostra as notas.
-- **pdf:** gerado a partir do html, com o Chrome (A4 com número de página, para documentos; uma página 16:9 por slide, para apresentações). O Chrome, o Chromium ou o Edge são procurados nos caminhos padrão de macOS, Windows e Linux; se não forem encontrados, defina a variável `CHROME` com o caminho do executável.
+- **pdf:** gerado a partir do html, com o Chrome (A4 com número de página, para documentos; uma página 16:9 por slide, para apresentações). O pdf dos slides usa uma **impressão estática**, sem JavaScript (o html é aberto com `?static-print`), porque o modo de impressão do reveal depende de temporização e às vezes sai em branco no Chrome headless. O Chrome, o Chromium ou o Edge são procurados nos caminhos padrão de macOS, Windows e Linux; se não forem encontrados, defina a variável `CHROME` com o caminho do executável.
 - As tabelas do `.md` viram o "box" do template (cabeçalho colorido e corpo cinza).
 
 Verificação depois de gerar:
@@ -367,7 +368,7 @@ Melhorias nos arquivos `[base]` devem ir para a origem do template, e não ficar
 
 ## Licença e crédito
 
-- Documentos, roteiros e temas do template: Creative Commons Atribuição 4.0 (CC BY 4.0), ver `LICENSE`. A licença cobre só os arquivos `[base]`: os projetos e o `AGENTS-extra.md` de quem usa são de quem os criou.
+- Documentos, roteiros e temas do template: Creative Commons Atribuição 4.0 (CC BY 4.0), ver `LICENSE`. A licença cobre só os arquivos `[base]`: os projetos e o `AGENTS-extra.md` de quem usa são de quem os criou. O logo da Creative Commons (em `temas/exemplo-leve/`) é marca dela e não está coberto: aparece só como ilustração.
 - `tools/`: MIT, ver `tools/LICENSE`.
 - Quem usar, adaptar ou publicar este template ou um derivado deve **dar crédito à origem**: Daniel Wildt / Wildtech, https://github.com/wildtech/ideia. Mantenha esse crédito no README do repositório derivado.
 - A marca, o logo e o endereço da Wildtech não estão incluídos na licença; aparecem só como exemplo de uso.

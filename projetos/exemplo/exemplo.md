@@ -304,5 +304,5 @@ O repositório será publicado como **template do GitHub**, para que as pessoas 
 - `roteiros/businessmodelcanvas.txt` e `roteiros/10-20-30.txt`: para modelar e apresentar uma ideia de negócio. Origem: [Perguntas para um modelo de negócios?](https://blog.danielwildt.com/2016/05/05/perguntas-para-um-modelo-de-negocios/).
 - `roteiros/pitch.txt` e `guias/pitch.md`: roteiro e guia de pitch, a partir do formato do Shape Up (Basecamp).
 - `roteiros/tldr.txt`: roteiro do resumo.
-- `temas/generico/`: tema padrão. `temas/neutro/`: base dos temas simples. `temas/exemplo-leve/`: exemplo de tema simples. `temas/wildtech/`: exemplo de tema com marca.
+- `temas/generico/`: tema padrão. `temas/neutro/`: base dos temas simples. `temas/exemplo-leve/`: exemplo de tema simples, usado no projeto `exemplo-cc` (a escolha da licença Creative Commons dos documentos). `temas/wildtech/`: exemplo de tema com marca.
 - Documento do onboarding: A definir. Quando existir, será um documento próprio, linkado aqui.

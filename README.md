@@ -48,10 +48,11 @@ Se o Chrome não for encontrado, defina a variável `CHROME` com o caminho do ex
 | `roteiros/` | Roteiros: iniciativa, Business Model Canvas, 10-20-30, PDI, pitch e resumo (TL;DR) |
 | `guias/` | Guias de apoio (por exemplo, como escrever um pitch) |
 | `temas/generico/` | Tema padrão (logo, fontes, cabeçalho e rodapé de exemplo) |
-| `temas/neutro/` e `temas/exemplo-leve/` | A base dos temas simples e um exemplo de tema só com cores e logo |
+| `temas/neutro/` e `temas/exemplo-leve/` | A base dos temas simples e um exemplo de tema só com cores e logo (o logo é uma imagem da Creative Commons, só como ilustração) |
 | `temas/wildtech/` | Exemplo de um tema com marca (a da Wildtech) |
 | `tools/` | Compiladores de Markdown para docx, html, pdf e apresentações |
 | `projetos/exemplo/` | Projeto de exemplo: este template descrito com o próprio template |
+| `projetos/exemplo-cc/` | Segundo exemplo, com o tema simples: a escolha da licença Creative Commons dos documentos (documento e apresentação) |
 
 ## O que é seu: `AGENTS-extra.md`
 
@@ -85,6 +86,6 @@ Este repositório é a **origem** da estrutura (`tools/`, roteiros, temas genér
 
 - Documentos, roteiros e temas: [Creative Commons Atribuição 4.0 (CC BY 4.0)](LICENSE). Você pode usar, copiar e criar derivados, inclusive para fins comerciais.
 - Ferramentas em `tools/`: [MIT](tools/LICENSE).
-- **A marca, o logo e o endereço da Wildtech não estão incluídos na licença.** Eles aparecem nos temas apenas como exemplo de uso; troque pelos da sua marca nos seus derivados.
+- **A marca, o logo e o endereço da Wildtech não estão incluídos na licença.** Eles aparecem nos temas apenas como exemplo de uso; troque pelos da sua marca nos seus derivados. O mesmo vale para o logo da Creative Commons, usado no tema `exemplo-leve` e no projeto `exemplo-cc` só como ilustração, sem vínculo nem endosso: o nome e o logo da Creative Commons são marcas dela, e quem os usar deve seguir a política de uso.
 - **Dê o crédito à origem.** Se você usar ou adaptar este template, mantenha uma indicação de que ele começou em [wildtech/ideia](https://github.com/wildtech/ideia), de Daniel Wildt (Wildtech).
 - Tudo é oferecido **como está, sem garantias de qualquer tipo**. Quem usa é responsável pelo uso e pelos documentos que produzir.

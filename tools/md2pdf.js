@@ -52,12 +52,29 @@ if (!fs.existsSync(chrome)) {
 }
 
 try {
-  // Slides (reveal.js): abre em modo de impressão (?print-pdf) e dá tempo para o reveal montar as páginas.
+  // Slides (reveal.js): abre em modo de impressão estática (?static-print): sem JavaScript, cada slide é uma página.
+  // (O modo ?print-pdf do reveal depende de temporização e às vezes sai em branco no Chrome headless.)
   const isSlides = fs.readFileSync(htmlPath, "utf8").includes('class="reveal"');
-  const url = require("url").pathToFileURL(htmlPath).href + (isSlides ? "?print-pdf" : "");
-  const args = ["--headless=new", "--no-pdf-header-footer", "--print-to-pdf=" + outPath];
-  if (isSlides) args.push("--virtual-time-budget=10000");
-  execFileSync(chrome, [...args, url], { stdio: "ignore" });
+  const url = require("url").pathToFileURL(htmlPath).href + (isSlides ? "?static-print" : "");
+  // Cada execução usa um perfil temporário próprio: sem isso, o Chrome pode se ligar a uma instância anterior que
+  // ainda está encerrando e gerar um PDF em branco.
+  const perfil = fs.mkdtempSync(path.join(require("os").tmpdir(), "md2pdf-"));
+  const args = ["--headless=new", "--no-pdf-header-footer", "--user-data-dir=" + perfil, "--print-to-pdf=" + outPath];
+  // O Chrome às vezes gera um PDF em branco ou incompleto na primeira tentativa. Nos slides, o número de páginas
+  // deve ser o de slides (<section>); se vier menos, tenta de novo (até 3 vezes).
+  const esperadas = isSlides ? (fs.readFileSync(htmlPath, "utf8").match(/<section/g) || []).length : 0;
+  const paginas = () => (fs.existsSync(outPath) ? (fs.readFileSync(outPath, "latin1").match(/\/Type\s*\/Page[^s]/g) || []).length : 0);
+  for (let tentativa = 1; tentativa <= 3; tentativa++) {
+    if (fs.existsSync(outPath)) fs.unlinkSync(outPath);
+    try {
+      execFileSync(chrome, [...args, url], { stdio: "ignore" });
+    } catch (e) {
+      // o Chrome pode sair com erro por causa de mensagens de display; o que vale é o PDF ter sido gerado
+    }
+    if (!isSlides || paginas() >= esperadas) break;
+    if (tentativa === 3) console.warn(`Aviso: o PDF de slides tem ${paginas()} páginas, e o esperado era ${esperadas}.`);
+  }
+  fs.rmSync(perfil, { recursive: true, force: true });
 } catch (e) {
   // O Chrome pode sair com erro por causa de mensagens de display; o que vale é o PDF ter sido gerado.
 }
