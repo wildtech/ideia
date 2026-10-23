@@ -17,6 +17,12 @@
 //   **Crédito:** texto ou [link](url)     crédito da imagem, em letra pequena no canto
 //   **Fundo:** escuro | claro             força o fundo do slide (a capa com imagem e as seções são escuras por padrão)
 //   As linhas de diretiva podem vir juntas, uma abaixo da outra.
+//
+// Estilo (definido pelo tema, em "estilo" no tema.json):
+//   padrao      (padrão) slides de título e conteúdo; o slide sem **Layout:** é de conteúdo
+//   zen-lessig  um slide = uma ideia (Presentation Zen e método Lessig): o slide sem **Layout:** é de frase, o slide
+//               com **Imagem:** e sem layout usa imagem-direita, e a capa é escura. Os layouts de frase e de imagem
+//               também funcionam no estilo padrao, quando pedidos com **Layout:**.
 //   > Notas: texto           citação que começa com "Notas:" vira nota do apresentador (a primeira linha e as seguintes;
 //                             não aparece no slide: use ?showNotes=true na URL para vê-las)
 //
@@ -44,6 +50,7 @@ const outPath = path.resolve(outArg || path.join(projectDir, "out", path.basenam
 const C = theme.colors;
 const FONT = theme.font || "Source Sans Pro";
 const HEADING_FONT = theme.headingFont || FONT;
+const ESTILO = theme.estilo === "zen-lessig" ? "zen-lessig" : "padrao";
 const MAX_WORDS = 70; // acima disso o slide provavelmente tem texto demais para ser lido de longe
 
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -103,7 +110,7 @@ function buildSlides(blocks) {
       continue;
     }
     if (b.type === "heading" && b.level <= 3) {
-      cur = { layout: "conteudo", title: b.text, html: "", notes: [], words: 0, image: null, credit: null, dark: null };
+      cur = { layout: ESTILO === "zen-lessig" ? "frase" : "conteudo", explicit: false, title: b.text, html: "", notes: [], words: 0, image: null, credit: null, dark: null };
       slides.push(cur);
       continue;
     }
@@ -117,7 +124,7 @@ function buildSlides(blocks) {
         const m = l.match(DIRETIVA_RE);
         if (!m) { conteudoLinhas.push(l); continue; }
         const chave = semAcento(m[1]), valor = m[2];
-        if (chave === "layout") cur.layout = semAcento(valor);
+        if (chave === "layout") { cur.layout = semAcento(valor); cur.explicit = true; }
         else if (chave === "imagem") cur.image = valor;
         else if (chave === "credito") cur.credit = valor;
         else if (chave === "fundo") cur.dark = semAcento(valor) === "escuro";
@@ -207,6 +214,8 @@ html,body{background:#fff}
 .reveal section.nl .fr{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 110px}
 .reveal section.nl .fr h2{font-size:2.3em;line-height:1.18;margin:0}
 .reveal section.nl .fr p{font-size:.95em;margin:.7em 0 0}
+.reveal section.nl .fr h1{font-size:2.5em;line-height:1.15;margin:0;border:0}
+.reveal section.nl .fr p.meta{font-size:.55em;margin-top:1.2em}
 .reveal section.nl.secao-s .fr h2{font-size:2.6em}
 .reveal section.nl .split{display:grid;grid-template-columns:1fr 1fr}
 .reveal section.nl .split.esq{grid-template-columns:1fr 1fr}
@@ -259,6 +268,8 @@ html.static-print .reveal section.destaque,html.static-print .reveal section.fec
   if (roteiro && /10-20-30/.test(roteiro) && conteudo.length !== 10)
     console.warn(`Aviso: o roteiro 10-20-30 prevê 10 slides depois da capa, e este tem ${conteudo.length}.`);
   slides.forEach((s, i) => {
+    if (s.image && s.layout !== "capa" && !LAYOUTS_COM_IMAGEM.includes(s.layout) && !(ESTILO === "zen-lessig" && s.layout === "frase" && !s.explicit))
+      console.warn(`Aviso: o slide ${i} ("${s.title}") tem **Imagem:**, mas o layout "${s.layout}" não mostra imagem. Use imagem-direita, imagem-esquerda, imagem-cheia ou evidencia.`);
     if (s.layout === "capa") return;
     const tituloPalavras = s.title.split(/\s+/).filter(Boolean).length;
     const limite = ["frase", "frase-escura", "secao"].includes(s.layout) ? MAX_WORDS_FRASE : s.layout === "evidencia" ? 20 : LAYOUTS_COM_IMAGEM.includes(s.layout) ? 30 : MAX_WORDS;
@@ -286,7 +297,7 @@ html.static-print .reveal section.destaque,html.static-print .reveal section.fec
     const imc = s.image ? classeDaImagem(s.image, s.title) : null;
     if (precisaImagem && !imc) layout = layout === "capa" ? "capa" : "frase";
     const im = imc ? `<div class="im ${imc}" role="img" aria-label="${esc(s.title)}"></div>` : "";
-    const escuro = s.dark !== null ? s.dark : (["frase-escura", "secao", "evidencia"].includes(layout) || (layout === "capa" && !!imc));
+    const escuro = s.dark !== null ? s.dark : (["frase-escura", "secao", "evidencia"].includes(layout) || (layout === "capa" && (!!imc || ESTILO === "zen-lessig")));
     const cls = (extra) => `nl ${extra} ${escuro ? "escuro" : ""}`.trim();
     if (layout === "capa" && imc) return `<section class="${cls("capa-img")}"><div class="sl split dir"><div class="txt"><h1>${inline(s.title)}</h1>${s.html}</div>${im}</div>${credito}${notas}</section>`;
     if (layout === "imagem-direita" || layout === "imagem-esquerda")
@@ -295,6 +306,7 @@ html.static-print .reveal section.destaque,html.static-print .reveal section.fec
       return `<section class="${cls("imagem")}"><div class="sl cheia">${im}<div class="shade"></div><div class="txt"><h2>${inline(s.title)}</h2>${s.html}</div></div>${credito}${notas}</section>`;
     if (layout === "evidencia")
       return `<section class="${cls("evidencia")}"><div class="sl evid">${im}<div class="legenda"><h2>${inline(s.title)}</h2>${s.html}</div></div>${credito}${notas}</section>`;
+    if (layout === "capa") return `<section class="${cls("capa-s")}"><div class="sl fr"><h1>${inline(s.title)}</h1>${s.html}</div>${credito}${notas}</section>`;
     // frase, frase-escura, secao
     return `<section class="${cls(layout === "secao" ? "secao-s" : "frase-s")}"><div class="sl fr"><h2>${inline(s.title)}</h2>${s.html}</div>${credito}${notas}</section>`;
   };
@@ -302,7 +314,8 @@ html.static-print .reveal section.destaque,html.static-print .reveal section.fec
   const bgLogo = logo ? ` data-background-color="#ffffff" data-background-image="${logo}" data-background-size="auto 56px" data-background-position="right 36px bottom 26px" data-background-repeat="no-repeat"` : ' data-background-color="#ffffff"';
   const sections = slides.map((s) => {
     const notas = s.notes.length ? `<aside class="notes">${s.notes.map(esc).join("<br>")}</aside>` : "";
-    if (LAYOUTS_NOVOS.includes(s.layout) || (s.layout === "capa" && s.image)) return renderNovo(s, notas);
+    if (ESTILO === "zen-lessig" && s.layout === "frase" && !s.explicit && s.image) s.layout = "imagem-direita";
+    if (LAYOUTS_NOVOS.includes(s.layout) || (s.layout === "capa" && (s.image || ESTILO === "zen-lessig"))) return renderNovo(s, notas);
     if (s.layout === "capa") {
       const capaLogo = logo ? `<img class="capa-logo" src="${logo}" alt="${esc(theme.name || "Logo")}">` : "";
       return `<section class="capa" data-background-color="#ffffff">${capaLogo}<h1>${inline(s.title)}</h1>${s.html}${notas}</section>`;

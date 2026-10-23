@@ -33,7 +33,7 @@ ideia/
 ├── roteiros/                 [base] conjuntos de perguntas que guiam a escrita e a entrevista (um .txt por roteiro)
 │   ├── iniciativa.txt, businessmodelcanvas.txt, 10-20-30.txt, pdi.txt, pitch.txt
 │   └── tldr.txt              resumo (TL;DR): citação no topo do documento e apresentação curta
-├── guias/                    [base] textos de apoio sobre como fazer bem uma coisa (ex.: pitch.md e slides.md)
+├── guias/                    [base] textos de apoio sobre como fazer bem uma coisa (ex.: pitch.md, slides.md e slides-zen-lessig.md)
 ├── temas/                    [base e conteúdo] identidade visual; uma pasta por tema
 │   └── <tema>/               tema.json (cores, fontes, logo, rodapé, opções) e, se houver, base.docx, referencia.pdf e slides.css
 │       neutro (base dos temas simples), generico (padrão), wildtech (exemplo de tema com marca),
@@ -105,7 +105,7 @@ Passos:
 2. **Conhecimento complementar.** Leia o `AGENTS-extra.md`, se existir. Se for o **primeiro projeto** e ele não existir, ofereça criá-lo a partir do `AGENTS-extra.example.md` (ver "Conhecimento complementar"), perguntando só o que a pessoa souber.
 3. **Escolher o roteiro.** Pergunte o que a pessoa quer fazer e recomende: documentar uma iniciativa (iniciativa), modelar uma ideia de negócio (businessmodelcanvas), preparar uma apresentação (10-20-30), validar uma ideia antes das specs (pitch) ou montar um plano de desenvolvimento individual (pdi). Se ela quiser outro modelo, veja "Criando um novo roteiro".
 4. **Perguntar como será usado:** **lido** (documento), **apresentado** (slides) ou os dois. Use a sugestão do roteiro como ponto de partida.
-5. **Escolher o tema.** Se a pessoa não indicar um (nem o `AGENTS-extra.md`), **use o genérico**. Se ela quiser a identidade visual dela, crie um **tema simples**: pergunte as **cores** (a principal e, se quiser, a de destaque), o **logo** (um arquivo png ou jpg, se tiver), a fonte e o texto do rodapé, e crie `temas/<nome>/` com um `tema.json` que herda do `neutro` (ver "Temas"). O da Wildtech é só um exemplo de tema com marca: não o use para a pessoa.
+5. **Escolher o tema.** Se a pessoa não indicar um (nem o `AGENTS-extra.md`), **use o genérico**. Se ela quiser a identidade visual dela, crie um **tema simples**: pergunte as **cores** (a principal e, se quiser, a de destaque), o **logo** (um arquivo png ou jpg, se tiver), a fonte e o texto do rodapé, e crie `temas/<nome>/` com um `tema.json` que herda do `neutro` (ver "Temas"). **Se ela não souber as cores, proponha as da paleta sugerida em `guias/slides.md`** (com o contraste conferido) e deixe-a confirmar ou trocar. Se o tema for usado em **apresentações**, pergunte o **estilo** (`padrao` ou `zen-lessig`, ver `guias/slides.md`) e registre `"estilo"` no `tema.json`. O da Wildtech é só um exemplo de tema com marca: não o use para a pessoa.
 6. **Perguntar o necessário para o documento:**
    - nome do projeto (vira o nome da pasta e do arquivo; sem espaços e acentos, em minúsculas, com hífen);
    - título da iniciativa;
@@ -189,7 +189,8 @@ Não use `##`, imagens (`![]()`), blocos de código ou HTML: o compilador não o
 - `# Título` é a capa; as linhas logo abaixo (como o público da apresentação) aparecem nela, menos `Roteiro` e `Status`.
 - Cada `### Título` é **um slide**. Poucas palavras: o compilador avisa quando um slide passa de 70 palavras e, no roteiro `10-20-30`, quando o total não é 10 slides depois da capa.
 - `**Layout:** destaque` (linha sozinha no slide) deixa o texto grande e centralizado; `**Layout:** fechamento` centraliza o slide final. Sem a linha, vale o layout de conteúdo.
-- **Layouts de frase e de imagem** (para slides no espírito do Presentation Zen e do método Lessig; ver `guias/slides.md`):
+- **Estilo:** o `estilo` do **tema** (`padrao` ou `zen-lessig`) define o que um slide sem `**Layout:**` vira: no `padrao`, conteúdo; no `zen-lessig`, frase (e com `**Imagem:**`, imagem ao lado; a capa é escura). Os layouts abaixo funcionam nos dois estilos quando pedidos. Os guias são `guias/slides.md` (geral) e `guias/slides-zen-lessig.md`.
+- **Layouts de frase e de imagem** (para slides no espírito do Presentation Zen e do método Lessig; ver `guias/slides-zen-lessig.md`):
 
 | Layout | O que faz |
 | :--- | :--- |
@@ -200,7 +201,7 @@ Não use `##`, imagens (`![]()`), blocos de código ou HTML: o compilador não o
 | `evidencia` | Print ou diagrama inteiro em fundo escuro, com o título como legenda de uma linha |
 
 - Diretivas de slide, uma por linha, logo abaixo do título (podem vir juntas): `**Layout:**`, `**Imagem:** imagens/arquivo.jpg` (caminho relativo ao projeto; a imagem vai **embutida** no html, uma vez só, mesmo que se repita), `**Crédito:** texto ou [link](url)` (linha pequena no canto) e `**Fundo:** escuro` ou `claro` (força o fundo).
-- O compilador avisa quando a frase passa do limite do layout, quando uma imagem não existe e quando ela passa de 700 KB. Otimize as imagens antes (por exemplo, 1600 px de largura, em JPEG).
+- O compilador avisa quando a frase passa do limite do layout, quando uma imagem não existe, quando ela passa de 700 KB e quando há `**Imagem:**` em um layout que não a mostra. Otimize as imagens antes (por exemplo, 1600 px de largura, em JPEG).
 - Uma citação que começa com `Notas:` vira **nota do apresentador** e não aparece no slide (veja-as abrindo o html com `?showNotes=true`). Use as notas para apontar a seção do documento completo que serve de fonte.
 - Escreva a apresentação a partir do resumo (TL;DR) e não copie o documento inteiro. Não invente informação: tudo vem do documento completo.
 
@@ -299,6 +300,8 @@ O `temas/generico/tema.json` é o modelo de tema completo e o tema **padrão**. 
 | `logoText` | texto ou emoji usado como logo no `simple`, no lugar de uma imagem; `logoTextSize` define o tamanho em px | nenhum, `120` |
 | `footer` | linhas (Markdown) do rodapé no `simple` | nenhuma |
 | `pageMarginTop` | margem do topo do pdf, em mm | `22` |
+| `estilo` | estilo das apresentações: `"padrao"` (slides de título e conteúdo) ou `"zen-lessig"` (um slide, uma ideia: o slide sem layout vira frase, a capa é escura). Ver `guias/slides.md` | `"padrao"` |
+| `fundoEscuro` e `destaque` (dentro de `colors`) | cor dos slides escuros e cor de destaque sobre eles, nas apresentações | `000000` e `FFAB40` |
 
 ### Criando um tema a partir de arquivos existentes
 

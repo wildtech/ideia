@@ -140,6 +140,7 @@ O **documento completo** é lido sozinho: tem contexto, tabelas, decisões e dú
 - **Resumo (TL;DR):** todo projeto deve ter um. Fica em uma citação no topo do documento, logo depois do cabeçalho. O assistente deve **sugerir** o resumo ao fechar o onboarding e de novo quando o documento passar de cerca de mil palavras.
 - **Apresentação:** é o resumo em forma de slides. Cada seção `###` do Markdown vira um slide, e uma citação que começa com "Notas:" vira nota do apresentador.
 - **Roteiros de apresentação:** o 10-20-30 e o pitch já são roteiros pensados para slides.
+- **Estilos:** o tema define o estilo das apresentações. No `padrao`, o slide é de título e conteúdo, com poucos slides e mais texto. No `zen-lessig` (Presentation Zen e método Lessig), um slide é uma ideia: frases curtas, imagens com função e muitos slides. O guia `guias/slides.md` ajuda a escolher e sugere cores e opiniões para o setup.
 - **Aviso automático:** o compilador avisa quando um slide tem texto demais e, no roteiro 10-20-30, quando o total não é 10 slides.
 
 ---
@@ -288,9 +289,8 @@ O repositório será publicado como **template do GitHub**, para que as pessoas 
 > - **Roteiros depois dos primeiros**, e em que ordem.
 > - **Retorno do primeiro teste:** o que medir e como registrar, inclusive se as perguntas dos roteiros funcionam para quem não é técnico.
 > - **Saída em PowerPoint:** as pessoas vão precisar editar os slides depois de gerados? **(?)**
-> - **Estilos de slides:** diferenciar o estilo padrão (título e conteúdo) do estilo Presentation Zen e método Lessig (frases e imagens). **(?)**
 >
-> **Já decidido:** público (pessoas não técnicas), formato do onboarding, tratamento de imagens em documentos (insumo que vira texto), local de publicação, licença, vocabulário (roteiro, tema, saída, artefato), como declarar o roteiro, resumo (TL;DR) em todos os projetos e contribuições (aceitas).
+> **Já decidido:** estilos de apresentação (`padrao` e `zen-lessig`, definidos pelo tema), público (pessoas não técnicas), formato do onboarding, tratamento de imagens em documentos (insumo que vira texto), local de publicação, licença, vocabulário (roteiro, tema, saída, artefato), como declarar o roteiro, resumo (TL;DR) em todos os projetos e contribuições (aceitas).
 
 ---
 
@@ -303,7 +303,7 @@ O repositório será publicado como **template do GitHub**, para que as pessoas 
 - `roteiros/pdi.txt`: plano de desenvolvimento individual, a partir do modelo de PDI do Daniel Wildt, com o olhar da aprendizagem autodirigida.
 - `roteiros/businessmodelcanvas.txt` e `roteiros/10-20-30.txt`: para modelar e apresentar uma ideia de negócio. Origem: [Perguntas para um modelo de negócios?](https://blog.danielwildt.com/2016/05/05/perguntas-para-um-modelo-de-negocios/).
 - `roteiros/pitch.txt` e `guias/pitch.md`: roteiro e guia de pitch, a partir do formato do Shape Up (Basecamp).
-- `guias/slides.md`: guia para escrever slides no espírito do Presentation Zen e do método Lessig, com imagens.
+- `guias/slides.md` e `guias/slides-zen-lessig.md`: guias para escrever slides (estilos, imagens, cores sugeridas) e, em particular, no espírito do Presentation Zen e do método Lessig.
 - `roteiros/tldr.txt`: roteiro do resumo.
 - `temas/generico/`: tema padrão. `temas/neutro/`: base dos temas simples. `temas/exemplo-leve/`: exemplo genérico de tema simples. `temas/exemplo-cc/`: tema simples do projeto `exemplo-cc` (a escolha da licença Creative Commons dos documentos). `temas/wildtech/`: exemplo de tema com marca.
 - Documento do onboarding: A definir. Quando existir, será um documento próprio, linkado aqui.

@@ -1,35 +1,37 @@
-# Guia: escrever slides (Presentation Zen e método Lessig)
+# Guia: slides (estilos, imagens e setup)
 
-Um guia de como transformar uma ideia, um documento ou uma apresentação existente em slides bons, em Markdown. Complementa a seção "Apresentações" do `AGENTS.md` e segue as regras dele (Markdown como fonte da verdade, **(?)**, "A definir", não inventar informação).
+Um guia de como transformar uma ideia, um documento ou uma apresentação existente em slides bons, em Markdown. Complementa a seção "Apresentações" do `AGENTS.md` e segue as regras dele (Markdown como fonte da verdade, **(?)**, "A definir", não inventar informação). O estilo Presentation Zen e método Lessig tem um guia próprio: `guias/slides-zen-lessig.md`.
 
-## Duas referências, em uma linha cada
+## Dois estilos
 
-- **Presentation Zen (Garr Reynolds).** Uma abordagem apoiada em **comedimento** na preparação, **simplicidade** no design e **naturalidade** na apresentação. Poucas palavras, **um ponto de ênfase por slide**, o detalhe fora do slide (no material de apoio) e imagens, texto e espaço vazio usados com intenção.
-- **Método Lessig.** O nome vem de quem viu as apresentações do professor Lawrence Lessig. Cada slide traz **uma palavra, uma frase, uma citação ou uma imagem**, em geral em texto claro sobre fundo escuro, e os slides mudam **no ritmo da fala**, o que leva a muitos slides.
+O **estilo** das apresentações vem do **tema**: o `tema.json` declara `"estilo": "padrao"` (o padrão, se faltar) ou `"estilo": "zen-lessig"`. O estilo muda o que um slide sem `**Layout:**` vira e os avisos do compilador.
 
-As duas descrições vêm de fontes secundárias (resenhas e artigos sobre os autores). Leia-as como apoio, e não como citação. Não há, nelas, uma recomendação específica sobre imagens que ocupam o slide inteiro: esse desenho é uma escolha do repositório.
+| | `padrao` | `zen-lessig` |
+| :--- | :--- | :--- |
+| Ideia | Slides de título e conteúdo, com listas e tabelas | Um slide, uma ideia: frases curtas e imagens com função |
+| Slide sem `**Layout:**` | Conteúdo (título, texto e listas) | Frase (o título é a frase, grande e centralizada) |
+| Slide com `**Imagem:**` e sem layout | A imagem não aparece (o compilador avisa) | Imagem ao lado do texto |
+| Capa | Clara | Escura |
+| Quantidade de slides | Poucos, com mais texto cada um | Muitos, com poucas palavras cada um |
+| Quando usar | Reunião de decisão, relatório, apresentação que também é lida | Palestra, aula, pitch de uma ideia, apresentação falada |
+| Guia | Este | `guias/slides-zen-lessig.md` |
 
-## Como o repositório aplica
+Os layouts de frase e de imagem funcionam nos dois estilos, quando pedidos com `**Layout:**`. O estilo só define o que acontece **quando você não pede nada**.
 
-| Ideia | No Markdown de slides |
-| :--- | :--- |
-| Um ponto por slide | Um `###` para cada ideia ou pergunta; listas longas viram vários slides |
-| Frase curta, no ritmo da fala | `**Layout:** frase` (ou `frase-escura`): o título é a frase, grande e centralizada; até 14 palavras |
-| Alternar o fundo | Intercale `frase` (claro) e `frase-escura` (escuro) para dar ritmo |
-| Seções que respiram | `**Layout:** secao`: o número e o título da parte, em fundo escuro |
-| Imagem com função | `imagem-cheia`, `imagem-direita` ou `imagem-esquerda`, com `**Imagem:**` |
-| Mostrar que a coisa existe | `**Layout:** evidencia`: print ou diagrama inteiro, com uma legenda de uma linha |
-| Detalhe fora do slide | Vai para o documento completo, e o slide só aponta |
-| A fala não está no slide | Notas do apresentador (`> Notas: ...`), uma por slide |
+### Como escolher
+
+- A plateia vai **ler** o que está no slide, ou **ouvir** quem fala? Ler: padrão. Ouvir: zen-lessig.
+- O slide precisa **servir de documento** depois? Padrão (ou, melhor, escreva um documento e faça uma apresentação à parte).
+- Você fala **sem olhar para o slide**? Zen-lessig dá o ritmo, e as notas do apresentador guardam o que o slide não diz.
 
 ## Do documento à apresentação
 
 1. **Comece pelo resumo (TL;DR)** do documento. A apresentação é escrita a partir dele, e não copiada do documento inteiro.
-2. **Escolha a pergunta de cada slide.** O que a plateia deve levar deste slide? Se há duas coisas, são dois slides.
-3. **Reduza ao essencial.** Deixe no slide só a frase que sustenta a fala. O resto vai para as notas ou para o documento.
+2. **Escolha o ponto de cada slide.** O que a plateia deve levar deste slide? Se há duas coisas, são dois slides.
+3. **Reduza ao essencial.** Deixe no slide o que sustenta a fala. O resto vai para as notas ou para o documento.
 4. **Dê a cada imagem uma função** (abaixo) ou não a use.
 5. **Escreva as notas.** Aponte a seção do documento que serve de fonte e o que o apresentador diz. A fala é do apresentador: **não a invente**.
-6. **Gere e leia os avisos** do compilador (frase longa, imagem pesada ou ausente).
+6. **Gere e leia os avisos** do compilador (frase longa, imagem pesada, ausente ou sem layout que a mostre).
 
 ## As imagens
 
@@ -67,20 +69,52 @@ O `.pptx` é um arquivo zip. Dele dá para tirar quase tudo:
 
 Mantenha o texto do autor como ele escreveu, apenas dividido. Onde você interpretar (uma legenda, uma troca de ordem), marque com **(?)** e registre a origem nas notas.
 
+## Cores, fonte e opiniões para o setup
+
+Estas são **sugestões deste repositório**, para usar quando a pessoa não souber ou não tiver definido. O assistente deve **propor**, mostrar o resultado e deixar a pessoa confirmar ou trocar. Se ela já tem a marca, as cores dela vêm primeiro; confira o contraste.
+
+### Regras que valem para os dois estilos
+
+- **Contraste:** o texto precisa de pelo menos **4,5:1** com o fundo (**3:1** para letras grandes). Confira antes de aceitar uma cor.
+- **Uma cor de destaque só.** Duas já disputam a atenção.
+- **Fonte sem serifa**, legível de longe. Use a da marca, se houver; senão, Helvetica ou Arial funcionam em qualquer máquina. Uma fonte que o computador não tem cai para outra, e o visual muda.
+- **Formato 16:9.** É o do compilador.
+- **Logo pequeno, no canto** (ou só na capa e no encerramento). Ele nunca deve competir com a ideia do slide.
+- Tema simples: o `tema.json` herda do `neutro`, e as cores que você não declarar vêm de lá.
+
+### Paleta sugerida para o estilo `padrao`
+
+Fundo branco, com uma cor de marca. É o que o tema `neutro` já traz.
+
+| Papel | Sugestão | Contraste com o fundo branco |
+| :--- | :--- | :--- |
+| Texto (`text`) | `222222` | 15,9:1 |
+| Título (`titleBlue`) | `1F2937` | 14,7:1 |
+| Principal (`primary`): cabeçalho de tabela e marcadores | `2B5C8A` | 7,0:1 (com texto branco) |
+| Apoio (`accent`) | `6B7280` | 4,8:1 |
+
+Troque o `primary` pela cor da marca, se tiver contraste de pelo menos 4,5:1 com o branco (o texto do cabeçalho da tabela é branco).
+
+### Paleta sugerida para o estilo `zen-lessig`
+
+Preto e branco, e uma cor de destaque usada com parcimônia. Veja os detalhes em `guias/slides-zen-lessig.md`.
+
+| Papel | Sugestão | Observação |
+| :--- | :--- | :--- |
+| Fundo escuro (`fundoEscuro`) | `000000` | Branco sobre preto tem 21:1 |
+| Fundo claro | `FFFFFF` | Texto `212121` ou `000000` |
+| Destaque sobre o escuro (`destaque`) | `FFAB40` (laranja) | 11,2:1 sobre o preto; **só 1,9:1 sobre o branco**, então não serve para texto nos slides claros |
+| Destaque sobre o claro (`accent`) | `B26A00` | 4,2:1 sobre o branco: serve para letra grande, e não para texto pequeno |
+
+Se a marca tem uma cor viva, ela costuma servir de destaque nos slides escuros. Para os claros, escureça o tom até ter o contraste. Os links e os sublinhados são os melhores lugares para a cor de destaque.
+
 ## Checklist
 
-- [ ] Cada slide tem uma só ideia?
-- [ ] As frases têm até 14 palavras?
+- [ ] O estilo (`padrao` ou `zen-lessig`) combina com a forma como a apresentação será usada?
+- [ ] Cada slide tem um ponto claro?
 - [ ] Cada imagem tem uma função (e a resolução para isso)?
 - [ ] Os prints de interface estão legíveis, ou legendados, ou recortados?
 - [ ] Os créditos e as licenças das fotos de terceiros estão registrados?
 - [ ] O que é detalhe foi para o documento?
 - [ ] Há uma nota por slide, com a origem?
-- [ ] Alternei o fundo claro e o escuro para dar ritmo?
-
-## Fontes
-
-- [Presentation Zen: simples ideias sobre design e entrega de apresentações](https://jalt-publications.org/node/567) (resenha do livro de Garr Reynolds).
-- [Lições de Garr Reynolds](https://www.antoinebuteau.com/lessons-from-garr-reynolds/).
-- [Presenting the Lessig Way](https://ethos3.com/designstyles-and-approachespresenting-lessig-way/).
-- [Takahashi method](https://en.wikipedia.org/wiki/Takahashi_method): uma frase por slide, comparado ao estilo Lessig.
+- [ ] O texto tem contraste de 4,5:1 ou mais com o fundo?
