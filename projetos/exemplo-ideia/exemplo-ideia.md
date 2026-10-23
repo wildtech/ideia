@@ -181,7 +181,7 @@ O fluxo proposto para uma iniciativa:
 
 #### Imagens são insumo, não conteúdo
 
-Decisão: as imagens de apoio (prints de quadros, fotos de anotações, esquemas) servem de **entrada** para escrever o documento, e tudo vira texto. O documento gerado não leva imagens no corpo; a imagem original fica em `apoio/` e é referenciada em "Documentos de Apoio". Por isso o compilador não precisa tratar imagens.
+Decisão: as imagens de apoio (prints de quadros, fotos de anotações, esquemas) servem de **entrada** para escrever o documento, e tudo vira texto. O documento gerado não leva imagens no corpo; a imagem original fica em `apoio/` e é referenciada em "Documentos de Apoio". Por isso o compilador de documentos não trata imagens. Nas **apresentações** é diferente: as imagens entram nos slides (`**Imagem:**`), com função, resolução e crédito, como descreve o guia `guias/slides.md`.
 
 ---
 
@@ -288,7 +288,7 @@ O repositório será publicado como **template do GitHub**, para que as pessoas 
 > - **Roteiros depois dos primeiros**, e em que ordem.
 > - **Retorno do primeiro teste:** o que medir e como registrar, inclusive se as perguntas dos roteiros funcionam para quem não é técnico.
 > - **Saída em PowerPoint:** as pessoas vão precisar editar os slides depois de gerados? **(?)**
-> - **Imagens em slides:** a regra de imagens como insumo vale também para apresentações? **(?)**
+> - **Estilos de slides:** diferenciar o estilo padrão (título e conteúdo) do estilo Presentation Zen e método Lessig (frases e imagens). **(?)**
 >
 > **Já decidido:** público (pessoas não técnicas), formato do onboarding, tratamento de imagens em documentos (insumo que vira texto), local de publicação, licença, vocabulário (roteiro, tema, saída, artefato), como declarar o roteiro, resumo (TL;DR) em todos os projetos e contribuições (aceitas).
 
@@ -303,6 +303,7 @@ O repositório será publicado como **template do GitHub**, para que as pessoas 
 - `roteiros/pdi.txt`: plano de desenvolvimento individual, a partir do modelo de PDI do Daniel Wildt, com o olhar da aprendizagem autodirigida.
 - `roteiros/businessmodelcanvas.txt` e `roteiros/10-20-30.txt`: para modelar e apresentar uma ideia de negócio. Origem: [Perguntas para um modelo de negócios?](https://blog.danielwildt.com/2016/05/05/perguntas-para-um-modelo-de-negocios/).
 - `roteiros/pitch.txt` e `guias/pitch.md`: roteiro e guia de pitch, a partir do formato do Shape Up (Basecamp).
+- `guias/slides.md`: guia para escrever slides no espírito do Presentation Zen e do método Lessig, com imagens.
 - `roteiros/tldr.txt`: roteiro do resumo.
 - `temas/generico/`: tema padrão. `temas/neutro/`: base dos temas simples. `temas/exemplo-leve/`: exemplo genérico de tema simples. `temas/exemplo-cc/`: tema simples do projeto `exemplo-cc` (a escolha da licença Creative Commons dos documentos). `temas/wildtech/`: exemplo de tema com marca.
 - Documento do onboarding: A definir. Quando existir, será um documento próprio, linkado aqui.

@@ -33,7 +33,7 @@ ideia/
 ├── roteiros/                 [base] conjuntos de perguntas que guiam a escrita e a entrevista (um .txt por roteiro)
 │   ├── iniciativa.txt, businessmodelcanvas.txt, 10-20-30.txt, pdi.txt, pitch.txt
 │   └── tldr.txt              resumo (TL;DR): citação no topo do documento e apresentação curta
-├── guias/                    [base] textos de apoio sobre como fazer bem uma coisa (ex.: pitch.md)
+├── guias/                    [base] textos de apoio sobre como fazer bem uma coisa (ex.: pitch.md e slides.md)
 ├── temas/                    [base e conteúdo] identidade visual; uma pasta por tema
 │   └── <tema>/               tema.json (cores, fontes, logo, rodapé, opções) e, se houver, base.docx, referencia.pdf e slides.css
 │       neutro (base dos temas simples), generico (padrão), wildtech (exemplo de tema com marca),
@@ -159,7 +159,7 @@ Um roteiro é um arquivo de texto com a lista de seções, na ordem em que apare
 7. **Iterativo e incremental.** Pense em uma primeira entrega, valide e aprenda.
 8. **Não invente informação.** Dúvidas e leituras incertas ficam marcadas com **(?)**. Campos sem resposta ficam como "A definir".
 9. **Todo projeto tem um resumo (TL;DR).** Fica em uma citação no topo, logo depois do cabeçalho, e começa com `**Resumo (TL;DR):**`. Siga o `roteiros/tldr.txt`: nada novo entra no resumo, tudo o que está nele existe no documento completo. **Sugira** o resumo ao fechar o onboarding de um projeto e de novo quando o documento passar de cerca de mil palavras; quem decide criar é a pessoa. Quando o documento mudar de forma relevante, revise o resumo.
-10. **Imagens são insumo.** Prints, fotos e esquemas em `apoio/` servem de entrada: transforme o conteúdo deles em texto. Os documentos gerados não levam imagens (o compilador não as trata). Nas apresentações, a regra das imagens ainda está em aberto. **(?)**
+10. **Imagens são insumo nos documentos e podem entrar nas apresentações.** Prints, fotos e esquemas em `apoio/` servem de entrada: transforme o conteúdo deles em texto. Os **documentos** gerados não levam imagens (o compilador não as trata). As **apresentações** podem levar imagens, com `**Imagem:**` (ver "Apresentações" e `guias/slides.md`): guarde-as em `imagens/`, otimizadas, e registre autoria e licença das fotos de terceiros.
 
 ## Estilo de escrita
 
@@ -189,6 +189,18 @@ Não use `##`, imagens (`![]()`), blocos de código ou HTML: o compilador não o
 - `# Título` é a capa; as linhas logo abaixo (como o público da apresentação) aparecem nela, menos `Roteiro` e `Status`.
 - Cada `### Título` é **um slide**. Poucas palavras: o compilador avisa quando um slide passa de 70 palavras e, no roteiro `10-20-30`, quando o total não é 10 slides depois da capa.
 - `**Layout:** destaque` (linha sozinha no slide) deixa o texto grande e centralizado; `**Layout:** fechamento` centraliza o slide final. Sem a linha, vale o layout de conteúdo.
+- **Layouts de frase e de imagem** (para slides no espírito do Presentation Zen e do método Lessig; ver `guias/slides.md`):
+
+| Layout | O que faz |
+| :--- | :--- |
+| `frase` e `frase-escura` | O título do slide **é** a frase, grande e centralizada, em fundo claro ou escuro. Até 14 palavras |
+| `secao` | O número e o título de uma parte, em fundo escuro |
+| `imagem-direita` e `imagem-esquerda` | O texto de um lado e a imagem sangrando do outro (a capa também aceita imagem) |
+| `imagem-cheia` | A imagem ocupa o slide, e o título vai por cima, em um degradê escuro |
+| `evidencia` | Print ou diagrama inteiro em fundo escuro, com o título como legenda de uma linha |
+
+- Diretivas de slide, uma por linha, logo abaixo do título (podem vir juntas): `**Layout:**`, `**Imagem:** imagens/arquivo.jpg` (caminho relativo ao projeto; a imagem vai **embutida** no html, uma vez só, mesmo que se repita), `**Crédito:** texto ou [link](url)` (linha pequena no canto) e `**Fundo:** escuro` ou `claro` (força o fundo).
+- O compilador avisa quando a frase passa do limite do layout, quando uma imagem não existe e quando ela passa de 700 KB. Otimize as imagens antes (por exemplo, 1600 px de largura, em JPEG).
 - Uma citação que começa com `Notas:` vira **nota do apresentador** e não aparece no slide (veja-as abrindo o html com `?showNotes=true`). Use as notas para apontar a seção do documento completo que serve de fonte.
 - Escreva a apresentação a partir do resumo (TL;DR) e não copie o documento inteiro. Não invente informação: tudo vem do documento completo.
 
