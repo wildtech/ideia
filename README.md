@@ -16,14 +16,14 @@ Pré-requisitos: [Node.js](https://nodejs.org/) (versão LTS) e um navegador Chr
 ```bash
 cd tools && npm install
 cd ..
-node tools/build.js projetos/exemplo
+node tools/build.js projetos/exemplo-ideia
 ```
 
-Os arquivos saem em `projetos/exemplo/out/`. Para criar o seu projeto:
+Os arquivos saem em `projetos/exemplo-ideia/out/`. Para criar o seu projeto:
 
 1. Crie a pasta `projetos/<seu-projeto>/`.
-2. Copie `projetos/exemplo/projeto.json` para ela e ajuste o nome, o tema e as saídas.
-3. Crie `projetos/<seu-projeto>/<seu-projeto>.md` seguindo um roteiro, como `roteiros/iniciativa.txt` (o `projetos/exemplo/exemplo.md` mostra como fica).
+2. Crie nela um `projeto.json` (copie o de `projetos/exemplo-cc/` e ajuste o nome, o tema e as saídas; o tema padrão é o `generico`).
+3. Crie `projetos/<seu-projeto>/<seu-projeto>.md` seguindo um roteiro, como `roteiros/iniciativa.txt` (o `projetos/exemplo-ideia/exemplo-ideia.md` mostra como fica).
 4. Rode `node tools/build.js projetos/<seu-projeto>`.
 
 Se o Chrome não for encontrado, defina a variável `CHROME` com o caminho do executável.
@@ -51,7 +51,7 @@ Se o Chrome não for encontrado, defina a variável `CHROME` com o caminho do ex
 | `temas/neutro/` e `temas/exemplo-leve/` | A base dos temas simples e um exemplo de tema só com cores e logo (o logo é uma imagem da Creative Commons, só como ilustração) |
 | `temas/wildtech/` | Exemplo de um tema com marca (a da Wildtech) |
 | `tools/` | Compiladores de Markdown para docx, html, pdf e apresentações |
-| `projetos/exemplo/` | Projeto de exemplo: este template descrito com o próprio template |
+| `projetos/exemplo-ideia/` | Projeto de exemplo: este template descrito com o próprio template, no tema da Wildtech |
 | `projetos/exemplo-cc/` | Segundo exemplo, com o tema simples: a escolha da licença Creative Commons dos documentos (documento e apresentação) |
 
 ## O que é seu: `AGENTS-extra.md`
@@ -72,7 +72,7 @@ Contribuições são bem-vindas: novos **roteiros**, melhorias nos **temas gené
 
 - **Novo roteiro:** crie `roteiros/<nome>.txt` no mesmo formato dos existentes (uma seção por linha, com a pergunta e as indicações). **Indique no fim do arquivo de onde as perguntas e seções foram retiradas** (um texto, um livro, um modelo), com o link quando existir. Registre o roteiro nas tabelas do `README.md` e do `AGENTS.md`. O `AGENTS.md` ("Criando um novo roteiro") explica o passo a passo.
 - **Tema:** envie um tema **genérico**, sem marca, logo ou endereço de terceiros. Temas com marca ficam nos repositórios de quem os criou.
-- **Ferramentas (`tools/`):** rode `cd tools && npm install` e `node tools/build.js projetos/exemplo`, e confira o resultado (documento e apresentação) antes de enviar. Mudanças nas ferramentas não devem alterar o resultado dos projetos que já existem.
+- **Ferramentas (`tools/`):** rode `cd tools && npm install` e `node tools/build.js projetos/exemplo-ideia`, e confira o resultado (documento e apresentação) antes de enviar. Mudanças nas ferramentas não devem alterar o resultado dos projetos que já existem.
 - **Não envie** projetos pessoais, dados pessoais ou de terceiros, nem conteúdo que você não tenha direito de compartilhar. Os projetos de cada pessoa ficam no repositório dela; aqui entra só a base.
 - **Licença:** ao contribuir, você concorda que o seu trabalho seja licenciado como o restante do repositório (CC BY 4.0 para documentos, roteiros e temas, MIT para `tools/`), com crédito a você quando fizer sentido.
 

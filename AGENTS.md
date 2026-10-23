@@ -48,7 +48,7 @@ ideia/
 │   ├── build.js              gera as saídas de um projeto, conforme o projeto.json
 │   └── package.json          dependências (docx, jszip, pngjs, reveal.js)
 └── projetos/                 [conteúdo] um projeto por pasta
-    ├── exemplo/              [base] projeto de exemplo, que descreve o próprio template; serve de modelo
+    ├── exemplo-ideia/        [base] projeto de exemplo, que descreve o próprio template (tema da Wildtech)
     ├── exemplo-cc/           [base] segundo exemplo, com um tema simples: a escolha da licença Creative Commons dos documentos
     └── <projeto>/
         ├── projeto.json          tema, saídas e artefatos do projeto
@@ -59,7 +59,7 @@ ideia/
         └── ...                   artefatos persistentes (ex.: prototipo/) e outros arquivos do projeto
 ```
 
-- **Para replicar esta estrutura** para outra pessoa ou equipe: copie os arquivos `[base]`, deixe `projetos/` só com o `exemplo/`, crie os temas e os projetos de quem vai usar e deixe o `AGENTS-extra.md` nascer no primeiro projeto.
+- **Para replicar esta estrutura** para outra pessoa ou equipe: copie os arquivos `[base]`, deixe `projetos/` só com os exemplos (`exemplo-ideia/` e `exemplo-cc/`), crie os temas e os projetos de quem vai usar e deixe o `AGENTS-extra.md` nascer no primeiro projeto.
 - **Dois lados da mesma moeda:** o que é `[base]` deve ser melhorado na origem do template (https://github.com/wildtech/ideia), e o que é `[conteúdo]` pertence a quem usa.
 
 ### Os conceitos
@@ -114,7 +114,7 @@ Passos:
    - projeto Jira ou repositório GitHub relacionado, se houver (ver "Integrações opcionais").
 7. **Pedir o material de apoio**, se existir: textos, anotações, transcrições, prints e fotos. Peça para a pessoa colocá-lo em `projetos/<projeto>/apoio/` ou colar na conversa.
 8. **Ler o material, entrevistar e escrever o primeiro rascunho.** As imagens são **insumo**: leia o conteúdo delas e transforme em texto no `.md`. O documento gerado não leva imagens; a imagem original fica em `apoio/` e é citada em "Documentos de Apoio".
-9. **Criar os arquivos:** `projetos/<projeto>/<projeto>.md` (com `**Roteiro:** <nome>` no topo e seguindo o roteiro e as regras abaixo) e `projetos/<projeto>/projeto.json` (copie o de `projetos/exemplo/` e ajuste).
+9. **Criar os arquivos:** `projetos/<projeto>/<projeto>.md` (com `**Roteiro:** <nome>` no topo e seguindo o roteiro e as regras abaixo) e `projetos/<projeto>/projeto.json` (siga o modelo de "Projeto e saídas", com `"tema": "generico"` a menos que a pessoa ou o `AGENTS-extra.md` indique outro).
 10. **Sugerir o resumo (TL;DR)** e, se fizer sentido, a apresentação (`<projeto>-slides.md`). Quem decide criar é a pessoa.
 11. **Gerar as saídas** (ver "Gerando as saídas"), mostrar o que foi criado e perguntar o que ajustar.
 12. **Combinar a continuidade.** O documento é vivo: a pessoa volta com novas informações e você atualiza o `.md` e gera de novo.
@@ -122,7 +122,7 @@ Passos:
 ## Criando um novo projeto (sem o passo a passo)
 
 1. Crie `projetos/<projeto>/` e `projetos/<projeto>/<projeto>.md`, seguindo um roteiro (padrão: `roteiros/iniciativa.txt`) e as regras abaixo. Declare o roteiro no topo (`**Roteiro:** iniciativa`).
-2. Crie `projetos/<projeto>/projeto.json`, copiando o de `projetos/exemplo/` (veja "Projeto e saídas").
+2. Crie `projetos/<projeto>/projeto.json`, seguindo o modelo de "Projeto e saídas" (tema padrão: `generico`).
 3. Coloque o material de entrada em `projetos/<projeto>/apoio/`.
 4. Escreva o **resumo (TL;DR)** no topo do documento e, se fizer sentido, a apresentação.
 5. Gere as saídas (veja "Gerando as saídas").
@@ -306,7 +306,7 @@ cd tools && npm install
 Para gerar todas as saídas de um projeto, a partir da raiz do repositório:
 
 ```bash
-node tools/build.js projetos/exemplo
+node tools/build.js projetos/exemplo-ideia
 ```
 
 - Lê o `projeto.json` e gera cada item de `saidas` em `projetos/<pasta>/out/`. Sem `projeto.json` (formato antigo), gera `<pasta>.md` em docx, html e pdf.
@@ -361,7 +361,7 @@ O repositório aceita contribuições (roteiros, temas genéricos, ferramentas e
 
 1. Seguir "Criando um novo roteiro" e **registrar a fonte** das perguntas e seções no fim do arquivo.
 2. Registrar o roteiro nas tabelas do `README.md` e do `AGENTS.md`.
-3. Rodar `node tools/build.js projetos/exemplo` e conferir as saídas.
+3. Rodar `node tools/build.js projetos/exemplo-ideia` e conferir as saídas.
 4. Preparar o commit e o *pull request* só quando ela pedir e confirmar o conteúdo (com a CLI `gh`, se ela usa GitHub; veja "Integrações opcionais"). Nada de dados pessoais, marcas de terceiros ou projetos pessoais.
 
 Melhorias nos arquivos `[base]` devem ir para a origem do template, e não ficar só no repositório de quem usa. **Quem decide e faz a contribuição é a pessoa**, na origem do template; um agente não altera o `AGENTS.md` do repositório de quem usa para isso.

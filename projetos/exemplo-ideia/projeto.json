@@ -1,0 +1,8 @@
+{
+  "nome": "Ideia: estrutura de modelagem de projetos e documentos",
+  "tema": "wildtech",
+  "saidas": [
+    { "fonte": "exemplo-ideia.md", "tipo": "documento", "formatos": ["docx", "html", "pdf"] },
+    { "fonte": "exemplo-ideia-slides.md", "tipo": "apresentacao", "formatos": ["html", "pdf"] }
+  ]
+}
