@@ -6,8 +6,16 @@ Você reúne textos e imagens de apoio, escolhe um **roteiro** (um conjunto de p
 
 ## Como usar
 
-1. Clique em **Use this template** no GitHub para criar o seu repositório a partir deste (ou baixe o conteúdo).
-2. Abra a pasta no seu agente de IA e diga algo como: **"Quero começar um projeto."** O agente segue o passo a passo de onboarding do `AGENTS.md`: faz as perguntas, cria os arquivos e gera os documentos.
+Escolha **uma** das duas formas de ter os arquivos:
+
+- **Baixar os arquivos (o jeito mais simples, sem GitHub):** [baixe o ZIP](https://github.com/wildtech/ideia/archive/refs/heads/main.zip), descompacte e coloque a pasta onde você guarda os seus projetos (por exemplo, em Documentos). Você pode trocar o nome da pasta (`ideia-main`) por um que faça sentido para você.
+- **Criar um repositório a partir do template (para quem usa GitHub):** clique em **Use this template** no GitHub. Você ganha o seu próprio repositório, com histórico, e pode guardar e compartilhar os seus projetos.
+
+Depois, abra a pasta no seu agente de IA e diga algo como: **"Quero começar um projeto."** O agente segue o passo a passo de onboarding do `AGENTS.md`: confere o que o computador precisa, faz as perguntas, cria os arquivos e gera os documentos. Você não precisa abrir um terminal.
+
+### Atualizar depois
+
+Quando o template ganhar melhorias, baixe o ZIP de novo e copie por cima **só os arquivos da base** (`AGENTS.md`, `README.md`, `LICENSE`, `roteiros/`, `guias/`, `tools/` e os temas `generico`, `neutro`, `wildtech` e `exemplo-leve`). **Não substitua** a sua pasta `projetos/`, o seu `AGENTS-extra.md` nem os temas que você criou: eles são seus. Se você usa GitHub, o agente pode comparar as versões e fazer isso com você.
 
 ### Sem agente de IA: passos manuais
 
