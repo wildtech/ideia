@@ -17,5 +17,5 @@ Documentos de apoio: referência dos documentos que complementam, servem de apoi
 
 As nove perguntas do modelo (segmento de clientes, valor, canais, retenção, entrada de valores, custos, atividades, recursos e alianças) são o Business Model Canvas, de Alex Osterwalder.
 
-Este template, as perguntas e as indicações de cada seção vêm a partir deste texto:
+Este roteiro, as perguntas e as indicações de cada seção vêm a partir deste texto:
 https://blog.danielwildt.com/2016/05/05/perguntas-para-um-modelo-de-negocios/

@@ -12,9 +12,9 @@ Regra do pitch. Um pitch valida que o problema vale a pena resolver e que a solu
 Revisão do pitch. O problema é uma história específica? O apetite está declarado como decisão? A solução mostra o fluxo principal? As armadilhas são reais, e não hipóteses genéricas? Os no-gos incluem o mais óbvio? O que ainda é dúvida fica marcado com (?). Organize para que funcione de forma iterativa e incremental: pense em uma primeira versão, valide e aprenda.
 Documentos de apoio: referência dos documentos que complementam, servem de apoio ou foram gerados a partir deste material (opcional), como esboços e as specs que nascem depois da aprovação.
 
-Para entender o negócio por trás de uma ideia nova, o Business Model Canvas (template-businessmodelcanvas.txt) é um bom ponto de partida; o pitch vem depois, antes das specs.
+Para entender o negócio por trás de uma ideia nova, o Business Model Canvas (roteiro businessmodelcanvas) é um bom ponto de partida; o pitch vem depois, antes das specs.
 
-O guia detalhado de escrita, com checklist, está em guia-pitch.md.
+O guia detalhado de escrita, com checklist, está em guias/pitch.md.
 
-Este template vem do formato de pitch do Shape Up (Basecamp):
+Este roteiro vem do formato de pitch do Shape Up (Basecamp):
 https://basecamp.com/shapeup/1.5-chapter-06

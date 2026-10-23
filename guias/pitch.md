@@ -2,7 +2,7 @@
 
 Um pitch é o documento que precede qualquer spec detalhada. Ele valida que o problema vale a pena resolver e que a solução é viável antes de qualquer linha de código ou spec. Baseado no formato Shape Up (Basecamp): https://basecamp.com/shapeup/1.5-chapter-06
 
-Este guia complementa o `template-pitch.txt` (as seções e as perguntas de cada uma) e segue as regras do `AGENTS.md` (Markdown como fonte da verdade, RCI, **(?)**, "A definir").
+Este guia complementa o `roteiros/pitch.txt` (as seções e as perguntas de cada uma) e segue as regras do `AGENTS.md` (Markdown como fonte da verdade, RCI, **(?)**, "A definir").
 
 ## Quando usar
 
@@ -16,14 +16,14 @@ Em `projetos/<projeto>/`, como Markdown:
 
 - **Um pitch só:** `projetos/<projeto>/<projeto>.md`.
 - **Mais de um pitch** (o assunto foi dividido em problemas menores): um documento guarda-chuva `projetos/<projeto>/<projeto>.md`, que reúne as reflexões, a lista de pitches e as decisões, e um arquivo por pitch na mesma pasta, `pitch-01.md`, `pitch-02.md`, e assim por diante. O guarda-chuva aponta para cada pitch. Não misture os dois (regra 6 do `AGENTS.md`).
-- Cada projeto tem o seu `theme.json` (veja "Tema do projeto" no `AGENTS.md`).
+- Cada projeto escolhe um tema no `projeto.json` (veja "Temas" no `AGENTS.md`).
 
 ## Estrutura do documento
 
-O topo declara o template, junto de período, data limite e status:
+O topo declara o roteiro, junto de período, data limite e status:
 
 ```
-**Template:** pitch
+**Roteiro:** pitch
 ```
 
 Depois, uma seção `###` para cada item, na ordem:
@@ -105,7 +105,7 @@ Corrija sempre no `.md`, nunca nos arquivos de `out/`.
 - [ ] A solução descreve o fluxo principal em atos, sem blocos de código nem imagens?
 - [ ] As armadilhas são problemas reais já identificados (não hipóteses genéricas)?
 - [ ] Os fora de escopo incluem pelo menos as funcionalidades mais óbvias?
-- [ ] O documento declara `**Template:** pitch` e tem papéis (RCI)?
+- [ ] O documento declara `**Roteiro:** pitch` e tem papéis (RCI)?
 - [ ] O que é dúvida está marcado com **(?)**?
 - [ ] Os documentos foram gerados de novo (docx, html e pdf) e revisados?
 

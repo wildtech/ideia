@@ -3,7 +3,7 @@
 //
 // Uso: node tools/md2html.js <pasta-do-projeto> [arquivo.md] [saida.html]
 //
-// Usa o mesmo theme.json do md2docx.js. As imagens (logo, ícone e marca d'água com a barra degradê)
+// Usa o mesmo tema (projeto.json) do md2docx.js. As imagens (logo, ícone e marca d'água com a barra degradê)
 // são extraídas do template .docx e embutidas no HTML em base64. O HTML funciona offline.
 // Para imprimir/gerar PDF: Imprimir > Salvar como PDF > A4, margens "Nenhuma", com "Gráficos de plano de fundo".
 
@@ -19,10 +19,11 @@ if (!projectArg) {
   process.exit(1);
 }
 const projectDir = path.resolve(projectArg);
-const theme = JSON.parse(fs.readFileSync(path.join(projectDir, "theme.json"), "utf8"));
+const { theme, templatePath, logoPath } = require("./tema").loadTheme(projectDir);
+// Logo como arquivo (png, jpg ou svg) de um tema simples, em data URI.
+const fileUri = (p) => `data:${{ ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".svg": "image/svg+xml" }[path.extname(p).toLowerCase()] || "image/png"};base64,` + fs.readFileSync(p).toString("base64");
 const mdPath = path.resolve(mdArg || path.join(projectDir, path.basename(projectDir) + ".md"));
 const outPath = path.resolve(outArg || path.join(projectDir, "out", path.basename(mdPath).replace(/\.md$/, ".html")));
-const templatePath = path.resolve(projectDir, theme.template);
 const C = theme.colors;
 const FONT = theme.font || "Source Sans Pro";
 const HEADING_FONT = theme.headingFont || FONT;
@@ -250,7 +251,15 @@ async function withoutBar(buf) {
   const zip = await JSZip.loadAsync(fs.readFileSync(templatePath));
   const uri = async (name) => "data:image/png;base64," + (await zip.file(`word/media/${name}`).async("base64"));
   let img;
-  if (SIMPLE) img = { logo: theme.logoText ? "" : await uri(theme.logoMedia || "image1.png") };
+  if (SIMPLE) {
+    // logo: texto/emoji (logoText), arquivo do tema (logo) ou imagem do template (logoMedia, padrão image1.png); pode não haver
+    let logo = "";
+    if (!theme.logoText) {
+      if (logoPath) logo = fileUri(logoPath);
+      else { const f = zip.file(`word/media/${theme.logoMedia || "image1.png"}`); if (f) logo = "data:image/png;base64," + (await f.async("base64")); }
+    }
+    img = { logo };
+  }
   else {
     // image1 = ícone redondo, image2 = logo (wordmark), image3 = marca d'água de página inteira com barra degradê
     img = { icon: await uri("image1.png"), logo: await uri("image2.png"), watermark: await uri("image3.png") };
@@ -265,7 +274,7 @@ async function withoutBar(buf) {
 `;
   const page = SIMPLE
     ? `<main class="sheet">
-${theme.logoText ? `<div class="logo logo-text">${esc(theme.logoText)}</div>` : `<div class="logo"><img src="${img.logo}" alt="${esc(theme.name || "Logo")}"></div>`}
+${theme.logoText ? `<div class="logo logo-text">${esc(theme.logoText)}</div>` : img.logo ? `<div class="logo"><img src="${img.logo}" alt="${esc(theme.name || "Logo")}"></div>` : ""}
 ${renderBody(blocks)}
 <div class="foot">${footerHtml}</div>
 </main>`

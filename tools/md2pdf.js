@@ -52,7 +52,12 @@ if (!fs.existsSync(chrome)) {
 }
 
 try {
-  execFileSync(chrome, ["--headless=new", "--no-pdf-header-footer", "--print-to-pdf=" + outPath, require("url").pathToFileURL(htmlPath).href], { stdio: "ignore" });
+  // Slides (reveal.js): abre em modo de impressão (?print-pdf) e dá tempo para o reveal montar as páginas.
+  const isSlides = fs.readFileSync(htmlPath, "utf8").includes('class="reveal"');
+  const url = require("url").pathToFileURL(htmlPath).href + (isSlides ? "?print-pdf" : "");
+  const args = ["--headless=new", "--no-pdf-header-footer", "--print-to-pdf=" + outPath];
+  if (isSlides) args.push("--virtual-time-budget=10000");
+  execFileSync(chrome, [...args, url], { stdio: "ignore" });
 } catch (e) {
   // O Chrome pode sair com erro por causa de mensagens de display; o que vale é o PDF ter sido gerado.
 }

@@ -1,27 +1,21 @@
 {
-  "name": "Genérico",
-  "template": "../../template-generico-projeto-doc.docx",
+  "name": "Neutro",
+  "template": "base.docx",
   "layout": "simple",
   "font": "Open Sans",
   "headingFont": "Arial",
   "numberSections": false,
   "uppercaseTitles": false,
-  "keepLeadingParagraphs": 1,
   "indent": 0,
   "margins": [
     1008,
     1008
   ],
   "headerDate": true,
-  "logoText": "💡",
-  "footer": [
-    "**Empresa** - slogan",
-    "https endereçoempresa"
-  ],
   "colors": {
     "titleBlue": "222222",
-    "primary": "503030",
-    "accent": "B85C00",
+    "primary": "2B5C8A",
+    "accent": "6B7280",
     "text": "222222",
     "textStrong": "000000",
     "tableStripe": "F3F3F3",

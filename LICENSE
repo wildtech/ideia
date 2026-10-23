@@ -1,12 +1,17 @@
-Documentos e templates deste repositório
-=========================================
+Documentos, roteiros e temas deste repositório
+==============================================
 
 Copyright (c) 2026 Daniel Wildt (Wildtech)
 
-Exceto onde indicado de outra forma, os documentos, os templates (arquivos
-template-*.txt, template-*-projeto-doc.docx e .pdf), o projeto de exemplo e os
-textos deste repositório são licenciados sob a Licença Creative Commons
-Atribuição 4.0 Internacional (CC BY 4.0).
+Exceto onde indicado de outra forma, os arquivos da BASE deste repositório (os
+roteiros em roteiros/, os guias em guias/, os temas genéricos em temas/, o
+AGENTS.md, o AGENTS-extra.example.md, o README.md e o projeto de exemplo em
+projetos/exemplo/) são licenciados sob a Licença Creative Commons Atribuição
+4.0 Internacional (CC BY 4.0).
+
+Esta licença NÃO cobre o conteúdo de quem usa o template: os projetos criados em
+projetos/ (exceto o exemplo), o AGENTS-extra.md e os temas próprios de cada
+pessoa ou organização pertencem a quem os criou.
 
 Você pode:
   - Compartilhar: copiar e redistribuir o material em qualquer meio ou formato.
@@ -25,10 +30,9 @@ https://creativecommons.org/licenses/by/4.0/legalcode.pt
 Resumo: https://creativecommons.org/licenses/by/4.0/deed.pt-br
 
 A marca, o logotipo, o nome e o endereço da Wildtech (por exemplo, nos
-templates visuais template-wildtech-projeto-doc.* e no rodapé de
-template-generico-projeto-doc.*) são da Wildtech e NÃO são cobertos por esta
+temas, como o de temas/wildtech/ e o rodapé de temas/generico/) são da Wildtech e NÃO são cobertos por esta
 licença: permanecem reservados. Esses arquivos estão aqui apenas como EXEMPLO
-DE USO dos templates. Ao criar derivados, troque o template visual e o rodapé
+DE USO dos temas. Ao criar derivados, troque o tema e o rodapé
 pelos da sua marca, e não use a marca da Wildtech de forma que sugira
 vínculo ou aprovação.
 

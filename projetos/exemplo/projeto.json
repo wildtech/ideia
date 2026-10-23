@@ -1,0 +1,23 @@
+{
+  "nome": "Estrutura de Modelagem de Projetos e Documentos",
+  "tema": "generico",
+  "saidas": [
+    {
+      "fonte": "exemplo.md",
+      "tipo": "documento",
+      "formatos": [
+        "docx",
+        "html",
+        "pdf"
+      ]
+    },
+    {
+      "fonte": "exemplo-slides.md",
+      "tipo": "apresentacao",
+      "formatos": [
+        "html",
+        "pdf"
+      ]
+    }
+  ]
+}

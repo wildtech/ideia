@@ -1,0 +1,14 @@
+Título do resumo.
+O mesmo título do documento completo que está sendo resumido. O resumo (TL;DR) tem duas formas: uma citação no topo do documento, logo depois do cabeçalho, e uma apresentação com poucos slides.
+Do que se trata? Em uma ou duas frases: qual é a ideia, a iniciativa ou o problema, e o primeiro caso tratado.
+Quem usa ou quem é afetado? Quem são as pessoas ou as áreas envolvidas e, se couber, quantas são.
+O que se pede ou se decide? Qual decisão ou ação é necessária, e de quem.
+O que recomendamos? Qual é a recomendação ou o caminho proposto. Se houver opções, a escolhida e o motivo em uma frase.
+Quanto custa e qual o impacto? Custo, prazo, esforço ou benefício. Só entram números que já estão no documento completo.
+Por que agora? O que torna o momento certo ou urgente.
+O que ainda é dúvida? Os pontos em aberto que mais importam, marcados com (?).
+Próximos passos. Quem faz o quê e até quando; o que ainda não foi definido fica como "A definir".
+Regras do resumo. Nada novo entra no resumo: tudo o que está nele existe no documento completo, que é a fonte. Quando o documento mudar de forma relevante, revise o resumo. No documento, cabe em uma citação curta (cerca de 200 palavras); na apresentação, são de 5 a 8 slides, com uma ideia por slide e poucas palavras. Sugira o resumo ao fechar o onboarding e de novo quando o documento passar de cerca de mil palavras.
+Documentos de apoio: referência do documento completo e de qualquer outro material que o resumo cita (opcional).
+
+Este roteiro foi criado para este repositório, a partir da prática de abrir os documentos com um resumo curto. As perguntas seguem o que uma pessoa que decide precisa saber primeiro.

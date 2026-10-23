@@ -3,9 +3,9 @@
 //
 // Uso: node tools/md2docx.js <pasta-do-projeto> [arquivo.md] [saida.docx]
 //
-//   <pasta-do-projeto> deve conter um theme.json com:
-//     "template": caminho do .docx de base, relativo à pasta do projeto (ex.: "../../template-generico-projeto-doc.docx")
-//     "colors":   cores usadas em tabelas e destaques
+//   <pasta-do-projeto> deve conter um projeto.json com "tema": o nome de uma pasta em temas/ (tema.json + base.docx).
+//   (Formato antigo, ainda aceito: um theme.json na pasta do projeto, com "template" relativo a ela.)
+//   O tema traz "template" (o .docx de base) e "colors" (cores usadas em tabelas e destaques).
 //   Sem arquivo.md, usa <pasta>/<nome-da-pasta>.md. Sem saida, grava em <pasta>/out/.
 //
 // O template fornece cabeçalhos, rodapés, marca d'água/logo, estilos e numeração.
@@ -21,10 +21,10 @@ if (!projectArg) {
   process.exit(1);
 }
 const projectDir = path.resolve(projectArg);
-const theme = JSON.parse(fs.readFileSync(path.join(projectDir, "theme.json"), "utf8"));
+const { theme, templatePath, logoPath } = require("./tema").loadTheme(projectDir);
+if (!templatePath) { console.error("O tema não tem base.docx. Use \"extends\": \"neutro\" no tema.json para herdar a base neutra."); process.exit(1); }
 const mdPath = path.resolve(mdArg || path.join(projectDir, path.basename(projectDir) + ".md"));
 const outPath = path.resolve(outArg || path.join(projectDir, "out", path.basename(mdPath).replace(/\.md$/, ".docx")));
-const templatePath = path.resolve(projectDir, theme.template);
 const C = theme.colors;
 const FONT = theme.font || "Source Sans Pro";
 const HEADING_FONT = theme.headingFont || FONT;
@@ -40,7 +40,7 @@ const HEADER_DATE = theme.headerDate === true;
 const caps = (t) => (UPPER ? t.toUpperCase() : t);
 
 // Layout do template (padrão, "classic"): texto recuado em 850 twips; margens 1134 / 1132; página A4.
-// Outros templates ajustam no theme.json: "indent" (recuo do texto) e "margins" ([esquerda, direita]).
+// Outros temas ajustam no tema.json: "indent" (recuo do texto) e "margins" ([esquerda, direita]).
 const INDENT = theme.indent ?? 850;
 const [MARGIN_L, MARGIN_R] = theme.margins || [1134, 1132];
 const CONTENT_W = 11906 - MARGIN_L - MARGIN_R - INDENT; // largura útil do corpo
@@ -194,6 +194,38 @@ function buildBody(blocks) {
   return out.join("");
 }
 
+// ---------- logo e rodapé de temas simples (só cores e logo) ----------
+// Tamanho em pixels de uma imagem PNG ou JPEG (para manter a proporção ao embutir no docx).
+function imageSize(buf, ext) {
+  if (ext === ".png") return { w: buf.readUInt32BE(16), h: buf.readUInt32BE(20) };
+  let i = 2;
+  while (i < buf.length) {
+    if (buf[i] !== 0xff) { i++; continue; }
+    const marker = buf[i + 1];
+    if (marker >= 0xc0 && marker <= 0xc3) return { h: buf.readUInt16BE(i + 5), w: buf.readUInt16BE(i + 7) };
+    i += 2 + buf.readUInt16BE(i + 2);
+  }
+  throw new Error("Não foi possível ler o tamanho da imagem do logo");
+}
+
+const LOGO_REL_ID = "rIdLogoTema";
+function logoImageParagraph(w, h) {
+  const maxW = 2400000, maxH = 900000; // EMU (cerca de 6,7 cm x 2,5 cm)
+  const k = Math.min(maxW / w, maxH / h);
+  const cx = Math.round(w * k), cy = Math.round(h * k);
+  return `<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:after="200"/></w:pPr><w:r><w:drawing>` +
+    `<wp:inline xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" distT="0" distB="0" distL="0" distR="0">` +
+    `<wp:extent cx="${cx}" cy="${cy}"/><wp:docPr id="9001" name="logo"/>` +
+    `<a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">` +
+    `<pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:nvPicPr><pic:cNvPr id="0" name="logo"/><pic:cNvPicPr/></pic:nvPicPr>` +
+    `<pic:blipFill><a:blip xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" r:embed="${LOGO_REL_ID}"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill>` +
+    `<pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${cx}" cy="${cy}"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic>` +
+    `</a:graphicData></a:graphic></wp:inline></w:drawing></w:r></w:p>`;
+}
+const logoTextParagraph = (text) =>
+  `<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:after="200"/></w:pPr><w:r><w:rPr><w:sz w:val="240"/><w:szCs w:val="240"/></w:rPr><w:t xml:space="preserve">${esc(text)}</w:t></w:r></w:p>`;
+const plainMd = (t) => (t || "").replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/[*`]/g, "");
+
 // ---------- main ----------
 (async () => {
   const zip = await JSZip.loadAsync(fs.readFileSync(templatePath));
@@ -213,7 +245,35 @@ function buildBody(blocks) {
     const paras = docXml.slice(bodyStart).match(/<w:p[ >][\s\S]*?<\/w:p>/g) || [];
     lead = paras.slice(0, KEEP_LEADING).join("");
   }
-  zip.file("word/document.xml", docXml.slice(0, bodyStart) + lead + newBody + sectPr + "</w:body></w:document>");
+  // logo de um tema simples: imagem (png/jpg) ou texto/emoji no topo, quando o template não traz o dele no corpo
+  let logoXml = "";
+  const logoExt = logoPath ? path.extname(logoPath).toLowerCase() : "";
+  if (!KEEP_LEADING && logoPath && [".png", ".jpg", ".jpeg"].includes(logoExt)) {
+    const buf = fs.readFileSync(logoPath);
+    const isPng = logoExt === ".png";
+    const { w, h } = imageSize(buf, isPng ? ".png" : ".jpg");
+    const media = "word/media/logo-tema" + (isPng ? ".png" : ".jpg");
+    zip.file(media, buf);
+    const rels = await zip.file("word/_rels/document.xml.rels").async("string");
+    zip.file("word/_rels/document.xml.rels", rels.replace("</Relationships>", `<Relationship Id="${LOGO_REL_ID}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="${media.replace("word/", "")}"/></Relationships>`));
+    let ct = await zip.file("[Content_Types].xml").async("string");
+    const ext = isPng ? "png" : "jpg";
+    if (!new RegExp(`Extension="${ext}"`, "i").test(ct))
+      ct = ct.replace(/<Types[^>]*>/, (m) => m + `<Default Extension="${ext}" ContentType="image/${isPng ? "png" : "jpeg"}"/>`);
+    zip.file("[Content_Types].xml", ct);
+    logoXml = logoImageParagraph(w, h);
+  } else if (!KEEP_LEADING && logoPath) {
+    console.warn(`Aviso: o logo ${path.basename(logoPath)} não entra no docx (só png e jpg). No html, no pdf e nos slides ele é usado.`);
+  } else if (!KEEP_LEADING && theme.logoText) {
+    logoXml = logoTextParagraph(theme.logoText);
+  }
+  zip.file("word/document.xml", docXml.slice(0, bodyStart) + lead + logoXml + newBody + sectPr + "</w:body></w:document>");
+
+  // rodapé de um tema simples: os marcadores {{rodape1}} e {{rodape2}} da base neutra recebem as linhas de "footer"
+  for (const name of Object.keys(zip.files).filter((n) => /^word\/footer\d*\.xml$/.test(n))) {
+    const f = await zip.file(name).async("string");
+    if (f.includes("{{rodape")) zip.file(name, f.replace("{{rodape1}}", esc(plainMd((theme.footer || [])[0]))).replace("{{rodape2}}", esc(plainMd((theme.footer || [])[1]))));
+  }
 
   // numeração: acrescenta o estilo de lista ordenada e uma instância (num) por lista
   if (orderedNums.length) {

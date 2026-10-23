@@ -1,0 +1,30 @@
+{
+  "name": "Wildtech",
+  "template": "base.docx",
+  "layout": "simple",
+  "font": "Open Sans",
+  "headingFont": "Arial",
+  "numberSections": false,
+  "uppercaseTitles": false,
+  "keepLeadingParagraphs": 1,
+  "indent": 0,
+  "margins": [
+    1008,
+    1008
+  ],
+  "headerDate": true,
+  "footer": [
+    "**Wildtech** - Start wild, keep wild",
+    "[www.wildtech.com.br](https://www.wildtech.com.br)"
+  ],
+  "colors": {
+    "titleBlue": "222222",
+    "primary": "000099",
+    "accent": "B85C00",
+    "text": "222222",
+    "textStrong": "000000",
+    "tableStripe": "F3F3F3",
+    "calloutFill": "F3F3F3",
+    "border": "D1D5DB"
+  }
+}
