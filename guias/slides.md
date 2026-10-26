@@ -49,6 +49,7 @@ Antes de usar uma imagem, pergunte: **ela reforça a ideia?** Se a resposta é "
 ### Regras práticas
 
 - **Texto sobre foto:** só com o degradê (`imagem-cheia`) ou com a foto de um lado e o texto do outro. Nunca a frase direto sobre uma foto movimentada.
+- **Prints do próprio protótipo:** gere-os por uma jornada do Playwright (`npm run capturas`, no protótipo) em vez de à mão. Assim eles saem iguais sempre, e podem ser refeitos quando a tela mudar. Tire o ponteiro do mouse da tela antes da foto, para nenhum botão aparecer em "hover".
 - **Print com interface minúscula** não se lê de longe: recorte o trecho que importa ou use uma legenda que diga o que olhar.
 - **Resolução:** uma imagem que ocupa o slide inteiro precisa de pelo menos 1280 px de largura. Abaixo de uns 800 px, ela fica borrada.
 - **Peso:** otimize antes (por exemplo, 1600 px de largura, em JPEG). O compilador avisa quando uma imagem passa de 700 KB.

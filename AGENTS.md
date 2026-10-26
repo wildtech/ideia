@@ -161,7 +161,7 @@ Um roteiro é um arquivo de texto com a lista de seções, na ordem em que apare
 7. **Iterativo e incremental.** Pense em uma primeira entrega, valide e aprenda.
 8. **Não invente informação.** Dúvidas e leituras incertas ficam marcadas com **(?)**. Campos sem resposta ficam como "A definir".
 9. **Todo projeto tem um resumo (TL;DR).** Fica em uma citação no topo, logo depois do cabeçalho, e começa com `**Resumo (TL;DR):**`. Siga o `roteiros/tldr.txt`: nada novo entra no resumo, tudo o que está nele existe no documento completo. **Sugira** o resumo ao fechar o onboarding de um projeto e de novo quando o documento passar de cerca de mil palavras; quem decide criar é a pessoa. Quando o documento mudar de forma relevante, revise o resumo.
-10. **Imagens são insumo nos documentos e podem entrar nas apresentações.** Prints, fotos e esquemas em `apoio/` servem de entrada: transforme o conteúdo deles em texto. Os **documentos** gerados não levam imagens (o compilador não as trata). As **apresentações** podem levar imagens, com `**Imagem:**` (ver "Apresentações" e `guias/slides.md`): guarde-as em `imagens/`, otimizadas, e registre autoria e licença das fotos de terceiros.
+10. **Imagens são insumo nos documentos e podem entrar nas apresentações.** Prints, fotos e esquemas em `apoio/` servem de entrada: transforme o conteúdo deles em texto. Os **documentos** gerados não levam imagens (o compilador não as trata). As **apresentações** podem levar imagens, com `**Imagem:**` (ver "Apresentações" e `guias/slides.md`): guarde-as em `imagens/`, otimizadas, e registre autoria e licença das fotos de terceiros. **As imagens usadas pela apresentação são insumo e ficam versionadas** (só o `out/` é descartável); os arquivos de `apoio/` também podem ser versionados quando a pessoa quiser.
 
 ## Estilo de escrita
 
@@ -242,10 +242,11 @@ Use esta stack, a menos que a pessoa ou o `AGENTS-extra.md` decida outra. Regist
 | Interface | **React + Vite + TypeScript** | Base comum de front-end, rápida de rodar e de trocar |
 | API | Node, com `tsx` no desenvolvimento | Uma API própria, pequena, que só conhece o contrato de dados |
 | Banco | **SQLite**, pelo módulo `node:sqlite` embutido no Node | Sem dependência nativa; exige Node 22.13 ou mais novo (`"engines"` no `package.json`) |
-| Testes | **Vitest**, e `tsc --noEmit` para os tipos | As regras do negócio são o que mais precisa de teste |
+| Testes | **Vitest**, e `tsc --noEmit` para os tipos | As regras do negócio e a API são o que mais precisa de teste |
+| Jornadas | **Playwright**, usando o Chrome já instalado (`channel: "chrome"`) | Repetem o fluxo na tela. Scripts `test:e2e`, `demo` (**grava a jornada em vídeo**) e `capturas` (refaz os prints dos slides). Sobem a própria API e a própria interface, em portas e com um banco só deles (3101, 5273 e `data/e2e.db`) |
 | Desenvolvimento | `concurrently` sobe a API (porta 3001) e a interface (porta 5173) | Scripts: `dev`, `dev:api`, `dev:web`, `build`, `typecheck` e `test` |
 
-Sugeridos, a validar caso a caso: ESLint, Prettier e integração contínua (por exemplo, GitHub Actions).
+As portas da API e da interface podem ser trocadas por variáveis de ambiente (`PORT`, `API_URL` e `WEB_PORT`), para as jornadas não atrapalharem quem está com o `npm run dev` aberto. Sugeridos, a validar caso a caso: ESLint, Prettier e integração contínua (por exemplo, GitHub Actions).
 
 ### Arquitetura: feita para trocar
 
@@ -272,7 +273,7 @@ O protótipo existe para **ser jogado fora ou substituído**, então a arquitetu
 
 ### README do protótipo
 
-Todo protótipo tem um `README.md` com, nesta ordem: **como rodar** (comandos e portas), **o que o protótipo valida**, **o que ele não valida**, **arquitetura** (a tabela das camadas), **dados de exemplo** (quem mostra o quê) e **pendências conhecidas**. Diga no topo que **todos os dados são fictícios**.
+Todo protótipo tem um `README.md` com, nesta ordem: **como rodar** (comandos e portas), **as jornadas** (o que cada comando do Playwright faz), **o que o protótipo valida**, **o que ele não valida**, **arquitetura** (a tabela das camadas), **dados de exemplo** (quem mostra o quê) e **pendências conhecidas**. Diga no topo que **todos os dados são fictícios**.
 
 ### O que o protótipo valida, e o que não valida
 

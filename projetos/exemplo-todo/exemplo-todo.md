@@ -110,7 +110,7 @@ Esboço de traço grosso, em texto: no alto, o título e uma linha de campo com 
 ### Stack e estratégia de validação
 
 **Decisões (padrão do template, sem alteração):**
-- **React + Vite + TypeScript** na interface; **API Node** própria; **SQLite** pelo `node:sqlite`, embutido no Node; **Vitest** nos testes.
+- **React + Vite + TypeScript** na interface; **API Node** própria; **SQLite** pelo `node:sqlite`, embutido no Node; **Vitest** nos testes das regras e da API; **Playwright** nas jornadas na tela, com vídeo de demonstração e capturas para os slides.
 - **Regras como funções puras** em `src/domain/rules.ts`, com testes: validar o título, mudar de etapa, escolher o que o limpar remove, contar e ordenar.
 - **Contrato de dados** (`TodoGateway`): a tela e a API só o conhecem. O SQLite é uma implementação dele, e outra pode substituí-lo.
 - **Dados fictícios apenas**, no protótipo e no repositório. O banco local não é versionado.
@@ -123,8 +123,8 @@ O protótipo é um **artefato** deste projeto (veja o `projeto.json`): nasceu de
 
 ### Documentos de Apoio
 
-- `prototipo/README.md`: como rodar, o que o protótipo valida, a arquitetura e os dados de exemplo.
+- `prototipo/README.md`: como rodar, as jornadas (Playwright), o que o protótipo valida, a arquitetura e os dados de exemplo.
 - `exemplo-todo-slides.md`: o resumo (TL;DR) em forma de apresentação.
-- `imagens/`: as capturas de tela do protótipo (dados fictícios) usadas nos slides.
+- `imagens/`: as capturas de tela do protótipo (dados fictícios) usadas nos slides, geradas pela jornada (`npm run capturas`) e versionadas.
 - `roteiros/pitch.txt` e `guias/pitch.md`: o roteiro e o guia do pitch.
 - [Shape Up, capítulo 6: Write the pitch](https://basecamp.com/shapeup/1.5-chapter-06): a origem do formato.

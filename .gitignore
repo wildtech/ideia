@@ -6,6 +6,9 @@ Thumbs.db
 node_modules/
 dist/
 coverage/
+test-results/
+playwright-report/
+blob-report/
 .vite/
 *.tsbuildinfo
 

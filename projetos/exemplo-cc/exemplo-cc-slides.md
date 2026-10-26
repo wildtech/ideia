@@ -52,12 +52,11 @@
 
 - O nome e o logo da CC são **marcas** da Creative Commons
 - Há regras de uso: não alterar o logo, não sugerir vínculo
-- O logo deste exemplo é só ilustração **(?)**
+- O logo deste exemplo é só ilustração
 
 ### Próximos passos
 
 **Layout:** fechamento
 
-1. Confirmar o uso do logo
-2. Decidir sobre o texto completo no `LICENSE`
-3. Acompanhar novas versões da licença
+1. Decidir sobre o texto completo no `LICENSE`
+2. Acompanhar novas versões da licença

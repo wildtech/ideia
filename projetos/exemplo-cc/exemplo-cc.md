@@ -68,7 +68,7 @@ Escolher e aplicar uma licença que deixe claro o que quem recebe o template pod
 | Escolher a licença das ferramentas | Daniel Wildt | Concluída | MIT |
 | Aplicar a licença e registrar o crédito à origem | Daniel Wildt | Concluída | Arquivo `LICENSE` e seção no `README` |
 | Decidir se o `LICENSE` leva o texto completo da licença | Daniel Wildt | Concluída | Fica só o link para o texto oficial |
-| Confirmar o uso do logo da Creative Commons neste exemplo | Daniel Wildt | A fazer | Ver "Marca e logo" abaixo **(?)** |
+| Decidir o uso do logo da Creative Commons neste exemplo | Daniel Wildt | Concluída | Mantida a imagem, que vem do site da Creative Commons Brasil. Ver "Marca e logo" abaixo |
 
 ---
 
@@ -132,18 +132,17 @@ Por isso o repositório tem duas licenças: a CC BY 4.0 para os documentos, rote
 
 O nome da Creative Commons, os botões e o logo corporativo (o "CC" em um círculo) são marcas da Creative Commons. A CC permite usar os logos com a sua obra ou o seu site, desde que se sigam as políticas dela, e não permite alterá-los (por exemplo, mudando a fonte, as proporções ou as cores) nem usá-los de formas que as políticas não autorizem sem permissão por escrito.
 
-A imagem usada como logo deste tema de exemplo é uma arte de divulgação da Creative Commons (a marca com respingos de tinta), recortada apenas nas margens brancas. Ela está aqui só para ilustrar um tema simples, sem vínculo nem endosso da Creative Commons. Quem for usar a marca de verdade, para indicar a licença de uma obra, deve pegar os arquivos oficiais e seguir a política de uso. **(?)**
+A imagem usada como logo deste tema de exemplo é uma arte de divulgação da Creative Commons (a marca com respingos de tinta), recortada apenas nas margens brancas. Ela está aqui só para ilustrar um tema simples, sem vínculo nem endosso da Creative Commons. Quem for usar a marca de verdade, para indicar a licença de uma obra, deve pegar os arquivos oficiais e seguir a política de uso.
 
 ---
 
 ### Pontos em aberto
 
 > **Ainda em aberto:**
-> - **Logo deste exemplo:** manter a arte de divulgação ou trocar pelos arquivos oficiais da Creative Commons, conforme a política de uso.
 > - **Texto completo da licença:** incluir no `LICENSE` ou continuar só com o link.
 > - **Versão da licença:** acompanhar se a Creative Commons publicar uma versão nova.
 >
-> **Já decidido:** CC BY 4.0 para documentos, roteiros e temas; MIT para as ferramentas; aviso de "como está, sem garantias"; crédito à origem no `README`.
+> **Já decidido:** CC BY 4.0 para documentos, roteiros e temas; MIT para as ferramentas; aviso de "como está, sem garantias"; crédito à origem no `README`; e o **logo**, mantido como a imagem tirada do site da Creative Commons Brasil.
 
 ---
 
