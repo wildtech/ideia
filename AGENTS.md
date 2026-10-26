@@ -87,7 +87,7 @@ ideia/
 
   Para uma ideia de negócio nova, o caminho natural é o Business Model Canvas primeiro e o 10-20-30 depois, para apresentar o que o canvas organizou. A pessoa também pode criar os seus (ver "Criando um novo roteiro").
 - **Documento ou apresentação:** o documento é lido sozinho (completo); a apresentação é falada (uma ideia por slide). São arquivos separados, e a apresentação é escrita a partir do resumo, não convertida do documento. O roteiro sugere qual faz mais sentido: iniciativa e PDI são documentos; 10-20-30 e pitch são pensados para slides.
-- **Artefatos** não são gerados pelas ferramentas. O `projeto.json` os registra, com a `origem` (o documento de onde nasceram), para manter a rastreabilidade. O documento é a verdade sobre a **intenção** (o que e por quê); o artefato, sobre o **comportamento**. Quando um mudar de forma relevante, revise o outro. Artefatos de software: pasta própria com `README` e instruções para rodar, `package.json` próprio (sem misturar com `tools/`), **dados fictícios**, sem segredos nem dados reais.
+- **Artefatos** não são gerados pelas ferramentas. O `projeto.json` os registra, com a `origem` (o documento de onde nasceram), para manter a rastreabilidade. O documento é a verdade sobre a **intenção** (o que e por quê); o artefato, sobre o **comportamento**. Quando um mudar de forma relevante, revise o outro. O artefato de software mais comum é o **protótipo**, e ele tem uma definição padrão (ver "Protótipos").
 
 ## Onboarding (passo a passo para o assistente)
 
@@ -111,7 +111,7 @@ Passos:
    - título da iniciativa;
    - pessoa responsável, com nome e sobrenome (e as outras pessoas envolvidas, se houver);
    - período de acompanhamento e data limite (pode ser "A definir");
-   - se o projeto é um **software** e precisa de protótipo ou código (artefato persistente);
+   - se o projeto é um **software** e precisa de um **protótipo** (artefato persistente; ver "Protótipos"). Se sim, proponha a stack padrão e confirme;
    - projeto Jira ou repositório GitHub relacionado, se houver (ver "Integrações opcionais").
 7. **Pedir o material de apoio**, se existir: textos, anotações, transcrições, prints e fotos. Peça para a pessoa colocá-lo em `projetos/<projeto>/apoio/` ou colar na conversa.
 8. **Ler o material, entrevistar e escrever o primeiro rascunho.** As imagens são **insumo**: leia o conteúdo delas e transforme em texto no `.md`. O documento gerado não leva imagens; a imagem original fica em `apoio/` e é citada em "Documentos de Apoio".
@@ -226,6 +226,56 @@ Não use `##`, imagens (`![]()`), blocos de código ou HTML: o compilador não o
 - `artefatos` (opcional): registro do que o projeto tem além do Markdown. Não é gerado pelas ferramentas.
 - `ajustes` (opcional): sobrescreve opções do tema só neste projeto (por exemplo, `"ajustes": { "footer": ["..."] }`).
 - Formato antigo: um `theme.json` dentro do projeto ainda funciona, mas não é mais o padrão.
+
+## Protótipos (artefato de software)
+
+Quando o projeto é um software, o template recomenda um **protótipo** para validar o fluxo, as regras e as telas **antes** de construir na plataforma de destino. O protótipo é um **artefato**: nasce de um documento (a especificação), fica versionado em `projetos/<projeto>/prototipo/` e evolui por conta própria. **Crie o protótipo só quando a pessoa pedir**, e registre-o no `projeto.json` (`"tipo": "prototipo"`, `"caminho": "prototipo"` e a `origem`, o documento de onde nasceu).
+
+### Stack padrão
+
+Use esta stack, a menos que a pessoa ou o `AGENTS-extra.md` decida outra. Registre a decisão (e a data) no documento do projeto, em uma seção como "Stack e estratégia de validação".
+
+| Camada | Padrão | Observações |
+| :--- | :--- | :--- |
+| Interface | **React + Vite + TypeScript** | Base comum de front-end, rápida de rodar e de trocar |
+| API | Node, com `tsx` no desenvolvimento | Uma API própria, pequena, que só conhece o contrato de dados |
+| Banco | **SQLite**, pelo módulo `node:sqlite` embutido no Node | Sem dependência nativa; exige Node 22.13 ou mais novo (`"engines"` no `package.json`) |
+| Testes | **Vitest**, e `tsc --noEmit` para os tipos | As regras do negócio são o que mais precisa de teste |
+| Desenvolvimento | `concurrently` sobe a API (porta 3001) e a interface (porta 5173) | Scripts: `dev`, `dev:api`, `dev:web`, `build`, `typecheck` e `test` |
+
+Sugeridos, a validar caso a caso: ESLint, Prettier e integração contínua (por exemplo, GitHub Actions).
+
+### Arquitetura: feita para trocar
+
+O protótipo existe para **ser jogado fora ou substituído**, então a arquitetura separa o que muda do que fica:
+
+| Camada | Onde | Regra |
+| :--- | :--- | :--- |
+| Regras do negócio | `src/domain/` | **Funções puras** em TypeScript, sem banco nem tela, com testes: prazos, etapas, elegibilidade, cálculos |
+| Contrato de dados | `src/domain/` (uma interface, por exemplo `XGateway`) | A tela só conhece o contrato |
+| Banco | `server/` (implementação SQLite do contrato) | Trocar de banco é escrever **outra implementação** do contrato; as telas não mudam |
+| API HTTP | `server/` | Só conhece o contrato |
+| Interface | `src/` | Cliente HTTP que cumpre o mesmo contrato |
+| Dados de exemplo | `server/sample.ts` | **Fictícios**, com casos que mostram as regras |
+
+- **IA atrás de uma interface**, com uma versão **simulada** por regras no protótipo: nenhum dado vai a um modelo de verdade, e a pessoa aceita ou ignora a sugestão.
+- **Facilite a migração** para a plataforma de destino: chaves **UUID**, estados e categorias como **enumerações**, consultas simples com filtro e paginação, a noção de papel e de dono do registro desde o início e poucas chamadas, grandes, em vez de muitas pequenas.
+
+### Dados e repositório
+
+- **Só dados fictícios.** Dado real (de pessoas, clientes ou usuários) **nunca** entra no protótipo nem no repositório.
+- O banco local fica em `data/`, é criado com os dados de exemplo na primeira execução e **não é versionado** (`*.db` e afins já estão no `.gitignore`). Tenha uma forma de **reiniciar os dados de exemplo**.
+- `package.json` **próprio**, dentro de `prototipo/`: não misture com o `tools/`.
+- Sem segredos no código; configuração local em `.env`, que está no `.gitignore` (deixe um `.env.example` se precisar).
+
+### README do protótipo
+
+Todo protótipo tem um `README.md` com, nesta ordem: **como rodar** (comandos e portas), **o que o protótipo valida**, **o que ele não valida**, **arquitetura** (a tabela das camadas), **dados de exemplo** (quem mostra o quê) e **pendências conhecidas**. Diga no topo que **todos os dados são fictícios**.
+
+### O que o protótipo valida, e o que não valida
+
+- **Valida:** o fluxo, as regras, as telas e a ajuda da IA.
+- **Não valida:** desempenho, limites e cotas, licenças, segurança por papel e governança da plataforma de destino. Isso só aparece lá, e por isso o risco da troca deve ser tratado cedo, com um pitch próprio.
 
 ## Temas (`temas/<tema>/`)
 

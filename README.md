@@ -75,6 +75,10 @@ O tema padrão é o genérico (`temas/generico/`). O da Wildtech está aqui só 
 
 Os roteiros são arquivos de texto (`roteiros/<nome>.txt`) com as seções, uma pergunta e indicações para cada uma, e a indicação da fonte de onde vieram. Já vêm: **iniciativa**, **Business Model Canvas** (modelar uma ideia de negócio), **10-20-30** (apresentar uma ideia), **PDI** (plano de desenvolvimento individual, com o olhar da aprendizagem autodirigida), **pitch** (formato Shape Up) e **resumo (TL;DR)**. Você pode criar os seus.
 
+## Protótipos
+
+Quando o projeto é um **software**, o template recomenda um **protótipo** para validar o fluxo antes de construir na plataforma de destino. A stack padrão é **React + Vite + TypeScript**, uma **API Node** e **SQLite** (`node:sqlite`, embutido no Node 22.13 ou mais novo), com **Vitest** nos testes. As regras do negócio ficam em funções puras, separadas do banco e da tela, para trocar o banco sem mexer nas telas. **Só dados fictícios**, e o banco local não vai para o git. O protótipo fica em `projetos/<projeto>/prototipo/`, registrado no `projeto.json` como artefato. O `AGENTS.md` ("Protótipos") traz a definição completa, e o seu agente pode criar o protótipo quando você pedir. A stack é um padrão: se você preferir outra, registre no `AGENTS-extra.md`.
+
 ## Como contribuir
 
 Contribuições são bem-vindas: novos **roteiros**, melhorias nos **temas genéricos**, correções e melhorias nas **ferramentas**, e ajustes de texto. Abra uma *issue* para conversar sobre a ideia ou envie direto um *pull request*.

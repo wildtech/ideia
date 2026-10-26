@@ -118,7 +118,7 @@ Um projeto tem um **tema** e uma ou mais **saídas**. Cada saída vem de um arqu
 - **Saídas** são geradas pelas ferramentas, vão para `out/` e são descartáveis: a fonte é o `.md`.
 - **Artefatos** também nascem de um documento (um protótipo gerado a partir da especificação, por exemplo), mas depois **ficam no repositório e evoluem por conta própria**. O `projeto.json` registra o artefato com a sua `origem` (o documento de onde nasceu), para não perder a rastreabilidade.
 - Como um artefato pode divergir do documento: o documento é a verdade sobre a **intenção** (o que e por quê), e o artefato, sobre o **comportamento**. Quando um mudar de forma relevante, o outro deve ser revisado.
-- Boas práticas para artefatos de software: pasta própria com `README` e instruções para rodar, `package.json` próprio (sem misturar com `tools/`), **dados fictícios**, e nada de segredos ou dados reais no repositório.
+- **Protótipos** são o artefato de software mais comum e têm uma definição padrão: React + Vite + TypeScript, uma API Node e SQLite (`node:sqlite`), com as regras em funções puras, **dados fictícios** e um README com o que o protótipo valida e o que não valida. Quem decidir outra stack registra no `AGENTS-extra.md`. O `AGENTS.md` traz o detalhe.
 
 ---
 
