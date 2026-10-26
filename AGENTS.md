@@ -38,7 +38,8 @@ ideia/
 │   └── <tema>/               tema.json (cores, fontes, logo, rodapé, opções) e, se houver, base.docx, referencia.pdf e slides.css
 │       neutro (base dos temas simples), generico (padrão), wildtech (exemplo de tema com marca),
 │       exemplo-leve (exemplo de tema simples: só cores e logo), exemplo-cc (tema simples com o logo da Creative Commons,
-│       usado no projeto exemplo-cc); os temas de quem usa ficam aqui também
+│       usado no projeto exemplo-cc), exemplo-todo (tema simples com as cores do exemplo-cc e estilo zen-lessig,
+│       usado no projeto exemplo-todo); os temas de quem usa ficam aqui também
 ├── tools/                    [base] compiladores (licença MIT, ver tools/LICENSE)
 │   ├── tema.js               carrega o tema e as saídas de um projeto
 │   ├── md-parse.js           parser Markdown compartilhado
@@ -51,6 +52,7 @@ ideia/
 └── projetos/                 [conteúdo] um projeto por pasta
     ├── exemplo-ideia/        [base] projeto de exemplo, que descreve o próprio template (tema da Wildtech)
     ├── exemplo-cc/           [base] segundo exemplo, com um tema simples: a escolha da licença Creative Commons dos documentos
+    ├── exemplo-todo/         [base] terceiro exemplo, de software: um pitch com TL;DR, slides e um protótipo (prototipo/)
     └── <projeto>/
         ├── projeto.json          tema, saídas e artefatos do projeto
         ├── <projeto>.md          documento completo (fonte da verdade), com o roteiro no topo e um resumo (TL;DR)
@@ -60,7 +62,7 @@ ideia/
         └── ...                   artefatos persistentes (ex.: prototipo/) e outros arquivos do projeto
 ```
 
-- **Para replicar esta estrutura** para outra pessoa ou equipe: copie os arquivos `[base]`, deixe `projetos/` só com os exemplos (`exemplo-ideia/` e `exemplo-cc/`), crie os temas e os projetos de quem vai usar e deixe o `AGENTS-extra.md` nascer no primeiro projeto.
+- **Para replicar esta estrutura** para outra pessoa ou equipe: copie os arquivos `[base]`, deixe `projetos/` só com os exemplos (`exemplo-ideia/`, `exemplo-cc/` e `exemplo-todo/`), crie os temas e os projetos de quem vai usar e deixe o `AGENTS-extra.md` nascer no primeiro projeto.
 - **Dois lados da mesma moeda:** o que é `[base]` deve ser melhorado na origem do template (https://github.com/wildtech/ideia), e o que é `[conteúdo]` pertence a quem usa.
 
 ### Os conceitos
@@ -229,7 +231,7 @@ Não use `##`, imagens (`![]()`), blocos de código ou HTML: o compilador não o
 
 ## Protótipos (artefato de software)
 
-Quando o projeto é um software, o template recomenda um **protótipo** para validar o fluxo, as regras e as telas **antes** de construir na plataforma de destino. O protótipo é um **artefato**: nasce de um documento (a especificação), fica versionado em `projetos/<projeto>/prototipo/` e evolui por conta própria. **Crie o protótipo só quando a pessoa pedir**, e registre-o no `projeto.json` (`"tipo": "prototipo"`, `"caminho": "prototipo"` e a `origem`, o documento de onde nasceu).
+Quando o projeto é um software, o template recomenda um **protótipo** para validar o fluxo, as regras e as telas **antes** de construir na plataforma de destino. O protótipo é um **artefato**: nasce de um documento (a especificação, em geral um **pitch**), fica versionado em `projetos/<projeto>/prototipo/` e evolui por conta própria. O projeto `projetos/exemplo-todo/` é o **exemplo completo**: um pitch com TL;DR, uma apresentação do resumo e um protótipo de lista de tarefas que segue esta definição. **Crie o protótipo só quando a pessoa pedir**, e registre-o no `projeto.json` (`"tipo": "prototipo"`, `"caminho": "prototipo"` e a `origem`, o documento de onde nasceu).
 
 ### Stack padrão
 

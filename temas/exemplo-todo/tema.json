@@ -1,0 +1,13 @@
+{
+  "extends": "neutro",
+  "name": "Exemplo: lista de tarefas",
+  "estilo": "zen-lessig",
+  "logoText": "✅",
+  "font": "Open Sans",
+  "footer": ["**Exemplo: lista de tarefas**", "exemplo do template ideia"],
+  "colors": {
+    "titleBlue": "111111",
+    "primary": "1F8A70",
+    "accent": "A83232"
+  }
+}

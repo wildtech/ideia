@@ -58,10 +58,12 @@ Se o Chrome não for encontrado, defina a variável `CHROME` com o caminho do ex
 | `temas/generico/` | Tema padrão (logo, fontes, cabeçalho e rodapé de exemplo) |
 | `temas/neutro/` e `temas/exemplo-leve/` | A base dos temas simples e um exemplo genérico de tema só com cores e logo |
 | `temas/exemplo-cc/` | Tema simples do projeto `exemplo-cc`, com o logo e as cores da Creative Commons (só como ilustração) |
+| `temas/exemplo-todo/` | Tema simples do projeto `exemplo-todo`, com as mesmas cores e o estilo de apresentação zen-lessig |
 | `temas/wildtech/` | Exemplo de um tema com marca (a da Wildtech) |
 | `tools/` | Compiladores de Markdown para docx, html, pdf e apresentações |
 | `projetos/exemplo-ideia/` | Projeto de exemplo: este template descrito com o próprio template, no tema da Wildtech |
 | `projetos/exemplo-cc/` | Segundo exemplo, com o tema simples: a escolha da licença Creative Commons dos documentos (documento e apresentação) |
+| `projetos/exemplo-todo/` | Terceiro exemplo, de software: um pitch com resumo (TL;DR), uma apresentação e um **protótipo** de lista de tarefas (React, Vite e SQLite) |
 
 ## O que é seu: `AGENTS-extra.md`
 
@@ -77,7 +79,7 @@ Os roteiros são arquivos de texto (`roteiros/<nome>.txt`) com as seções, uma 
 
 ## Protótipos
 
-Quando o projeto é um **software**, o template recomenda um **protótipo** para validar o fluxo antes de construir na plataforma de destino. A stack padrão é **React + Vite + TypeScript**, uma **API Node** e **SQLite** (`node:sqlite`, embutido no Node 22.13 ou mais novo), com **Vitest** nos testes. As regras do negócio ficam em funções puras, separadas do banco e da tela, para trocar o banco sem mexer nas telas. **Só dados fictícios**, e o banco local não vai para o git. O protótipo fica em `projetos/<projeto>/prototipo/`, registrado no `projeto.json` como artefato. O `AGENTS.md` ("Protótipos") traz a definição completa, e o seu agente pode criar o protótipo quando você pedir. A stack é um padrão: se você preferir outra, registre no `AGENTS-extra.md`.
+Quando o projeto é um **software**, o template recomenda um **protótipo** para validar o fluxo antes de construir na plataforma de destino. A stack padrão é **React + Vite + TypeScript**, uma **API Node** e **SQLite** (`node:sqlite`, embutido no Node 22.13 ou mais novo), com **Vitest** nos testes. As regras do negócio ficam em funções puras, separadas do banco e da tela, para trocar o banco sem mexer nas telas. **Só dados fictícios**, e o banco local não vai para o git. O protótipo fica em `projetos/<projeto>/prototipo/`, registrado no `projeto.json` como artefato. O `AGENTS.md` ("Protótipos") traz a definição completa, e o seu agente pode criar o protótipo quando você pedir. Para ver um funcionando, rode o exemplo: `cd projetos/exemplo-todo/prototipo`, `npm install` e `npm run dev`. A stack é um padrão: se você preferir outra, registre no `AGENTS-extra.md`.
 
 ## Como contribuir
 

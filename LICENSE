@@ -6,7 +6,7 @@ Copyright (c) 2026 Daniel Wildt (Wildtech)
 Exceto onde indicado de outra forma, os arquivos da BASE deste repositório (os
 roteiros em roteiros/, os guias em guias/, os temas genéricos em temas/, o
 AGENTS.md, o AGENTS-extra.example.md, o README.md e os projetos de exemplo em
-projetos/exemplo-ideia/ e projetos/exemplo-cc/) são licenciados sob a Licença Creative Commons Atribuição
+projetos/exemplo-ideia/, projetos/exemplo-cc/ e projetos/exemplo-todo/) são licenciados sob a Licença Creative Commons Atribuição
 4.0 Internacional (CC BY 4.0).
 
 Esta licença NÃO cobre o conteúdo de quem usa o template: os projetos criados em
@@ -49,3 +49,5 @@ expressas ou implícitas. Em nenhuma hipótese o autor é responsável por
 reivindicações, danos ou outras responsabilidades decorrentes do uso do material.
 
 As ferramentas em tools/ têm licença própria (MIT): ver tools/LICENSE.
+O código do protótipo de exemplo, em projetos/exemplo-todo/prototipo/, também usa
+a licença MIT: ver o LICENSE dentro dessa pasta.
