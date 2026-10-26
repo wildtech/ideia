@@ -125,5 +125,6 @@ O protótipo é um **artefato** deste projeto (veja o `projeto.json`): nasceu de
 
 - `prototipo/README.md`: como rodar, o que o protótipo valida, a arquitetura e os dados de exemplo.
 - `exemplo-todo-slides.md`: o resumo (TL;DR) em forma de apresentação.
+- `imagens/`: as capturas de tela do protótipo (dados fictícios) usadas nos slides.
 - `roteiros/pitch.txt` e `guias/pitch.md`: o roteiro e o guia do pitch.
 - [Shape Up, capítulo 6: Write the pitch](https://basecamp.com/shapeup/1.5-chapter-06): a origem do formato.
