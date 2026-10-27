@@ -219,7 +219,7 @@ ${NUMERAR ? ".reveal .slide-number{left:16px;right:auto;bottom:14px;color:#fff;b
 .reveal section.nl h2{border:0;padding:0;margin:0 0 .35em;font-weight:700}
 .reveal section.nl p,.reveal section.nl li{font-weight:300}
 .im{background-size:cover;background-position:center;background-repeat:no-repeat}
-.reveal section.nl .credito{position:absolute;right:22px;bottom:14px;font-size:16px;line-height:1.2;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.9);z-index:5}
+.reveal section.nl .credito{position:absolute;right:22px;bottom:14px;font-size:16px;line-height:1.2;color:#fff;background:rgba(0,0,0,.6);padding:3px 9px;border-radius:4px;z-index:5}
 .reveal section.nl .credito a{color:#fff;text-decoration:underline}
 .reveal section.nl .fr{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 110px}
 .reveal section.nl .fr h2{font-size:2.3em;line-height:1.18;margin:0}

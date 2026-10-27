@@ -54,7 +54,7 @@ Antes de usar uma imagem, pergunte: **ela reforça a ideia?** Se a resposta é "
 - **Resolução:** uma imagem que ocupa o slide inteiro precisa de pelo menos 1280 px de largura. Abaixo de uns 800 px, ela fica borrada.
 - **Peso:** otimize antes (por exemplo, 1600 px de largura, em JPEG). O compilador avisa quando uma imagem passa de 700 KB.
 - **Crédito:** `**Crédito:**` mostra uma linha pequena no canto. Registre a **autoria, o link e a licença** de cada foto de terceiros nas notas ou no documento. "Flickr" sozinho não é um crédito.
-- **Crédito com link:** o crédito aceita `[texto](url)`. Ele é branco e fica no canto, então use em layouts de fundo escuro ou de imagem (`evidencia`, `imagem-*`, `frase-escura`); em um slide de fundo claro sem imagem, ele some.
+- **Crédito com link:** o crédito aceita `[texto](url)`. Ele é branco, sobre uma faixa escura translúcida no canto, e por isso se lê em qualquer fundo.
 - **Repetição:** a mesma imagem em vários slides só deve repetir quando a ideia repete.
 - **Imagens ficam em `imagens/`**, no projeto, com o número do slide ou uma descrição no nome.
 
