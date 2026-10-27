@@ -175,7 +175,7 @@ html,body{background:#fff}
 .reveal h3{font-size:1.1em;color:var(--accent)}
 .reveal p{margin:.5em 0;line-height:1.35}
 .reveal strong{color:var(--strong)}
-.reveal a{color:var(--primary)}
+.reveal a{color:var(--primary);text-decoration:underline}
 .reveal ul,.reveal ol{display:block;margin:.4em 0 .4em 1em}
 .reveal li{margin:.3em 0;line-height:1.3}
 .reveal ul li::marker{color:var(--primary)}
@@ -204,7 +204,7 @@ html,body{background:#fff}
 .reveal .slides>section.nl{height:720px!important;top:0!important;padding:0;overflow:hidden;background:#fff}
 .reveal .slides>section.nl.escuro{background:#${C.fundoEscuro || "000000"};color:#fff}
 .reveal section.nl.escuro h1,.reveal section.nl.escuro h2,.reveal section.nl.escuro h3,.reveal section.nl.escuro strong,.reveal section.nl.escuro p,.reveal section.nl.escuro li{color:#fff}
-.reveal section.nl.escuro a{color:#${C.destaque || "FFAB40"}}
+.reveal section.nl.escuro a{color:#${C.destaque || "FFFFFF"};text-decoration:underline}
 .reveal section.nl .sl{position:absolute;inset:0;box-sizing:border-box}
 .reveal section.nl h2{border:0;padding:0;margin:0 0 .35em;font-weight:700}
 .reveal section.nl p,.reveal section.nl li{font-weight:300}

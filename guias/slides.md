@@ -104,10 +104,11 @@ Preto e branco, e uma cor de destaque usada com parcimônia. Veja os detalhes em
 | :--- | :--- | :--- |
 | Fundo escuro (`fundoEscuro`) | `000000` | Branco sobre preto tem 21:1 |
 | Fundo claro | `FFFFFF` | Texto `212121` ou `000000` |
-| Destaque sobre o escuro (`destaque`) | `FFAB40` (laranja) | 11,2:1 sobre o preto; **só 1,9:1 sobre o branco**, então não serve para texto nos slides claros |
+| Destaque sobre o escuro (`destaque`): a cor dos links | `FFFFFF` com sublinhado (padrão), ou uma cor viva da marca, como o laranja `FFAB40` | Branco: 21:1 sobre o preto. O laranja: 11,2:1 sobre o preto, mas **só 1,9:1 sobre o branco**, então não serve nos slides claros |
 | Destaque sobre o claro (`accent`) | `B26A00` | 4,2:1 sobre o branco: serve para letra grande, e não para texto pequeno |
+| Links nos slides claros | A cor `primary` do tema, com sublinhado | Escolha um `primary` com pelo menos 4,5:1 sobre o branco |
 
-Se a marca tem uma cor viva, ela costuma servir de destaque nos slides escuros. Para os claros, escureça o tom até ter o contraste. Os links e os sublinhados são os melhores lugares para a cor de destaque.
+Se a marca tem uma cor viva, ela costuma servir de destaque nos slides escuros: troque o `destaque` por ela. Para os claros, escureça o tom até ter o contraste. **Os links são sempre sublinhados**, para não dependerem só da cor.
 
 ## Checklist
 

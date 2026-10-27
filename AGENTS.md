@@ -363,7 +363,7 @@ O `temas/generico/tema.json` é o modelo de tema completo e o tema **padrão**. 
 | `footer` | linhas (Markdown) do rodapé no `simple` | nenhuma |
 | `pageMarginTop` | margem do topo do pdf, em mm | `22` |
 | `estilo` | estilo das apresentações: `"padrao"` (slides de título e conteúdo) ou `"zen-lessig"` (um slide, uma ideia: o slide sem layout vira frase, a capa é escura). Ver `guias/slides.md` | `"padrao"` |
-| `fundoEscuro` e `destaque` (dentro de `colors`) | cor dos slides escuros e cor de destaque sobre eles, nas apresentações | `000000` e `FFAB40` |
+| `fundoEscuro` e `destaque` (dentro de `colors`) | cor dos slides escuros e cor dos **links** sobre eles, nas apresentações (nos slides claros, os links usam `primary`; em todos são sublinhados) | `000000` e `FFFFFF` |
 
 ### Criando um tema a partir de arquivos existentes
 
