@@ -243,7 +243,7 @@ Use esta stack, a menos que a pessoa ou o `AGENTS-extra.md` decida outra. Regist
 | API | Node, com `tsx` no desenvolvimento | Uma API própria, pequena, que só conhece o contrato de dados |
 | Banco | **SQLite**, pelo módulo `node:sqlite` embutido no Node | Sem dependência nativa; exige Node 22.13 ou mais novo (`"engines"` no `package.json`) |
 | Testes | **Vitest**, e `tsc --noEmit` para os tipos | As regras do negócio e a API são o que mais precisa de teste |
-| Jornadas | **Playwright**, usando o Chrome já instalado (`channel: "chrome"`) | Repetem o fluxo na tela. Scripts `test:e2e`, `demo` (**grava a jornada em vídeo**) e `capturas` (refaz os prints dos slides). Sobem a própria API e a própria interface, em portas e com um banco só deles (3101, 5273 e `data/e2e.db`) |
+| Jornadas | **Playwright**, usando o Chrome já instalado (`channel: "chrome"`) | Repetem o fluxo na tela. Scripts `test:e2e`, `demo` (**grava a jornada em um vídeo narrado**, com legendas, cursor e voz, em `demo/demo.mp4`) e `capturas` (refaz os prints dos slides). A narração vem de `e2e/narracao.ts`; a voz é um áudio seu em `narracao/<trecho>.wav`, a voz do macOS ou, sem nenhuma, só legendas. Montado com o `ffmpeg`. Sobem a própria API e a própria interface, em portas e com um banco só deles (3101, 5273 e `data/e2e.db`) |
 | Desenvolvimento | `concurrently` sobe a API (porta 3001) e a interface (porta 5173) | Scripts: `dev`, `dev:api`, `dev:web`, `build`, `typecheck` e `test` |
 
 As portas da API e da interface podem ser trocadas por variáveis de ambiente (`PORT`, `API_URL` e `WEB_PORT`), para as jornadas não atrapalharem quem está com o `npm run dev` aberto. Sugeridos, a validar caso a caso: ESLint, Prettier e integração contínua (por exemplo, GitHub Actions).

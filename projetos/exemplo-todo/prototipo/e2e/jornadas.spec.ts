@@ -39,9 +39,6 @@ test("jornada principal: anotar, concluir e limpar o que está feito", async ({ 
   await expect(feito(page).getByText("Nada feito ainda.")).toBeVisible();
   await expect(page.getByRole("button", { name: "Limpar feitas" })).toBeDisabled();
   await expect(aFazer(page).getByRole("listitem")).toHaveCount(5);
-
-  // Na gravação da demonstração, segura o último quadro para dar tempo de ler o resultado.
-  if (test.info().project.name === "demo") await page.waitForTimeout(2000);
 });
 
 test("não aceita uma tarefa sem título", async ({ page }) => {

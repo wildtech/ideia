@@ -23,10 +23,21 @@ As jornadas em `e2e/` repetem, no navegador, o que a pessoa faz na tela. Usam o 
 | Comando | O que faz |
 | :--- | :--- |
 | `npm run test:e2e` | Roda as 5 jornadas: a principal (anotar, concluir e limpar), tarefa sem título, devolver uma tarefa feita, cancelar a confirmação e o botão desligado |
-| `npm run demo` | Roda **só a jornada principal, devagar, e a grava em vídeo** (`test-results/.../video.webm`, 1280x720). Serve de vídeo de demonstração do protótipo |
+| `npm run demo` | Grava a jornada principal em um **vídeo de demonstração narrado**: `demo/demo.mp4` (1280x720). Veja "Vídeo de demonstração" abaixo |
 | `npm run capturas` | Refaz as quatro imagens dos slides, em `../imagens/`, a partir da mesma jornada. Rode de novo sempre que a tela mudar |
 
-O vídeo sai em `.webm` e **sem narração**. Para outros formatos, converta (por exemplo, com o `ffmpeg`). Os resultados em `test-results/` não vão para o git.
+Os resultados em `test-results/` e o vídeo em `demo/` não vão para o git.
+
+### Vídeo de demonstração (`npm run demo`)
+
+O vídeo conta o cenário do pitch e mostra a jornada, com **legendas**, um **cursor** que aparece e faz uma "onda" no clique, e **voz**. Leva cerca de um minuto para ser gravado e usa o `ffmpeg` para montar o MP4.
+
+- **O roteiro da narração** é `e2e/narracao.ts`: um trecho por passo (cenário, protótipo, anotar, andar, limpar e fim). O mesmo texto vira a legenda e a voz. Edite o texto para mudar o que o vídeo diz.
+- **A voz** vem, nesta ordem: de um **áudio seu** em `narracao/<trecho>.wav` (ou `.mp3`, `.m4a`, `.aiff`, `.ogg`; é o caminho que funciona em qualquer sistema), da **voz em português do macOS** (`say`, a `Luciana`), ou **nenhuma**: nesse caso o vídeo sai só com legendas. O ritmo da jornada acompanha a duração de cada trecho.
+- **A confirmação do navegador** não aparece em gravações, então a pergunta do botão de limpar vai na legenda.
+- **A sincronia** é feita por uma faixa magenta que a página pisca no começo e que é cortada do vídeo final.
+- **Sem o `ffmpeg`**, o vídeo (só com legendas) fica em `demo/demo.webm`.
+- A voz sintetizada do sistema serve para esboçar; para um vídeo de verdade, grave a sua voz nos arquivos de `narracao/`.
 
 ## O que o protótipo valida
 

@@ -33,12 +33,12 @@ export default defineConfig({
   projects: [
     // npm run test:e2e: as jornadas de validação, sem vídeo.
     { name: "jornadas", testMatch: "jornadas.spec.ts" },
-    // npm run demo: a jornada principal, devagar e gravada em vídeo (test-results/.../video.webm).
+    // npm run demo: a jornada principal, narrada (legendas e voz) e gravada em vídeo. Veja e2e/demo.spec.ts.
     {
       name: "demo",
-      testMatch: "jornadas.spec.ts",
-      grep: /jornada principal/,
-      use: { video: { mode: "on", size: { width: 1280, height: 720 } }, launchOptions: { slowMo: 900 } },
+      testMatch: "demo.spec.ts",
+      timeout: 180_000,
+      use: { video: { mode: "on", size: { width: 1280, height: 720 } } },
     },
     // npm run capturas: refaz as imagens usadas nos slides (../imagens).
     { name: "capturas", testMatch: "capturas.spec.ts", use: { viewport: { width: 1000, height: 740 } } },

@@ -16,8 +16,9 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:e2e": "playwright test --project=jornadas",
-    "demo": "playwright test --project=demo",
-    "capturas": "playwright test --project=capturas"
+    "demo": "npm run narracao && playwright test --project=demo && tsx scripts/montar-video.ts",
+    "capturas": "playwright test --project=capturas",
+    "narracao": "tsx scripts/narrar.ts"
   },
   "dependencies": {
     "react": "^19.3.1",

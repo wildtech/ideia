@@ -23,6 +23,7 @@
     "src",
     "server",
     "e2e",
+    "scripts",
     "vite.config.ts",
     "playwright.config.ts"
   ]
