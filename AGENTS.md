@@ -33,7 +33,7 @@ ideia/
 ├── roteiros/                 [base] conjuntos de perguntas que guiam a escrita e a entrevista (um .txt por roteiro)
 │   ├── iniciativa.txt, businessmodelcanvas.txt, 10-20-30.txt, pdi.txt, pitch.txt
 │   └── tldr.txt              resumo (TL;DR): citação no topo do documento e apresentação curta
-├── guias/                    [base] textos de apoio sobre como fazer bem uma coisa (ex.: pitch.md, slides.md e slides-zen-lessig.md)
+├── guias/                    [base] textos de apoio sobre como fazer bem uma coisa (ex.: pitch.md, slides.md, slides-zen-lessig.md e video-demonstracao.md)
 ├── temas/                    [base e conteúdo] identidade visual; uma pasta por tema
 │   └── <tema>/               tema.json (cores, fontes, logo, rodapé, opções) e, se houver, base.docx, referencia.pdf e slides.css
 │       neutro (base dos temas simples), generico (padrão), wildtech (exemplo de tema com marca),
@@ -273,7 +273,16 @@ O protótipo existe para **ser jogado fora ou substituído**, então a arquitetu
 
 ### README do protótipo
 
-Todo protótipo tem um `README.md` com, nesta ordem: **como rodar** (comandos e portas), **as jornadas** (o que cada comando do Playwright faz), **o que o protótipo valida**, **o que ele não valida**, **arquitetura** (a tabela das camadas), **dados de exemplo** (quem mostra o quê) e **pendências conhecidas**. Diga no topo que **todos os dados são fictícios**.
+Todo protótipo tem um `README.md` com, nesta ordem: **como rodar** (comandos e portas), **as jornadas** (o que cada comando do Playwright faz), o **vídeo de demonstração** (se houver), **o que o protótipo valida**, **o que ele não valida**, **arquitetura** (a tabela das camadas), **dados de exemplo** (quem mostra o quê) e **pendências conhecidas**. Diga no topo que **todos os dados são fictícios**.
+
+### Vídeo de demonstração (opcional)
+
+O protótipo pode gerar um **vídeo de demonstração narrado** a partir da jornada principal do Playwright: `npm run demo` grava `demo/demo.mp4`, com legendas, cursor e voz. O roteiro da narração está em `e2e/narracao.ts` (o cenário vem do pitch). Precisa do **Google Chrome** (que as jornadas já exigem) e do **`ffmpeg`**.
+
+- **A voz**, em ordem de preferência: **a sua** (`narracao/<trecho>.wav`, ou uma gravação única em `narracao/voz.wav` que o `npm run dividir` separa nos trechos; a sincronia é automática, porque a duração de cada trecho comanda o ritmo), **uma voz sintética** (a do macOS, por `say`, ou qualquer programa de linha de comando pela variável `TTS_COMANDO`, o caminho no Windows e no Linux) ou **nenhuma** (só legendas).
+- **Git:** `demo/` e `test-results/` ficam fora do git; `narracao/` (as suas gravações) pode ser versionada; o vídeo **aprovado** vai para `projetos/<projeto>/videos/` e é registrado no `projeto.json` como artefato `"tipo": "video"`.
+- **Cuidado:** voz sintética tem termos de uso, então o vídeo com voz do sistema não vai para o repositório público do template.
+- **Ofereça o vídeo quando a pessoa pedir uma demonstração**; não o grave sem pedir. O passo a passo (instalação, gravar a própria voz, Windows e Linux) está em `guias/video-demonstracao.md`.
 
 ### O que o protótipo valida, e o que não valida
 

@@ -18,7 +18,8 @@
     "test:e2e": "playwright test --project=jornadas",
     "demo": "npm run narracao && playwright test --project=demo && tsx scripts/montar-video.ts",
     "capturas": "playwright test --project=capturas",
-    "narracao": "tsx scripts/narrar.ts"
+    "narracao": "tsx scripts/narrar.ts",
+    "dividir": "tsx scripts/dividir-voz.ts"
   },
   "dependencies": {
     "react": "^19.3.1",

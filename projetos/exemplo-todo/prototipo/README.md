@@ -33,11 +33,13 @@ Os resultados em `test-results/` e o vídeo em `demo/` não vão para o git.
 O vídeo conta o cenário do pitch e mostra a jornada, com **legendas**, um **cursor** que aparece e faz uma "onda" no clique, e **voz**. Leva cerca de um minuto para ser gravado e usa o `ffmpeg` para montar o MP4.
 
 - **O roteiro da narração** é `e2e/narracao.ts`: um trecho por passo (cenário, protótipo, anotar, andar, limpar e fim). O mesmo texto vira a legenda e a voz. Edite o texto para mudar o que o vídeo diz.
-- **A voz** vem, nesta ordem: de um **áudio seu** em `narracao/<trecho>.wav` (ou `.mp3`, `.m4a`, `.aiff`, `.ogg`; é o caminho que funciona em qualquer sistema), da **voz em português do macOS** (`say`, a `Luciana`), ou **nenhuma**: nesse caso o vídeo sai só com legendas. O ritmo da jornada acompanha a duração de cada trecho.
+- **A voz** vem, nesta ordem: de um **áudio seu** em `narracao/<trecho>.wav` (ou `.mp3`, `.m4a`, `.aiff`, `.ogg`), de um **programa de voz sintética à sua escolha** (variável `TTS_COMANDO`, o caminho no Windows e no Linux), da **voz em português do macOS** (`say`, a `Luciana`), ou **nenhuma**: nesse caso o vídeo sai só com legendas. O ritmo da jornada acompanha a duração de cada trecho.
+- **A sua voz, de uma vez só:** grave tudo em `narracao/voz.wav`, lendo os trechos na ordem e com pelo menos um segundo de silêncio entre eles, e rode `npm run dividir`. Ele corta um arquivo por trecho. Depois, `npm run demo`.
 - **A confirmação do navegador** não aparece em gravações, então a pergunta do botão de limpar vai na legenda.
 - **A sincronia** é feita por uma faixa magenta que a página pisca no começo e que é cortada do vídeo final.
 - **Sem o `ffmpeg`**, o vídeo (só com legendas) fica em `demo/demo.webm`.
 - A voz sintetizada do sistema serve para esboçar; para um vídeo de verdade, grave a sua voz nos arquivos de `narracao/`.
+- **Precisa do `ffmpeg`.** O passo a passo completo (instalação, gravar a própria voz, Windows e Linux, o que vai para o git) está em `guias/video-demonstracao.md`, na raiz do repositório.
 
 ## O que o protótipo valida
 
