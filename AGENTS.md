@@ -201,8 +201,9 @@ Não use `##`, imagens (`![]()`), blocos de código ou HTML: o compilador não o
 | `imagem-direita` e `imagem-esquerda` | O texto de um lado e a imagem sangrando do outro (a capa também aceita imagem) |
 | `imagem-cheia` | A imagem ocupa o slide, e o título vai por cima, em um degradê escuro |
 | `evidencia` | Print ou diagrama inteiro em fundo escuro, com o título como legenda de uma linha |
+| `quote` | O título do slide é a citação (até 25 palavras), em fundo escuro, e `**Autor:** nome` vira a assinatura |
 
-- Diretivas de slide, uma por linha, logo abaixo do título (podem vir juntas): `**Layout:**`, `**Imagem:** imagens/arquivo.jpg` (caminho relativo ao projeto; a imagem vai **embutida** no html, uma vez só, mesmo que se repita), `**Crédito:** texto ou [link](url)` (linha pequena no canto) e `**Fundo:** escuro` ou `claro` (força o fundo).
+- Diretivas de slide, uma por linha, logo abaixo do título (podem vir juntas): `**Layout:**`, `**Imagem:** imagens/arquivo.jpg` (caminho relativo ao projeto; a imagem vai **embutida** no html, uma vez só, mesmo que se repita), `**Crédito:** texto ou [link](url)` (linha pequena no canto) e `**Fundo:** escuro` ou `claro` (força o fundo), `**Autor:**` (assinatura do layout `quote`) e `**Oculto:** sim` (o slide fica no Markdown, mas não entra na apresentação nem no PDF, nem na numeração).
 - O compilador avisa quando a frase passa do limite do layout, quando uma imagem não existe, quando ela passa de 700 KB e quando há `**Imagem:**` em um layout que não a mostra. Otimize as imagens antes (por exemplo, 1600 px de largura, em JPEG).
 - Uma citação que começa com `Notas:` vira **nota do apresentador** e não aparece no slide (veja-as abrindo o html com `?showNotes=true`). Use as notas para apontar a seção do documento completo que serve de fonte.
 - Escreva a apresentação a partir do resumo (TL;DR) e não copie o documento inteiro. Não invente informação: tudo vem do documento completo.
@@ -363,6 +364,7 @@ O `temas/generico/tema.json` é o modelo de tema completo e o tema **padrão**. 
 | `footer` | linhas (Markdown) do rodapé no `simple` | nenhuma |
 | `pageMarginTop` | margem do topo do pdf, em mm | `22` |
 | `estilo` | estilo das apresentações: `"padrao"` (slides de título e conteúdo) ou `"zen-lessig"` (um slide, uma ideia: o slide sem layout vira frase, a capa é escura). Ver `guias/slides.md` | `"padrao"` |
+| `numerarSlides` | mostra o número do slide no canto inferior esquerdo (tela e PDF); útil para apontar ajustes. Pode ir só em `ajustes` do `projeto.json` | `false` |
 | `fundoEscuro` e `destaque` (dentro de `colors`) | cor dos slides escuros e cor dos **links** sobre eles, nas apresentações (nos slides claros, os links usam `primary`; em todos são sublinhados) | `000000` e `FFFFFF` |
 
 ### Criando um tema a partir de arquivos existentes

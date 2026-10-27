@@ -16,7 +16,12 @@
 //   **Imagem:** caminho/da/imagem.jpg     (relativo à pasta do projeto) a imagem do slide; vai embutida no html
 //   **Crédito:** texto ou [link](url)     crédito da imagem, em letra pequena no canto
 //   **Fundo:** escuro | claro             força o fundo do slide (a capa com imagem e as seções são escuras por padrão)
+//   **Oculto:** sim                       o slide continua no Markdown, mas não entra na apresentação nem no PDF (e não é numerado)
+//   Layout de citação:
+//     quote                               o título do slide é a citação (grande, em fundo escuro); **Autor:** nome vira a assinatura
 //   As linhas de diretiva podem vir juntas, uma abaixo da outra.
+//   Numeração: com "numerarSlides": true no tema (ou em "ajustes" do projeto.json), o número do slide aparece no canto inferior
+//   esquerdo, na tela e no PDF. Os slides ocultos não entram na conta.
 //
 // Estilo (definido pelo tema, em "estilo" no tema.json):
 //   padrao      (padrão) slides de título e conteúdo; o slide sem **Layout:** é de conteúdo
@@ -51,6 +56,7 @@ const C = theme.colors;
 const FONT = theme.font || "Source Sans Pro";
 const HEADING_FONT = theme.headingFont || FONT;
 const ESTILO = theme.estilo === "zen-lessig" ? "zen-lessig" : "padrao";
+const NUMERAR = !!theme.numerarSlides;
 const MAX_WORDS = 70; // acima disso o slide provavelmente tem texto demais para ser lido de longe
 
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -93,11 +99,12 @@ function renderTable(b) {
 
 // ---------- Markdown -> slides ----------
 const META_OCULTA = /^\*\*(Roteiro|Template|Status do documento):\*\*/;
-const DIRETIVA_RE = /^\*\*(Layout|Imagem|Crédito|Fundo):\*\*\s*(.+?)\s*$/;
+const DIRETIVA_RE = /^\*\*(Layout|Imagem|Crédito|Fundo|Oculto|Autor):\*\*\s*(.+?)\s*$/;
 const semAcento = (t) => t.toLowerCase().replace(/ç/g, "c").replace(/[ãâá]/g, "a").replace(/[éê]/g, "e").replace(/í/g, "i").replace(/[óô]/g, "o").replace(/ú/g, "u");
 const LAYOUTS_COM_IMAGEM = ["imagem-direita", "imagem-esquerda", "imagem-cheia", "evidencia"];
-const LAYOUTS_NOVOS = ["frase", "frase-escura", "secao", ...LAYOUTS_COM_IMAGEM];
+const LAYOUTS_NOVOS = ["frase", "frase-escura", "secao", "quote", ...LAYOUTS_COM_IMAGEM];
 const MAX_WORDS_FRASE = 14; // no estilo Lessig, a frase do slide é curta
+const MAX_WORDS_QUOTE = 25;
 const NOTAS_RE = /^\*{0,2}Notas( do apresentador)?:\*{0,2}\s*(.*)$/i;
 
 function buildSlides(blocks) {
@@ -105,12 +112,12 @@ function buildSlides(blocks) {
   let cur = null;
   for (const b of blocks) {
     if (b.type === "heading" && b.level === 1 && !slides.length) {
-      cur = { layout: "capa", title: b.text, html: "", notes: [], words: 0, image: null, credit: null, dark: null };
+      cur = { layout: "capa", title: b.text, html: "", notes: [], words: 0, image: null, credit: null, dark: null, hidden: false, author: null };
       slides.push(cur);
       continue;
     }
     if (b.type === "heading" && b.level <= 3) {
-      cur = { layout: ESTILO === "zen-lessig" ? "frase" : "conteudo", explicit: false, title: b.text, html: "", notes: [], words: 0, image: null, credit: null, dark: null };
+      cur = { layout: ESTILO === "zen-lessig" ? "frase" : "conteudo", explicit: false, title: b.text, html: "", notes: [], words: 0, image: null, credit: null, dark: null, hidden: false, author: null };
       slides.push(cur);
       continue;
     }
@@ -128,6 +135,8 @@ function buildSlides(blocks) {
         else if (chave === "imagem") cur.image = valor;
         else if (chave === "credito") cur.credit = valor;
         else if (chave === "fundo") cur.dark = semAcento(valor) === "escuro";
+        else if (chave === "oculto") cur.hidden = ["sim", "true", "s"].includes(semAcento(valor));
+        else if (chave === "autor") cur.author = valor;
       }
       if (!conteudoLinhas.length) continue;
       const linhas = cur.layout === "capa" ? conteudoLinhas.filter((l) => !META_OCULTA.test(l)) : conteudoLinhas;
@@ -198,6 +207,7 @@ html,body{background:#fff}
 .reveal .progress{color:var(--primary)}
 .reveal .controls{color:var(--primary)}
 .reveal .slide-number{color:var(--text);background:transparent;font-size:18px}
+${NUMERAR ? ".reveal .slide-number{left:16px;right:auto;bottom:14px;color:#fff;background:rgba(0,0,0,.6);border-radius:4px;padding:5px 9px;font-family:inherit}" : ""}
 
 /* Layouts de imagem e de frase (classe "nl"): cada slide tem um bloco .sl que ocupa o quadro 1280x720 inteiro */
 *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -233,7 +243,15 @@ html,body{background:#fff}
 .reveal section.nl .cheia .txt{position:absolute;left:72px;right:72px;bottom:64px}
 .reveal section.nl .cheia .txt h2,.reveal section.nl .cheia .txt p,.reveal section.nl .cheia .txt li{color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.6)}
 .reveal section.nl .cheia .txt h2{font-size:1.9em;line-height:1.15;margin:0}
+.reveal section.nl .qt{display:flex;flex-direction:column;justify-content:center;padding:0 130px}
+.reveal section.nl .qt blockquote{background:none;border:0;box-shadow:none;margin:0;padding:0;width:auto;font-style:normal}
+.reveal section.nl .qt blockquote p{font-size:1.75em;line-height:1.25;font-weight:300;margin:0;text-indent:-.45em}
+.reveal section.nl .qt blockquote p::before{content:"\\201C";color:#${C.destaque || "FFFFFF"};font-weight:700}
+.reveal section.nl .qt blockquote p::after{content:"\\201D";color:#${C.destaque || "FFFFFF"};font-weight:700}
+.reveal section.nl .qt .autor{font-size:.8em;margin:1.1em 0 0;font-weight:700}
+.reveal section.nl .qt .autor::before{content:"\\2014\\00a0"}
 .reveal section.nl .evid .im{position:absolute;left:56px;right:56px;top:28px;bottom:104px;background-size:contain}
+.reveal section.nl .evid.longa .im{bottom:156px}
 .reveal section.nl .evid .legenda{position:absolute;left:56px;right:56px;bottom:30px;text-align:center}
 .reveal section.nl .evid .legenda h2{font-size:.9em;font-weight:400;margin:0}
 .reveal section.nl .evid .legenda p{font-size:.6em;margin:.2em 0 0}
@@ -247,18 +265,23 @@ html.static-print .reveal .slides>section{display:block!important;position:relat
 html.static-print .reveal .slides>section:last-child{break-after:auto;page-break-after:auto}
 html.static-print .reveal .backgrounds,html.static-print .reveal .controls,html.static-print .reveal .progress,html.static-print .reveal .slide-number,html.static-print .reveal aside.notes{display:none!important}
 ${logo ? `html.static-print .reveal .slides>section:not(.capa)::before{content:"";position:absolute;right:40px;bottom:30px;width:140px;height:56px;background:url(${logo}) right bottom/contain no-repeat}` : ""}
-html.static-print .reveal .slides>section::after{content:counter(slide) " / ${total}";position:absolute;left:72px;bottom:30px;font-size:18px;color:var(--text)}
-html.static-print .reveal .slides>section.capa::after{content:none}
+${NUMERAR
+  ? `html.static-print .reveal .slides>section::after{content:counter(slide);position:absolute;left:16px;bottom:14px;font-size:18px;line-height:1;color:#fff;background:rgba(0,0,0,.6);border-radius:4px;padding:5px 9px;z-index:40}`
+  : `html.static-print .reveal .slides>section::after{content:counter(slide) " / ${total}";position:absolute;left:72px;bottom:30px;font-size:18px;color:var(--text)}
+html.static-print .reveal .slides>section.capa::after{content:none}`}
 html.static-print .reveal .slides>section.nl{padding:0;overflow:hidden;background:#fff}
 html.static-print .reveal .slides>section.nl.escuro{background:#${C.fundoEscuro || "000000"}}
-html.static-print .reveal .slides>section.nl::before,html.static-print .reveal .slides>section.nl::after{content:none!important}
+html.static-print .reveal .slides>section.nl::before${NUMERAR ? "" : ",html.static-print .reveal .slides>section.nl::after"}{content:none!important}
 html.static-print .reveal section.capa{display:flex!important;flex-direction:column;justify-content:center;align-items:center}
 html.static-print .reveal section.destaque,html.static-print .reveal section.fechamento{display:flex!important;flex-direction:column;justify-content:center}
 `;
 
 (async () => {
   const blocks = parse(fs.readFileSync(mdPath, "utf8"));
-  const slides = buildSlides(blocks);
+  const todos = buildSlides(blocks);
+  const ocultos = todos.filter((s) => s.hidden && s.layout !== "capa");
+  const slides = todos.filter((s) => !(s.hidden && s.layout !== "capa"));
+  if (ocultos.length) console.log(`${ocultos.length} slide(s) oculto(s): ${ocultos.map((s) => '"' + s.title + '"').join(", ")}`);
   if (!slides.length) { console.error("Nenhum slide encontrado em " + mdPath); process.exit(1); }
   const logo = await loadLogo();
 
@@ -272,7 +295,7 @@ html.static-print .reveal section.destaque,html.static-print .reveal section.fec
       console.warn(`Aviso: o slide ${i} ("${s.title}") tem **Imagem:**, mas o layout "${s.layout}" não mostra imagem. Use imagem-direita, imagem-esquerda, imagem-cheia ou evidencia.`);
     if (s.layout === "capa") return;
     const tituloPalavras = s.title.split(/\s+/).filter(Boolean).length;
-    const limite = ["frase", "frase-escura", "secao"].includes(s.layout) ? MAX_WORDS_FRASE : s.layout === "evidencia" ? 20 : LAYOUTS_COM_IMAGEM.includes(s.layout) ? 30 : MAX_WORDS;
+    const limite = ["frase", "frase-escura", "secao"].includes(s.layout) ? MAX_WORDS_FRASE : s.layout === "quote" ? MAX_WORDS_QUOTE : s.layout === "evidencia" ? 20 : LAYOUTS_COM_IMAGEM.includes(s.layout) ? 30 : MAX_WORDS;
     const palavras = LAYOUTS_NOVOS.includes(s.layout) ? tituloPalavras + s.words : s.words;
     if (palavras > limite) console.warn(`Aviso: o slide ${i} ("${s.title}") tem ${palavras} palavras; acima de ${limite} fica difícil de ler de longe neste layout.`);
   });
@@ -297,7 +320,7 @@ html.static-print .reveal section.destaque,html.static-print .reveal section.fec
     const imc = s.image ? classeDaImagem(s.image, s.title) : null;
     if (precisaImagem && !imc) layout = layout === "capa" ? "capa" : "frase";
     const im = imc ? `<div class="im ${imc}" role="img" aria-label="${esc(s.title)}"></div>` : "";
-    const escuro = s.dark !== null ? s.dark : (["frase-escura", "secao", "evidencia"].includes(layout) || (layout === "capa" && (!!imc || ESTILO === "zen-lessig")));
+    const escuro = s.dark !== null ? s.dark : (["frase-escura", "secao", "evidencia", "quote"].includes(layout) || (layout === "capa" && (!!imc || ESTILO === "zen-lessig")));
     const cls = (extra) => `nl ${extra} ${escuro ? "escuro" : ""}`.trim();
     if (layout === "capa" && imc) return `<section class="${cls("capa-img")}"><div class="sl split dir"><div class="txt"><h1>${inline(s.title)}</h1>${s.html}</div>${im}</div>${credito}${notas}</section>`;
     if (layout === "imagem-direita" || layout === "imagem-esquerda")
@@ -305,8 +328,10 @@ html.static-print .reveal section.destaque,html.static-print .reveal section.fec
     if (layout === "imagem-cheia")
       return `<section class="${cls("imagem")}"><div class="sl cheia">${im}<div class="shade"></div><div class="txt"><h2>${inline(s.title)}</h2>${s.html}</div></div>${credito}${notas}</section>`;
     if (layout === "evidencia")
-      return `<section class="${cls("evidencia")}"><div class="sl evid">${im}<div class="legenda"><h2>${inline(s.title)}</h2>${s.html}</div></div>${credito}${notas}</section>`;
+      return `<section class="${cls("evidencia")}"><div class="sl evid${s.title.length > 70 ? " longa" : ""}">${im}<div class="legenda"><h2>${inline(s.title)}</h2>${s.html}</div></div>${credito}${notas}</section>`;
     if (layout === "capa") return `<section class="${cls("capa-s")}"><div class="sl fr"><h1>${inline(s.title)}</h1>${s.html}</div>${credito}${notas}</section>`;
+    if (layout === "quote")
+      return `<section class="${cls("quote-s")}"><div class="sl qt"><blockquote><p>${inline(s.title)}</p></blockquote>${s.author ? `<p class="autor">${inline(s.author)}</p>` : ""}${s.html}</div>${credito}${notas}</section>`;
     // frase, frase-escura, secao
     return `<section class="${cls(layout === "secao" ? "secao-s" : "frase-s")}"><div class="sl fr"><h2>${inline(s.title)}</h2>${s.html}</div>${credito}${notas}</section>`;
   };
@@ -358,7 +383,7 @@ ${sections}
 if (/[?&]static-print/.test(location.search)) {
   // impressão para PDF: sem o reveal, cada slide é uma página (ver o CSS "static-print")
   document.documentElement.classList.add("static-print");
-} else Reveal.initialize({ hash: true, width: 1280, height: 720, margin: 0.05, center: false, transition: "fade", slideNumber: "c/t", controls: true, progress: true, pdfSeparateFragments: false });
+} else Reveal.initialize({ hash: true, width: 1280, height: 720, margin: 0.05, center: false, transition: "fade", slideNumber: "${NUMERAR ? "c" : "c/t"}", controls: true, progress: true, pdfSeparateFragments: false });
 </script>
 </body>
 </html>

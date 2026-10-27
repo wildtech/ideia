@@ -26,6 +26,7 @@ Com `"estilo": "zen-lessig"` no tema:
 | Frase curta, no ritmo da fala | `**Layout:** frase` (ou `frase-escura`), até 14 palavras |
 | Alternar o fundo | Intercale `frase` (claro) e `frase-escura` (escuro) para dar ritmo |
 | Seções que respiram | `**Layout:** secao`: o número e o título da parte, em fundo escuro |
+| Uma citação de alguém | `**Layout:** quote`, com `**Autor:** Nome`: a citação grande, em fundo escuro, e a assinatura embaixo |
 | Imagem com função | `imagem-cheia`, `imagem-direita` ou `imagem-esquerda`, com `**Imagem:**` |
 | Mostrar que a coisa existe | `**Layout:** evidencia`: print ou diagrama inteiro, com uma legenda de uma linha |
 | Detalhe fora do slide | Vai para o documento completo, e o slide só aponta |
