@@ -68,6 +68,19 @@ Para trocar o banco, escreve-se outra implementação de `TodoGateway`, e as tel
 
 `server/sample.ts` tem 8 tarefas fictícias: 5 em "A fazer" e 3 em "Feito". As três feitas existem para você experimentar o botão **Limpar feitas**.
 
+## Segurança e versões
+
+- **Nenhum segredo.** O protótipo não usa serviço externo, e a IA é simulada. As variáveis de ambiente aceitas (portas, caminho do banco) estão em `.env.example`, e nenhuma é segredo. Não crie um `.env` com chave de serviço: se um dia for preciso, ela entra só em tempo de execução (veja `guias/seguranca.md`, na raiz do repositório).
+- **Verificação:** `npm run verificar` procura segredos nos arquivos e confere o `.gitignore`, o lockfile e o `engines`. `npm run verificar:rede` também consulta o calendário do Node e roda `npm audit` e `npm outdated`.
+
+| O que | Versão | Verificado em |
+| :--- | :--- | :--- |
+| Node (testado) | 26.5.1 (o `engines` exige 22.13 ou mais novo) | 27/10/2026 |
+| `npm audit` | nenhuma vulnerabilidade conhecida | 27/10/2026 |
+| Dependências | todas na última versão (React 19, Vite 8, Vitest 5, TypeScript 7) | 27/10/2026 |
+
+O `verificar:rede` avisa que o Node 26 ainda é "Current" (vira LTS em 28/10/2026), e que o `esbuild` e o `fsevents` rodam script na instalação, o que é esperado.
+
 ## Pendências conhecidas
 
 - Não há como editar o título nem apagar uma tarefa só: são decisões de escopo do pitch (fora de escopo).

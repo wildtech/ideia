@@ -18,6 +18,8 @@
     "test:e2e": "playwright test --project=jornadas",
     "demo": "npm run narracao && playwright test --project=demo && tsx scripts/montar-video.ts",
     "capturas": "playwright test --project=capturas",
+    "verificar": "node ../../../tools/verificar.js .",
+    "verificar:rede": "node ../../../tools/verificar.js . --rede",
     "narracao": "tsx scripts/narrar.ts",
     "dividir": "tsx scripts/dividir-voz.ts"
   },

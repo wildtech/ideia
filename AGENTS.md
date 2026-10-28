@@ -13,7 +13,7 @@ Este `AGENTS.md` é a **base compartilhada** do template e **não pode ser modif
 - **O que vale para qualquer arquivo marcado como `[base]`** na árvore abaixo: não os modifique para registrar algo de quem usa.
 
 - **Leia o `AGENTS-extra.md` no início de toda sessão**, antes de conduzir o onboarding ou de mexer em qualquer projeto. Se ele não existir, siga só este arquivo.
-- **Precedência:** o `AGENTS-extra.md` complementa este arquivo e, quando for mais específico, **prevalece** sobre os padrões daqui (o tema padrão, o fluxo de Git, URLs de integrações, convenções de nomes). Ele **não pode relaxar** as regras de integridade: não inventar informação, marcar dúvidas com **(?)**, confirmar antes de escrever em sistemas externos, nunca apagar em sistemas externos e proteger dados sensíveis.
+- **Precedência:** o `AGENTS-extra.md` complementa este arquivo e, quando for mais específico, **prevalece** sobre os padrões daqui (o tema padrão, o fluxo de Git, URLs de integrações, convenções de nomes). Ele **não pode relaxar** as regras de integridade: não inventar informação, marcar dúvidas com **(?)**, confirmar antes de escrever em sistemas externos, nunca apagar em sistemas externos, proteger dados sensíveis e as regras de "Segurança e privacidade" (ele só pode reforçá-las).
 - **O que vai nele:** contexto da organização ou da pessoa, temas além do genérico, roteiros próprios, integrações (URL do Jira, organização no GitHub), fluxo de Git, convenções (nomes, idioma, tom, glossário), pessoas e papéis recorrentes, lista de projetos, regras de privacidade e referências a outras fontes de conhecimento. **Nunca coloque segredos** (senhas, tokens, chaves).
 - **Modelo:** `AGENTS-extra.example.md` documenta a convenção e traz as seções sugeridas. Não o use diretamente: copie para `AGENTS-extra.md`.
 - **Criação:** no onboarding do **primeiro projeto**, se o `AGENTS-extra.md` não existir, **ofereça criá-lo** a partir do modelo, perguntando só o que a pessoa souber e deixando "A definir" no resto. Crie apenas se ela aceitar.
@@ -33,7 +33,7 @@ ideia/
 ├── roteiros/                 [base] conjuntos de perguntas que guiam a escrita e a entrevista (um .txt por roteiro)
 │   ├── iniciativa.txt, businessmodelcanvas.txt, 10-20-30.txt, pdi.txt, pitch.txt
 │   └── tldr.txt              resumo (TL;DR): citação no topo do documento e apresentação curta
-├── guias/                    [base] textos de apoio sobre como fazer bem uma coisa (ex.: pitch.md, slides.md, slides-zen-lessig.md e video-demonstracao.md)
+├── guias/                    [base] textos de apoio sobre como fazer bem uma coisa (ex.: pitch.md, slides.md, slides-zen-lessig.md, video-demonstracao.md e seguranca.md)
 ├── temas/                    [base e conteúdo] identidade visual; uma pasta por tema
 │   └── <tema>/               tema.json (cores, fontes, logo, rodapé, opções) e, se houver, base.docx, referencia.pdf e slides.css
 │       neutro (base dos temas simples), generico (padrão), wildtech (exemplo de tema com marca),
@@ -48,6 +48,7 @@ ideia/
 │   ├── md2slides.js          Markdown → html (apresentação, reveal.js)
 │   ├── md2pdf.js             html → pdf (Chrome headless; documentos e slides)
 │   ├── build.js              gera as saídas de um projeto, conforme o projeto.json
+│   ├── verificar.js          confere segredos e versões (Node e pacotes) de um protótipo
 │   └── package.json          dependências (docx, jszip, pngjs, reveal.js)
 └── projetos/                 [conteúdo] um projeto por pasta
     ├── exemplo-ideia/        [base] projeto de exemplo, que descreve o próprio template (tema da Wildtech)
@@ -115,7 +116,7 @@ Passos:
    - período de acompanhamento e data limite (pode ser "A definir");
    - se o projeto é um **software** e precisa de um **protótipo** (artefato persistente; ver "Protótipos"). Se sim, proponha a stack padrão e confirme;
    - projeto Jira ou repositório GitHub relacionado, se houver (ver "Integrações opcionais").
-7. **Pedir o material de apoio**, se existir: textos, anotações, transcrições, prints e fotos. Peça para a pessoa colocá-lo em `projetos/<projeto>/apoio/` ou colar na conversa.
+7. **Pedir o material de apoio**, se existir: textos, anotações, transcrições, prints e fotos. Peça para a pessoa colocá-lo em `projetos/<projeto>/apoio/` ou colar na conversa. Avise que **segredos** (senhas, chaves, tokens) **não** devem ser colados nem guardados, e que dados pessoais ou confidenciais precisam de cuidado (ver "Segurança e privacidade").
 8. **Ler o material, entrevistar e escrever o primeiro rascunho.** As imagens são **insumo**: leia o conteúdo delas e transforme em texto no `.md`. O documento gerado não leva imagens; a imagem original fica em `apoio/` e é citada em "Documentos de Apoio".
 9. **Criar os arquivos:** `projetos/<projeto>/<projeto>.md` (com `**Roteiro:** <nome>` no topo e seguindo o roteiro e as regras abaixo) e `projetos/<projeto>/projeto.json` (siga o modelo de "Projeto e saídas", com `"tema": "generico"` a menos que a pessoa ou o `AGENTS-extra.md` indique outro).
 10. **Sugerir o resumo (TL;DR)** e, se fizer sentido, a apresentação (`<projeto>-slides.md`). Quem decide criar é a pessoa.
@@ -270,11 +271,22 @@ O protótipo existe para **ser jogado fora ou substituído**, então a arquitetu
 - **Só dados fictícios.** Dado real (de pessoas, clientes ou usuários) **nunca** entra no protótipo nem no repositório.
 - O banco local fica em `data/`, é criado com os dados de exemplo na primeira execução e **não é versionado** (`*.db` e afins já estão no `.gitignore`). Tenha uma forma de **reiniciar os dados de exemplo**.
 - `package.json` **próprio**, dentro de `prototipo/`: não misture com o `tools/`.
-- Sem segredos no código; configuração local em `.env`, que está no `.gitignore` (deixe um `.env.example` se precisar).
+- **Nenhum segredo de serviço externo em arquivo**, nem em `.env` (ver "Segurança e privacidade"). Se o protótipo espera variáveis de ambiente, deixe um `.env.example` só com os nomes.
+- `npm run verificar` (e `npm run verificar:rede`) confere segredos e versões; rode antes de commitar algo relevante e antes de mostrar o protótipo.
+
+### Versões e dependências
+
+O protótipo roda sobre o Node e sobre pacotes de terceiros, e a versão de cada um é uma decisão, não um acaso.
+
+- **Node em suporte, de preferência LTS.** Nunca uma versão que saiu de suporte. Confirme no calendário oficial (https://nodejs.org/en/about/previous-releases), não de memória; o `verificar --rede` faz isso. O `engines` do `package.json` fixa o piso, e o README registra a versão **testada** e a data.
+- **Lockfile versionado** (`package-lock.json`) e instalação limpa com `npm ci`. Nada de `latest`, `*` ou dependência por endereço git.
+- **Poucas dependências, de fonte conhecida.** Antes de adicionar uma, pergunte se um trecho pequeno de código resolve. Espere alguns dias antes de adotar uma versão recém-publicada de um pacote pequeno, e olhe os pacotes que rodam scripts na instalação (o `verificar` os lista).
+- **Antes de declarar o protótipo pronto**, rode `npm run verificar:rede` (calendário do Node, `npm audit` e `npm outdated`). Vulnerabilidade alta ou crítica é falha; o resto são avisos para ler.
+- **Atualize uma coisa por vez**, rodando os testes entre uma e outra. Uma versão maior de uma dependência é uma decisão: leia o que mudou e registre no README.
 
 ### README do protótipo
 
-Todo protótipo tem um `README.md` com, nesta ordem: **como rodar** (comandos e portas), **as jornadas** (o que cada comando do Playwright faz), o **vídeo de demonstração** (se houver), **o que o protótipo valida**, **o que ele não valida**, **arquitetura** (a tabela das camadas), **dados de exemplo** (quem mostra o quê) e **pendências conhecidas**. Diga no topo que **todos os dados são fictícios**.
+Todo protótipo tem um `README.md` com, nesta ordem: **como rodar** (comandos e portas), **as jornadas** (o que cada comando do Playwright faz), o **vídeo de demonstração** (se houver), **o que o protótipo valida**, **o que ele não valida**, **arquitetura** (a tabela das camadas), **dados de exemplo** (quem mostra o quê), **segurança e versões** (a versão do Node testada e a data, e o resultado do `verificar`) e **pendências conhecidas**. Diga no topo que **todos os dados são fictícios**.
 
 ### Vídeo de demonstração (opcional)
 
@@ -402,6 +414,29 @@ Verificação depois de gerar:
 - docx, prévia no macOS: `qlmanage -t -s 1400 -o /tmp <arquivo>.docx`. Ela não é fiel ao Word. Abra o `.docx` no Word antes de distribuir.
 - pdf: `qlmanage -t -s 1400 -o /tmp <arquivo>.pdf` e confira a paginação abrindo o arquivo. Nas apresentações, confira se nenhum slide transborda e leia os avisos do compilador.
 - Compare o resultado com o `referencia.pdf` do tema.
+
+## Segurança e privacidade
+
+Estas regras valem para **todos os projetos**, e o `AGENTS-extra.md` só pode reforçá-las. O porquê, o passo a passo e o que fazer se algo vazar estão em `guias/seguranca.md`.
+
+### Segredos
+
+- **Nenhum segredo de serviço externo é guardado em arquivo.** Chave de API, token, senha, chave privada e string de conexão com senha não entram no código, nos testes, nos documentos, no `apoio/`, nos prints, nos vídeos, no git, **nem em um `.env` com valor real**.
+- Quando um serviço real for indispensável, a chave entra **só em tempo de execução**, pelo ambiente do terminal ou de um gerenciador de segredos (por exemplo, `op run -- npm run dev`), com uma chave própria do protótipo e o menor poder possível. O protótipo avisa quando a variável falta e nunca usa um valor fixo no código. Isso é uma decisão da pessoa, tratada em um pitch próprio; o padrão é a **IA simulada**.
+- **O assistente** não lê `.env*`, cofres de senha nem arquivos de credenciais, não imprime variáveis de ambiente, não pede um segredo no chat e não grava um em arquivo. Se a pessoa colar um segredo, avise que ele deve ser tratado como vazado e revogado.
+- **Se um segredo vazou:** primeiro **revogue ou gire** a chave no serviço de origem, e só depois limpe o código e o histórico. Limpar sem revogar não resolve.
+
+### Dados e privacidade
+
+- **Dado real de pessoas, clientes ou usuários não entra em protótipos** (só dados fictícios) **nem em repositório público**.
+- **O `apoio/` e as imagens podem conter dado pessoal** (nomes, e-mails, telefones, planilhas, rostos). Olhe antes de versionar e corte, borre ou troque o que aparecer. Imagens de terceiros e de pessoas pedem crédito e, quando há rosto ou dado pessoal, autorização.
+- **Dado pessoal ou confidencial não vai a um serviço externo** (um modelo de IA, uma ferramenta online) sem a decisão da pessoa. Na conversa com o assistente, escreva o que se sabe sobre o caso, e não o dado em si.
+- **Nada de dentro de uma organização vai para um repositório público.** O `AGENTS-extra.md` diz o que é confidencial na organização.
+- **Na dúvida, pergunte.** Marque com **(?)** e não registre.
+
+### Verificação
+
+`node tools/verificar.js <pasta>` procura padrões de segredo nos arquivos, confere o `.gitignore`, o lockfile e o `engines` e, com `--rede`, consulta o calendário do Node e roda `npm audit` e `npm outdated`. **FALHA** termina com erro; **AVISO** é para ler. Ele não prova que não há segredo: é uma rede de segurança e não substitui a revisão da pessoa.
 
 ## Integrações opcionais
 

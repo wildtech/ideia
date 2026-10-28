@@ -78,10 +78,13 @@ Este arquivo complementa o `AGENTS.md`, que é a base compartilhada do template 
 
 ## Privacidade e dados sensíveis
 
-> O que não pode entrar nos documentos nem no repositório (dados pessoais, dados de clientes, valores confidenciais) e como tratar quando aparecer no material de apoio.
+> O que não pode entrar nos documentos nem no repositório (dados pessoais, dados de clientes, valores confidenciais) e como tratar quando aparecer no material de apoio. As regras de "Segurança e privacidade" do `AGENTS.md` valem sempre; aqui você só as **reforça** com o que é da sua organização.
 
 - **Não entra no repositório:** A definir.
 - **Material de apoio sensível:** A definir (por exemplo, não versionar `apoio/` de um projeto).
+- **Repositório público ou privado:** A definir (quais projetos podem ir para um repositório público).
+- **Onde ficam os segredos** (sem copiá-los aqui): A definir (por exemplo, o gerenciador de senhas da equipe).
+- **Versão mínima do Node adotada:** A definir (por exemplo, a LTS em suporte).
 
 ## Outras fontes de conhecimento
 
