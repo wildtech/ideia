@@ -42,7 +42,7 @@ Este é um documento vivo. Itens marcados com **(?)** são dúvidas ainda por co
 
 ### Problema
 
-Uma pessoa toca quatro assuntos ao mesmo tempo. Ao longo do dia ela anota o que precisa fazer em post-its, em mensagens que manda para si mesma e em margens de reuniões. No fim do dia, tenta responder duas perguntas simples: o que eu já fiz e o que ainda falta? Para isso, ela folheia tudo de novo, não acha metade das anotações e não lembra se uma tarefa foi concluída ou só esquecida. As anotações antigas se acumulam, as pendências reais se perdem entre elas, e começar o dia seguinte leva mais de dez minutos só para reconstruir a lista.
+Uma pessoa toca diversos assuntos ao mesmo tempo. Ao longo do dia ela anota o que precisa fazer em blocos de notas, notas adesivas, em mensagens que manda para si mesma e em intervalos de reuniões. No fim do dia, tenta responder duas perguntas simples: o que eu já fiz e o que ainda falta? Para isso, ela analisa tudo novamente, não acha metade das anotações e não lembra se uma tarefa foi concluída ou só esquecida. As anotações antigas se acumulam, as pendências reais se perdem entre elas, e começar o dia seguinte leva mais de dez minutos só para reconstruir a lista.
 
 > Esta é uma cena fictícia, escrita para o exemplo.
 
@@ -98,7 +98,7 @@ Esboço de traço grosso, em texto: no alto, o título e uma linha de campo com 
 
 ### Revisão do pitch
 
-- O problema é uma história específica? Sim: uma pessoa, quatro assuntos e uma lista que não se reconstrói.
+- O problema é uma história específica? Sim: uma pessoa, diversos assuntos e uma lista que não se reconstrói.
 - O apetite está declarado como decisão? Sim: um dia de uma pessoa.
 - A solução mostra o fluxo principal? Sim: anotar, andar e limpar.
 - As armadilhas são reais, e não genéricas? Sim: o limpar sem volta e a data de conclusão são problemas deste desenho.

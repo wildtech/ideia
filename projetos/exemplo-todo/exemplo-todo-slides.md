@@ -8,11 +8,11 @@
 
 ---
 
-### Uma pessoa. Quatro assuntos.
+### Uma pessoa. Diversos assuntos.
 
 > Notas: fonte: "Problema" do documento completo. O cenário é fictício.
 
-### Anotações em post-its, mensagens e margens.
+### Anotações em blocos de notas, notas adesivas, mensagens e intervalos de reuniões.
 
 **Layout:** frase-escura
 

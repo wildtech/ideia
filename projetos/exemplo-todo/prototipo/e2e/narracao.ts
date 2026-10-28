@@ -11,7 +11,7 @@ export const NARRACAO: readonly Trecho[] = [
   {
     id: "cenario",
     texto:
-      "Uma pessoa toca quatro assuntos ao mesmo tempo. Ao longo do dia, ela anota o que precisa fazer em post-its, em mensagens e nas margens de reuniões. No fim do dia, não sabe o que já fez nem o que ainda falta. Este cenário é fictício.",
+      "Uma pessoa toca diversos assuntos ao mesmo tempo. Ao longo do dia, ela anota o que precisa fazer em blocos de notas, notas adesivas, em mensagens e em intervalos de reuniões. No fim do dia, não sabe o que já fez nem o que ainda falta. Este cenário é fictício.",
   },
   { id: "prototipo", texto: "Este é o protótipo de uma lista de tarefas, com duas etapas: a fazer e feito. Todos os dados são fictícios." },
   { id: "anotar", texto: "Primeiro, anotar. A pessoa escreve a tarefa e clica em adicionar. A tarefa nova entra em a fazer." },
