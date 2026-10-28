@@ -1,0 +1,30 @@
+/* Componentes do design system. Só usam os tokens de tokens.css (gerado do tema): nenhuma cor escrita à mão aqui. */
+
+/* Alvo de toque: no celular (ou em tela estreita), o que se toca tem pelo menos 44 px de altura. */
+:root { --alvo-toque: 44px; }
+
+.ds-rotulo { display: block; margin-bottom: 6px; font-weight: 600; }
+
+.ds-campo-linha { display: flex; gap: 8px; }
+.ds-campo { flex: 1; min-width: 0; padding: 10px 12px; border: 1px solid var(--borda); border-radius: 6px; background: var(--fundo); color: var(--texto); font: inherit; }
+.ds-campo:focus-visible { outline: 3px solid var(--primaria); outline-offset: 2px; }
+
+.ds-botao { padding: 8px 14px; border: 1px solid var(--borda); border-radius: 6px; background: var(--fundo); color: var(--texto); font: inherit; cursor: pointer; }
+.ds-botao:focus-visible { outline: 3px solid var(--primaria); outline-offset: 2px; }
+.ds-botao:hover:not(:disabled) { border-color: var(--primaria); }
+.ds-botao:disabled { opacity: .45; cursor: not-allowed; }
+.ds-botao--primario { background: var(--primaria-acao); border-color: var(--primaria-acao); color: var(--sobre-acao); font-weight: 600; }
+.ds-botao--perigo { color: var(--acento-acao); border-color: var(--acento-acao); }
+.ds-botao--perigo:hover:not(:disabled) { background: var(--acento-acao); border-color: var(--acento-acao); color: var(--sobre-acao); }
+.ds-botao--discreto { border: 0; background: none; color: var(--suave); text-decoration: underline; }
+
+@media (pointer: coarse), (max-width: 640px) {
+  .ds-botao, .ds-campo { min-height: var(--alvo-toque); }
+}
+
+.ds-cartao--bloco { padding: 16px; background: var(--cartao); border-radius: 8px; border-top: 5px solid var(--primaria); }
+.ds-cartao--faixa-neutra { border-top-color: var(--suave); }
+.ds-cartao--item { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; background: var(--fundo); border-radius: 6px; border: 1px solid var(--borda); }
+
+.ds-vazio { margin: 0; color: var(--suave); }
+.ds-alerta { margin: 8px 0 0; color: var(--acento-acao); font-weight: 600; }

@@ -1,0 +1,18 @@
+/* Gerado por tools/tema-tokens.js a partir do tema "exemplo-todo" (Exemplo: lista de tarefas). Não edite à mão:
+   mude o tema (temas/) e rode `npm run tokens`. */
+:root {
+  --fonte: "Open Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+  --fundo: #FFFFFF;
+  --texto: #222222;
+  --titulo: #111111;
+  --suave: #4B5563;
+  --cartao: #F3F3F3;
+  --borda: #D1D5DB;
+  /* Cor da marca, para faixas, foco e detalhes. */
+  --primaria: #1F8A70;
+  --acento: #A83232;
+  /* Cores de ação: fundo de botão preenchido, com texto branco e contraste de pelo menos 4,5:1. */
+  --primaria-acao: #1E846B;
+  --acento-acao: #A83232;
+  --sobre-acao: #ffffff;
+}

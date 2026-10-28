@@ -63,8 +63,24 @@ Desempenho com muitas tarefas, várias pessoas usando ao mesmo tempo, login, sin
 | SQLite | `server/sqliteRepository.ts` | Uma implementação do contrato. Chaves UUID e etapas como enumeração, para facilitar a migração |
 | API HTTP | `server/app.ts` | Só conhece o contrato |
 | Interface | `src/` | Cliente HTTP (`src/api.ts`) que cumpre o mesmo contrato |
+| Design system | `src/ui/` e `src/tokens.css` | Componentes e tokens, descritos abaixo |
 
 Para trocar o banco, escreve-se outra implementação de `TodoGateway`, e as telas não mudam.
+
+## Design system (mini)
+
+O protótipo tem um design system pequeno, em duas partes, e **a identidade vem do tema** do projeto (`temas/exemplo-todo/`), a mesma dos documentos e dos slides.
+
+| Parte | Onde | O que faz |
+| :--- | :--- | :--- |
+| **Tokens** | `src/tokens.css` | Cores e fonte, **gerados do tema** por `npm run tokens` (`tools/tema-tokens.js`). Não se edita à mão |
+| **Componentes** | `src/ui/` | `Botao` (variantes padrão, primário, perigo e discreto), `Campo` (rótulo, campo e ação ao lado), `Cartao` (bloco e item), `EstadoVazio` e `Alerta`. Só usam os tokens: nenhuma cor escrita à mão |
+| **Layout** | `src/styles.css` | Só a organização da página (grade e margens) |
+
+- **Trocar de marca** é trocar o `"tema"` no `projeto.json` do projeto e rodar `npm run tokens`. Os componentes não mudam.
+- **Cor de ação com contraste garantido:** o texto branco de um botão preenchido precisa de 4,5:1 com o fundo. O gerador escurece a cor do tema só até chegar lá (aqui, de `#1F8A70`, que tem 4,26:1, para `#1E846B`, que tem 4,60:1) e avisa se algum par de cores do tema fica abaixo disso.
+- **Acessibilidade:** foco visível em tudo que se opera, rótulo sempre visível no campo, erro anunciado a leitores de tela (`role="alert"`) e alvo de toque de pelo menos 44 px no celular (ou em tela estreita).
+- `npm run tokens:conferir` (que o `npm run build` já roda) falha se o `tokens.css` não estiver em dia com o tema.
 
 ## Dados de exemplo
 

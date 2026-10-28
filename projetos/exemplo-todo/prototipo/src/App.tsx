@@ -3,6 +3,7 @@ import { gateway } from "./api";
 import { Coluna } from "./components/Coluna";
 import { NovaTarefa } from "./components/NovaTarefa";
 import type { QuadroData, Tarefa } from "./domain";
+import { Botao } from "./ui";
 
 export function App() {
   const [quadro, setQuadro] = useState<QuadroData | null>(null);
@@ -58,9 +59,9 @@ export function App() {
         })}
       </div>
       <footer>
-        <button type="button" className="discreto" onClick={reiniciar}>
+        <Botao variante="discreto" onClick={reiniciar}>
           Reiniciar dados de exemplo
-        </button>
+        </Botao>
       </footer>
     </main>
   );

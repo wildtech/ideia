@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from "react";
+import { Alerta, Botao, Campo } from "../ui";
 
 interface Props {
   onCriar: (titulo: string) => Promise<string | null>;
@@ -18,18 +19,19 @@ export function NovaTarefa({ onCriar }: Props) {
 
   return (
     <form className="nova" onSubmit={enviar}>
-      <label htmlFor="titulo">O que precisa ser feito?</label>
-      <div className="linha">
-        <input id="titulo" value={titulo} onChange={(e) => setTitulo(e.target.value)} placeholder="Escreva uma tarefa" autoComplete="off" />
-        <button type="submit" className="primario">
-          Adicionar
-        </button>
-      </div>
-      {erro && (
-        <p role="alert" className="erro">
-          {erro}
-        </p>
-      )}
+      <Campo
+        rotulo="O que precisa ser feito?"
+        value={titulo}
+        onChange={(e) => setTitulo(e.target.value)}
+        placeholder="Escreva uma tarefa"
+        autoComplete="off"
+        acao={
+          <Botao variante="primario" type="submit">
+            Adicionar
+          </Botao>
+        }
+      />
+      {erro && <Alerta>{erro}</Alerta>}
     </form>
   );
 }

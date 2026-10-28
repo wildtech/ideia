@@ -49,6 +49,7 @@ ideia/
 │   ├── md2pdf.js             html → pdf (Chrome headless; documentos e slides)
 │   ├── build.js              gera as saídas de um projeto, conforme o projeto.json
 │   ├── verificar.js          confere segredos e versões (Node e pacotes) de um protótipo
+│   ├── tema-tokens.js        gera o CSS de tokens (cores e fonte) de um protótipo a partir do tema do projeto
 │   └── package.json          dependências (docx, jszip, pngjs, reveal.js)
 └── projetos/                 [conteúdo] um projeto por pasta
     ├── exemplo-ideia/        [base] projeto de exemplo, que descreve o próprio template (tema da Wildtech)

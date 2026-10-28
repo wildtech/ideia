@@ -1,4 +1,5 @@
 import type { Stage, Tarefa } from "../domain";
+import { Botao, Cartao, EstadoVazio } from "../ui";
 
 interface Props {
   etapa: Stage;
@@ -12,31 +13,31 @@ interface Props {
 export function Coluna({ etapa, tarefas, onMover, onLimpar }: Props) {
   const feito = etapa.id === "feito";
   return (
-    <section className={`coluna ${etapa.id}`} aria-labelledby={`h-${etapa.id}`}>
+    <Cartao como="section" tipo="bloco" faixa={feito ? "neutra" : "primaria"} className={`coluna ${etapa.id}`} aria-labelledby={`h-${etapa.id}`}>
       <header>
         <h2 id={`h-${etapa.id}`}>
           {etapa.nome} <span className="contagem">{tarefas.length}</span>
         </h2>
         {onLimpar && (
-          <button type="button" className="perigo" onClick={onLimpar} disabled={tarefas.length === 0}>
+          <Botao variante="perigo" onClick={onLimpar} disabled={tarefas.length === 0}>
             Limpar feitas
-          </button>
+          </Botao>
         )}
       </header>
       {tarefas.length === 0 ? (
-        <p className="vazio">{feito ? "Nada feito ainda." : "Nada a fazer. Que tal anotar a próxima tarefa?"}</p>
+        <EstadoVazio>{feito ? "Nada feito ainda." : "Nada a fazer. Que tal anotar a próxima tarefa?"}</EstadoVazio>
       ) : (
         <ul>
           {tarefas.map((t) => (
-            <li key={t.id}>
+            <Cartao como="li" key={t.id}>
               <span className="titulo">{t.titulo}</span>
-              <button type="button" onClick={() => onMover(t)} aria-label={`${feito ? "Voltar para a fazer" : "Concluir"}: ${t.titulo}`}>
+              <Botao onClick={() => onMover(t)} aria-label={`${feito ? "Voltar para a fazer" : "Concluir"}: ${t.titulo}`}>
                 {feito ? "Voltar" : "Concluir"}
-              </button>
-            </li>
+              </Botao>
+            </Cartao>
           ))}
         </ul>
       )}
-    </section>
+    </Cartao>
   );
 }
