@@ -17,7 +17,11 @@ export function instalarOverlay(): void {
         transition:transform .45s cubic-bezier(.3,.7,.3,1)}
       .demo-onda{position:fixed;width:20px;height:20px;margin:-10px 0 0 -10px;border-radius:50%;border:3px solid #a83232;
         pointer-events:none;z-index:2147483647;animation:demo-onda .6s ease-out forwards}
-      @keyframes demo-onda{to{transform:scale(3.2);opacity:0}}`;
+      @keyframes demo-onda{to{transform:scale(3.2);opacity:0}}
+      @media (max-width:640px){
+        #demo-legenda{max-width:calc(100vw - 24px);bottom:56px;padding:10px 14px;font-size:17px}
+        html{scroll-behavior:smooth}
+      }`;
     document.head.appendChild(estilo);
     const legenda = document.createElement("div");
     legenda.id = "demo-legenda";

@@ -7,13 +7,17 @@ const API = "http://localhost:3101/api";
 const PASTA = "../imagens";
 
 test("capturas do fluxo para os slides", async ({ page, request }) => {
+  // No projeto "capturas-mobile" (tela de celular) as imagens levam o sufixo "-mobile" e mostram a página inteira rolada,
+  // porque no layout estreito as duas colunas ficam uma embaixo da outra.
+  const mobile = test.info().project.name === "capturas-mobile";
+  const sufixo = mobile ? "-mobile" : "";
   await request.post(`${API}/reset`, { data: {} });
   await page.goto("/");
   await expect(page.getByRole("heading", { name: "Lista de tarefas" })).toBeVisible();
   // Tira o ponteiro do caminho antes de cada foto, para nenhum botão aparecer no estado de "hover".
   const foto = async (nome: string) => {
     await page.mouse.move(0, 0);
-    await page.screenshot({ path: `${PASTA}/${nome}.png` });
+    await page.screenshot({ path: `${PASTA}/${nome}${sufixo}.png`, fullPage: mobile });
   };
 
   await foto("01-quadro-inicial");

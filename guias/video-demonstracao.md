@@ -4,7 +4,7 @@ Um protótipo pode gerar, sozinho, um **vídeo de demonstração narrado**: o Pl
 
 ## O que o vídeo traz
 
-- A **jornada principal** do protótipo, na tela, em um MP4 de 1280x720.
+- A **jornada principal** do protótipo, na tela, em um MP4 de 1280x720 (horizontal, 16:9) e, se você quiser, em um MP4 **vertical de 1080x1920** (9:16), com a interface no layout de celular, para redes sociais e mensagens.
 - **Legendas** com o texto da narração, e um **cursor** que aparece e faz uma "onda" no clique (o vídeo do Playwright não mostra o mouse).
 - A **pergunta da confirmação do navegador** na legenda (a caixa de confirmação não aparece em gravações).
 - A **voz**, se houver. Sem voz, o vídeo sai só com legendas.
@@ -26,11 +26,18 @@ cd projetos/<projeto>/prototipo
 npm run demo
 ```
 
-Em cerca de um minuto sai o `demo/demo.mp4`. O que acontece por baixo:
+Em cerca de um minuto sai o `demo/demo.mp4`. Para a versão vertical, rode `npm run demo:vertical` (sai `demo/demo-vertical.mp4`), ou `npm run demo:todos` para gerar as duas de uma vez. O que acontece por baixo:
 
 1. `npm run narracao` prepara a voz de cada trecho e mede a duração.
 2. O Playwright grava a jornada, no **ritmo da voz**: cada passo espera o trecho terminar.
 3. `scripts/montar-video.ts` mistura a voz no vídeo com o `ffmpeg`. A sincronia usa uma faixa magenta que a página pisca no início e que é cortada do vídeo final.
+
+### A versão vertical (9:16)
+
+- É a **mesma jornada e a mesma narração**, rodando em uma tela de 540x960. Como a largura fica abaixo de 640 px, a interface cai no **layout estreito** (as colunas empilhadas), e a legenda encolhe e sobe um pouco, para não ficar sob os botões das redes sociais.
+- O Playwright **não amplia** a gravação: ela sai do tamanho da tela, e o `ffmpeg` a leva para 1080x1920 (ampliação de 2x, com texto ainda legível).
+- A interface precisa ter um layout estreito de verdade. Se o protótipo só funciona em tela larga, o vídeo vertical vai mostrar isso.
+- A tela rola sozinha, de forma suave, até o que a jornada mexe, então o enquadramento acompanha a ação.
 
 ## O roteiro da narração
 
@@ -78,12 +85,12 @@ No macOS e no Linux: `TTS_COMANDO='...' npm run demo`. No PowerShell do Windows:
 
 | Pasta | Vai para o git? | Por quê |
 | :--- | :--- | :--- |
-| `demo/` | Não (ignorada pelo `.gitignore` do protótipo) | É gerada: o vídeo, a voz sintética e os tempos |
+| `demo/` | Não (ignorada pelo `.gitignore` do protótipo) | É gerada: os vídeos (`demo.mp4` e `demo-vertical.mp4`), a voz sintética e os tempos |
 | `test-results/` | Não (ignorada pelo `.gitignore` da raiz) | Gravações brutas do Playwright |
 | `narracao/` | **Sim, se você quiser** | São as **suas** gravações, insumo do vídeo |
 | `projetos/<projeto>/videos/` | **Sim** | É onde fica o vídeo **aprovado** |
 
-Para guardar uma versão do vídeo, copie `demo/demo.mp4` para `projetos/<projeto>/videos/` e registre no `projeto.json`, como artefato derivado do documento:
+Para guardar uma versão do vídeo, copie `demo/demo.mp4` (ou `demo/demo-vertical.mp4`) para `projetos/<projeto>/videos/` e registre no `projeto.json`, como artefato derivado do documento:
 
 ```json
 { "tipo": "video", "caminho": "videos/demo.mp4", "origem": "meu-projeto.md", "descricao": "Demonstração narrada do protótipo." }
@@ -100,8 +107,8 @@ Para guardar uma versão do vídeo, copie `demo/demo.mp4` para `projetos/<projet
 
 | Sintoma | O que fazer |
 | :--- | :--- |
-| `Não achei a gravação` ao montar | Rode `npm run demo` de novo; a montagem usa a última gravação em `test-results/` |
-| `Não achei a marca de sincronia` | A gravação ficou incompleta; rode `npm run demo` de novo |
+| `Não achei a gravação` ao montar | Rode `npm run demo` (ou `npm run demo:vertical`) de novo; a montagem usa a última gravação em `test-results/` |
+| `Não achei a marca de sincronia` | A gravação ficou incompleta; rode `npm run demo` (ou `npm run demo:vertical`) de novo |
 | Vídeo só com legendas e você queria voz | Veja a ordem dos caminhos acima: falta o áudio em `narracao/`, o `TTS_COMANDO` ou o macOS |
 | `dividir` achou trechos a mais ou a menos | Ajuste `--pausa` e `--limiar`, ou grave um arquivo por trecho |
-| Voz atrasada ou adiantada em relação à legenda | Não deveria acontecer; se acontecer, abra uma issue com o `demo/marcas.json` |
+| Voz atrasada ou adiantada em relação à legenda | Não deveria acontecer; se acontecer, abra uma issue com o `demo/marcas.json` (ou `demo/marcas-vertical.json`) |

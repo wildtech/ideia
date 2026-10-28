@@ -27,6 +27,8 @@ async function clicar(page: Page, alvo: Locator) {
 }
 
 test("demo narrada: anotar, concluir e limpar o que está feito", async ({ page, request }) => {
+  // O projeto "demo-vertical" roda esta mesma jornada em 9:16; os arquivos dele levam o sufixo "-vertical".
+  const variante = test.info().project.name === "demo-vertical" ? "-vertical" : "";
   mkdirSync("demo", { recursive: true });
   const tempos: Record<string, { segundos: number }> = existsSync("demo/tempos.json") ? JSON.parse(readFileSync("demo/tempos.json", "utf8")) : {};
 
@@ -105,5 +107,5 @@ test("demo narrada: anotar, concluir e limpar o que está feito", async ({ page,
   await legenda(page, "");
 
   // `passos` são os instantes (em ms, contados a partir da faixa magenta) em que cada trecho da narração começou.
-  writeFileSync("demo/marcas.json", JSON.stringify({ fimMs: Date.now() - t0, passos }, null, 2));
+  writeFileSync(`demo/marcas${variante}.json`,JSON.stringify({ fimMs: Date.now() - t0, passos }, null, 2));
 });
