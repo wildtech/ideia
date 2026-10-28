@@ -23,6 +23,7 @@
     "demo:todos": "npm run narracao && playwright test --project=demo && tsx scripts/montar-video.ts && playwright test --project=demo-vertical && tsx scripts/montar-video.ts --vertical",
     "capturas": "playwright test --project=capturas",
     "capturas:mobile": "playwright test --project=capturas-mobile",
+    "quadros": "tsx scripts/quadros-video.ts",
     "verificar": "node ../../../tools/verificar.js .",
     "verificar:rede": "node ../../../tools/verificar.js . --rede",
     "narracao": "tsx scripts/narrar.ts",

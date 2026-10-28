@@ -12,7 +12,8 @@
 > - **Solução:** uma lista de tarefas com **duas etapas**, "A fazer" e "Feito", e um botão para **limpar o que está feito**.
 > - **Apetite:** um dia de uma pessoa de desenvolvimento, com apoio de um assistente de IA. É uma decisão, não uma estimativa.
 > - **Fora de escopo:** editar o título, apagar uma tarefa só, prazos, prioridades, etiquetas, login e várias pessoas.
-> - **Protótipo:** React, Vite e TypeScript, uma API Node e SQLite, com dados fictícios. Fica em `prototipo/`.
+> - **Protótipo:** React, Vite e TypeScript, uma API Node e SQLite, com dados fictícios e um design system pequeno, gerado do tema. Fica em `prototipo/`.
+> - **Divulgação:** o mesmo pitch gera um vídeo de demonstração (em 16:9 e em 9:16) e um carrossel de cards 4:5 para redes sociais.
 > - **Estado:** protótipo pronto e testado; falta a decisão de quem avalia o pitch.
 
 ---
@@ -110,7 +111,7 @@ Esboço de traço grosso, em texto: no alto, o título e uma linha de campo com 
 ### Stack e estratégia de validação
 
 **Decisões (padrão do template, sem alteração):**
-- **React + Vite + TypeScript** na interface; **API Node** própria; **SQLite** pelo `node:sqlite`, embutido no Node; **Vitest** nos testes das regras e da API; **Playwright** nas jornadas na tela, com um vídeo de demonstração narrado (legendas e voz) e capturas para os slides.
+- **React + Vite + TypeScript** na interface; **API Node** própria; **SQLite** pelo `node:sqlite`, embutido no Node; **Vitest** nos testes das regras e da API; **Playwright** nas jornadas na tela, com um vídeo de demonstração narrado (legendas e voz), em 16:9 e em 9:16, e capturas para os slides, no desktop e no celular; um **design system** pequeno, com as cores e a fonte geradas do tema (`src/tokens.css`), componentes em `src/ui/` e um catálogo em `/ds`.
 - **Regras como funções puras** em `src/domain/rules.ts`, com testes: validar o título, mudar de etapa, escolher o que o limpar remove, contar e ordenar.
 - **Contrato de dados** (`TodoGateway`): a tela e a API só o conhecem. O SQLite é uma implementação dele, e outra pode substituí-lo.
 - **Dados fictícios apenas**, no protótipo e no repositório. O banco local não é versionado.
@@ -121,11 +122,26 @@ O protótipo é um **artefato** deste projeto (veja o `projeto.json`): nasceu de
 
 ---
 
+### Material de divulgação
+
+O pitch não termina no protótipo: dele saem os materiais para mostrar o que foi validado. Todos são derivados deste documento (a mesma regra do resumo) e não afirmam nada que ele não diga.
+
+- **Vídeo de demonstração:** a jornada principal, narrada, em duas formas: horizontal (1280x720) e vertical (1080x1920), para as redes sociais.
+- **Carrossel para redes sociais:** 10 cards 4:5 (1080x1350), com o gancho, o problema, a solução, os três passos com prints do celular, o que ela não faz e a chamada. A legenda do post e um texto alternativo por card saem junto.
+- **Slides:** o resumo (TL;DR) em forma de apresentação, com as capturas do protótipo no desktop e no celular e o catálogo do design system.
+- **Design system:** a identidade do tema (as cores e a fonte) aplicada ao protótipo, aos slides e ao carrossel, com o verde escuro e o destaque da marca.
+
+Antes de publicar, confira: dados fictícios, créditos das imagens e nada de segredo, dado pessoal ou de dentro da organização. **Publicar é com a pessoa**, e o assistente nunca posta.
+
+---
+
 ### Documentos de Apoio
 
 - `prototipo/README.md`: como rodar, as jornadas (Playwright), o vídeo de demonstração narrado, o que o protótipo valida, a arquitetura e os dados de exemplo.
 - `exemplo-todo-slides.md`: o resumo (TL;DR) em forma de apresentação.
 - `guias/video-demonstracao.md`: como gerar o vídeo de demonstração narrado do protótipo.
-- `imagens/`: as capturas de tela do protótipo (dados fictícios) usadas nos slides, geradas pela jornada (`npm run capturas`) e versionadas.
+- `exemplo-todo-carrossel.md`: o carrossel de divulgação (cards 4:5), com a legenda e o texto alternativo; sai em `out/exemplo-todo-carrossel/`.
+- `imagens/`: as capturas de tela do protótipo no desktop e no celular, a montagem das telas de celular, o catálogo do design system e a folha de contato do carrossel (dados fictícios), usadas nos slides. As capturas vêm das jornadas (`npm run capturas` e `npm run capturas:mobile`) e a folha, de `node tools/md2cards.js projetos/exemplo-todo --folha projetos/exemplo-todo/imagens/07-carrossel.png`; todas são versionadas.
+- `roteiros/divulgacao.txt` e `guias/design-system.md`: o roteiro do carrossel e o guia do design system do protótipo.
 - `roteiros/pitch.txt` e `guias/pitch.md`: o roteiro e o guia do pitch.
 - [Shape Up, capítulo 6: Write the pitch](https://basecamp.com/shapeup/1.5-chapter-06): a origem do formato.

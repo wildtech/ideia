@@ -26,6 +26,7 @@ As jornadas em `e2e/` repetem, no navegador, o que a pessoa faz na tela. Usam o 
 | `npm run demo` | Grava a jornada principal em um **vídeo de demonstração narrado**: `demo/demo.mp4` (1280x720). Veja "Vídeo de demonstração" abaixo |
 | `npm run capturas` | Refaz as quatro imagens dos slides, em `../imagens/`, a partir da mesma jornada. Rode de novo sempre que a tela mudar |
 | `npm run capturas:mobile` | As mesmas quatro imagens com a **tela de um celular** (390x844, densidade 3x), em `../imagens/*-mobile.png`. Mostram a página inteira rolada, porque no layout estreito as colunas ficam uma embaixo da outra |
+| `npm run quadros` | Tira um quadro de cada vídeo (o do passo "anotar") e os junta, lado a lado, em `../imagens/09-videos.png`, para os slides. Rode `npm run demo:todos` antes |
 | `npm run demo:vertical` | O mesmo vídeo narrado em **9:16** (1080x1920), com a interface no layout de celular: `demo/demo-vertical.mp4`. `npm run demo:todos` gera os dois vídeos |
 
 Os resultados em `test-results/` e o vídeo em `demo/` não vão para o git.

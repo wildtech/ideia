@@ -32,6 +32,10 @@ Em cerca de um minuto sai o `demo/demo.mp4`. Para a versão vertical, rode `npm 
 2. O Playwright grava a jornada, no **ritmo da voz**: cada passo espera o trecho terminar.
 3. `scripts/montar-video.ts` mistura a voz no vídeo com o `ffmpeg`. A sincronia usa uma faixa magenta que a página pisca no início e que é cortada do vídeo final.
 
+### Um quadro para os slides
+
+Os vídeos não entram em uma apresentação em Markdown, mas um quadro deles entra. No protótipo de exemplo, `npm run quadros` tira um quadro de cada vídeo (o do passo "anotar") e os junta, lado a lado, em uma imagem de fundo transparente (`imagens/09-videos.png`). Rode `npm run demo:todos` antes. Escolha o quadro no `scripts/quadros-video.ts` (`QUADRO_S`, em segundos).
+
 ### A versão vertical (9:16)
 
 - É a **mesma jornada e a mesma narração**, rodando em uma tela de 540x960. Como a largura fica abaixo de 640 px, a interface cai no **layout estreito** (as colunas empilhadas), e a legenda encolhe e sobe um pouco, para não ficar sob os botões das redes sociais.

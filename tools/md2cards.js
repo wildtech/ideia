@@ -2,7 +2,10 @@
 // Compila um Markdown em um carrossel de cards para redes sociais (4:5, 1080x1350, o formato do feed do Instagram),
 // no tema do projeto. Sai um HTML com todos os cards, um PNG por card, um PDF (uma página por card) e a legenda do post.
 //
-// Uso: node tools/md2cards.js <pasta-do-projeto> [arquivo.md] [saida-sem-extensao] [--formatos html,png,pdf]
+// Uso: node tools/md2cards.js <pasta-do-projeto> [arquivo.md] [saida-sem-extensao] [--formatos html,png,pdf] [--folha folha.png]
+//
+// --folha gera também uma folha de contato (todos os cards lado a lado, em uma imagem só), para mostrar o carrossel em
+// um slide ou em um documento; vale com qualquer --formatos.
 //
 // A saída (sem extensão) é a base: <base>.html, <base>.pdf e a pasta <base>/ com card-01.png, card-02.png... e legenda.txt.
 //
@@ -33,9 +36,11 @@ const { loadTheme } = require("./tema");
 const { findChrome } = require("./chrome");
 
 const argv = process.argv.slice(2);
+const iFolha = argv.indexOf("--folha");
+const folhaPath = iFolha >= 0 ? path.resolve(argv[iFolha + 1] || "folha.png") : null;
 const iForm = argv.indexOf("--formatos");
 const formatos = iForm >= 0 ? (argv[iForm + 1] || "").split(",") : ["html", "png", "pdf"];
-const pos = argv.filter((a, i) => !a.startsWith("--") && !(iForm >= 0 && i === iForm + 1));
+const pos = argv.filter((a, i) => !a.startsWith("--") && !(iForm >= 0 && i === iForm + 1) && !(iFolha >= 0 && i === iFolha + 1));
 const [projectArg, mdArg, outArg] = pos;
 if (!projectArg) {
   console.error("Uso: node tools/md2cards.js <pasta-do-projeto> [arquivo.md] [saida-sem-extensao] [--formatos html,png,pdf]");
@@ -222,12 +227,15 @@ body.solo .card{margin:0}
 .l-tela .rodape{justify-content:flex-start;gap:36px}
 .tela{position:absolute;right:70px;top:170px;bottom:-40px;width:420px;border:10px solid #111;border-bottom:0;border-radius:44px 44px 0 0;overflow:hidden;background:#fff;box-shadow:0 18px 50px rgba(0,0,0,.28);z-index:1}
 .tela img{position:absolute;left:0;width:100%;height:auto;display:block}
+/* folha de contato: todos os cards lado a lado, em escala 0,3 (324x405 cada), em 5 colunas */
+body.folha{background:#${PRETO};padding:24px;display:grid;grid-template-columns:repeat(5,324px);gap:16px;width:max-content}
+body.folha .card{zoom:.3;margin:0}
 `;
 }
 
-function pagina(cards, logo, so) {
+function pagina(cards, logo, so, folha) {
   const corpo = so === undefined ? cards.map((c, i) => renderCard(c, i, cards.length, logo)).join("\n") : renderCard(cards[so], so, cards.length, logo);
-  return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>${esc(cards[0].title)}</title><meta name="viewport" content="width=${W}"><style>${css()}</style></head><body${so === undefined ? "" : ' class="solo"'}>\n${corpo}\n</body></html>`;
+  return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>${esc(cards[0].title)}</title><meta name="viewport" content="width=${W}"><style>${css()}</style></head><body${folha ? ' class="folha"' : so === undefined ? "" : ' class="solo"'}>\n${corpo}\n</body></html>`;
 }
 
 // ---------- Chrome ----------
@@ -279,9 +287,23 @@ const urlDe = (p) => require("url").pathToFileURL(p).href;
       chromeHeadless([`--screenshot=${png}`, `--window-size=${W},${H + 200}`], urlDe(tmp));
       fs.unlinkSync(tmp);
       if (!fs.existsSync(png)) { console.error("O PNG não foi gerado: " + png); process.exit(1); }
-      recortar(png);
+      recortar(png, W, H);
     }
     console.log(`Gerado: ${cards.length} PNGs de ${W}x${H} em ${base}/`);
+  }
+
+  if (folhaPath) {
+    const colunas = 5, linhas = Math.ceil(cards.length / colunas);
+    const fw = 24 * 2 + colunas * 324 + (colunas - 1) * 16, fh = 24 * 2 + linhas * 405 + (linhas - 1) * 16;
+    const tmp = path.join(path.dirname(folhaPath), "_folha.html");
+    fs.mkdirSync(path.dirname(folhaPath), { recursive: true });
+    fs.writeFileSync(tmp, pagina(cards, logo, undefined, true));
+    if (fs.existsSync(folhaPath)) fs.unlinkSync(folhaPath);
+    chromeHeadless([`--screenshot=${folhaPath}`, `--window-size=${fw},${fh + 200}`], urlDe(tmp));
+    fs.unlinkSync(tmp);
+    if (!fs.existsSync(folhaPath)) { console.error("A folha de contato não foi gerada: " + folhaPath); process.exit(1); }
+    recortar(folhaPath, fw, fh);
+    console.log(`Gerado: ${folhaPath} (${fw}x${fh}, ${cards.length} cards)`);
   }
 
   if (formatos.includes("pdf")) {
@@ -305,13 +327,13 @@ const urlDe = (p) => require("url").pathToFileURL(p).href;
   }
 })();
 
-// Recorta o PNG para exatamente WxH (a captura sai com a altura da janela). Lê o cabeçalho do PNG e usa o pngjs.
-function recortar(arquivo) {
+// Recorta o PNG para exatamente w x h (a captura sai com a altura da janela). Lê o cabeçalho do PNG e usa o pngjs.
+function recortar(arquivo, w, h) {
   const { PNG } = require("pngjs");
   const img = PNG.sync.read(fs.readFileSync(arquivo));
-  if (img.width === W && img.height === H) return;
-  if (img.width < W || img.height < H) { console.warn(`Aviso: ${path.basename(arquivo)} saiu com ${img.width}x${img.height}, menor que ${W}x${H}.`); return; }
-  const out = new PNG({ width: W, height: H });
-  PNG.bitblt(img, out, 0, 0, W, H, 0, 0);
+  if (img.width === w && img.height === h) return;
+  if (img.width < w || img.height < h) { console.warn(`Aviso: ${path.basename(arquivo)} saiu com ${img.width}x${img.height}, menor que ${w}x${h}.`); return; }
+  const out = new PNG({ width: w, height: h });
+  PNG.bitblt(img, out, 0, 0, w, h, 0, 0);
   fs.writeFileSync(arquivo, PNG.sync.write(out));
 }
