@@ -71,6 +71,6 @@ test("o catálogo do design system mostra tokens, contraste e componentes", asyn
   await expect(page.getByText("--primaria-acao")).toBeVisible();
   // Todo par de cores do catálogo passa no contraste mínimo.
   await expect(page.getByRole("cell", { name: "NÃO passa" })).toHaveCount(0);
-  await expect(page.getByRole("cell", { name: "passa", exact: true })).toHaveCount(5);
+  await expect(page.getByRole("cell", { name: "passa", exact: true })).toHaveCount(7);
   await expect(page.getByRole("button", { name: "Exemplo" })).toHaveCount(4);
 });

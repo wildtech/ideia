@@ -73,7 +73,7 @@ O protótipo tem um design system pequeno, em duas partes, e **a identidade vem 
 
 | Parte | Onde | O que faz |
 | :--- | :--- | :--- |
-| **Tokens** | `src/tokens.css` | Cores e fonte, **gerados do tema** por `npm run tokens` (`tools/tema-tokens.js`). Não se edita à mão |
+| **Tokens** | `src/tokens.css` | Cores e fonte, **gerados do tema** por `npm run tokens` (`tools/tema-tokens.js`). Não se edita à mão. Incluem o verde escuro e o destaque que os slides e o carrossel usam como fundo e cor de link |
 | **Componentes** | `src/ui/` | `Botao` (variantes padrão, primário, perigo e discreto), `Campo` (rótulo, campo e ação ao lado), `Cartao` (bloco e item), `EstadoVazio` e `Alerta`. Só usam os tokens: nenhuma cor escrita à mão |
 | **Layout** | `src/styles.css` | Só a organização da página (grade e margens) |
 

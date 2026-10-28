@@ -9,6 +9,8 @@
 //
 // Os tokens vêm de "colors" do tema (e "font"); o que o tema não declara usa um padrão. Para os botões preenchidos
 // (texto branco sobre a cor), a cor "de ação" é a do tema escurecida só até ter contraste de 4,5:1 com o branco.
+// Os slides e os carrosséis usam as mesmas cores do tema; "fundoEscuro" (fundo dos slides e cards escuros) e "destaque"
+// (links e detalhes sobre o escuro) também viram tokens, para o design system e os materiais ficarem alinhados.
 // Opcionalmente, o tema pode ter "prototipo": { "fundo": "FFFFFF", "suave": "4B5563" } para ajustar o que não tem
 // equivalente nos documentos.
 
@@ -81,6 +83,8 @@ const t = {
   cartao: hex(cores.calloutFill || cores.tableStripe || "F3F3F3"),
   borda: hex(cores.border || "D1D5DB"),
   fundo,
+  fundoEscuro: hex(cores.fundoEscuro || "000000"),
+  destaque: hex(cores.destaque || "FFFFFF"),
 };
 t.primariaAcao = escurecerAte(t.primaria, 4.5);
 t.acentoAcao = escurecerAte(t.acento, 4.5);
@@ -104,6 +108,9 @@ const css = `/* Gerado por tools/tema-tokens.js a partir do tema "${nomeDoTema}"
   --primaria-acao: #${t.primariaAcao};
   --acento-acao: #${t.acentoAcao};
   --sobre-acao: #ffffff;
+  /* Fundo escuro e cor de destaque sobre ele: os mesmos dos slides e dos carrosséis. */
+  --fundo-escuro: #${t.fundoEscuro};
+  --destaque: #${t.destaque};
 }
 `;
 
@@ -118,6 +125,8 @@ const pares = [
   ["branco sobre a cor de ação", "FFFFFF", t.primariaAcao],
   ["branco sobre a cor de perigo", "FFFFFF", t.acentoAcao],
   ["cor de perigo sobre o fundo", t.acentoAcao, t.fundo],
+  ["branco sobre o fundo escuro", "FFFFFF", t.fundoEscuro],
+  ["destaque sobre o fundo escuro", t.destaque, t.fundoEscuro],
 ];
 const ruins = pares.filter(([, a, b]) => contraste(a, b) < 4.5);
 

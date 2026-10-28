@@ -8,6 +8,8 @@
   "colors": {
     "titleBlue": "111111",
     "primary": "1F8A70",
-    "accent": "A83232"
+    "accent": "A83232",
+    "fundoEscuro": "0F3D32",
+    "destaque": "A8E6D7"
   }
 }

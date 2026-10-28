@@ -4,7 +4,7 @@ import { Alerta, Botao, Campo, Cartao, EstadoVazio, type VarianteBotao } from ".
 // O catálogo do design system (só no desenvolvimento, em /ds): cada token e cada componente nos seus estados, como
 // documentação viva. Serve para ver a identidade do tema aplicada, conferir contraste e tirar prints.
 
-const TOKENS = ["fundo", "texto", "titulo", "suave", "cartao", "borda", "primaria", "acento", "primaria-acao", "acento-acao"] as const;
+const TOKENS = ["fundo", "texto", "titulo", "suave", "cartao", "borda", "primaria", "acento", "primaria-acao", "acento-acao", "fundo-escuro", "destaque"] as const;
 
 const VARIANTES: { id: VarianteBotao; uso: string }[] = [
   { id: "primario", uso: "A ação principal da tela. Uma por tela." },
@@ -28,6 +28,8 @@ const PARES: [string, string, string][] = [
   ["texto no cartão", "texto", "cartao"],
   ["branco sobre a ação primária", "#FFFFFF", "primaria-acao"],
   ["branco sobre a ação de perigo", "#FFFFFF", "acento-acao"],
+  ["branco sobre o fundo escuro", "#FFFFFF", "fundo-escuro"],
+  ["destaque sobre o fundo escuro", "destaque", "fundo-escuro"],
 ];
 
 export function Catalogo() {

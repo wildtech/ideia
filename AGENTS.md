@@ -34,7 +34,7 @@ ideia/
 │   ├── iniciativa.txt, businessmodelcanvas.txt, 10-20-30.txt, pdi.txt, pitch.txt
 │   ├── tldr.txt              resumo (TL;DR): citação no topo do documento e apresentação curta
 │   └── divulgacao.txt        material de divulgação: carrossel de redes sociais, a partir do pitch e do resumo
-├── guias/                    [base] textos de apoio sobre como fazer bem uma coisa (ex.: pitch.md, slides.md, slides-zen-lessig.md, video-demonstracao.md e seguranca.md)
+├── guias/                    [base] textos de apoio sobre como fazer bem uma coisa (ex.: pitch.md, slides.md, slides-zen-lessig.md, video-demonstracao.md, seguranca.md e design-system.md)
 ├── temas/                    [base e conteúdo] identidade visual; uma pasta por tema
 │   └── <tema>/               tema.json (cores, fontes, logo, rodapé, opções) e, se houver, base.docx, referencia.pdf e slides.css
 │       neutro (base dos temas simples), generico (padrão), wildtech (exemplo de tema com marca),
@@ -120,7 +120,7 @@ Passos:
    - título da iniciativa;
    - pessoa responsável, com nome e sobrenome (e as outras pessoas envolvidas, se houver);
    - período de acompanhamento e data limite (pode ser "A definir");
-   - se o projeto é um **software** e precisa de um **protótipo** (artefato persistente; ver "Protótipos"). Se sim, proponha a stack padrão e confirme;
+   - se o projeto é um **software** e precisa de um **protótipo** (artefato persistente; ver "Protótipos"). Se sim, proponha a stack padrão, **com o design system** (ver "Design system do protótipo"), e confirme;
    - projeto Jira ou repositório GitHub relacionado, se houver (ver "Integrações opcionais").
 7. **Pedir o material de apoio**, se existir: textos, anotações, transcrições, prints e fotos. Peça para a pessoa colocá-lo em `projetos/<projeto>/apoio/` ou colar na conversa. Avise que **segredos** (senhas, chaves, tokens) **não** devem ser colados nem guardados, e que dados pessoais ou confidenciais precisam de cuidado (ver "Segurança e privacidade").
 8. **Ler o material, entrevistar e escrever o primeiro rascunho.** As imagens são **insumo**: leia o conteúdo delas e transforme em texto no `.md`. O documento gerado não leva imagens; a imagem original fica em `apoio/` e é citada em "Documentos de Apoio".
@@ -264,6 +264,7 @@ Use esta stack, a menos que a pessoa ou o `AGENTS-extra.md` decida outra. Regist
 | Testes | **Vitest**, e `tsc --noEmit` para os tipos | As regras do negócio e a API são o que mais precisa de teste |
 | Jornadas | **Playwright**, usando o Chrome já instalado (`channel: "chrome"`) | Repetem o fluxo na tela. Scripts `test:e2e`, `demo` (**grava a jornada em um vídeo narrado**, com legendas, cursor e voz, em `demo/demo.mp4`; `demo:vertical` faz a versão **9:16** de 1080x1920, e `demo:todos` as duas) e `capturas` (refaz os prints dos slides; `capturas:mobile` os refaz com a tela de um celular). A narração vem de `e2e/narracao.ts`; a voz é um áudio seu em `narracao/<trecho>.wav`, a voz do macOS ou, sem nenhuma, só legendas. Montado com o `ffmpeg`. Sobem a própria API e a própria interface, em portas e com um banco só deles (3101, 5273 e `data/e2e.db`) |
 | Desenvolvimento | `concurrently` sobe a API (porta 3001) e a interface (porta 5173) | Scripts: `dev`, `dev:api`, `dev:web`, `build`, `typecheck` e `test` |
+| Design system | **Tokens gerados do tema** (`src/tokens.css`, por `npm run tokens`) e **componentes** em `src/ui/` | Sugestão padrão: as cores e a fonte vêm do tema do projeto, as mesmas dos documentos, dos slides e do carrossel. Ver "Design system do protótipo" |
 
 As portas da API e da interface podem ser trocadas por variáveis de ambiente (`PORT`, `API_URL` e `WEB_PORT`), para as jornadas não atrapalharem quem está com o `npm run dev` aberto. Sugeridos, a validar caso a caso: ESLint, Prettier e integração contínua (por exemplo, GitHub Actions).
 
@@ -282,6 +283,17 @@ O protótipo existe para **ser jogado fora ou substituído**, então a arquitetu
 
 - **IA atrás de uma interface**, com uma versão **simulada** por regras no protótipo: nenhum dado vai a um modelo de verdade, e a pessoa aceita ou ignora a sugestão.
 - **Facilite a migração** para a plataforma de destino: chaves **UUID**, estados e categorias como **enumerações**, consultas simples com filtro e paginação, a noção de papel e de dono do registro desde o início e poucas chamadas, grandes, em vez de muitas pequenas.
+
+### Design system do protótipo
+
+Todo protótipo **já nasce com um design system pequeno**, como sugestão padrão (a pessoa pode dispensá-lo, e o `AGENTS-extra.md` pode trocá-lo). O `exemplo-todo` é o exemplo, e o `guias/design-system.md` explica o porquê e o passo a passo.
+
+- **O tema é a fonte das cores e da fonte.** O `src/tokens.css` é **gerado** do tema do projeto (`npm run tokens`, que usa `tools/tema-tokens.js`) e **não se edita à mão**; `npm run tokens:conferir`, que o `npm run build` já roda, falha se ele estiver desatualizado. Trocar de marca é trocar o tema e gerar de novo.
+- **O tema também dita os materiais:** `fundoEscuro` e `destaque` (no `tema.json`) são o fundo dos slides e dos cards escuros e a cor dos links sobre ele, e viram tokens do protótipo. Sem isso, saem preto e branco. Se o projeto não tem tema, crie um tema simples antes (ver "Temas").
+- **Componentes em `src/ui/`**, só com os tokens: `Botao`, `Campo`, `Cartao`, `EstadoVazio` e `Alerta`. As telas usam esses componentes, sem `<button>` solto nem cor escrita à mão. **Crie um componente só quando uma tela precisar dele.**
+- **Acessibilidade:** contraste de pelo menos 4,5:1 (o gerador avisa e, nos botões preenchidos, escurece a cor do tema só até chegar lá), foco visível, rótulo sempre visível no campo, erro anunciado a leitores de tela e alvo de toque de pelo menos 44 px no celular.
+- **Catálogo (`/ds`)**, só no desenvolvimento: mostra os tokens, o contraste dos pares de cores e os componentes nos seus estados. Uma jornada do Playwright confere o contraste.
+- **O que não é:** uma biblioteca para manter (o protótipo existe para ser jogado fora) nem o design system da plataforma de destino, que pode ser outro. O protótipo mostra a **intenção** (cores, estados, contraste e toque).
 
 ### Dados e repositório
 
@@ -303,7 +315,7 @@ O protótipo roda sobre o Node e sobre pacotes de terceiros, e a versão de cada
 
 ### README do protótipo
 
-Todo protótipo tem um `README.md` com, nesta ordem: **como rodar** (comandos e portas), **as jornadas** (o que cada comando do Playwright faz), o **vídeo de demonstração** (se houver), **o que o protótipo valida**, **o que ele não valida**, **arquitetura** (a tabela das camadas), **dados de exemplo** (quem mostra o quê), **segurança e versões** (a versão do Node testada e a data, e o resultado do `verificar`) e **pendências conhecidas**. Diga no topo que **todos os dados são fictícios**.
+Todo protótipo tem um `README.md` com, nesta ordem: **como rodar** (comandos e portas), **as jornadas** (o que cada comando do Playwright faz), o **vídeo de demonstração** (se houver), **o que o protótipo valida**, **o que ele não valida**, **arquitetura** (a tabela das camadas), **design system** (os tokens do tema, os componentes e o catálogo), **dados de exemplo** (quem mostra o quê), **segurança e versões** (a versão do Node testada e a data, e o resultado do `verificar`) e **pendências conhecidas**. Diga no topo que **todos os dados são fictícios**.
 
 ### Vídeo de demonstração (opcional)
 
@@ -394,7 +406,7 @@ O `temas/generico/tema.json` é o modelo de tema completo e o tema **padrão**. 
 | `pageMarginTop` | margem do topo do pdf, em mm | `22` |
 | `estilo` | estilo das apresentações: `"padrao"` (slides de título e conteúdo) ou `"zen-lessig"` (um slide, uma ideia: o slide sem layout vira frase, a capa é escura). Ver `guias/slides.md` | `"padrao"` |
 | `numerarSlides` | mostra o número do slide no canto inferior esquerdo (tela e PDF); útil para apontar ajustes. Pode ir só em `ajustes` do `projeto.json` | `false` |
-| `fundoEscuro` e `destaque` (dentro de `colors`) | cor dos slides e dos cards escuros e cor dos **links** sobre eles, nas apresentações e nos carrosséis (nos slides claros, os links usam `primary`; em todos são sublinhados). | `000000` e `FFFFFF` |
+| `fundoEscuro` e `destaque` (dentro de `colors`) | cor dos slides e dos cards escuros e cor dos **links** sobre eles, nas apresentações e nos carrosséis (nos slides claros, os links usam `primary`; em todos são sublinhados). O protótipo também os lê, como tokens (ver "Design system do protótipo") | `000000` e `FFFFFF` |
 
 ### Criando um tema a partir de arquivos existentes
 

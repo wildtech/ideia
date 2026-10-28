@@ -15,4 +15,7 @@
   --primaria-acao: #1E846B;
   --acento-acao: #A83232;
   --sobre-acao: #ffffff;
+  /* Fundo escuro e cor de destaque sobre ele: os mesmos dos slides e dos carrosséis. */
+  --fundo-escuro: #0F3D32;
+  --destaque: #A8E6D7;
 }
