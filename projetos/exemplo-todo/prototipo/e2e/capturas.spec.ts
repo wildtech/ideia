@@ -36,3 +36,11 @@ test("capturas do fluxo para os slides", async ({ page, request }) => {
   await expect(page.getByText("Nada feito ainda.")).toBeVisible();
   await foto("04-feitas-limpas");
 });
+
+test("captura do catálogo do design system", async ({ page }) => {
+  await page.goto("/ds");
+  await expect(page.getByRole("heading", { name: "Design system" })).toBeVisible();
+  await page.mouse.move(0, 0);
+  const mobile = test.info().project.name === "capturas-mobile";
+  await page.screenshot({ path: `${PASTA}/05-design-system${mobile ? "-mobile" : ""}.png`, fullPage: true });
+});

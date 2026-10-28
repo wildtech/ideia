@@ -28,3 +28,13 @@
 
 .ds-vazio { margin: 0; color: var(--suave); }
 .ds-alerta { margin: 8px 0 0; color: var(--acento-acao); font-weight: 600; }
+
+/* Catálogo (/ds) */
+.ds-amostras { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.ds-amostra { display: grid; gap: 2px; font-size: .85rem; }
+.ds-amostra__cor { display: block; height: 44px; border: 1px solid var(--borda); border-radius: 6px; }
+.ds-tabela { width: 100%; border-collapse: collapse; }
+.ds-tabela th, .ds-tabela td { padding: 6px 8px; border-bottom: 1px solid var(--borda); text-align: left; }
+.ds-grade { display: grid; gap: 12px; }
+.ds-par { display: flex; gap: 8px; }
+.ds-nota { margin: 2px 0 0; color: var(--suave); font-size: .85rem; }

@@ -22,7 +22,7 @@ As jornadas em `e2e/` repetem, no navegador, o que a pessoa faz na tela. Usam o 
 
 | Comando | O que faz |
 | :--- | :--- |
-| `npm run test:e2e` | Roda as 5 jornadas: a principal (anotar, concluir e limpar), tarefa sem título, devolver uma tarefa feita, cancelar a confirmação e o botão desligado |
+| `npm run test:e2e` | Roda as 6 jornadas: a principal (anotar, concluir e limpar), tarefa sem título, devolver uma tarefa feita, cancelar a confirmação, o botão desligado e o catálogo do design system |
 | `npm run demo` | Grava a jornada principal em um **vídeo de demonstração narrado**: `demo/demo.mp4` (1280x720). Veja "Vídeo de demonstração" abaixo |
 | `npm run capturas` | Refaz as quatro imagens dos slides, em `../imagens/`, a partir da mesma jornada. Rode de novo sempre que a tela mudar |
 | `npm run capturas:mobile` | As mesmas quatro imagens com a **tela de um celular** (390x844, densidade 3x), em `../imagens/*-mobile.png`. Mostram a página inteira rolada, porque no layout estreito as colunas ficam uma embaixo da outra |
@@ -81,6 +81,7 @@ O protótipo tem um design system pequeno, em duas partes, e **a identidade vem 
 - **Cor de ação com contraste garantido:** o texto branco de um botão preenchido precisa de 4,5:1 com o fundo. O gerador escurece a cor do tema só até chegar lá (aqui, de `#1F8A70`, que tem 4,26:1, para `#1E846B`, que tem 4,60:1) e avisa se algum par de cores do tema fica abaixo disso.
 - **Acessibilidade:** foco visível em tudo que se opera, rótulo sempre visível no campo, erro anunciado a leitores de tela (`role="alert"`) e alvo de toque de pelo menos 44 px no celular (ou em tela estreita).
 - `npm run tokens:conferir` (que o `npm run build` já roda) falha se o `tokens.css` não estiver em dia com o tema.
+- **Catálogo:** com o `npm run dev`, abra `/ds` (por exemplo, `http://localhost:5173/ds`). Ele mostra cada token e o contraste dos pares de cores, e cada componente nos seus estados (a imagem fica em `../imagens/05-design-system.png`). Só existe no desenvolvimento: o `npm run build` não o inclui. Uma jornada confere que todo par de cores passa no contraste mínimo.
 
 ## Dados de exemplo
 

@@ -64,3 +64,13 @@ test("o botão de limpar fica desligado quando não há nada feito", async ({ pa
   await page.reload();
   await expect(page.getByRole("button", { name: "Limpar feitas" })).toBeDisabled();
 });
+
+test("o catálogo do design system mostra tokens, contraste e componentes", async ({ page }) => {
+  await page.goto("/ds");
+  await expect(page.getByRole("heading", { name: "Design system" })).toBeVisible();
+  await expect(page.getByText("--primaria-acao")).toBeVisible();
+  // Todo par de cores do catálogo passa no contraste mínimo.
+  await expect(page.getByRole("cell", { name: "NÃO passa" })).toHaveCount(0);
+  await expect(page.getByRole("cell", { name: "passa", exact: true })).toHaveCount(5);
+  await expect(page.getByRole("button", { name: "Exemplo" })).toHaveCount(4);
+});
