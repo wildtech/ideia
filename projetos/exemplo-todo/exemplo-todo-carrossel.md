@@ -92,13 +92,13 @@ Limpar feitas remove só o que está em Feito. Ele pergunta antes, porque não h
 
 > Notas: fonte: "Fora de escopo". O pitch também deixa de fora arrastar e soltar, desfazer o limpar e a sincronização entre aparelhos.
 
-### Um dia de uma pessoa de desenvolvimento.
+### 1 dia
 
-**Layout:** frase-escura
+**Layout:** numero
 
-Esse foi o apetite, com apoio de um assistente de IA. É uma decisão, não uma estimativa.
+de uma pessoa de desenvolvimento, com apoio de um assistente de IA. É uma decisão, não uma estimativa.
 
-> Alt: Fundo preto com a frase "Um dia de uma pessoa de desenvolvimento." e, abaixo, a explicação de que esse foi o apetite, com apoio de um assistente de IA, e que é uma decisão, não uma estimativa.
+> Alt: Fundo branco com "1 dia" em letras verdes enormes e, abaixo, a explicação: de uma pessoa de desenvolvimento, com apoio de um assistente de IA, e que é uma decisão, não uma estimativa.
 
 > Notas: fonte: "Apetite".
 

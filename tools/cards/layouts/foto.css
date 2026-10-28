@@ -1,0 +1,11 @@
+/* @layout {"escuro": true, "imagem": "fundo", "descricao": "Uma foto cobre o card (**Imagem:**, com **Crédito:**) e o título vai embaixo, sobre um degradê escuro."}
+@exemplo
+### Um dia de trabalho, uma lista só.
+**Layout:** foto
+*/
+.l-foto .miolo{height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:40px}
+.l-foto h2{font-size:84px;margin:0}
+.l-foto .texto{margin-top:24px;font-size:40px}
+.l-foto::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to top,var(--fundo-escuro) 8%,rgba(0,0,0,.35) 55%,rgba(0,0,0,0) 80%)}
+.l-foto .fundo-img{background-color:var(--primaria)}
+.l-foto .credito{bottom:auto;top:44px;left:auto;right:84px}

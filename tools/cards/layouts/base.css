@@ -1,0 +1,61 @@
+/* @layout {"interno": true, "descricao": "Estilos comuns a todos os cards (não é um layout)."} */
+*{box-sizing:border-box}
+html,body{margin:0;background:#d1d5db}
+body{font-family:var(--fonte);color:var(--texto)}
+body.solo{background:#fff}
+.card{position:relative;overflow:hidden;page-break-after:always;break-after:page;margin:0 auto 24px;padding:110px 84px 130px;background:var(--fundo);color:var(--texto)}
+body.solo .card,body.anim .card{margin:0}
+@media print{html,body{background:none}.card{margin:0}}
+.escuro{background:var(--fundo-escuro);color:#fff}
+.card h2{font-family:var(--fonte-titulo);font-size:72px;line-height:1.12;margin:0 0 36px;color:var(--titulo);font-weight:800;text-wrap:balance;letter-spacing:-.01em}
+.escuro h2{color:#fff}
+.texto{font-size:46px;line-height:1.35}
+.texto p{margin:0 0 .6em;text-wrap:pretty}
+.texto ul,.texto ol{margin:0 0 .6em;padding-left:1.1em}
+.texto li{margin:0 0 .5em;padding-left:.15em}
+.texto li::marker{color:var(--primaria)}
+.escuro .texto li::marker{color:var(--destaque)}
+.texto a{color:var(--primaria);text-decoration:underline}
+.escuro .texto a{color:var(--destaque)}
+.texto strong{color:var(--primaria-acao)}
+.escuro .texto strong{color:var(--destaque)}
+.texto code{font-family:Menlo,Consolas,monospace;font-size:.85em}
+.bloco h3{margin:0 0 18px;font-size:30px;letter-spacing:.08em;text-transform:uppercase;color:var(--primaria-acao)}
+.escuro .bloco h3{color:var(--destaque)}
+.miolo{position:relative;z-index:2}
+.autor{margin-top:36px;font-size:36px;font-weight:600;opacity:.85}
+.autor::before{content:"— "}
+.logo{position:absolute;left:84px;top:44px;height:56px;z-index:3}
+.logo.grande{position:relative;left:auto;top:auto;height:140px;margin-bottom:48px}
+/* rodapé: a barra de progresso, o número do card e o convite para deslizar */
+.rodape{position:absolute;left:84px;right:84px;bottom:48px;display:flex;align-items:center;gap:28px;font-size:26px;z-index:3}
+.rodape .progresso{flex:1;height:6px;border-radius:3px;background:rgba(0,0,0,.1);overflow:hidden}
+.escuro .rodape .progresso{background:rgba(255,255,255,.2)}
+.rodape .progresso i{display:block;height:100%;background:var(--primaria)}
+.escuro .rodape .progresso i{background:var(--destaque)}
+.rodape .num{opacity:.7}
+.rodape .deslize{font-weight:700;color:var(--primaria-acao)}
+.escuro .rodape .deslize{color:var(--destaque)}
+.credito{position:absolute;left:84px;bottom:92px;font-size:22px;color:#fff;background:rgba(0,0,0,.6);padding:3px 10px;border-radius:4px;z-index:5}
+.credito a{color:#fff}
+/* frase: o título é a ideia do card, grande, no meio */
+.frase .miolo{height:100%;display:flex;flex-direction:column;justify-content:center}
+.frase h2{font-size:96px;line-height:1.1;margin:0}
+.frase .texto{margin-top:44px;font-size:44px}
+/* imagem de fundo (capa e foto) */
+.fundo-img{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0}
+/* legenda (vídeo): as palavras acendem no ritmo da voz */
+.legenda{position:absolute;left:70px;right:70px;bottom:110px;z-index:6;text-align:center;font-size:40px;font-weight:700;line-height:1.5}
+.legenda p{display:inline;margin:0;padding:.12em .45em;background:rgba(0,0,0,.8);color:#fff;border-radius:12px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.legenda span{opacity:.45}
+/* celular (layouts com "imagem": "tela") */
+.tela{position:relative;border:10px solid #111;border-bottom:0;border-radius:44px 44px 0 0;overflow:hidden;background:var(--cartao);box-shadow:0 18px 50px rgba(0,0,0,.28)}
+.tela img{position:absolute;left:0;width:100%;height:auto;display:block}
+/* folha de contato: todos os cards lado a lado, pequenos */
+body.folha{background:var(--fundo-escuro);padding:24px;display:flex;flex-wrap:wrap;gap:16px;align-content:flex-start}
+body.folha .card{margin:0}
+/* etiqueta (catálogo): o nome do layout no canto */
+.etiqueta{position:absolute;right:40px;top:40px;z-index:9;padding:8px 22px;border-radius:999px;background:#ff00aa;color:#fff;font:700 34px/1.2 Menlo,Consolas,monospace}
+/* 9:16: há mais altura, então o texto cresce */
+.f-alto .texto{font-size:52px}
+.f-alto.frase h2{font-size:112px}

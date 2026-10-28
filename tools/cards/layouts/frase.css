@@ -1,0 +1,7 @@
+/* @layout {"frase": true, "descricao": "O título é a frase, grande e no meio, em fundo claro. Até 14 palavras."}
+@exemplo
+### Duas etapas: A fazer e Feito.
+**Layout:** frase
+Uma tela só, com a contagem de cada coluna.
+*/
+.l-frase h2::before{content:"";display:block;width:90px;height:10px;margin-bottom:40px;border-radius:5px;background:var(--primaria)}

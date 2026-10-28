@@ -24,10 +24,11 @@ function readJson(p) {
   return JSON.parse(fs.readFileSync(p, "utf8"));
 }
 
-// Mescla o tema filho sobre o pai ("colors" é mesclado cor a cor; o resto é substituído).
+// Mescla o tema filho sobre o pai ("colors" e "tokens" são mesclados item a item; o resto é substituído).
 function merge(parent, child) {
   const out = { ...parent, ...child };
   out.colors = { ...(parent.colors || {}), ...(child.colors || {}) };
+  if (parent.tokens || child.tokens) out.tokens = { ...(parent.tokens || {}), ...(child.tokens || {}) };
   return out;
 }
 

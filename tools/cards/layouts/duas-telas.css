@@ -1,0 +1,15 @@
+/* @layout {"imagem": "tela", "descricao": "Duas capturas de celular lado a lado (duas linhas **Imagem:**), para comparar ou mostrar o antes e o depois. O texto fica em cima."}
+@exemplo
+### Antes e depois de limpar.
+**Layout:** duas-telas
+Só o que estava feito vai embora.
+*/
+.l-duas-telas .miolo{text-align:center}
+.l-duas-telas h2{font-size:64px;margin-bottom:20px}
+.l-duas-telas .texto{font-size:38px}
+.l-duas-telas .telas{position:absolute;left:84px;right:84px;bottom:-40px;height:62%;display:flex;justify-content:center;gap:40px;z-index:1}
+.l-duas-telas .tela{width:400px;height:100%}
+.l-duas-telas .tela:nth-child(2){margin-top:70px}
+.f-paisagem.l-duas-telas .telas{height:58%}
+.f-alto.l-duas-telas .telas{height:68%}
+.f-alto.l-duas-telas .tela{width:440px}

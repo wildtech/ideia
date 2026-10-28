@@ -1,0 +1,42 @@
+/* @layout {"interno": true, "descricao": "As animações dos reels e das cenas do vídeo (só valem no modo animado, body.anim). Cada card tem --t0 (entra), --t1 (sai), --tsai (a sobreposição com o próximo) e --tsai-ant (a sobreposição com o anterior): o card que sai some na primeira metade da sobreposição, e o próximo entra logo depois; as entradas dos elementos contam a partir de --t0. As durações e a curva vêm dos tokens do tema (movimento)."} */
+body.anim{position:relative;overflow:hidden;background:#000}
+body.anim .card{position:absolute;left:0;top:0}
+/* transições entre cards: desliza (padrão), fade, zoom e corte */
+body.anim .card.tr-desliza{animation:c-entra-desliza .45s var(--curva) calc(var(--t0) + var(--tsai-ant, 0s) * .4) both,c-sai-desliza calc(var(--tsai) * .5) ease-in calc(var(--t1) - var(--tsai)) forwards}
+body.anim .card.tr-fade{animation:c-entra-fade .45s ease-out calc(var(--t0) + var(--tsai-ant, 0s) * .4) both,c-sai-fade calc(var(--tsai) * .5) ease-in calc(var(--t1) - var(--tsai)) forwards}
+body.anim .card.tr-zoom{animation:c-entra-zoom .55s var(--curva) calc(var(--t0) + var(--tsai-ant, 0s) * .4) both,c-sai-fade calc(var(--tsai) * .5) ease-in calc(var(--t1) - var(--tsai)) forwards}
+body.anim .card.tr-corte{animation:c-entra-corte .01s linear var(--t0) both,c-sai-fade .01s linear var(--t1) forwards}
+@keyframes c-entra-desliza{from{opacity:0;transform:translateX(12%)}to{opacity:1;transform:none}}
+@keyframes c-sai-desliza{to{opacity:0;transform:translateX(-12%)}}
+@keyframes c-entra-fade{from{opacity:0}to{opacity:1}}
+@keyframes c-sai-fade{to{opacity:0}}
+@keyframes c-entra-zoom{from{opacity:0;transform:scale(1.12)}to{opacity:1;transform:none}}
+@keyframes c-entra-corte{from{opacity:0}to{opacity:1}}
+/* entradas dos elementos */
+body.anim .logo{animation:e-fade var(--duracao-lenta) ease-out calc(var(--t0) + .2s) both}
+body.anim .card h2{animation:e-sobe .8s var(--curva) calc(var(--t0) + .25s) both}
+body.anim .texto>*,body.anim .texto li,body.anim .autor{animation:e-sobe .7s var(--curva) calc(var(--t0) + .55s + var(--i,0) * .22s) both}
+body.anim .texto>ul,body.anim .texto>ol{animation:none}
+body.anim .texto>:nth-child(2),body.anim .texto li:nth-child(2){--i:1}
+body.anim .texto>:nth-child(3),body.anim .texto li:nth-child(3){--i:2}
+body.anim .texto>:nth-child(4),body.anim .texto li:nth-child(4){--i:3}
+body.anim .texto>:nth-child(5),body.anim .texto li:nth-child(5){--i:4}
+body.anim .texto>:nth-child(6),body.anim .texto li:nth-child(6){--i:5}
+body.anim .autor{--i:3}
+body.anim .telas .tela{animation:e-tela 1s var(--curva) calc(var(--t0) + .45s) both}
+body.anim .telas .tela:nth-child(2){animation-delay:calc(var(--t0) + .7s)}
+body.anim .rodape{animation:e-fade var(--duracao-lenta) ease-out calc(var(--t0) + .6s) both}
+body.anim .rodape .progresso i{animation:e-barra 1s var(--curva) calc(var(--t0) + .6s) both;transform-origin:0 50%}
+body.anim .l-capa::after{animation:e-barra .9s var(--curva) calc(var(--t0) + .9s) both}
+body.anim .l-numero h2{animation:e-zoom .9s var(--curva) calc(var(--t0) + .2s) both}
+body.anim .l-fechamento h2{animation:e-zoom .8s var(--curva) calc(var(--t0) + .2s) both}
+body.anim .fundo-img{animation:e-kenburns 8s linear var(--t0) both}
+body.anim .legenda{animation:e-fade .3s ease-out calc(var(--t0) + var(--v0, 0s)) both}
+body.anim .legenda span{animation:e-palavra .25s ease-out both}
+@keyframes e-fade{from{opacity:0}}
+@keyframes e-sobe{from{opacity:0;transform:translateY(40px)}}
+@keyframes e-tela{from{opacity:0;transform:translateY(180px)}}
+@keyframes e-barra{from{transform:scaleX(0)}}
+@keyframes e-zoom{from{opacity:0;transform:scale(.7)}}
+@keyframes e-kenburns{from{transform:scale(1.08)}to{transform:scale(1)}}
+@keyframes e-palavra{to{opacity:1;color:var(--destaque)}}

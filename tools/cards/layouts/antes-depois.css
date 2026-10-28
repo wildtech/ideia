@@ -1,0 +1,18 @@
+/* @layout {"descricao": "Duas colunas, cada uma aberta por um #### (por exemplo, #### Antes e #### Depois). A primeira é neutra; a segunda, da cor da marca. No 9:16, uma embaixo da outra."}
+@exemplo
+### O fim do dia
+**Layout:** antes-depois
+#### Antes
+Anotações em blocos, notas adesivas e mensagens.
+#### Depois
+Uma tela só: A fazer e Feito.
+*/
+.l-antes-depois .miolo{height:100%;display:flex;flex-direction:column;justify-content:center}
+.l-antes-depois .texto{display:grid;grid-template-columns:1fr 1fr;gap:36px;font-size:38px}
+.l-antes-depois .bloco{padding:40px 36px;border-radius:var(--raio-g);background:var(--cartao)}
+.l-antes-depois .bloco:nth-child(1) h3{color:var(--suave)}
+.l-antes-depois .bloco:nth-child(2){background:var(--fundo);border:6px solid var(--primaria)}
+.escuro.l-antes-depois .bloco{background:rgba(255,255,255,.08)}
+.escuro.l-antes-depois .bloco:nth-child(1) h3{color:rgba(255,255,255,.7)}
+.escuro.l-antes-depois .bloco:nth-child(2){background:transparent;border-color:var(--destaque)}
+.f-alto.l-antes-depois .texto,.f-quadrado.l-antes-depois .texto{grid-template-columns:1fr}

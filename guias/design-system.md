@@ -13,11 +13,25 @@ Todo protótipo nasce com um **design system pequeno**: as cores e a fonte vêm 
 
 | Camada | Onde | O que faz |
 | :--- | :--- | :--- |
-| **Identidade** | `temas/<tema>/tema.json` | Cores, fonte e logo. É a **única fonte**: vale para documento, slides, carrossel e protótipo |
-| **Tokens** | `src/tokens.css` | As variáveis CSS (`--primaria`, `--texto`, `--fundo-escuro`...), **geradas do tema** por `npm run tokens`. Não se edita à mão |
+| **Identidade** | `temas/<tema>/tema.json` | Cores, fonte, logo e, se quiser, forma e movimento (`"tokens"`). É a **única fonte**: vale para documento, slides, carrossel, reel, vídeo e protótipo |
+| **Tokens** | `src/tokens.css` | As variáveis CSS, **geradas do tema** por `npm run tokens` (`tools/tema-tokens.js`, que usa `tools/tokens.js`). Não se edita à mão |
 | **Componentes** | `src/ui/` | `Botao`, `Campo`, `Cartao`, `EstadoVazio` e `Alerta`, escritos só com os tokens |
 
-O CSS de layout da página (`src/styles.css`) fica separado: só grade e margens, sem cor escrita à mão.
+O CSS de layout da página (`src/styles.css`) fica separado: só grade e margens, sem cor nem medida escrita à mão.
+
+## Os tokens
+
+| Grupo | Variáveis | No `tema.json` |
+| :--- | :--- | :--- |
+| **Cor** | `--fundo`, `--texto`, `--titulo`, `--suave`, `--cartao`, `--borda`, `--primaria`, `--acento`, `--primaria-acao`, `--acento-acao`, `--fundo-escuro`, `--destaque` | `"colors"` (e `"prototipo"` para `fundo` e `suave`) |
+| **Fonte** | `--fonte` | `"font"` |
+| **Forma** | `--raio-p`, `--raio`, `--raio-g` e `--sombra` | `"tokens": { "raio": 6, "sombra": "..." }` |
+| **Espaço** | `--espaco-1` a `--espaco-6` (meio, 1, 1,5, 2, 3 e 4 vezes a base) | `"tokens": { "espaco": 8 }` |
+| **Tipo** | `--tipo-p`, `--tipo-m`, `--tipo-g`, `--tipo-gg` e `--tipo-ggg` (uma escala a partir de 1rem) | `"tokens": { "escalaTipo": 1.25 }` |
+| **Toque** | `--alvo-toque` | `"tokens": { "alvoToque": 44 }` |
+| **Movimento** | `--duracao-rapida`, `--duracao`, `--duracao-lenta` e `--curva` | `"tokens": { "movimento": { "rapido": 150, "normal": 300, "lento": 600, "curva": "cubic-bezier(.2,.7,.2,1)" } }` |
+
+Tudo em `"tokens"` é opcional: o que o tema não declara usa o padrão de `tools/tokens.js`. O movimento é o mesmo nos componentes (transições de botão, entrada dos itens), nos **reels** e nas **cenas do vídeo**, e os componentes respeitam `prefers-reduced-motion`. Os layouts dos cards (`tools/cards/layouts/`) usam as mesmas variáveis, então um layout novo funciona em qualquer tema (veja `guias/cards.md`).
 
 ## Como usar
 
@@ -25,7 +39,7 @@ O CSS de layout da página (`src/styles.css`) fica separado: só grade e margens
 2. **Gere os tokens:** `npm run tokens`. O arquivo é versionado, para o protótipo rodar sem precisar das ferramentas do repositório. `npm run tokens:conferir` (que o `npm run build` já roda) falha se ele ficar desatualizado em relação ao tema.
 3. **Monte as telas com `src/ui/`.** Nada de `<button>` solto nem de cor escrita à mão nas telas.
 4. **Crie um componente só quando uma tela precisar dele**, e escreva-o só com tokens. É um protótipo: o suficiente para ser coerente, e não uma biblioteca para manter.
-5. **Olhe o catálogo:** com o `npm run dev`, abra `/ds`. Ele mostra os tokens, o contraste de cada par de cores e os componentes nos seus estados. Só existe no desenvolvimento (o `build` não o inclui).
+5. **Olhe o catálogo:** com o `npm run dev`, abra `/ds`. Ele mostra as cores, o espaçamento, a escala de tipo, a forma, o movimento, o contraste de cada par de cores e os componentes nos seus estados. Só existe no desenvolvimento (o `build` não o inclui).
 
 ## O contraste
 
@@ -49,7 +63,7 @@ Texto precisa de pelo menos **4,5:1** com o fundo. O gerador de tokens confere o
 
 - [ ] O protótipo tem um tema (e `fundoEscuro` e `destaque`, se vai ter slides ou carrossel)?
 - [ ] `npm run tokens:conferir` passa?
-- [ ] Nenhuma cor nem fonte escrita à mão fora de `tokens.css`?
+- [ ] Nenhuma cor, fonte, raio, espaço ou duração escritos à mão fora de `tokens.css`?
 - [ ] Os pares de cores do catálogo (`/ds`) passam no contraste?
 - [ ] O foco aparece ao navegar com a tecla Tab?
 - [ ] Os botões têm 44 px de altura no celular?

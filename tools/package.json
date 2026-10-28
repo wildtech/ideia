@@ -1,7 +1,7 @@
 {
   "name": "ideia-tools",
   "version": "1.0.0",
-  "description": "Compiladores de Markdown para docx, html, pdf e apresentações (reveal.js) do repositório ideia",
+  "description": "Compiladores de Markdown para docx, html, pdf, apresentações (reveal.js), cards, reels e vídeos em cenas do repositório ideia",
   "main": "index.js",
   "scripts": {
     "build": "node build.js"

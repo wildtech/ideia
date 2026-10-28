@@ -11,5 +11,6 @@
     "accent": "A83232",
     "fundoEscuro": "0F3D32",
     "destaque": "A8E6D7"
-  }
+  },
+  "tokens": { "raio": 8 }
 }

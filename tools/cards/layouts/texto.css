@@ -1,0 +1,10 @@
+/* @layout {"descricao": "O padrão. Título e, abaixo, texto ou lista, no meio do card, com a barra da marca. Sem nada abaixo do título, ele vira uma frase grande."}
+@exemplo
+### Anotações em todo lugar.
+- Blocos de notas e notas adesivas
+- Mensagens para si mesma
+Começar o dia seguinte leva **mais de dez minutos**.
+*/
+.l-texto:not(.frase) .miolo{height:100%;display:flex;flex-direction:column;justify-content:center}
+.l-texto:not(.frase) h2::after{content:"";display:block;width:120px;height:10px;margin-top:30px;border-radius:5px;background:var(--primaria)}
+.escuro.l-texto:not(.frase) h2::after{background:var(--destaque)}

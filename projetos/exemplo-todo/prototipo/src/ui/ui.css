@@ -1,15 +1,15 @@
-/* Componentes do design system. Só usam os tokens de tokens.css (gerado do tema): nenhuma cor escrita à mão aqui. */
+/* Componentes do design system. Só usam os tokens de tokens.css (gerado do tema): nenhuma cor, raio, espaço ou
+   duração escritos à mão aqui. */
 
-/* Alvo de toque: no celular (ou em tela estreita), o que se toca tem pelo menos 44 px de altura. */
-:root { --alvo-toque: 44px; }
+.ds-rotulo { display: block; margin-bottom: var(--espaco-1); font-weight: 600; }
 
-.ds-rotulo { display: block; margin-bottom: 6px; font-weight: 600; }
-
-.ds-campo-linha { display: flex; gap: 8px; }
-.ds-campo { flex: 1; min-width: 0; padding: 10px 12px; border: 1px solid var(--borda); border-radius: 6px; background: var(--fundo); color: var(--texto); font: inherit; }
+.ds-campo-linha { display: flex; gap: var(--espaco-2); }
+.ds-campo { flex: 1; min-width: 0; padding: 10px var(--espaco-3); border: 1px solid var(--borda); border-radius: var(--raio); background: var(--fundo); color: var(--texto); font: inherit; transition: border-color var(--duracao-rapida) var(--curva); }
 .ds-campo:focus-visible { outline: 3px solid var(--primaria); outline-offset: 2px; }
 
-.ds-botao { padding: 8px 14px; border: 1px solid var(--borda); border-radius: 6px; background: var(--fundo); color: var(--texto); font: inherit; cursor: pointer; }
+.ds-botao { padding: var(--espaco-2) 14px; border: 1px solid var(--borda); border-radius: var(--raio); background: var(--fundo); color: var(--texto); font: inherit; cursor: pointer;
+  transition: background-color var(--duracao-rapida) var(--curva), border-color var(--duracao-rapida) var(--curva), color var(--duracao-rapida) var(--curva), transform var(--duracao-rapida) var(--curva); }
+.ds-botao:active:not(:disabled) { transform: scale(.97); }
 .ds-botao:focus-visible { outline: 3px solid var(--primaria); outline-offset: 2px; }
 .ds-botao:hover:not(:disabled) { border-color: var(--primaria); }
 .ds-botao:disabled { opacity: .45; cursor: not-allowed; }
@@ -22,19 +22,30 @@
   .ds-botao, .ds-campo { min-height: var(--alvo-toque); }
 }
 
-.ds-cartao--bloco { padding: 16px; background: var(--cartao); border-radius: 8px; border-top: 5px solid var(--primaria); }
+.ds-cartao--bloco { padding: var(--espaco-4); background: var(--cartao); border-radius: var(--raio-g); border-top: 5px solid var(--primaria); }
 .ds-cartao--faixa-neutra { border-top-color: var(--suave); }
-.ds-cartao--item { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; background: var(--fundo); border-radius: 6px; border: 1px solid var(--borda); }
+.ds-cartao--item { display: flex; align-items: center; justify-content: space-between; gap: var(--espaco-3); padding: 10px var(--espaco-3); background: var(--fundo); border-radius: var(--raio); border: 1px solid var(--borda);
+  animation: ds-entra var(--duracao) var(--curva); }
+@keyframes ds-entra { from { opacity: 0; transform: translateY(6px); } }
+@media (prefers-reduced-motion: reduce) { .ds-cartao--item, .ds-botao { animation: none; transition: none; } }
 
 .ds-vazio { margin: 0; color: var(--suave); }
-.ds-alerta { margin: 8px 0 0; color: var(--acento-acao); font-weight: 600; }
+.ds-alerta { margin: var(--espaco-2) 0 0; color: var(--acento-acao); font-weight: 600; }
 
 /* Catálogo (/ds) */
-.ds-amostras { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.ds-amostras { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--espaco-3); }
 .ds-amostra { display: grid; gap: 2px; font-size: .85rem; }
-.ds-amostra__cor { display: block; height: 44px; border: 1px solid var(--borda); border-radius: 6px; }
+.ds-amostra__cor { display: block; height: 44px; border: 1px solid var(--borda); border-radius: var(--raio); }
 .ds-tabela { width: 100%; border-collapse: collapse; }
-.ds-tabela th, .ds-tabela td { padding: 6px 8px; border-bottom: 1px solid var(--borda); text-align: left; }
-.ds-grade { display: grid; gap: 12px; }
-.ds-par { display: flex; gap: 8px; }
-.ds-nota { margin: 2px 0 0; color: var(--suave); font-size: .85rem; }
+.ds-tabela th, .ds-tabela td { padding: var(--espaco-1) var(--espaco-2); border-bottom: 1px solid var(--borda); text-align: left; }
+.ds-grade { display: grid; gap: var(--espaco-3); }
+.ds-par { display: flex; gap: var(--espaco-2); }
+.ds-nota { margin: 2px 0 0; color: var(--suave); font-size: var(--tipo-p); }
+.ds-degraus { display: grid; gap: var(--espaco-2); }
+.ds-degrau { display: flex; align-items: center; gap: var(--espaco-3); font-size: var(--tipo-p); }
+.ds-degrau__barra { height: 16px; background: var(--primaria); border-radius: var(--raio-p); }
+.ds-raios { display: flex; gap: var(--espaco-4); flex-wrap: wrap; }
+.ds-raio { width: 96px; height: 64px; display: grid; place-items: center; background: var(--cartao); border: 2px solid var(--primaria); font-size: var(--tipo-p); }
+.ds-mov { width: 40px; height: 40px; border-radius: var(--raio); background: var(--primaria); transition: transform var(--duracao-lenta) var(--curva); }
+.ds-mov-trilho:hover .ds-mov, .ds-mov-trilho:focus-within .ds-mov { transform: translateX(200px); }
+.ds-mov-trilho { padding: var(--espaco-2); background: var(--cartao); border-radius: var(--raio-g); }

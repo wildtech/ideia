@@ -1,11 +1,16 @@
 // Tira um quadro de cada vídeo de demonstração (o horizontal e o vertical) e os junta, lado a lado, em uma imagem de
 // fundo transparente para os slides: ../imagens/09-videos.png. Rode `npm run demo:todos` antes (os vídeos ficam em demo/).
-// O quadro escolhido (QUADRO_S, em segundos) é o do passo "anotar": a pessoa digita, o cursor aparece e a legenda narra.
+// O quadro escolhido é o do passo "anotar" (segundos depois de ele começar, lido de demo/cenas.json): a pessoa digita,
+// o cursor aparece, a tela se aproxima e a legenda narra.
 
 import { spawnSync } from "node:child_process";
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 
-const QUADRO_S = 30;
+const DEPOIS_DO_INICIO_S = 4.5;
+const quadroDe = (cenas: string): number => {
+  const anotar = existsSync(cenas) ? JSON.parse(readFileSync(cenas, "utf8")).trechos?.anotar : null;
+  return anotar ? anotar.inicio + DEPOIS_DO_INICIO_S : 10;
+};
 const HORIZONTAL = "demo/demo.mp4";
 const VERTICAL = "demo/demo-vertical.mp4";
 const SAIDA = "../imagens/09-videos.png";
@@ -32,7 +37,7 @@ const filtro = [
 
 const r = spawnSync(
   "ffmpeg",
-  ["-y", "-v", "error", "-ss", String(QUADRO_S), "-i", HORIZONTAL, "-ss", String(QUADRO_S), "-i", VERTICAL, "-f", "lavfi", "-i", "color=c=black@0:s=1600x900,format=rgba", "-filter_complex", filtro, "-frames:v", "1", "-pix_fmt", "rgba", SAIDA],
+  ["-y", "-v", "error", "-ss", quadroDe("demo/cenas.json").toFixed(2), "-i", HORIZONTAL, "-ss", quadroDe("demo/cenas-vertical.json").toFixed(2), "-i", VERTICAL, "-f", "lavfi", "-i", "color=c=black@0:s=1600x900,format=rgba", "-filter_complex", filtro, "-frames:v", "1", "-pix_fmt", "rgba", SAIDA],
   { stdio: "inherit" },
 );
 if (r.status !== 0) process.exit(r.status ?? 1);

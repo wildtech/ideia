@@ -23,7 +23,7 @@ As jornadas em `e2e/` repetem, no navegador, o que a pessoa faz na tela. Usam o 
 | Comando | O que faz |
 | :--- | :--- |
 | `npm run test:e2e` | Roda as 6 jornadas: a principal (anotar, concluir e limpar), tarefa sem título, devolver uma tarefa feita, cancelar a confirmação, o botão desligado e o catálogo do design system |
-| `npm run demo` | Grava a jornada principal em um **vídeo de demonstração narrado**: `demo/demo.mp4` (1280x720). Veja "Vídeo de demonstração" abaixo |
+| `npm run demo` | Grava a jornada principal em um **vídeo de demonstração narrado**: `demo/demo.mp4` (1280x720) e `demo/cenas.json`, que o vídeo em cenas usa. Veja "Vídeo de demonstração" abaixo |
 | `npm run capturas` | Refaz as quatro imagens dos slides, em `../imagens/`, a partir da mesma jornada. Rode de novo sempre que a tela mudar |
 | `npm run capturas:mobile` | As mesmas quatro imagens com a **tela de um celular** (390x844, densidade 3x), em `../imagens/*-mobile.png`. Mostram a página inteira rolada, porque no layout estreito as colunas ficam uma embaixo da outra |
 | `npm run quadros` | Tira um quadro de cada vídeo (o do passo "anotar") e os junta, lado a lado, em `../imagens/09-videos.png`, para os slides. Rode `npm run demo:todos` antes |
@@ -33,9 +33,9 @@ Os resultados em `test-results/` e o vídeo em `demo/` não vão para o git.
 
 ### Vídeo de demonstração (`npm run demo`)
 
-O vídeo conta o cenário do pitch e mostra a jornada, com **legendas**, um **cursor** que aparece e faz uma "onda" no clique, e **voz**. Leva cerca de um minuto para ser gravado e usa o `ffmpeg` para montar o MP4.
+A jornada é gravada com **legendas** em que as palavras acendem no ritmo da voz, o **nome do passo** no canto, **zoom** no que está sendo feito, um **cursor** que aparece e faz uma "onda" no clique, e **voz**. Leva cerca de um minuto para ser gravada e usa o `ffmpeg` para montar o MP4. Depois, na raiz do repositório, `node tools/build.js projetos/exemplo-todo` junta a jornada a cartões animados (a abertura, o cenário e a chamada) no **vídeo em cenas**: `out/exemplo-todo-video.mp4` e `out/exemplo-todo-video-9x16.mp4`, com as legendas em `.srt`.
 
-- **O roteiro da narração** é `e2e/narracao.ts`: um trecho por passo (cenário, protótipo, anotar, andar, limpar e fim). O mesmo texto vira a legenda e a voz. Edite o texto para mudar o que o vídeo diz.
+- **O roteiro** é `../exemplo-todo-video.md`: cada `###` é uma cena, e as de `**Cena:** jornada` são gravadas aqui, na ordem do Markdown, com a ação de mesmo `**Trecho:**` em `e2e/demo.spec.ts` (`ACOES`: protótipo, anotar, andar, limpar e fim) e o `**Zoom:**` pedido. O texto de `> Narração:` vira a legenda e a voz (o `e2e/narracao.ts` lê o Markdown). Edite o Markdown para mudar o que o vídeo diz.
 - **A voz** vem, nesta ordem: de um **áudio seu** em `narracao/<trecho>.wav` (ou `.mp3`, `.m4a`, `.aiff`, `.ogg`), de um **programa de voz sintética à sua escolha** (variável `TTS_COMANDO`, o caminho no Windows e no Linux), da **voz em português do macOS** (`say`, a `Luciana`), ou **nenhuma**: nesse caso o vídeo sai só com legendas. O ritmo da jornada acompanha a duração de cada trecho.
 - **A sua voz, de uma vez só:** grave tudo em `narracao/voz.wav`, lendo os trechos na ordem e com pelo menos um segundo de silêncio entre eles, e rode `npm run dividir`. Ele corta um arquivo por trecho. Depois, `npm run demo`.
 - **A confirmação do navegador** não aparece em gravações, então a pergunta do botão de limpar vai na legenda.
@@ -74,15 +74,15 @@ O protótipo tem um design system pequeno, em duas partes, e **a identidade vem 
 
 | Parte | Onde | O que faz |
 | :--- | :--- | :--- |
-| **Tokens** | `src/tokens.css` | Cores e fonte, **gerados do tema** por `npm run tokens` (`tools/tema-tokens.js`). Não se edita à mão. Incluem o verde escuro e o destaque que os slides e o carrossel usam como fundo e cor de link |
-| **Componentes** | `src/ui/` | `Botao` (variantes padrão, primário, perigo e discreto), `Campo` (rótulo, campo e ação ao lado), `Cartao` (bloco e item), `EstadoVazio` e `Alerta`. Só usam os tokens: nenhuma cor escrita à mão |
+| **Tokens** | `src/tokens.css` | Cor, fonte, raio, sombra, espaçamento, escala de tipo, alvo de toque e movimento, **gerados do tema** por `npm run tokens` (`tools/tema-tokens.js`). Não se edita à mão. Incluem o verde escuro e o destaque que os slides, o carrossel e o vídeo usam, e o tema pede cantos de 8 px (`"tokens": { "raio": 8 }`) |
+| **Componentes** | `src/ui/` | `Botao` (variantes padrão, primário, perigo e discreto), `Campo` (rótulo, campo e ação ao lado), `Cartao` (bloco e item), `EstadoVazio` e `Alerta`. Só usam os tokens: nenhuma cor, raio, espaço ou duração escritos à mão. Os botões e os itens têm transições curtas, que respeitam `prefers-reduced-motion` |
 | **Layout** | `src/styles.css` | Só a organização da página (grade e margens) |
 
 - **Trocar de marca** é trocar o `"tema"` no `projeto.json` do projeto e rodar `npm run tokens`. Os componentes não mudam.
 - **Cor de ação com contraste garantido:** o texto branco de um botão preenchido precisa de 4,5:1 com o fundo. O gerador escurece a cor do tema só até chegar lá (aqui, de `#1F8A70`, que tem 4,26:1, para `#1E846B`, que tem 4,60:1) e avisa se algum par de cores do tema fica abaixo disso.
 - **Acessibilidade:** foco visível em tudo que se opera, rótulo sempre visível no campo, erro anunciado a leitores de tela (`role="alert"`) e alvo de toque de pelo menos 44 px no celular (ou em tela estreita).
 - `npm run tokens:conferir` (que o `npm run build` já roda) falha se o `tokens.css` não estiver em dia com o tema.
-- **Catálogo:** com o `npm run dev`, abra `/ds` (por exemplo, `http://localhost:5173/ds`). Ele mostra cada token e o contraste dos pares de cores, e cada componente nos seus estados (a imagem fica em `../imagens/05-design-system.png`). Só existe no desenvolvimento: o `npm run build` não o inclui. Uma jornada confere que todo par de cores passa no contraste mínimo.
+- **Catálogo:** com o `npm run dev`, abra `/ds` (por exemplo, `http://localhost:5173/ds`). Ele mostra cada token (cores, espaçamento, tipo, forma e movimento) e o contraste dos pares de cores, e cada componente nos seus estados (a imagem fica em `../imagens/05-design-system.png`). Só existe no desenvolvimento: o `npm run build` não o inclui. Uma jornada confere que todo par de cores passa no contraste mínimo.
 
 ## Dados de exemplo
 

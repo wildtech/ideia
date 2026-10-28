@@ -1,0 +1,20 @@
+/* @layout {"imagem": "tela", "descricao": "Texto de um lado e a captura de um celular do outro (**Imagem:**, com **Foco:** topo, meio ou base). No 9:16, o texto vai em cima e o celular embaixo."}
+@exemplo
+### 1. Anotar
+**Layout:** tela
+Escreva a tarefa e toque em Adicionar. Ela entra em A fazer.
+*/
+.l-tela .miolo{width:440px;height:100%;display:flex;flex-direction:column;justify-content:center}
+.l-tela h2{font-size:60px}
+.l-tela .texto{font-size:38px}
+.l-tela .rodape{right:auto;width:440px}
+.l-tela .telas{position:absolute;right:70px;top:170px;bottom:-40px;width:420px;z-index:1}
+.l-tela .tela{height:100%}
+.f-paisagem.l-tela .miolo{width:46%}
+.f-paisagem.l-tela .rodape{width:46%}
+.f-paisagem.l-tela .telas{right:160px;width:460px;top:120px}
+.f-alto.l-tela .miolo{width:auto;height:auto;padding-top:40px}
+.f-alto.l-tela .rodape{width:auto;right:84px}
+.f-alto.l-tela .telas{left:50%;right:auto;transform:translateX(-50%);top:auto;height:1180px;width:600px;bottom:-40px}
+.f-alto.l-tela .telas{bottom:130px}
+.f-alto.l-tela .tela{border-bottom:10px solid #111;border-radius:44px}

@@ -1,0 +1,9 @@
+/* @layout {"interno": true, "escuro": true, "imagem": "fundo", "descricao": "O card de capa (o # Título), com o logo grande, o subtítulo e, se houver **Imagem:**, uma foto ao fundo."} */
+.l-capa{padding:130px 84px;display:flex;flex-direction:column;justify-content:center}
+.l-capa h2{font-size:100px;line-height:1.05;color:#fff}
+.l-capa .texto{font-size:46px;opacity:.9}
+.l-capa .texto p{color:#fff}
+.l-capa .fundo-img{opacity:.35}
+.l-capa::after{content:"";position:absolute;left:84px;bottom:110px;width:140px;height:12px;border-radius:6px;background:var(--primaria);transform-origin:0 50%}
+.escuro.l-capa::after{background:var(--destaque)}
+.claro.l-capa h2,.claro.l-capa .texto p{color:var(--titulo)}

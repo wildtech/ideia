@@ -18,4 +18,29 @@
   /* Fundo escuro e cor de destaque sobre ele: os mesmos dos slides e dos carrosséis. */
   --fundo-escuro: #0F3D32;
   --destaque: #A8E6D7;
+  /* Forma: raio dos cantos (pequeno, médio e grande) e sombra. */
+  --raio-p: 4px;
+  --raio: 8px;
+  --raio-g: 11px;
+  --sombra: 0 8px 24px rgba(0,0,0,.12);
+  /* Espaçamento, em degraus (de 1 a 6). */
+  --espaco-1: 4px;
+  --espaco-2: 8px;
+  --espaco-3: 12px;
+  --espaco-4: 16px;
+  --espaco-5: 24px;
+  --espaco-6: 32px;
+  /* Escala de tipo (proporção 1.25). */
+  --tipo-p: 0.8rem;
+  --tipo-m: 1rem;
+  --tipo-g: 1.25rem;
+  --tipo-gg: 1.563rem;
+  --tipo-ggg: 1.953rem;
+  /* Alvo de toque mínimo no celular. */
+  --alvo-toque: 44px;
+  /* Movimento: durações e a curva das transições (também usadas nos reels e no vídeo). */
+  --duracao-rapida: 150ms;
+  --duracao: 300ms;
+  --duracao-lenta: 600ms;
+  --curva: cubic-bezier(.2,.7,.2,1);
 }

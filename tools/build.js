@@ -4,7 +4,8 @@
 // Uso: node tools/build.js <pasta-do-projeto> [<pasta-do-projeto> ...]
 //
 // Com projeto.json: gera cada item de "saidas" (documento: docx/html/pdf; apresentacao: html/pdf com reveal.js;
-// carrossel: html, png (um por card, 1080x1350) e pdf, para redes sociais).
+// carrossel: html, png (um por card), pdf e mp4 (o reel), para redes sociais; video: mp4 em cenas, com md2video.js).
+// Uma saída pode ter "formato" (por exemplo, "9:16") para gerar o carrossel em outro tamanho.
 // Sem projeto.json (formato antigo): lê <pasta>/<nome>.md e gera docx, html e pdf.
 // O PDF é sempre gerado a partir do HTML. A saída vai para <pasta>/out/.
 
@@ -41,10 +42,19 @@ for (const project of projects) {
     const formatos = saida.formatos || ["docx", "html", "pdf"];
     if (saida.tipo === "carrossel") {
       try {
-        run("md2cards.js", [dir, md, base, "--formatos", (saida.formatos || ["html", "png", "pdf"]).join(",")]);
+        run("md2cards.js", [dir, md, base, "--formatos", (saida.formatos || ["html", "png", "pdf"]).join(","), ...(saida.formato ? ["--formato", saida.formato] : [])]);
       } catch (e) {
         failed = true;
         console.error("Falhou: md2cards.js em " + saida.fonte + " (" + project + ")");
+      }
+      continue;
+    }
+    if (saida.tipo === "video") {
+      try {
+        run("md2video.js", [dir, md, base, ...(saida.formato ? ["--formato", saida.formato] : [])]);
+      } catch (e) {
+        failed = true;
+        console.error("Falhou: md2video.js em " + saida.fonte + " (" + project + ")");
       }
       continue;
     }

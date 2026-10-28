@@ -2,9 +2,11 @@
 // voz, mistura cada trecho no instante em que o passo começou. Saída: demo/demo.mp4. Precisa do ffmpeg.
 // Com --vertical, monta a versão 9:16 (npm run demo:vertical): pega a gravação do projeto "demo-vertical", usa
 // demo/marcas-vertical.json e leva o vídeo para 1080x1920, em demo/demo-vertical.mp4.
+// Escreve também demo/cenas.json (ou cenas-vertical.json): onde cada cena da jornada começa e termina no MP4 final.
+// É o que o tools/md2video.js usa para recortar a jornada e juntá-la aos cartões animados do vídeo em cenas.
 
 import { spawnSync } from "node:child_process";
-import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, statSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 
 type Tempos = Record<string, { arquivo: string | null; segundos: number }>;
@@ -88,3 +90,18 @@ const r = spawnSync("ffmpeg", args, { stdio: "inherit" });
 if (r.status !== 0) process.exit(r.status ?? 1);
 console.log(`\nVídeo: demo/demo${sufixo}.mp4 (marca de sincronia em ${tMarca.toFixed(2)} s; ${vozes.length ? `${vozes.length} trechos com voz` : "só com legendas"}).`);
 for (const v of vozes) console.log(`  ${v.id.padEnd(10)} começa em ${(v.atrasoMs / 1000).toFixed(1)} s`);
+
+// As cenas no MP4 final: cada uma vai do instante em que o trecho começou até o começo do próximo (ou o fim da jornada).
+const dur = (arquivo: string): number => parseFloat(spawnSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", arquivo], { encoding: "utf8" }).stdout);
+const final = `demo/demo${sufixo}.mp4`;
+const duracao = dur(final);
+const ordem = Object.entries(marcas.passos).sort((a, b) => a[1] - b[1]);
+const trechos = Object.fromEntries(
+  ordem.map(([id, ms], i) => {
+    const inicio = Math.max(0, tMarca + ms / 1000 - corte);
+    const fim = i < ordem.length - 1 ? tMarca + ordem[i + 1]![1] / 1000 - corte : Math.min(duracao, tMarca + marcas.fimMs / 1000 - corte);
+    return [id, { inicio: +inicio.toFixed(3), fim: +fim.toFixed(3) }];
+  }),
+);
+writeFileSync(`demo/cenas${sufixo}.json`, JSON.stringify({ video: final, duracao: +duracao.toFixed(3), trechos }, null, 2));
+console.log(`Cenas: demo/cenas${sufixo}.json (${ordem.length} trechos da jornada).`);

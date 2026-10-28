@@ -1,0 +1,13 @@
+Título do vídeo.
+O mesmo título do documento de origem (um pitch ou uma iniciativa), e uma linha de apoio. É a cena de abertura (o card de capa), de dois a três segundos, sem voz.
+Formato. Em que telas o vídeo vai passar? 16:9 para o YouTube, uma apresentação ou uma página; 9:16 para stories, reels e mensagens. O mesmo Markdown gera os dois (**Formato:** 16:9, 9:16).
+Cenário. Qual é a cena do problema, contada em voz alta? Vem do "Problema" do pitch: uma pessoa, o que ela tenta fazer e o que dá errado. Uma cena de cartão (frase-escura), com a narração. Diga que o cenário é fictício, se for.
+Jornada. Quais são os passos que a pessoa faz na tela? Um trecho por ato da "Solução" (anotar, andar, limpar), com o verbo no título ("1. Anotar"), a narração do que acontece e, se ajudar, o zoom na ação. Cada trecho precisa de uma ação com o mesmo nome na jornada do protótipo (e2e/demo.spec.ts).
+Resultado. Como a tela fica no fim, e por que isso resolve o problema? Um trecho curto da jornada, ou um cartão, que volta ao cenário.
+Chamada para ação. O que a pessoa faz agora? Um cartão de fechamento, com um só caminho e um só link, sem voz ou com uma frase curta. Se a decisão ou o destino ainda não existem, escreva "A definir" no documento de origem e não invente.
+Narração. O texto é falado, então escreva como se fala: frases curtas, uma ideia por frase, cerca de 2,4 palavras por segundo. A mesma frase vira a voz e a legenda. Grave a sua voz (narracao/<trecho>.wav) para um vídeo de verdade; a voz sintética serve para esboçar.
+Regras do vídeo. Nada novo entra: tudo o que o vídeo diz e mostra existe no documento de origem (a mesma regra do resumo, roteiros/tldr.txt). Um minuto, mais ou menos, de cinco a oito cenas. Os dados na tela são fictícios.
+Antes de publicar. A voz é sua, ou a voz sintética permite o uso? A música tem licença? Não há segredo, dado pessoal nem nada de dentro da organização na tela? Suba o .srt junto, para quem assiste sem som. A publicação é feita pela pessoa, nunca pelo assistente.
+Documentos de apoio: referência do documento de origem e do protótipo (opcional).
+
+Este roteiro foi criado para este repositório, a partir do roteiro de divulgação (roteiros/divulgacao.txt) e do formato de pitch do Shape Up (Basecamp, https://basecamp.com/shapeup/1.5-chapter-06): o vídeo conta, em cenas, o que o pitch e o protótipo já validaram. O passo a passo está em guias/video-demonstracao.md.

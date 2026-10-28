@@ -1,6 +1,6 @@
 // Prepara a voz do vídeo de demonstração (npm run narracao, chamado por npm run demo).
 //
-// Para cada trecho de e2e/narracao.ts:
+// Para cada trecho com "> Narração:" do Markdown do vídeo (../<projeto>-video.md, lido por e2e/narracao.ts):
 //   1. se existe um áudio seu em narracao/<id>.(wav|mp3|m4a|aiff|ogg), usa esse (é o caminho em qualquer sistema);
 //   2. senão, se a variável TTS_COMANDO está definida, roda esse comando de síntese de voz (qualquer sistema);
 //      no comando, {saida} é o arquivo de áudio a gerar (demo/audio/<id>.wav), {arquivo_texto} é um arquivo com o texto

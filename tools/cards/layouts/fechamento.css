@@ -1,0 +1,11 @@
+/* @layout {"escuro": true, "descricao": "O último card: a chamada para ação, centralizada, em fundo escuro."}
+@exemplo
+### Pitch, protótipo e este carrossel: um só Markdown.
+**Layout:** fechamento
+Veja no template ideia: [github.com/wildtech/ideia](https://github.com/wildtech/ideia)
+*/
+.l-fechamento{text-align:center}
+.l-fechamento .miolo{height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.l-fechamento h2{font-size:84px}
+.l-fechamento .texto a{display:inline-block;margin-top:12px;padding:.25em .7em;border-radius:999px;background:var(--destaque);color:var(--fundo-escuro);text-decoration:none;font-weight:700}
+.claro.l-fechamento .texto a{background:var(--primaria-acao);color:#fff}

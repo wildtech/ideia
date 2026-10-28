@@ -1,7 +1,7 @@
 // Divide uma gravação única da sua voz nos trechos da narração (npm run dividir).
 //
 // Uso:   npm run dividir -- [arquivo] [--pausa 0.8] [--limiar -35]
-//   arquivo   a gravação inteira, lendo os trechos de e2e/narracao.ts na ordem, com uma pausa (silêncio) entre eles.
+//   arquivo   a gravação inteira, lendo os trechos de narração do Markdown do vídeo (../<projeto>-video.md) na ordem, com uma pausa (silêncio) entre eles.
 //             Sem argumento, usa narracao/voz.(wav|mp3|m4a|aiff|ogg).
 //   --pausa   segundos de silêncio que separam um trecho do outro (padrão 0.8). As pausas entre as frases de um mesmo
 //             trecho precisam ser menores que isso.

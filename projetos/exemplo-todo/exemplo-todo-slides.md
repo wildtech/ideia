@@ -104,15 +104,15 @@
 
 Cores e fonte saem do tema do projeto. Poucos componentes, com contraste conferido.
 
-> Notas: o catálogo `/ds` do protótipo mostra os tokens, o contraste de cada par de cores e os componentes nos seus estados. Os mesmos tokens dão o verde escuro dos slides e do carrossel. Fonte: "Stack e estratégia de validação".
+> Notas: o catálogo `/ds` do protótipo mostra os tokens (cores, espaço, tipo, forma e movimento), o contraste de cada par de cores e os componentes nos seus estados. Os mesmos tokens dão o verde escuro dos slides, do carrossel e do vídeo, e o ritmo das animações do reel. Fonte: "Stack e estratégia de validação".
 
-### Um vídeo, em duas formas: 16:9 e 9:16.
+### Um vídeo em cenas, em 16:9 e 9:16.
 
 **Layout:** evidencia
 **Imagem:** imagens/09-videos.png
 **Crédito:** quadros dos vídeos (dados fictícios)
 
-> Notas: a jornada principal, narrada, gravada pelo Playwright: horizontal (1280x720) e vertical (1080x1920, para as redes), com legenda, cursor e voz. A imagem junta um quadro de cada vídeo (`npm run quadros`). Os vídeos ficam fora do repositório (`demo/`); `npm run demo:todos` os gera. Fonte: "Material de divulgação".
+> Notas: cartões animados (abertura, cenário e chamada) e a jornada principal, narrada, gravada pelo Playwright, com o nome do passo, zoom na ação e a legenda que acende no ritmo da voz; horizontal (1920x1080) e vertical (1080x1920, para as redes). As cenas e a narração estão em `exemplo-todo-video.md`. A imagem junta um quadro de cada gravação (`npm run quadros`). Os vídeos ficam fora do repositório; `npm run demo:todos` grava a jornada e `node tools/build.js projetos/exemplo-todo` monta as cenas. Fonte: "Material de divulgação".
 
 ### E um carrossel para as redes sociais.
 
@@ -120,7 +120,7 @@ Cores e fonte saem do tema do projeto. Poucos componentes, com contraste conferi
 **Imagem:** imagens/07-carrossel.png
 **Crédito:** carrossel gerado do Markdown
 
-> Notas: 10 cards de 1080x1350, escritos a partir do resumo (TL;DR) do pitch. A legenda do post e o texto alternativo de cada card saem junto. A imagem é a folha de contato: `node tools/md2cards.js projetos/exemplo-todo --folha projetos/exemplo-todo/imagens/07-carrossel.png`. Publicar é com a pessoa.
+> Notas: 10 cards de 1080x1350, escritos a partir do resumo (TL;DR) do pitch, com layouts de arquivo (frase, tela, número...) que o catálogo mostra (`--catalogo`). Os mesmos cards, animados, viram um reel 9:16. A legenda do post e o texto alternativo de cada card saem junto. A imagem é a folha de contato: `node tools/md2cards.js projetos/exemplo-todo --folha projetos/exemplo-todo/imagens/07-carrossel.png`. Publicar é com a pessoa.
 
 ### Depois do pitch, as especificações.
 

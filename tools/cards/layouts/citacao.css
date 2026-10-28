@@ -1,0 +1,12 @@
+/* @layout {"escuro": true, "descricao": "O título é uma citação (até 25 palavras), com aspas grandes, e **Autor:** vira a assinatura."}
+@exemplo
+### Uma decisão, não uma estimativa.
+**Layout:** citacao
+**Autor:** O pitch, sobre o apetite
+*/
+.l-citacao .miolo{height:100%;display:flex;flex-direction:column;justify-content:center}
+.l-citacao h2{font-size:80px;font-weight:700;line-height:1.15;margin:0}
+.l-citacao h2::before{content:"\201C";display:block;height:.55em;font-size:240px;line-height:1;color:var(--destaque);font-family:Georgia,serif}
+.claro.l-citacao h2::before{color:var(--primaria)}
+.l-citacao .autor{font-size:38px;color:var(--destaque)}
+.claro.l-citacao .autor{color:var(--primaria-acao)}

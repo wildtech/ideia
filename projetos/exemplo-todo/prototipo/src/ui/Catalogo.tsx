@@ -6,6 +6,12 @@ import { Alerta, Botao, Campo, Cartao, EstadoVazio, type VarianteBotao } from ".
 
 const TOKENS = ["fundo", "texto", "titulo", "suave", "cartao", "borda", "primaria", "acento", "primaria-acao", "acento-acao", "fundo-escuro", "destaque"] as const;
 
+const ESPACOS = [1, 2, 3, 4, 5, 6] as const;
+const TIPOS = ["tipo-p", "tipo-m", "tipo-g", "tipo-gg", "tipo-ggg"] as const;
+const RAIOS = ["raio-p", "raio", "raio-g"] as const;
+const DURACOES = ["duracao-rapida", "duracao", "duracao-lenta"] as const;
+const MEDIDAS = [...ESPACOS.map((n) => `espaco-${n}`), ...TIPOS, ...RAIOS, ...DURACOES, "curva", "sombra", "alvo-toque"];
+
 const VARIANTES: { id: VarianteBotao; uso: string }[] = [
   { id: "primario", uso: "A ação principal da tela. Uma por tela." },
   { id: "padrao", uso: "Ações comuns, como concluir ou voltar." },
@@ -36,7 +42,10 @@ export function Catalogo() {
   const [valores, setValores] = useState<Record<string, string>>({});
   useEffect(() => {
     const estilo = getComputedStyle(document.documentElement);
-    setValores(Object.fromEntries(TOKENS.map((t) => [t, estilo.getPropertyValue(`--${t}`).trim().toUpperCase()])));
+    setValores({
+      ...Object.fromEntries(TOKENS.map((t) => [t, estilo.getPropertyValue(`--${t}`).trim().toUpperCase()])),
+      ...Object.fromEntries(MEDIDAS.map((t) => [t, estilo.getPropertyValue(`--${t}`).trim()])),
+    });
   }, []);
   const cor = (ref: string) => (ref.startsWith("#") ? ref : valores[ref] ?? "#000000");
 
@@ -54,6 +63,50 @@ export function Catalogo() {
             <span>{valores[t]}</span>
           </div>
         ))}
+      </div>
+
+      <h2>Espaçamento</h2>
+      <div className="ds-degraus">
+        {ESPACOS.map((n) => (
+          <div key={n} className="ds-degrau">
+            <code>--espaco-{n}</code>
+            <span className="ds-degrau__barra" style={{ width: `calc(var(--espaco-${n}) * 4)` }} />
+            <span>{valores[`espaco-${n}`]}</span>
+          </div>
+        ))}
+      </div>
+
+      <h2>Tipo</h2>
+      <div className="ds-degraus">
+        {TIPOS.map((t) => (
+          <div key={t} className="ds-degrau">
+            <code>--{t}</code>
+            <span style={{ fontSize: `var(--${t})` }}>Lista de tarefas</span>
+            <span>{valores[t]}</span>
+          </div>
+        ))}
+      </div>
+
+      <h2>Forma</h2>
+      <div className="ds-raios">
+        {RAIOS.map((r) => (
+          <span key={r} className="ds-raio" style={{ borderRadius: `var(--${r})` }}>
+            --{r}: {valores[r]}
+          </span>
+        ))}
+        <span className="ds-raio" style={{ boxShadow: "var(--sombra)", border: 0 }}>
+          --sombra
+        </span>
+      </div>
+
+      <h2>Movimento</h2>
+      <p className="ds-nota">
+        Passe o mouse (ou o foco) no trilho: o quadrado anda com <code>--duracao-lenta</code> ({valores["duracao-lenta"]}) e a curva{" "}
+        <code>{valores.curva}</code>. As mesmas durações e a mesma curva animam os reels e o vídeo. Rápida: {valores["duracao-rapida"]}; normal:{" "}
+        {valores.duracao}.
+      </p>
+      <div className="ds-mov-trilho" tabIndex={0} aria-label="Exemplo de movimento">
+        <div className="ds-mov" />
       </div>
 
       <h2>Contraste</h2>

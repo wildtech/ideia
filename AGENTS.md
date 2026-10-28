@@ -33,10 +33,12 @@ ideia/
 ├── roteiros/                 [base] conjuntos de perguntas que guiam a escrita e a entrevista (um .txt por roteiro)
 │   ├── iniciativa.txt, businessmodelcanvas.txt, 10-20-30.txt, pdi.txt, pitch.txt
 │   ├── tldr.txt              resumo (TL;DR): citação no topo do documento e apresentação curta
-│   └── divulgacao.txt        material de divulgação: carrossel de redes sociais, a partir do pitch e do resumo
-├── guias/                    [base] textos de apoio sobre como fazer bem uma coisa (ex.: pitch.md, slides.md, slides-zen-lessig.md, video-demonstracao.md, seguranca.md e design-system.md)
+│   ├── divulgacao.txt        material de divulgação: carrossel de redes sociais, a partir do pitch e do resumo
+│   └── video.txt             vídeo em cenas: abertura, cenário, a jornada do protótipo e a chamada, com narração
+├── guias/                    [base] textos de apoio sobre como fazer bem uma coisa (ex.: pitch.md, slides.md, slides-zen-lessig.md, cards.md, video-demonstracao.md, seguranca.md e design-system.md)
 ├── temas/                    [base e conteúdo] identidade visual; uma pasta por tema
-│   └── <tema>/               tema.json (cores, fontes, logo, rodapé, opções) e, se houver, base.docx, referencia.pdf e slides.css
+│   └── <tema>/               tema.json (cores, fontes, logo, rodapé, tokens, opções) e, se houver, base.docx, referencia.pdf,
+│                             slides.css, cards.css e cards/ (layouts de card só deste tema)
 │       neutro (base dos temas simples), generico (padrão), wildtech (exemplo de tema com marca),
 │       exemplo-leve (exemplo de tema simples: só cores e logo), exemplo-cc (tema simples com o logo da Creative Commons,
 │       usado no projeto exemplo-cc), exemplo-todo (tema simples com as cores do exemplo-cc e estilo zen-lessig,
@@ -47,17 +49,22 @@ ideia/
 │   ├── md2docx.js            Markdown → docx
 │   ├── md2html.js            Markdown → html (documento)
 │   ├── md2slides.js          Markdown → html (apresentação, reveal.js)
-│   ├── md2cards.js           Markdown → carrossel de cards 4:5 (html, png por card e pdf), para redes sociais
-│   ├── chrome.js             localiza o Chrome (usado pelo md2pdf.js e pelo md2cards.js)
+│   ├── md2cards.js           Markdown → carrossel de cards (html, png por card, pdf e o reel em mp4), em 4:5, 1:1, 9:16...
+│   ├── md2video.js           Markdown → vídeo em cenas (mp4 e srt): cartões animados e a jornada gravada do protótipo
+│   ├── cards/                o motor dos cards (motor.js) e os layouts, um .css por layout (cards/layouts/)
+│   ├── novo.js               gera estruturas: projeto, tema, carrossel, vídeo e layout de card
+│   ├── chrome.js             localiza o Chrome (usado pelo md2pdf.js, pelo md2cards.js e pelo cdp.js)
+│   ├── cdp.js                conversa com o Chrome (DevTools Protocol) para fotografar e gravar quadro a quadro
 │   ├── md2pdf.js             html → pdf (Chrome headless; documentos e slides)
 │   ├── build.js              gera as saídas de um projeto, conforme o projeto.json
 │   ├── verificar.js          confere segredos e versões (Node e pacotes) de um protótipo
-│   ├── tema-tokens.js        gera o CSS de tokens (cores e fonte) de um protótipo a partir do tema do projeto
+│   ├── tokens.js             os tokens do design system a partir do tema: cor, fonte, forma, espaço, tipo e movimento
+│   ├── tema-tokens.js        gera o CSS de tokens de um protótipo a partir do tema do projeto (usa o tokens.js)
 │   └── package.json          dependências (docx, jszip, pngjs, reveal.js)
 └── projetos/                 [conteúdo] um projeto por pasta
     ├── exemplo-ideia/        [base] projeto de exemplo, que descreve o próprio template (tema da Wildtech)
     ├── exemplo-cc/           [base] segundo exemplo, com um tema simples: a escolha da licença Creative Commons dos documentos
-    ├── exemplo-todo/         [base] terceiro exemplo, de software: um pitch com TL;DR, slides e um protótipo (prototipo/)
+    ├── exemplo-todo/         [base] terceiro exemplo, de software: um pitch com TL;DR, slides, carrossel, vídeo e um protótipo (prototipo/)
     └── <projeto>/
         ├── projeto.json          tema, saídas e artefatos do projeto
         ├── <projeto>.md          documento completo (fonte da verdade), com o roteiro no topo e um resumo (TL;DR)
@@ -78,7 +85,7 @@ ideia/
 | **Guia** | Como fazer bem? Complementa um roteiro, mas não é um | `guias/` |
 | **Tema** | Como parece? Logo, cores, fontes e rodapé; serve a documentos e a apresentações | `temas/<tema>/` |
 | **Projeto** | Qual é o assunto? | `projetos/<projeto>/` |
-| **Saída** | O que é gerado a partir de um `.md`: tipo (documento, apresentação ou carrossel) e formatos (docx, html, png, pdf). Vai para `out/` e é descartável | `projeto.json` e `out/` |
+| **Saída** | O que é gerado a partir de um `.md`: tipo (documento, apresentação, carrossel ou vídeo) e formatos (docx, html, png, pdf, mp4). Vai para `out/` e é descartável | `projeto.json` e `out/` |
 | **Artefato** | Saída **persistente** derivada de um documento (ex.: protótipo, código). Fica versionada no projeto e evolui por conta própria | `projeto.json` e pastas do projeto |
 
 - **Roteiros disponíveis:**
@@ -91,11 +98,12 @@ ideia/
 | `pitch` | Validar um problema e uma solução antes das specs, no formato Shape Up (problema, apetite, solução, armadilhas, fora de escopo); o guia `guias/pitch.md` complementa |
 | `pdi` | Montar um plano de desenvolvimento individual, com o olhar da aprendizagem autodirigida |
 | `tldr` | Resumir um documento: citação no topo do documento e apresentação curta |
-| `divulgacao` | Divulgar o que foi validado: um carrossel de redes sociais (cards 4:5), escrito a partir do pitch e do resumo (TL;DR); a legenda do post sai junto |
+| `divulgacao` | Divulgar o que foi validado: um carrossel de redes sociais (cards 4:5, ou outro formato, e o reel), escrito a partir do pitch e do resumo (TL;DR); a legenda do post sai junto |
+| `video` | Contar em vídeo o que foi validado: cenas de cartão animado e trechos da jornada do protótipo, com narração e legendas, em 16:9 e 9:16 |
 
   Para uma ideia de negócio nova, o caminho natural é o Business Model Canvas primeiro e o 10-20-30 depois, para apresentar o que o canvas organizou. A pessoa também pode criar os seus (ver "Criando um novo roteiro").
 - **Documento ou apresentação:** o documento é lido sozinho (completo); a apresentação é falada (uma ideia por slide). São arquivos separados, e a apresentação é escrita a partir do resumo, não convertida do documento. O roteiro sugere qual faz mais sentido: iniciativa e PDI são documentos; 10-20-30 e pitch são pensados para slides.
-- **Carrossel:** terceira forma de contar a mesma ideia, para **divulgação** (um post de redes sociais, em cards). Como o resumo, é escrito a partir do documento de origem e **não inventa nada**: tudo o que está nos cards existe no pitch. A pessoa é quem publica; o assistente nunca posta. Ver "Carrosséis".
+- **Carrossel:** terceira forma de contar a mesma ideia, para **divulgação** (um post de redes sociais, em cards). Como o resumo, é escrito a partir do documento de origem e **não inventa nada**: tudo o que está nos cards existe no pitch. A pessoa é quem publica; o assistente nunca posta. Ver "Carrosséis". O **vídeo em cenas** é a quarta forma, com as mesmas regras (ver "Vídeo de demonstração").
 - **Artefatos** não são gerados pelas ferramentas. O `projeto.json` os registra, com a `origem` (o documento de onde nasceram), para manter a rastreabilidade. O documento é a verdade sobre a **intenção** (o que e por quê); o artefato, sobre o **comportamento**. Quando um mudar de forma relevante, revise o outro. O artefato de software mais comum é o **protótipo**, e ele tem uma definição padrão (ver "Protótipos").
 
 ## Onboarding (passo a passo para o assistente)
@@ -114,7 +122,7 @@ Passos:
 2. **Conhecimento complementar.** Leia o `AGENTS-extra.md`, se existir. Se for o **primeiro projeto** e ele não existir, ofereça criá-lo a partir do `AGENTS-extra.example.md` (ver "Conhecimento complementar"), perguntando só o que a pessoa souber.
 3. **Escolher o roteiro.** Pergunte o que a pessoa quer fazer e recomende: documentar uma iniciativa (iniciativa), modelar uma ideia de negócio (businessmodelcanvas), preparar uma apresentação (10-20-30), validar uma ideia antes das specs (pitch) ou montar um plano de desenvolvimento individual (pdi). Se ela quiser outro modelo, veja "Criando um novo roteiro".
 4. **Perguntar como será usado:** **lido** (documento), **apresentado** (slides) ou os dois. Use a sugestão do roteiro como ponto de partida.
-5. **Escolher o tema.** Se a pessoa não indicar um (nem o `AGENTS-extra.md`), **use o genérico**. Se ela quiser a identidade visual dela, crie um **tema simples**: pergunte as **cores** (a principal e, se quiser, a de destaque), o **logo** (um arquivo png ou jpg, se tiver), a fonte e o texto do rodapé, e crie `temas/<nome>/` com um `tema.json` que herda do `neutro` (ver "Temas"). **Se ela não souber as cores, proponha as da paleta sugerida em `guias/slides.md`** (com o contraste conferido) e deixe-a confirmar ou trocar. Se o tema for usado em **apresentações**, pergunte o **estilo** (`padrao` ou `zen-lessig`, ver `guias/slides.md`) e registre `"estilo"` no `tema.json`. O da Wildtech é só um exemplo de tema com marca: não o use para a pessoa.
+5. **Escolher o tema.** Se a pessoa não indicar um (nem o `AGENTS-extra.md`), **use o genérico**. Se ela quiser a identidade visual dela, crie um **tema simples**: pergunte as **cores** (a principal e, se quiser, a de destaque), o **logo** (um arquivo png ou jpg, se tiver), a fonte e o texto do rodapé, e crie `temas/<nome>/` com um `tema.json` que herda do `neutro` (ver "Temas"; `node tools/novo.js tema <nome> --primaria <cor> [--destaque <cor>] [--logo <arquivo>]` cria e confere o contraste). **Se ela não souber as cores, proponha as da paleta sugerida em `guias/slides.md`** (com o contraste conferido) e deixe-a confirmar ou trocar. Se o tema for usado em **apresentações**, pergunte o **estilo** (`padrao` ou `zen-lessig`, ver `guias/slides.md`) e registre `"estilo"` no `tema.json`. O da Wildtech é só um exemplo de tema com marca: não o use para a pessoa.
 6. **Perguntar o necessário para o documento:**
    - nome do projeto (vira o nome da pasta e do arquivo; sem espaços e acentos, em minúsculas, com hífen);
    - título da iniciativa;
@@ -130,6 +138,8 @@ Passos:
 12. **Combinar a continuidade.** O documento é vivo: a pessoa volta com novas informações e você atualiza o `.md` e gera de novo.
 
 ## Criando um novo projeto (sem o passo a passo)
+
+O atalho é `node tools/novo.js projeto <projeto> --roteiro <roteiro> [--tema <tema>]`, que faz os passos 1 a 3 com uma seção por item do roteiro (tudo "A definir"). À mão:
 
 1. Crie `projetos/<projeto>/` e `projetos/<projeto>/<projeto>.md`, seguindo um roteiro (padrão: `roteiros/iniciativa.txt`) e as regras abaixo. Declare o roteiro no topo (`**Roteiro:** iniciativa`).
 2. Crie `projetos/<projeto>/projeto.json`, seguindo o modelo de "Projeto e saídas" (tema padrão: `generico`).
@@ -217,13 +227,17 @@ Não use `##`, imagens (`![]()`), blocos de código ou HTML: o compilador não o
 
 ### Carrosséis (`<projeto>-carrossel.md`)
 
-Um carrossel é um conjunto de **cards 4:5** (1080x1350, o formato do feed do Instagram) com uma ideia por card, no tema do projeto. Siga o `roteiros/divulgacao.txt`: gancho, problema, solução, como funciona (um card por passo, com um print do protótipo), o que não faz, chamada para ação e a legenda do post.
+Um carrossel é um conjunto de **cards** (por padrão 4:5, 1080x1350, o formato do feed do Instagram) com uma ideia por card, no tema do projeto. Siga o `roteiros/divulgacao.txt`: gancho, problema, solução, como funciona (um card por passo, com um print do protótipo), o que não faz, chamada para ação e a legenda do post. O guia é o `guias/cards.md`.
 
 - `# Título` é o card de capa (e, nas linhas abaixo, o subtítulo). Cada `### Título` é **um card**. Para o carrossel valem as mesmas regras de escrita dos slides: poucas palavras e uma ideia por card. O compilador avisa quando a frase passa de 14 palavras ou o card, de 45.
-- **Layouts**, com `**Layout:**`: `texto` (padrão: sem texto abaixo, o título vira uma frase grande; com texto ou lista, o bloco fica no meio), `frase` e `frase-escura`, `tela` (texto de um lado e uma captura de celular do outro, com `**Imagem:**` e `**Foco:** topo`, `meio` ou `base`, que diz que parte da captura aparece) e `fechamento` (o último card, a chamada para ação).
+- **Layouts**, com `**Layout:**`: `texto` (padrão: sem texto abaixo, o título vira uma frase grande; com texto ou lista, o bloco fica no meio), `frase` e `frase-escura`, `numero` (um número grande e o que ele quer dizer), `citacao` (com `**Autor:**`), `passos` (lista numerada em passos), `antes-depois` (duas colunas, cada uma aberta por um `####`), `tela` (texto de um lado e uma captura de celular do outro, com `**Imagem:**` e `**Foco:** topo`, `meio` ou `base`), `duas-telas` (duas capturas, com duas linhas `**Imagem:**`), `foto` (a imagem cobre o card) e `fechamento` (o último card, a chamada para ação). **Para ver todos no tema do projeto:** `node tools/md2cards.js projetos/<projeto> --catalogo`.
+- **Layouts são arquivos:** um `.css` por layout em `tools/cards/layouts/` (ou em `temas/<tema>/cards/`, só para aquele tema), com um cabeçalho que o descreve e traz um exemplo, e só com os tokens do tema. Para criar um: `node tools/novo.js layout <nome> [--tema <tema>]`. Um ajuste fino de todos os cards de um tema vai em `temas/<tema>/cards.css`.
+- **Formato:** `**Formato:** 4:5` na capa (ou `"formato"` na saída do `projeto.json`): `4:5`, `1:1`, `9:16` (stories e reels), `16:9` e `1.91:1` (um link compartilhado). Os layouts se ajustam a cada um.
+- **Reel:** com `"mp4"` nos formatos, os cards viram um vídeo, com entradas animadas e transições (`**Transição:** desliza`, `fade`, `zoom` ou `corte`; `**Duração:**` por card; `**Música:**` na capa, com licença). As durações e a curva vêm dos tokens de movimento do tema. Precisa do `ffmpeg`.
 - Diretivas, como nos slides: `**Imagem:**`, `**Crédito:**`, `**Fundo:** escuro` ou `claro` e `**Oculto:** sim`.
 - `> Notas:` é para quem produz e não aparece no card. `> Legenda:` é o texto do post; vai para `legenda.txt`. `> Alt:` é o **texto alternativo** do card (cada card é uma imagem, e quem não a vê precisa saber o que ela mostra); vai para `alt.txt`, e o compilador avisa dos cards sem ele.
-- No `projeto.json`, a saída é `{ "fonte": "x-carrossel.md", "tipo": "carrossel", "formatos": ["html", "png", "pdf"] }`. Sai um PNG por card (`out/x-carrossel/card-01.png`...), o html com todos os cards, o pdf, a legenda e o texto alternativo.
+- No `projeto.json`, a saída é `{ "fonte": "x-carrossel.md", "tipo": "carrossel", "formatos": ["html", "png", "pdf"] }`. Sai um PNG por card (`out/x-carrossel/card-01.png`...), o html com todos os cards, o pdf, a legenda e o texto alternativo. Para o reel em 9:16, acrescente `{ "fonte": "x-carrossel.md", "tipo": "carrossel", "formato": "9:16", "formatos": ["mp4"] }` (sai `out/x-carrossel-9x16.mp4`).
+- **Para começar um carrossel:** `node tools/novo.js carrossel projetos/<projeto>` cria o esqueleto, com um card por parte do roteiro e a fonte de cada um, e registra a saída.
 - **Antes de publicar**, confira: dados fictícios ou autorizados, créditos das imagens e nada de segredo, dado pessoal ou de dentro da organização (ver "Segurança e privacidade"). **Publicar é com a pessoa.**
 
 ## Projeto e saídas (`projeto.json`)
@@ -262,9 +276,9 @@ Use esta stack, a menos que a pessoa ou o `AGENTS-extra.md` decida outra. Regist
 | API | Node, com `tsx` no desenvolvimento | Uma API própria, pequena, que só conhece o contrato de dados |
 | Banco | **SQLite**, pelo módulo `node:sqlite` embutido no Node | Sem dependência nativa; exige Node 22.13 ou mais novo (`"engines"` no `package.json`) |
 | Testes | **Vitest**, e `tsc --noEmit` para os tipos | As regras do negócio e a API são o que mais precisa de teste |
-| Jornadas | **Playwright**, usando o Chrome já instalado (`channel: "chrome"`) | Repetem o fluxo na tela. Scripts `test:e2e`, `demo` (**grava a jornada em um vídeo narrado**, com legendas, cursor e voz, em `demo/demo.mp4`; `demo:vertical` faz a versão **9:16** de 1080x1920, e `demo:todos` as duas) e `capturas` (refaz os prints dos slides; `capturas:mobile` os refaz com a tela de um celular). A narração vem de `e2e/narracao.ts`; a voz é um áudio seu em `narracao/<trecho>.wav`, a voz do macOS ou, sem nenhuma, só legendas. Montado com o `ffmpeg`. Sobem a própria API e a própria interface, em portas e com um banco só deles (3101, 5273 e `data/e2e.db`) |
+| Jornadas | **Playwright**, usando o Chrome já instalado (`channel: "chrome"`) | Repetem o fluxo na tela. Scripts `test:e2e`, `demo` (**grava a jornada em um vídeo narrado**, com legendas, cursor e voz, em `demo/demo.mp4`; `demo:vertical` faz a versão **9:16** de 1080x1920, e `demo:todos` as duas) e `capturas` (refaz os prints dos slides; `capturas:mobile` os refaz com a tela de um celular). A narração vem do `<projeto>-video.md` (lido por `e2e/narracao.ts`), e a jornada aplica legenda, nome do passo e zoom de cada cena; a voz é um áudio seu em `narracao/<trecho>.wav`, a voz do macOS ou, sem nenhuma, só legendas. Montado com o `ffmpeg`. Sobem a própria API e a própria interface, em portas e com um banco só deles (3101, 5273 e `data/e2e.db`) |
 | Desenvolvimento | `concurrently` sobe a API (porta 3001) e a interface (porta 5173) | Scripts: `dev`, `dev:api`, `dev:web`, `build`, `typecheck` e `test` |
-| Design system | **Tokens gerados do tema** (`src/tokens.css`, por `npm run tokens`) e **componentes** em `src/ui/` | Sugestão padrão: as cores e a fonte vêm do tema do projeto, as mesmas dos documentos, dos slides e do carrossel. Ver "Design system do protótipo" |
+| Design system | **Tokens gerados do tema** (`src/tokens.css`, por `npm run tokens`) e **componentes** em `src/ui/` | Sugestão padrão: cor, fonte, forma, espaço, tipo e movimento vêm do tema do projeto, os mesmos dos documentos, dos slides, do carrossel e do vídeo. Ver "Design system do protótipo" |
 
 As portas da API e da interface podem ser trocadas por variáveis de ambiente (`PORT`, `API_URL` e `WEB_PORT`), para as jornadas não atrapalharem quem está com o `npm run dev` aberto. Sugeridos, a validar caso a caso: ESLint, Prettier e integração contínua (por exemplo, GitHub Actions).
 
@@ -288,11 +302,11 @@ O protótipo existe para **ser jogado fora ou substituído**, então a arquitetu
 
 Todo protótipo **já nasce com um design system pequeno**, como sugestão padrão (a pessoa pode dispensá-lo, e o `AGENTS-extra.md` pode trocá-lo). O `exemplo-todo` é o exemplo, e o `guias/design-system.md` explica o porquê e o passo a passo.
 
-- **O tema é a fonte das cores e da fonte.** O `src/tokens.css` é **gerado** do tema do projeto (`npm run tokens`, que usa `tools/tema-tokens.js`) e **não se edita à mão**; `npm run tokens:conferir`, que o `npm run build` já roda, falha se ele estiver desatualizado. Trocar de marca é trocar o tema e gerar de novo.
+- **O tema é a fonte das cores, da fonte e das medidas.** O `src/tokens.css` é **gerado** do tema do projeto (`npm run tokens`, que usa `tools/tema-tokens.js` e `tools/tokens.js`) e **não se edita à mão**. Além das cores, traz raio, sombra, espaçamento, escala de tipo, alvo de toque e movimento (durações e curva), que o tema pode ajustar em `"tokens"`; `npm run tokens:conferir`, que o `npm run build` já roda, falha se ele estiver desatualizado. Trocar de marca é trocar o tema e gerar de novo.
 - **O tema também dita os materiais:** `fundoEscuro` e `destaque` (no `tema.json`) são o fundo dos slides e dos cards escuros e a cor dos links sobre ele, e viram tokens do protótipo. Sem isso, saem preto e branco. Se o projeto não tem tema, crie um tema simples antes (ver "Temas").
-- **Componentes em `src/ui/`**, só com os tokens: `Botao`, `Campo`, `Cartao`, `EstadoVazio` e `Alerta`. As telas usam esses componentes, sem `<button>` solto nem cor escrita à mão. **Crie um componente só quando uma tela precisar dele.**
+- **Componentes em `src/ui/`**, só com os tokens: `Botao`, `Campo`, `Cartao`, `EstadoVazio` e `Alerta`. As telas usam esses componentes, sem `<button>` solto nem cor, raio, espaço ou duração escritos à mão. **Crie um componente só quando uma tela precisar dele.**
 - **Acessibilidade:** contraste de pelo menos 4,5:1 (o gerador avisa e, nos botões preenchidos, escurece a cor do tema só até chegar lá), foco visível, rótulo sempre visível no campo, erro anunciado a leitores de tela e alvo de toque de pelo menos 44 px no celular.
-- **Catálogo (`/ds`)**, só no desenvolvimento: mostra os tokens, o contraste dos pares de cores e os componentes nos seus estados. Uma jornada do Playwright confere o contraste.
+- **Catálogo (`/ds`)**, só no desenvolvimento: mostra as cores, o espaçamento, a escala de tipo, a forma, o movimento, o contraste dos pares de cores e os componentes nos seus estados. Uma jornada do Playwright confere o contraste.
 - **O que não é:** uma biblioteca para manter (o protótipo existe para ser jogado fora) nem o design system da plataforma de destino, que pode ser outro. O protótipo mostra a **intenção** (cores, estados, contraste e toque).
 
 ### Dados e repositório
@@ -319,11 +333,12 @@ Todo protótipo tem um `README.md` com, nesta ordem: **como rodar** (comandos e 
 
 ### Vídeo de demonstração (opcional)
 
-O protótipo pode gerar um **vídeo de demonstração narrado** a partir da jornada principal do Playwright: `npm run demo` grava `demo/demo.mp4`, com legendas, cursor e voz. O roteiro da narração está em `e2e/narracao.ts` (o cenário vem do pitch). Precisa do **Google Chrome** (que as jornadas já exigem) e do **`ffmpeg`**.
+O projeto pode ter um **vídeo em cenas**, escrito em `<projeto>-video.md` (roteiro `roteiros/video.txt`): cada `###` é um **cartão animado** (os layouts dos cards, no tema) ou, com `**Cena:** jornada`, um trecho da **jornada do protótipo** gravada pelo Playwright. A narração fica no próprio Markdown (`> Narração:`) e vira voz e legenda (as palavras acendem no ritmo da voz); `**Trecho:**` liga a cena à voz e à ação de mesmo nome em `e2e/demo.spec.ts`, e `**Zoom:**` aproxima a tela da ação. Dois passos: `npm run demo:todos` no protótipo (grava a jornada, com legendas, cursor, nome do passo, zoom e voz, em 16:9 e 9:16, e escreve `demo/cenas.json`) e `node tools/build.js projetos/<projeto>` (saída `{ "fonte": "x-video.md", "tipo": "video", "formatos": ["mp4"] }`: monta as cenas com transições, e sai `out/x-video.mp4`, `out/x-video-9x16.mp4` e as legendas `.srt`). `**Música:**` na capa põe uma música de fundo que abaixa quando a voz entra. Sem protótipo, o vídeo sai só com cartões. Precisa do **Google Chrome** e do **`ffmpeg`**. Para começar: `node tools/novo.js video projetos/<projeto>`.
 
 - **A voz**, em ordem de preferência: **a sua** (`narracao/<trecho>.wav`, ou uma gravação única em `narracao/voz.wav` que o `npm run dividir` separa nos trechos; a sincronia é automática, porque a duração de cada trecho comanda o ritmo), **uma voz sintética** (a do macOS, por `say`, ou qualquer programa de linha de comando pela variável `TTS_COMANDO`, o caminho no Windows e no Linux) ou **nenhuma** (só legendas).
 - **Git:** `demo/` e `test-results/` ficam fora do git; `narracao/` (as suas gravações) pode ser versionada; o vídeo **aprovado** vai para `projetos/<projeto>/videos/` e é registrado no `projeto.json` como artefato `"tipo": "video"`.
-- **Cuidado:** voz sintética tem termos de uso, então o vídeo com voz do sistema não vai para o repositório público do template.
+- **Cuidado:** voz sintética tem termos de uso, então o vídeo com voz do sistema não vai para o repositório público do template. Música, só com licença que permita o uso, registrada nas notas.
+- **Não invente:** como no carrossel, tudo o que o vídeo diz e mostra existe no documento de origem.
 - **Ofereça o vídeo quando a pessoa pedir uma demonstração**; não o grave sem pedir. O passo a passo (instalação, gravar a própria voz, Windows e Linux) está em `guias/video-demonstracao.md`.
 
 ### O que o protótipo valida, e o que não valida
@@ -407,6 +422,7 @@ O `temas/generico/tema.json` é o modelo de tema completo e o tema **padrão**. 
 | `estilo` | estilo das apresentações: `"padrao"` (slides de título e conteúdo) ou `"zen-lessig"` (um slide, uma ideia: o slide sem layout vira frase, a capa é escura). Ver `guias/slides.md` | `"padrao"` |
 | `numerarSlides` | mostra o número do slide no canto inferior esquerdo (tela e PDF); útil para apontar ajustes. Pode ir só em `ajustes` do `projeto.json` | `false` |
 | `fundoEscuro` e `destaque` (dentro de `colors`) | cor dos slides e dos cards escuros e cor dos **links** sobre eles, nas apresentações e nos carrosséis (nos slides claros, os links usam `primary`; em todos são sublinhados). O protótipo também os lê, como tokens (ver "Design system do protótipo") | `000000` e `FFFFFF` |
+| `tokens` | forma, espaço, tipo e movimento do design system: `{ "raio": 6, "espaco": 8, "escalaTipo": 1.25, "alvoToque": 44, "sombra": "...", "movimento": { "rapido": 150, "normal": 300, "lento": 600, "curva": "..." } }`, tudo opcional. Valem para o protótipo, os cards, o reel e o vídeo (ver `guias/design-system.md`) | os de `tools/tokens.js` |
 
 ### Criando um tema a partir de arquivos existentes
 
@@ -435,7 +451,9 @@ node tools/build.js projetos/exemplo-ideia
 - Para gerar um formato só: `node tools/md2docx.js`, `node tools/md2html.js`, `node tools/md2slides.js` ou `node tools/md2pdf.js` (o `md2pdf.js` exige o HTML já gerado). Formato: `node tools/md2docx.js projetos/<pasta> <arquivo.md> <saida.docx>` (o mesmo vale para os outros; o `md2pdf.js` recebe o `.html` e a saída `.pdf`).
 - **docx:** mantém cabeçalho, rodapé e a página do template e troca só o corpo do documento.
 - **html (documento):** arquivo único e autocontido, no visual do template. O logo é extraído do `base.docx` e embutido.
-- **carrossel:** `md2cards.js` gera um html com todos os cards, um PNG de 1080x1350 por card, um pdf (uma página por card), a `legenda.txt` e o `alt.txt`, usando o Chrome.
+- **carrossel:** `md2cards.js` gera um html com todos os cards, um PNG por card (1080x1350 no 4:5), um pdf (uma página por card), o reel em mp4 (se pedido), a `legenda.txt` e o `alt.txt`, usando o Chrome.
+- **vídeo:** `md2video.js` grava os cartões quadro a quadro com o Chrome, recorta a jornada gravada pelo protótipo e monta tudo com o `ffmpeg`, um mp4 e um srt por formato.
+- **Estruturas novas:** `node tools/novo.js projeto <nome> --roteiro <roteiro>` (projeto com uma seção por item do roteiro), `tema <nome> --primaria <cor>` (tema simples, com o contraste conferido), `carrossel <pasta>`, `video <pasta>` e `layout <nome>`. Nada é sobrescrito, e o que falta fica "A definir".
 - **html (apresentação):** arquivo único com o reveal.js embutido, funciona offline. Navegue com as setas; `?showNotes=true` mostra as notas.
 - **pdf:** gerado a partir do html, com o Chrome (A4 com número de página, para documentos; uma página 16:9 por slide, para apresentações). O pdf dos slides usa uma **impressão estática**, sem JavaScript (o html é aberto com `?static-print`), porque o modo de impressão do reveal depende de temporização e às vezes sai em branco no Chrome headless. O Chrome, o Chromium ou o Edge são procurados nos caminhos padrão de macOS, Windows e Linux; se não forem encontrados, defina a variável `CHROME` com o caminho do executável.
 - As tabelas do `.md` viram o "box" do template (cabeçalho colorido e corpo cinza).

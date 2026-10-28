@@ -1,0 +1,14 @@
+/* @layout {"descricao": "Uma lista numerada (1. 2. 3.) em passos, com o número em um círculo da cor da marca. Até 4 passos curtos."}
+@exemplo
+### Como funciona
+**Layout:** passos
+1. Anote a tarefa
+2. Conclua quando fizer
+3. Limpe o que está feito
+*/
+.l-passos .miolo{height:100%;display:flex;flex-direction:column;justify-content:center}
+.l-passos .texto ol,.l-passos .texto ul{list-style:none;padding:0;counter-reset:passo;display:grid;gap:34px}
+.l-passos .texto li{counter-increment:passo;display:flex;align-items:center;gap:32px;margin:0;padding:0;font-weight:600}
+.l-passos .texto li::before{content:counter(passo);flex:none;width:92px;height:92px;border-radius:50%;display:grid;place-items:center;background:var(--primaria-acao);color:#fff;font-weight:800}
+.l-passos .texto ul li::before{content:"✓"}
+.escuro.l-passos .texto li::before{background:var(--destaque);color:var(--fundo-escuro)}

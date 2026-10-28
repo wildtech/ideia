@@ -44,7 +44,7 @@ Se o Chrome não for encontrado, defina a variável `CHROME` com o caminho do ex
 | **Guia** | Texto de apoio sobre como fazer bem uma coisa | `guias/` |
 | **Tema** | Identidade visual: logo, cores, fontes e rodapé | `temas/` |
 | **Projeto** | Um assunto, com o documento principal e o material de apoio | `projetos/` |
-| **Saída** | O que é gerado de um documento: documento (docx, html, pdf), apresentação (html, pdf) ou carrossel (html, png por card, pdf) | `projeto.json` e `out/` |
+| **Saída** | O que é gerado de um documento: documento (docx, html, pdf), apresentação (html, pdf), carrossel (html, png por card, pdf e o reel em mp4) ou vídeo em cenas (mp4 e legendas srt) | `projeto.json` e `out/` |
 | **Artefato** | Saída persistente derivada de um documento, como um protótipo | pastas do projeto |
 
 ## O que vem aqui
@@ -53,17 +53,17 @@ Se o Chrome não for encontrado, defina a variável `CHROME` com o caminho do ex
 | :--- | :--- |
 | `AGENTS.md` | Instruções para o agente de IA: onboarding, regras, formato do Markdown, temas e geração |
 | `AGENTS-extra.example.md` | Modelo do arquivo complementar com o que é específico de você ou da sua organização |
-| `roteiros/` | Roteiros: iniciativa, Business Model Canvas, 10-20-30, PDI, pitch e resumo (TL;DR) |
-| `guias/` | Guias de apoio: como escrever um pitch, como escrever slides (dois estilos, imagens e cores sugeridas; o estilo Presentation Zen e método Lessig tem guia próprio) como gerar um vídeo de demonstração narrado de um protótipo como cuidar de segurança, privacidade e versões (segredos, dados pessoais, Node e pacotes) e como montar o design system de um protótipo a partir do tema |
+| `roteiros/` | Roteiros: iniciativa, Business Model Canvas, 10-20-30, PDI, pitch, resumo (TL;DR), divulgação e vídeo |
+| `guias/` | Guias de apoio: como escrever um pitch, como escrever slides (dois estilos, imagens e cores sugeridas; o estilo Presentation Zen e método Lessig tem guia próprio), como escolher e criar layouts de cards e gerar reels, como gerar um vídeo em cenas, narrado, a partir de um protótipo, como cuidar de segurança, privacidade e versões (segredos, dados pessoais, Node e pacotes) e como montar o design system de um protótipo a partir do tema |
 | `temas/generico/` | Tema padrão (logo, fontes, cabeçalho e rodapé de exemplo) |
 | `temas/neutro/` e `temas/exemplo-leve/` | A base dos temas simples e um exemplo genérico de tema só com cores e logo |
 | `temas/exemplo-cc/` | Tema simples do projeto `exemplo-cc`, com o logo e as cores da Creative Commons (só como ilustração) |
 | `temas/exemplo-todo/` | Tema simples do projeto `exemplo-todo`, com as mesmas cores e o estilo de apresentação zen-lessig |
 | `temas/wildtech/` | Exemplo de um tema com marca (a da Wildtech) |
-| `tools/` | Compiladores de Markdown para docx, html, pdf, apresentações e carrosséis de redes sociais |
+| `tools/` | Compiladores de Markdown para docx, html, pdf, apresentações, carrosséis de redes sociais (com reel) e vídeos em cenas, e o `novo.js`, que gera estruturas (projeto, tema, carrossel, vídeo e layout de card) |
 | `projetos/exemplo-ideia/` | Projeto de exemplo: este template descrito com o próprio template, no tema da Wildtech |
 | `projetos/exemplo-cc/` | Segundo exemplo, com o tema simples: a escolha da licença Creative Commons dos documentos (documento e apresentação) |
-| `projetos/exemplo-todo/` | Terceiro exemplo, de software: um pitch com resumo (TL;DR), uma apresentação, um **carrossel de divulgação** (cards 4:5) e um **protótipo** de lista de tarefas (React, Vite e SQLite) |
+| `projetos/exemplo-todo/` | Terceiro exemplo, de software: um pitch com resumo (TL;DR), uma apresentação, um **carrossel de divulgação** (cards 4:5 e um reel 9:16), um **vídeo em cenas** e um **protótipo** de lista de tarefas (React, Vite e SQLite) |
 
 ## O que é seu: `AGENTS-extra.md`
 
@@ -75,11 +75,13 @@ O tema padrão é o genérico (`temas/generico/`). O da Wildtech está aqui só 
 
 ## Roteiros
 
-Os roteiros são arquivos de texto (`roteiros/<nome>.txt`) com as seções, uma pergunta e indicações para cada uma, e a indicação da fonte de onde vieram. Já vêm: **iniciativa**, **Business Model Canvas** (modelar uma ideia de negócio), **10-20-30** (apresentar uma ideia), **PDI** (plano de desenvolvimento individual, com o olhar da aprendizagem autodirigida), **pitch** (formato Shape Up), **resumo (TL;DR)** e **divulgação** (um carrossel de redes sociais, em cards 4:5). Você pode criar os seus.
+Os roteiros são arquivos de texto (`roteiros/<nome>.txt`) com as seções, uma pergunta e indicações para cada uma, e a indicação da fonte de onde vieram. Já vêm: **iniciativa**, **Business Model Canvas** (modelar uma ideia de negócio), **10-20-30** (apresentar uma ideia), **PDI** (plano de desenvolvimento individual, com o olhar da aprendizagem autodirigida), **pitch** (formato Shape Up), **resumo (TL;DR)**, **divulgação** (um carrossel de redes sociais, em cards, e o reel) e **vídeo** (cenas de cartão animado e a jornada do protótipo, narradas). Você pode criar os seus.
+
+Para começar uma estrutura sem escrever do zero, o agente (ou você) usa `node tools/novo.js`: `projeto <nome> --roteiro pitch`, `tema <nome> --primaria 1F8A70`, `carrossel projetos/<projeto>`, `video projetos/<projeto>` e `layout <nome>`. O que falta fica "A definir", para ser escrito a partir do documento. Os layouts de card disponíveis aparecem no catálogo: `node tools/md2cards.js projetos/<projeto> --catalogo` (veja `guias/cards.md`).
 
 ## Protótipos
 
-Quando o projeto é um **software**, o template recomenda um **protótipo** para validar o fluxo antes de construir na plataforma de destino. A stack padrão é **React + Vite + TypeScript**, uma **API Node** e **SQLite** (`node:sqlite`, embutido no Node 22.13 ou mais novo), com **Vitest** nos testes. As regras do negócio ficam em funções puras, separadas do banco e da tela, para trocar o banco sem mexer nas telas. **Só dados fictícios**, e o banco local não vai para o git. O protótipo já nasce com um **design system pequeno**: as cores e a fonte vêm do tema do projeto (as mesmas dos documentos, dos slides e do carrossel), com poucos componentes e um catálogo em `/ds`; o guia `guias/design-system.md` explica. **Nenhum segredo de serviço externo é guardado em arquivo** (nem em `.env`), e `npm run verificar` confere segredos e versões do Node e dos pacotes (veja `guias/seguranca.md`). O protótipo fica em `projetos/<projeto>/prototipo/`, registrado no `projeto.json` como artefato. O `AGENTS.md` ("Protótipos") traz a definição completa, e o seu agente pode criar o protótipo quando você pedir. O protótipo também pode gerar um **vídeo de demonstração narrado**, com legendas e a sua voz (ou uma voz sintética), pelo `npm run demo`; o guia `guias/video-demonstracao.md` explica, inclusive o que fazer no macOS, no Windows e no Linux. Para ver um funcionando, rode o exemplo: `cd projetos/exemplo-todo/prototipo`, `npm install` e `npm run dev`. A stack é um padrão: se você preferir outra, registre no `AGENTS-extra.md`.
+Quando o projeto é um **software**, o template recomenda um **protótipo** para validar o fluxo antes de construir na plataforma de destino. A stack padrão é **React + Vite + TypeScript**, uma **API Node** e **SQLite** (`node:sqlite`, embutido no Node 22.13 ou mais novo), com **Vitest** nos testes. As regras do negócio ficam em funções puras, separadas do banco e da tela, para trocar o banco sem mexer nas telas. **Só dados fictícios**, e o banco local não vai para o git. O protótipo já nasce com um **design system pequeno**: as cores e a fonte vêm do tema do projeto (as mesmas dos documentos, dos slides e do carrossel), com poucos componentes e um catálogo em `/ds`; o guia `guias/design-system.md` explica. **Nenhum segredo de serviço externo é guardado em arquivo** (nem em `.env`), e `npm run verificar` confere segredos e versões do Node e dos pacotes (veja `guias/seguranca.md`). O protótipo fica em `projetos/<projeto>/prototipo/`, registrado no `projeto.json` como artefato. O `AGENTS.md` ("Protótipos") traz a definição completa, e o seu agente pode criar o protótipo quando você pedir. O protótipo também pode gerar um **vídeo de demonstração narrado**, com legendas que acendem no ritmo da voz, zoom na ação e a sua voz (ou uma voz sintética), e o `tools/md2video.js` o junta a cartões animados num **vídeo em cenas**, em 16:9 e 9:16, escrito num Markdown só; o guia `guias/video-demonstracao.md` explica, inclusive o que fazer no macOS, no Windows e no Linux. Para ver um funcionando, rode o exemplo: `cd projetos/exemplo-todo/prototipo`, `npm install` e `npm run dev`. A stack é um padrão: se você preferir outra, registre no `AGENTS-extra.md`.
 
 ## Como contribuir
 
