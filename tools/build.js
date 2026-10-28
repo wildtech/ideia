@@ -3,7 +3,8 @@
 //
 // Uso: node tools/build.js <pasta-do-projeto> [<pasta-do-projeto> ...]
 //
-// Com projeto.json: gera cada item de "saidas" (documento: docx/html/pdf; apresentacao: html/pdf com reveal.js).
+// Com projeto.json: gera cada item de "saidas" (documento: docx/html/pdf; apresentacao: html/pdf com reveal.js;
+// carrossel: html, png (um por card, 1080x1350) e pdf, para redes sociais).
 // Sem projeto.json (formato antigo): lê <pasta>/<nome>.md e gera docx, html e pdf.
 // O PDF é sempre gerado a partir do HTML. A saída vai para <pasta>/out/.
 
@@ -38,6 +39,15 @@ for (const project of projects) {
     const md = path.join(dir, saida.fonte);
     const base = path.join(dir, "out", path.basename(saida.fonte, ".md"));
     const formatos = saida.formatos || ["docx", "html", "pdf"];
+    if (saida.tipo === "carrossel") {
+      try {
+        run("md2cards.js", [dir, md, base, "--formatos", (saida.formatos || ["html", "png", "pdf"]).join(",")]);
+      } catch (e) {
+        failed = true;
+        console.error("Falhou: md2cards.js em " + saida.fonte + " (" + project + ")");
+      }
+      continue;
+    }
     const htmlTool = saida.tipo === "apresentacao" ? "md2slides.js" : "md2html.js";
     const passos = [];
     if (formatos.includes("docx") && saida.tipo !== "apresentacao") passos.push(["md2docx.js", [dir, md, base + ".docx"]]);

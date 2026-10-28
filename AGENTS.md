@@ -32,7 +32,8 @@ ideia/
 ├── LICENSE                   [base] licença dos documentos, roteiros e temas (CC BY 4.0)
 ├── roteiros/                 [base] conjuntos de perguntas que guiam a escrita e a entrevista (um .txt por roteiro)
 │   ├── iniciativa.txt, businessmodelcanvas.txt, 10-20-30.txt, pdi.txt, pitch.txt
-│   └── tldr.txt              resumo (TL;DR): citação no topo do documento e apresentação curta
+│   ├── tldr.txt              resumo (TL;DR): citação no topo do documento e apresentação curta
+│   └── divulgacao.txt        material de divulgação: carrossel de redes sociais, a partir do pitch e do resumo
 ├── guias/                    [base] textos de apoio sobre como fazer bem uma coisa (ex.: pitch.md, slides.md, slides-zen-lessig.md, video-demonstracao.md e seguranca.md)
 ├── temas/                    [base e conteúdo] identidade visual; uma pasta por tema
 │   └── <tema>/               tema.json (cores, fontes, logo, rodapé, opções) e, se houver, base.docx, referencia.pdf e slides.css
@@ -46,6 +47,8 @@ ideia/
 │   ├── md2docx.js            Markdown → docx
 │   ├── md2html.js            Markdown → html (documento)
 │   ├── md2slides.js          Markdown → html (apresentação, reveal.js)
+│   ├── md2cards.js           Markdown → carrossel de cards 4:5 (html, png por card e pdf), para redes sociais
+│   ├── chrome.js             localiza o Chrome (usado pelo md2pdf.js e pelo md2cards.js)
 │   ├── md2pdf.js             html → pdf (Chrome headless; documentos e slides)
 │   ├── build.js              gera as saídas de um projeto, conforme o projeto.json
 │   ├── verificar.js          confere segredos e versões (Node e pacotes) de um protótipo
@@ -75,7 +78,7 @@ ideia/
 | **Guia** | Como fazer bem? Complementa um roteiro, mas não é um | `guias/` |
 | **Tema** | Como parece? Logo, cores, fontes e rodapé; serve a documentos e a apresentações | `temas/<tema>/` |
 | **Projeto** | Qual é o assunto? | `projetos/<projeto>/` |
-| **Saída** | O que é gerado a partir de um `.md`: tipo (documento ou apresentação) e formatos (docx, html, pdf). Vai para `out/` e é descartável | `projeto.json` e `out/` |
+| **Saída** | O que é gerado a partir de um `.md`: tipo (documento, apresentação ou carrossel) e formatos (docx, html, png, pdf). Vai para `out/` e é descartável | `projeto.json` e `out/` |
 | **Artefato** | Saída **persistente** derivada de um documento (ex.: protótipo, código). Fica versionada no projeto e evolui por conta própria | `projeto.json` e pastas do projeto |
 
 - **Roteiros disponíveis:**
@@ -88,9 +91,11 @@ ideia/
 | `pitch` | Validar um problema e uma solução antes das specs, no formato Shape Up (problema, apetite, solução, armadilhas, fora de escopo); o guia `guias/pitch.md` complementa |
 | `pdi` | Montar um plano de desenvolvimento individual, com o olhar da aprendizagem autodirigida |
 | `tldr` | Resumir um documento: citação no topo do documento e apresentação curta |
+| `divulgacao` | Divulgar o que foi validado: um carrossel de redes sociais (cards 4:5), escrito a partir do pitch e do resumo (TL;DR); a legenda do post sai junto |
 
   Para uma ideia de negócio nova, o caminho natural é o Business Model Canvas primeiro e o 10-20-30 depois, para apresentar o que o canvas organizou. A pessoa também pode criar os seus (ver "Criando um novo roteiro").
 - **Documento ou apresentação:** o documento é lido sozinho (completo); a apresentação é falada (uma ideia por slide). São arquivos separados, e a apresentação é escrita a partir do resumo, não convertida do documento. O roteiro sugere qual faz mais sentido: iniciativa e PDI são documentos; 10-20-30 e pitch são pensados para slides.
+- **Carrossel:** terceira forma de contar a mesma ideia, para **divulgação** (um post de redes sociais, em cards). Como o resumo, é escrito a partir do documento de origem e **não inventa nada**: tudo o que está nos cards existe no pitch. A pessoa é quem publica; o assistente nunca posta. Ver "Carrosséis".
 - **Artefatos** não são gerados pelas ferramentas. O `projeto.json` os registra, com a `origem` (o documento de onde nasceram), para manter a rastreabilidade. O documento é a verdade sobre a **intenção** (o que e por quê); o artefato, sobre o **comportamento**. Quando um mudar de forma relevante, revise o outro. O artefato de software mais comum é o **protótipo**, e ele tem uma definição padrão (ver "Protótipos").
 
 ## Onboarding (passo a passo para o assistente)
@@ -210,6 +215,17 @@ Não use `##`, imagens (`![]()`), blocos de código ou HTML: o compilador não o
 - Uma citação que começa com `Notas:` vira **nota do apresentador** e não aparece no slide (veja-as abrindo o html com `?showNotes=true`). Use as notas para apontar a seção do documento completo que serve de fonte.
 - Escreva a apresentação a partir do resumo (TL;DR) e não copie o documento inteiro. Não invente informação: tudo vem do documento completo.
 
+### Carrosséis (`<projeto>-carrossel.md`)
+
+Um carrossel é um conjunto de **cards 4:5** (1080x1350, o formato do feed do Instagram) com uma ideia por card, no tema do projeto. Siga o `roteiros/divulgacao.txt`: gancho, problema, solução, como funciona (um card por passo, com um print do protótipo), o que não faz, chamada para ação e a legenda do post.
+
+- `# Título` é o card de capa (e, nas linhas abaixo, o subtítulo). Cada `### Título` é **um card**. Para o carrossel valem as mesmas regras de escrita dos slides: poucas palavras e uma ideia por card. O compilador avisa quando a frase passa de 14 palavras ou o card, de 45.
+- **Layouts**, com `**Layout:**`: `texto` (padrão: sem texto abaixo, o título vira uma frase grande; com texto ou lista, o bloco fica no meio), `frase` e `frase-escura`, `tela` (texto de um lado e uma captura de celular do outro, com `**Imagem:**` e `**Foco:** topo`, `meio` ou `base`, que diz que parte da captura aparece) e `fechamento` (o último card, a chamada para ação).
+- Diretivas, como nos slides: `**Imagem:**`, `**Crédito:**`, `**Fundo:** escuro` ou `claro` e `**Oculto:** sim`.
+- `> Notas:` é para quem produz e não aparece no card. `> Legenda:` é o texto do post; vai para `legenda.txt`. `> Alt:` é o **texto alternativo** do card (cada card é uma imagem, e quem não a vê precisa saber o que ela mostra); vai para `alt.txt`, e o compilador avisa dos cards sem ele.
+- No `projeto.json`, a saída é `{ "fonte": "x-carrossel.md", "tipo": "carrossel", "formatos": ["html", "png", "pdf"] }`. Sai um PNG por card (`out/x-carrossel/card-01.png`...), o html com todos os cards, o pdf, a legenda e o texto alternativo.
+- **Antes de publicar**, confira: dados fictícios ou autorizados, créditos das imagens e nada de segredo, dado pessoal ou de dentro da organização (ver "Segurança e privacidade"). **Publicar é com a pessoa.**
+
 ## Projeto e saídas (`projeto.json`)
 
 ```json
@@ -227,7 +243,7 @@ Não use `##`, imagens (`![]()`), blocos de código ou HTML: o compilador não o
 ```
 
 - `tema`: nome de uma pasta em `temas/`.
-- `saidas`: cada item é um `.md` (`fonte`), um `tipo` (`documento` ou `apresentacao`) e os `formatos`. O PDF sai do HTML. Um projeto pode ter vários documentos.
+- `saidas`: cada item é um `.md` (`fonte`), um `tipo` (`documento`, `apresentacao` ou `carrossel`) e os `formatos`. O PDF sai do HTML. Um projeto pode ter vários documentos.
 - `artefatos` (opcional): registro do que o projeto tem além do Markdown. Não é gerado pelas ferramentas.
 - `ajustes` (opcional): sobrescreve opções do tema só neste projeto (por exemplo, `"ajustes": { "footer": ["..."] }`).
 - Formato antigo: um `theme.json` dentro do projeto ainda funciona, mas não é mais o padrão.
@@ -378,7 +394,7 @@ O `temas/generico/tema.json` é o modelo de tema completo e o tema **padrão**. 
 | `pageMarginTop` | margem do topo do pdf, em mm | `22` |
 | `estilo` | estilo das apresentações: `"padrao"` (slides de título e conteúdo) ou `"zen-lessig"` (um slide, uma ideia: o slide sem layout vira frase, a capa é escura). Ver `guias/slides.md` | `"padrao"` |
 | `numerarSlides` | mostra o número do slide no canto inferior esquerdo (tela e PDF); útil para apontar ajustes. Pode ir só em `ajustes` do `projeto.json` | `false` |
-| `fundoEscuro` e `destaque` (dentro de `colors`) | cor dos slides escuros e cor dos **links** sobre eles, nas apresentações (nos slides claros, os links usam `primary`; em todos são sublinhados) | `000000` e `FFFFFF` |
+| `fundoEscuro` e `destaque` (dentro de `colors`) | cor dos slides e dos cards escuros e cor dos **links** sobre eles, nas apresentações e nos carrosséis (nos slides claros, os links usam `primary`; em todos são sublinhados). | `000000` e `FFFFFF` |
 
 ### Criando um tema a partir de arquivos existentes
 
@@ -407,6 +423,7 @@ node tools/build.js projetos/exemplo-ideia
 - Para gerar um formato só: `node tools/md2docx.js`, `node tools/md2html.js`, `node tools/md2slides.js` ou `node tools/md2pdf.js` (o `md2pdf.js` exige o HTML já gerado). Formato: `node tools/md2docx.js projetos/<pasta> <arquivo.md> <saida.docx>` (o mesmo vale para os outros; o `md2pdf.js` recebe o `.html` e a saída `.pdf`).
 - **docx:** mantém cabeçalho, rodapé e a página do template e troca só o corpo do documento.
 - **html (documento):** arquivo único e autocontido, no visual do template. O logo é extraído do `base.docx` e embutido.
+- **carrossel:** `md2cards.js` gera um html com todos os cards, um PNG de 1080x1350 por card, um pdf (uma página por card), a `legenda.txt` e o `alt.txt`, usando o Chrome.
 - **html (apresentação):** arquivo único com o reveal.js embutido, funciona offline. Navegue com as setas; `?showNotes=true` mostra as notas.
 - **pdf:** gerado a partir do html, com o Chrome (A4 com número de página, para documentos; uma página 16:9 por slide, para apresentações). O pdf dos slides usa uma **impressão estática**, sem JavaScript (o html é aberto com `?static-print`), porque o modo de impressão do reveal depende de temporização e às vezes sai em branco no Chrome headless. O Chrome, o Chromium ou o Edge são procurados nos caminhos padrão de macOS, Windows e Linux; se não forem encontrados, defina a variável `CHROME` com o caminho do executável.
 - As tabelas do `.md` viram o "box" do template (cabeçalho colorido e corpo cinza).

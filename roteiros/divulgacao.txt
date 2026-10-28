@@ -1,0 +1,16 @@
+Título do carrossel.
+O mesmo título do documento de origem (um pitch ou uma iniciativa), e uma linha de apoio que diz do que se trata. É o card de capa: ele decide se a pessoa continua a deslizar.
+Gancho. Qual pergunta ou cena faz a pessoa parar de rolar? Vem do "Problema" do pitch: a cena de uma pessoa, e não uma reclamação genérica. Uma frase, de até 14 palavras.
+Problema. O que a pessoa vive hoje, em uma imagem concreta? Dois ou três itens curtos, em um card. Só o que está no "Problema" do documento.
+Solução. Qual é a ideia, em uma frase? Do resumo (TL;DR) ou da "Solução" do pitch. Um card, com a frase grande e uma linha de apoio.
+Como funciona. Quais são os passos do fluxo? Um card por passo (os atos da "Solução"), com um print do protótipo quando houver. Frase curta e um verbo no começo: anotar, andar, limpar.
+O que não faz. O que ficou de fora, de propósito? Do "Fora de escopo" do pitch. É o card que mais gera confiança: não prometa o que o protótipo não faz.
+Bastidores (opcional). Quanto custou, quem fez, em quanto tempo? Do "Apetite" do pitch. Só entram números que já estão no documento.
+Chamada para ação. O que a pessoa faz agora? Um só caminho, com um só link. Se a decisão ou o destino ainda não existem, escreva "A definir" no documento de origem e não invente uma chamada.
+Legenda do post. O texto que acompanha o carrossel, até cerca de 125 palavras. A primeira linha é o gancho; depois, o contexto em duas ou três linhas; por fim, a chamada e o link. Fica em uma citação "Legenda:" do Markdown e sai em legenda.txt.
+Texto alternativo. Cada card é uma imagem, e quem não a vê precisa saber o que ela mostra. Uma frase por card, que descreve a imagem e diz o que ela comunica (e não só o texto do card). Fica em uma citação "Alt:" no card e sai em alt.txt, para colar ao publicar.
+Regras do carrossel. Nada novo entra: tudo o que está nos cards existe no documento de origem, que é a fonte (a mesma regra do resumo, roteiros/tldr.txt). De 6 a 10 cards, com uma ideia por card, frase de até 14 palavras e no máximo 45 palavras no card. O primeiro card é o gancho e o último é a chamada. Se o documento mudar de forma relevante, revise o carrossel. O formato é 4:5 (1080x1350), o do feed do Instagram.
+Antes de publicar. Os dados da imagem são fictícios ou autorizados? As imagens de terceiros têm crédito e licença? Não há segredo, dado pessoal nem nada que seja só de dentro da organização? A publicação é feita pela pessoa, nunca pelo assistente.
+Documentos de apoio: referência do documento de origem (opcional).
+
+Este roteiro foi criado para este repositório, a partir do resumo (TL;DR) e do formato de pitch do Shape Up (Basecamp, https://basecamp.com/shapeup/1.5-chapter-06): o material de divulgação conta o que o pitch já validou, em cards de um carrossel de redes sociais.

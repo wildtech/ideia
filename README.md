@@ -44,7 +44,7 @@ Se o Chrome não for encontrado, defina a variável `CHROME` com o caminho do ex
 | **Guia** | Texto de apoio sobre como fazer bem uma coisa | `guias/` |
 | **Tema** | Identidade visual: logo, cores, fontes e rodapé | `temas/` |
 | **Projeto** | Um assunto, com o documento principal e o material de apoio | `projetos/` |
-| **Saída** | O que é gerado de um documento: documento (docx, html, pdf) ou apresentação (html, pdf) | `projeto.json` e `out/` |
+| **Saída** | O que é gerado de um documento: documento (docx, html, pdf), apresentação (html, pdf) ou carrossel (html, png por card, pdf) | `projeto.json` e `out/` |
 | **Artefato** | Saída persistente derivada de um documento, como um protótipo | pastas do projeto |
 
 ## O que vem aqui
@@ -60,10 +60,10 @@ Se o Chrome não for encontrado, defina a variável `CHROME` com o caminho do ex
 | `temas/exemplo-cc/` | Tema simples do projeto `exemplo-cc`, com o logo e as cores da Creative Commons (só como ilustração) |
 | `temas/exemplo-todo/` | Tema simples do projeto `exemplo-todo`, com as mesmas cores e o estilo de apresentação zen-lessig |
 | `temas/wildtech/` | Exemplo de um tema com marca (a da Wildtech) |
-| `tools/` | Compiladores de Markdown para docx, html, pdf e apresentações |
+| `tools/` | Compiladores de Markdown para docx, html, pdf, apresentações e carrosséis de redes sociais |
 | `projetos/exemplo-ideia/` | Projeto de exemplo: este template descrito com o próprio template, no tema da Wildtech |
 | `projetos/exemplo-cc/` | Segundo exemplo, com o tema simples: a escolha da licença Creative Commons dos documentos (documento e apresentação) |
-| `projetos/exemplo-todo/` | Terceiro exemplo, de software: um pitch com resumo (TL;DR), uma apresentação e um **protótipo** de lista de tarefas (React, Vite e SQLite) |
+| `projetos/exemplo-todo/` | Terceiro exemplo, de software: um pitch com resumo (TL;DR), uma apresentação, um **carrossel de divulgação** (cards 4:5) e um **protótipo** de lista de tarefas (React, Vite e SQLite) |
 
 ## O que é seu: `AGENTS-extra.md`
 
@@ -75,7 +75,7 @@ O tema padrão é o genérico (`temas/generico/`). O da Wildtech está aqui só 
 
 ## Roteiros
 
-Os roteiros são arquivos de texto (`roteiros/<nome>.txt`) com as seções, uma pergunta e indicações para cada uma, e a indicação da fonte de onde vieram. Já vêm: **iniciativa**, **Business Model Canvas** (modelar uma ideia de negócio), **10-20-30** (apresentar uma ideia), **PDI** (plano de desenvolvimento individual, com o olhar da aprendizagem autodirigida), **pitch** (formato Shape Up) e **resumo (TL;DR)**. Você pode criar os seus.
+Os roteiros são arquivos de texto (`roteiros/<nome>.txt`) com as seções, uma pergunta e indicações para cada uma, e a indicação da fonte de onde vieram. Já vêm: **iniciativa**, **Business Model Canvas** (modelar uma ideia de negócio), **10-20-30** (apresentar uma ideia), **PDI** (plano de desenvolvimento individual, com o olhar da aprendizagem autodirigida), **pitch** (formato Shape Up), **resumo (TL;DR)** e **divulgação** (um carrossel de redes sociais, em cards 4:5). Você pode criar os seus.
 
 ## Protótipos
 
