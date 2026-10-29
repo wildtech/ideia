@@ -49,3 +49,20 @@
 .ds-mov { width: 40px; height: 40px; border-radius: var(--raio); background: var(--primaria); transition: transform var(--duracao-lenta) var(--curva); }
 .ds-mov-trilho:hover .ds-mov, .ds-mov-trilho:focus-within .ds-mov { transform: translateX(200px); }
 .ds-mov-trilho { padding: var(--espaco-2); background: var(--cartao); border-radius: var(--raio-g); }
+
+/* Catálogo: as camadas */
+.ds-camadas { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--espaco-3); margin: 0 0 var(--espaco-3); padding: 0; list-style: none; counter-reset: camada; }
+.ds-camadas li { position: relative; display: grid; align-content: start; gap: var(--espaco-1); padding: var(--espaco-3); background: var(--cartao); border-radius: var(--raio-g); border-top: 5px solid var(--primaria); font-size: var(--tipo-p); counter-increment: camada; }
+.ds-camadas li strong { font-size: var(--tipo-m); }
+.ds-camadas li strong::before { content: counter(camada) ". "; color: var(--primaria-acao); }
+.ds-rolagem { overflow-x: auto; }
+.ds-tabela--camadas td, .ds-tabela--camadas th { font-size: var(--tipo-p); vertical-align: middle; }
+.ds-tabela--camadas td:first-child code { white-space: nowrap; }
+.ds-tabela__grupo { padding-top: var(--espaco-4); color: var(--titulo); font-size: var(--tipo-m) !important; }
+.ds-pastilha { display: inline-block; width: 14px; height: 14px; margin-right: var(--espaco-1); border: 1px solid var(--borda); border-radius: var(--raio-p); vertical-align: middle; }
+.ds-origem { display: inline-block; padding: 0 var(--espaco-1); border-radius: var(--raio-p); border-left: 4px solid var(--borda); background: var(--fundo); }
+.ds-origem--tema { border-left-color: var(--primaria); }
+.ds-origem--padrao { border-left-color: var(--suave); color: var(--suave); }
+.ds-origem--derivado { border-left-color: var(--acento); }
+.ds-fichas { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--espaco-1); }
+.ds-ficha { padding: 0 var(--espaco-1); background: var(--cartao); border-radius: var(--raio-p); font-size: var(--tipo-p); }

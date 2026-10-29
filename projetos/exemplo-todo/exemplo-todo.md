@@ -111,7 +111,7 @@ Esboço de traço grosso, em texto: no alto, o título e uma linha de campo com 
 ### Stack e estratégia de validação
 
 **Decisões (padrão do template, sem alteração):**
-- **React + Vite + TypeScript** na interface; **API Node** própria; **SQLite** pelo `node:sqlite`, embutido no Node; **Vitest** nos testes das regras e da API; **Playwright** nas jornadas na tela, com a jornada narrada (legendas, zoom e voz), em 16:9 e em 9:16, e capturas para os slides, no desktop e no celular; um **design system** pequeno, com cor, fonte, forma, espaço, tipo e movimento gerados do tema (`src/tokens.css`), componentes em `src/ui/` e um catálogo em `/ds`.
+- **React + Vite + TypeScript** na interface; **API Node** própria; **SQLite** pelo `node:sqlite`, embutido no Node; **Vitest** nos testes das regras e da API; **Playwright** nas jornadas na tela, com a jornada narrada (legendas, zoom e voz), em 16:9 e em 9:16, e capturas para os slides, no desktop e no celular; um **design system** pequeno, com cor, fonte, forma, espaço, tipo e movimento gerados do tema (`src/tokens.css`), componentes em `src/ui/` e um catálogo em `/ds`, que mostra as camadas (de onde vem cada token no tema e quais componentes o usam).
 - **Regras como funções puras** em `src/domain/rules.ts`, com testes: validar o título, mudar de etapa, escolher o que o limpar remove, contar e ordenar.
 - **Contrato de dados** (`TodoGateway`): a tela e a API só o conhecem. O SQLite é uma implementação dele, e outra pode substituí-lo.
 - **Dados fictícios apenas**, no protótipo e no repositório. O banco local não é versionado.

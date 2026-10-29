@@ -102,9 +102,9 @@
 **Imagem:** imagens/08-catalogo-slide.png
 **Crédito:** catálogo do protótipo (/ds)
 
-Cores e fonte saem do tema do projeto. Poucos componentes, com contraste conferido.
+Cor, fonte e medidas saem do tema. Cada token mostra de onde vem e quem o usa.
 
-> Notas: o catálogo `/ds` do protótipo mostra os tokens (cores, espaço, tipo, forma e movimento), o contraste de cada par de cores e os componentes nos seus estados. Os mesmos tokens dão o verde escuro dos slides, do carrossel e do vídeo, e o ritmo das animações do reel. Fonte: "Stack e estratégia de validação".
+> Notas: o catálogo `/ds` do protótipo abre com as camadas: o primitivo no tema, o token semântico e o componente que o usa. Depois, mostra os tokens (cores, espaço, tipo, forma e movimento), o contraste de cada par de cores e os componentes nos seus estados. Os mesmos tokens dão o verde escuro dos slides, do carrossel e do vídeo, e o ritmo das animações do reel. Fonte: "Stack e estratégia de validação".
 
 ### Um vídeo em cenas, em 16:9 e 9:16.
 

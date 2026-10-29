@@ -79,6 +79,7 @@ function tokensDoTema(theme) {
   const escala = tk.escalaTipo ?? PADRAO.escalaTipo;
   const mov = { ...PADRAO.movimento, ...(tk.movimento || {}) };
   return {
+    origem: origens(theme, c),
     cores: c,
     fonte: theme.font || "Open Sans",
     fonteTitulo: theme.headingFont || theme.font || "Open Sans",
@@ -91,10 +92,65 @@ function tokensDoTema(theme) {
   };
 }
 
+/**
+ * De onde vem cada token semântico: a chave do tema (o primitivo) e a regra que o transforma. Vai como comentário no
+ * tokens.css, e o catálogo (/ds) do protótipo a mostra, para ler a cadeia tema → token → componente.
+ */
+function origens(theme, c) {
+  const cores = theme.colors || {}, extra = theme.prototipo || {}, tk = theme.tokens || {}, mv = tk.movimento || {};
+  const de = (tem, chave, regra = "") => `${tem ? `tema: ${chave}` : `padrão: ${chave}`}${regra}`;
+  const cor = (chave, ...alt) => {
+    const achada = [chave, ...alt].find((k) => cores[k]);
+    return de(!!achada, `colors.${achada || chave}`);
+  };
+  const acao = (base, origem, acao) => `--${base} (${origem.replace(/^(tema|padrão): /, "")})${acao === c[base === "primaria" ? "primaria" : "acento"] ? ", igual: já tem 4,5:1 com o branco" : ", escurecida até 4,5:1 com o branco"}`;
+  const o = {
+    fonte: de(!!theme.font, "font"),
+    fundo: de(!!extra.fundo, "prototipo.fundo"),
+    texto: cor("text"),
+    titulo: cor("titleBlue", "textStrong"),
+    suave: de(!!extra.suave, "prototipo.suave"),
+    cartao: cor("calloutFill", "tableStripe"),
+    borda: cor("border"),
+    primaria: cor("primary"),
+    acento: cor("accent"),
+    "sobre-acao": "fixo: branco",
+    "fundo-escuro": cor("fundoEscuro"),
+    destaque: cor("destaque"),
+    "raio-p": de(tk.raio != null, "tokens.raio", " × 0,5"),
+    raio: de(tk.raio != null, "tokens.raio"),
+    "raio-g": de(tk.raio != null, "tokens.raio", " × 1,4"),
+    sombra: de(!!tk.sombra, "tokens.sombra"),
+    "tipo-p": de(tk.escalaTipo != null, "tokens.escalaTipo", ": 1rem ÷ escala"),
+    "tipo-m": "fixo: 1rem, a base da escala",
+    "tipo-g": de(tk.escalaTipo != null, "tokens.escalaTipo", ": 1rem × escala"),
+    "tipo-gg": de(tk.escalaTipo != null, "tokens.escalaTipo", ": 1rem × escala²"),
+    "tipo-ggg": de(tk.escalaTipo != null, "tokens.escalaTipo", ": 1rem × escala³"),
+    "alvo-toque": de(tk.alvoToque != null, "tokens.alvoToque"),
+    "duracao-rapida": de(mv.rapido != null, "tokens.movimento.rapido"),
+    duracao: de(mv.normal != null, "tokens.movimento.normal"),
+    "duracao-lenta": de(mv.lento != null, "tokens.movimento.lento"),
+    curva: de(!!mv.curva, "tokens.movimento.curva"),
+  };
+  o["primaria-acao"] = acao("primaria", o.primaria, c.primariaAcao);
+  o["acento-acao"] = acao("acento", o.acento, c.acentoAcao);
+  ["0,5", "1", "1,5", "2", "3", "4"].forEach((m, i) => (o[`espaco-${i + 1}`] = de(tk.espaco != null, "tokens.espaco", ` × ${m}`)));
+  return o;
+}
+
 const r3 = (n) => +n.toFixed(3);
 
-/** As variáveis CSS (sem o ":root {}") dos tokens, com comentários. */
-function cssVars(t) {
+/**
+ * As variáveis CSS (sem o ":root {}") dos tokens, com comentários. Com `{ origem: true }`, cada linha diz de onde o
+ * valor vem no tema (o tokens.css do protótipo sai assim).
+ */
+function cssVars(t, { origem = false } = {}) {
+  const css = cssBase(t);
+  if (!origem) return css;
+  return css.replace(/^(  --([\w-]+): .*;)$/gm, (linha, decl, nome) => (t.origem[nome] ? `${decl} /* ${t.origem[nome]} */` : linha));
+}
+
+function cssBase(t) {
   const c = t.cores;
   const pilha = [`"${t.fonte}"`, '"Segoe UI"', "Helvetica", "Arial", "sans-serif"].join(", ");
   return `  --fonte: ${pilha};

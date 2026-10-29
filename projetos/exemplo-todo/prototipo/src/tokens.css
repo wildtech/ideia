@@ -1,46 +1,46 @@
 /* Gerado por tools/tema-tokens.js a partir do tema "exemplo-todo" (Exemplo: lista de tarefas). Não edite à mão:
    mude o tema (temas/) e rode `npm run tokens`. */
 :root {
-  --fonte: "Open Sans", "Segoe UI", Helvetica, Arial, sans-serif;
-  --fundo: #FFFFFF;
-  --texto: #222222;
-  --titulo: #111111;
-  --suave: #4B5563;
-  --cartao: #F3F3F3;
-  --borda: #D1D5DB;
+  --fonte: "Open Sans", "Segoe UI", Helvetica, Arial, sans-serif; /* tema: font */
+  --fundo: #FFFFFF; /* padrão: prototipo.fundo */
+  --texto: #222222; /* tema: colors.text */
+  --titulo: #111111; /* tema: colors.titleBlue */
+  --suave: #4B5563; /* padrão: prototipo.suave */
+  --cartao: #F3F3F3; /* tema: colors.calloutFill */
+  --borda: #D1D5DB; /* tema: colors.border */
   /* Cor da marca, para faixas, foco e detalhes. */
-  --primaria: #1F8A70;
-  --acento: #A83232;
+  --primaria: #1F8A70; /* tema: colors.primary */
+  --acento: #A83232; /* tema: colors.accent */
   /* Cores de ação: fundo de botão preenchido, com texto branco e contraste de pelo menos 4,5:1. */
-  --primaria-acao: #1E846B;
-  --acento-acao: #A83232;
-  --sobre-acao: #ffffff;
+  --primaria-acao: #1E846B; /* --primaria (colors.primary), escurecida até 4,5:1 com o branco */
+  --acento-acao: #A83232; /* --acento (colors.accent), igual: já tem 4,5:1 com o branco */
+  --sobre-acao: #ffffff; /* fixo: branco */
   /* Fundo escuro e cor de destaque sobre ele: os mesmos dos slides e dos carrosséis. */
-  --fundo-escuro: #0F3D32;
-  --destaque: #A8E6D7;
+  --fundo-escuro: #0F3D32; /* tema: colors.fundoEscuro */
+  --destaque: #A8E6D7; /* tema: colors.destaque */
   /* Forma: raio dos cantos (pequeno, médio e grande) e sombra. */
-  --raio-p: 4px;
-  --raio: 8px;
-  --raio-g: 11px;
-  --sombra: 0 8px 24px rgba(0,0,0,.12);
+  --raio-p: 4px; /* tema: tokens.raio × 0,5 */
+  --raio: 8px; /* tema: tokens.raio */
+  --raio-g: 11px; /* tema: tokens.raio × 1,4 */
+  --sombra: 0 8px 24px rgba(0,0,0,.12); /* padrão: tokens.sombra */
   /* Espaçamento, em degraus (de 1 a 6). */
-  --espaco-1: 4px;
-  --espaco-2: 8px;
-  --espaco-3: 12px;
-  --espaco-4: 16px;
-  --espaco-5: 24px;
-  --espaco-6: 32px;
+  --espaco-1: 4px; /* padrão: tokens.espaco × 0,5 */
+  --espaco-2: 8px; /* padrão: tokens.espaco × 1 */
+  --espaco-3: 12px; /* padrão: tokens.espaco × 1,5 */
+  --espaco-4: 16px; /* padrão: tokens.espaco × 2 */
+  --espaco-5: 24px; /* padrão: tokens.espaco × 3 */
+  --espaco-6: 32px; /* padrão: tokens.espaco × 4 */
   /* Escala de tipo (proporção 1.25). */
-  --tipo-p: 0.8rem;
-  --tipo-m: 1rem;
-  --tipo-g: 1.25rem;
-  --tipo-gg: 1.563rem;
-  --tipo-ggg: 1.953rem;
+  --tipo-p: 0.8rem; /* padrão: tokens.escalaTipo: 1rem ÷ escala */
+  --tipo-m: 1rem; /* fixo: 1rem, a base da escala */
+  --tipo-g: 1.25rem; /* padrão: tokens.escalaTipo: 1rem × escala */
+  --tipo-gg: 1.563rem; /* padrão: tokens.escalaTipo: 1rem × escala² */
+  --tipo-ggg: 1.953rem; /* padrão: tokens.escalaTipo: 1rem × escala³ */
   /* Alvo de toque mínimo no celular. */
-  --alvo-toque: 44px;
+  --alvo-toque: 44px; /* padrão: tokens.alvoToque */
   /* Movimento: durações e a curva das transições (também usadas nos reels e no vídeo). */
-  --duracao-rapida: 150ms;
-  --duracao: 300ms;
-  --duracao-lenta: 600ms;
-  --curva: cubic-bezier(.2,.7,.2,1);
+  --duracao-rapida: 150ms; /* padrão: tokens.movimento.rapido */
+  --duracao: 300ms; /* padrão: tokens.movimento.normal */
+  --duracao-lenta: 600ms; /* padrão: tokens.movimento.lento */
+  --curva: cubic-bezier(.2,.7,.2,1); /* padrão: tokens.movimento.curva */
 }

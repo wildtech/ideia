@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Gera o CSS de tokens de um protótipo a partir do tema do projeto: as cores e a fonte vêm do tema, e o protótipo
+// Gera o CSS de tokens de um protótipo a partir do tema do projeto: os valores vêm do tema (cada linha diz de onde), e o protótipo
 // não guarda uma cópia à mão.
 //
 // Uso:  node tools/tema-tokens.js <pasta-do-projeto> <saida.css> [--conferir]
@@ -40,7 +40,7 @@ const t = tk.cores;
 const css = `/* Gerado por tools/tema-tokens.js a partir do tema "${nomeDoTema}" (${theme.name}). Não edite à mão:
    mude o tema (temas/) e rode \`npm run tokens\`. */
 :root {
-${cssVars(tk)}}
+${cssVars(tk, { origem: true })}}
 `;
 
 // ------------------------------------------------------------------ conferência de contraste

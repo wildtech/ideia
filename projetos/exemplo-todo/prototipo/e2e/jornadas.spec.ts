@@ -68,7 +68,11 @@ test("o botão de limpar fica desligado quando não há nada feito", async ({ pa
 test("o catálogo do design system mostra tokens, contraste e componentes", async ({ page }) => {
   await page.goto("/ds");
   await expect(page.getByRole("heading", { name: "Design system" })).toBeVisible();
-  await expect(page.getByText("--primaria-acao")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Camadas" })).toBeVisible();
+  // A cadeia tema → token → componente: a cor de ação vem da primária e é usada pelo botão.
+  const acao = page.getByRole("row").filter({ has: page.getByText("--primaria-acao", { exact: true }) });
+  await expect(acao).toContainText("colors.primary");
+  await expect(acao).toContainText("Botao");
   // Todo par de cores do catálogo passa no contraste mínimo.
   await expect(page.getByRole("cell", { name: "NÃO passa" })).toHaveCount(0);
   await expect(page.getByRole("cell", { name: "passa", exact: true })).toHaveCount(7);

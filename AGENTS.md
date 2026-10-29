@@ -302,11 +302,12 @@ O protótipo existe para **ser jogado fora ou substituído**, então a arquitetu
 
 Todo protótipo **já nasce com um design system pequeno**, como sugestão padrão (a pessoa pode dispensá-lo, e o `AGENTS-extra.md` pode trocá-lo). O `exemplo-todo` é o exemplo, e o `guias/design-system.md` explica o porquê e o passo a passo.
 
+- **O modelo:** camadas de tokens (primitivo → semântico → componente) e Atomic Design (átomos, moléculas, organismos e telas), explicados no `guias/design-system.md`.
 - **O tema é a fonte das cores, da fonte e das medidas.** O `src/tokens.css` é **gerado** do tema do projeto (`npm run tokens`, que usa `tools/tema-tokens.js` e `tools/tokens.js`) e **não se edita à mão**. Além das cores, traz raio, sombra, espaçamento, escala de tipo, alvo de toque e movimento (durações e curva), que o tema pode ajustar em `"tokens"`; `npm run tokens:conferir`, que o `npm run build` já roda, falha se ele estiver desatualizado. Trocar de marca é trocar o tema e gerar de novo.
 - **O tema também dita os materiais:** `fundoEscuro` e `destaque` (no `tema.json`) são o fundo dos slides e dos cards escuros e a cor dos links sobre ele, e viram tokens do protótipo. Sem isso, saem preto e branco. Se o projeto não tem tema, crie um tema simples antes (ver "Temas").
 - **Componentes em `src/ui/`**, só com os tokens: `Botao`, `Campo`, `Cartao`, `EstadoVazio` e `Alerta`. As telas usam esses componentes, sem `<button>` solto nem cor, raio, espaço ou duração escritos à mão. **Crie um componente só quando uma tela precisar dele.**
 - **Acessibilidade:** contraste de pelo menos 4,5:1 (o gerador avisa e, nos botões preenchidos, escurece a cor do tema só até chegar lá), foco visível, rótulo sempre visível no campo, erro anunciado a leitores de tela e alvo de toque de pelo menos 44 px no celular.
-- **Catálogo (`/ds`)**, só no desenvolvimento: mostra as cores, o espaçamento, a escala de tipo, a forma, o movimento, o contraste dos pares de cores e os componentes nos seus estados. Uma jornada do Playwright confere o contraste.
+- **Catálogo (`/ds`)**, só no desenvolvimento: abre com as **camadas** (primitivo no tema, semântico no `tokens.css`, componente em `src/ui/`: de onde vem cada token e quem o usa) e mostra as cores, o espaçamento, a escala de tipo, a forma, o movimento, o contraste dos pares de cores e os componentes nos seus estados. Uma jornada do Playwright confere o contraste.
 - **O que não é:** uma biblioteca para manter (o protótipo existe para ser jogado fora) nem o design system da plataforma de destino, que pode ser outro. O protótipo mostra a **intenção** (cores, estados, contraste e toque).
 
 ### Dados e repositório
