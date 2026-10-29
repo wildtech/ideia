@@ -2,7 +2,7 @@
 
 **Roteiro:** spec
 **Tipo:** mudança
-**Status:** Andamento
+**Status:** Finalizado
 
 > **Resumo (TL;DR):** Quem quer anotar uma tarefa precisa de um campo e de um botão, sem cadastro nem etapas. A tarefa nova entra em "A fazer". Está pronta quando o título é obrigatório, tem até 120 caracteres e a tarefa aparece na coluna certa.
 
@@ -31,6 +31,6 @@ Poucas horas.
 
 ### Critérios de aceite
 
-- [ ] Dado um título válido, quando clico em Adicionar, então a tarefa aparece em "A fazer" [jornada]
-- [ ] Dado um título vazio ou só com espaços, quando tento adicionar, então a tarefa não é criada e a pessoa vê o motivo [unitário]
-- [ ] Dado um título com mais de 120 caracteres, quando tento adicionar, então a tarefa não é criada [unitário]
+- [x] Dado um título válido, quando clico em Adicionar, então a tarefa aparece em "A fazer" [jornada]
+- [x] Dado um título vazio ou só com espaços, quando tento adicionar, então a tarefa não é criada e a pessoa vê o motivo [unitário]
+- [x] Dado um título com mais de 120 caracteres, quando tento adicionar, então a tarefa não é criada [unitário]

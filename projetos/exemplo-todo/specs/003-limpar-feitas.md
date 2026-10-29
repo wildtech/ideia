@@ -2,7 +2,7 @@
 
 **Roteiro:** spec
 **Tipo:** mudança
-**Status:** Andamento
+**Status:** Finalizado
 
 > **Resumo (TL;DR):** Quem termina muitas tarefas precisa tirá-las da tela de uma vez. O botão "Limpar feitas" remove só o que está em "Feito", depois de confirmar quantas tarefas vão embora. Está pronta quando nada em "A fazer" é removido e o botão fica desligado sem tarefas feitas.
 
@@ -32,6 +32,6 @@ Poucas horas.
 
 ### Critérios de aceite
 
-- [ ] Dadas tarefas em "A fazer" e em "Feito", quando limpo, então só as de "Feito" são removidas [unitário]
-- [ ] Dado que não há tarefas feitas, quando olho o botão, então ele está desligado [jornada]
-- [ ] Dado que há tarefas feitas, quando clico em limpar, então a confirmação informa a quantidade [jornada]
+- [x] Dadas tarefas em "A fazer" e em "Feito", quando limpo, então só as de "Feito" são removidas [unitário]
+- [x] Dado que não há tarefas feitas, quando olho o botão, então ele está desligado [jornada]
+- [x] Dado que há tarefas feitas, quando clico em limpar, então a confirmação informa a quantidade [jornada]

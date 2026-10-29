@@ -2,7 +2,7 @@
 
 **Roteiro:** spec
 **Tipo:** mudança
-**Status:** Andamento
+**Status:** Finalizado
 
 > **Resumo (TL;DR):** Uma tarefa tem só duas etapas, "A fazer" e "Feito", e a pessoa pode andar nas duas direções. Está pronta quando concluir guarda quando foi feito e voltar apaga essa data.
 
@@ -30,5 +30,5 @@ Poucas horas.
 
 ### Critérios de aceite
 
-- [ ] Dada uma tarefa em "A fazer", quando concluo, então ela aparece em "Feito" com a data de conclusão [jornada]
-- [ ] Dada uma tarefa em "Feito", quando volto, então ela aparece em "A fazer" sem data de conclusão [unitário]
+- [x] Dada uma tarefa em "A fazer", quando concluo, então ela aparece em "Feito" com a data de conclusão [jornada]
+- [x] Dada uma tarefa em "Feito", quando volto, então ela aparece em "A fazer" sem data de conclusão [unitário]
