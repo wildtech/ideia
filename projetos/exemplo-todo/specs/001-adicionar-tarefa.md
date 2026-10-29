@@ -2,7 +2,7 @@
 
 **Roteiro:** spec
 **Tipo:** mudança
-**Status:** Pitch
+**Status:** Andamento
 
 > **Resumo (TL;DR):** Quem quer anotar uma tarefa precisa de um campo e de um botão, sem cadastro nem etapas. A tarefa nova entra em "A fazer". Está pronta quando o título é obrigatório, tem até 120 caracteres e a tarefa aparece na coluna certa.
 

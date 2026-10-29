@@ -2,7 +2,7 @@
 
 **Roteiro:** spec
 **Tipo:** mudança
-**Status:** Pitch
+**Status:** Andamento
 
 > **Resumo (TL;DR):** Uma tarefa tem só duas etapas, "A fazer" e "Feito", e a pessoa pode andar nas duas direções. Está pronta quando concluir guarda quando foi feito e voltar apaga essa data.
 

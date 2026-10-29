@@ -2,7 +2,7 @@
 
 **Roteiro:** spec
 **Tipo:** mudança
-**Status:** Pitch
+**Status:** Andamento
 
 > **Resumo (TL;DR):** Quem termina muitas tarefas precisa tirá-las da tela de uma vez. O botão "Limpar feitas" remove só o que está em "Feito", depois de confirmar quantas tarefas vão embora. Está pronta quando nada em "A fazer" é removido e o botão fica desligado sem tarefas feitas.
 

@@ -7,16 +7,16 @@
 | Status | Specs |
 | :--- | :--- |
 | Ideia | 2 |
-| Pitch | 3 |
-| Andamento | 0 |
+| Pitch | 0 |
+| Andamento | 3 |
 | Finalizado | 0 |
 
 ### Todas as specs
 
 | # | Spec | Tipo | Status | Critérios |
 | :--- | :--- | :--- | :--- | :--- |
-| 001 | [Adicionar uma tarefa](001-adicionar-tarefa.md) | Mudança em software | Pitch | 0/3 |
-| 002 | [Concluir uma tarefa e voltar atrás](002-concluir-e-voltar.md) | Mudança em software | Pitch | 0/2 |
-| 003 | [Limpar as tarefas feitas](003-limpar-feitas.md) | Mudança em software | Pitch | 0/3 |
+| 001 | [Adicionar uma tarefa](001-adicionar-tarefa.md) | Mudança em software | Andamento | 0/3 |
+| 002 | [Concluir uma tarefa e voltar atrás](002-concluir-e-voltar.md) | Mudança em software | Andamento | 0/2 |
+| 003 | [Limpar as tarefas feitas](003-limpar-feitas.md) | Mudança em software | Andamento | 0/3 |
 | 004 | [Editar o título de uma tarefa](004-editar-titulo.md) | Mudança em software | Ideia | 0/2 |
 | 005 | [Desfazer o limpar das feitas](005-desfazer-limpar.md) | Mudança em software | Ideia | 0/2 |
