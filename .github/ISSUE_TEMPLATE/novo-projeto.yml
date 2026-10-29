@@ -1,0 +1,70 @@
+name: Novo projeto
+description: Uma ideia de projeto para documentar as escolhas e entrar no roadmap
+title: "[Projeto] "
+labels: ["tipo:projeto"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Toda issue nova entra no roadmap com o status **Ideia**. Escreva para quem não conhece o assunto.
+        O que ainda é dúvida fica marcado com **(?)**, e o que não se sabe fica como "A definir".
+  - type: textarea
+    id: tldr
+    attributes:
+      label: Resumo (TL;DR)
+      description: Qual é o problema, para quem, e o que significa este projeto estar pronto. Duas ou três frases; nada que não vá estar no documento do projeto (roteiro `tldr`).
+    validations:
+      required: true
+  - type: dropdown
+    id: roteiro
+    attributes:
+      label: Roteiro
+      description: Qual roteiro conduz o documento principal.
+      options:
+        - iniciativa
+        - pitch
+        - businessmodelcanvas
+        - 10-20-30
+        - pdi
+        - Outro (explique nas escolhas)
+    validations:
+      required: true
+  - type: checkboxes
+    id: saidas
+    attributes:
+      label: Saídas
+      options:
+        - label: Documento (docx, html, pdf)
+        - label: Apresentação (slides)
+        - label: Carrossel de divulgação
+        - label: Protótipo (software)
+  - type: input
+    id: tema
+    attributes:
+      label: Tema
+      description: Pasta em `temas/`. Se não houver, diga se é para criar um tema simples.
+      placeholder: generico
+  - type: textarea
+    id: escolhas
+    attributes:
+      label: Escolhas e alternativas descartadas
+      description: O que foi decidido (roteiro, tema, stack, onde as tarefas serão controladas) e o que foi pensado e deixado de lado, com o motivo. É o registro de como se chegou aqui.
+  - type: textarea
+    id: pessoas
+    attributes:
+      label: Pessoas (RCI)
+      description: Quem é responsável (R), quem deve ser consultado (C) e quem deve ser informado (I). Só existem estes três papéis.
+  - type: input
+    id: apetite
+    attributes:
+      label: Apetite (appetite)
+      description: Quanto vale investir. É uma decisão, não uma estimativa. Exemplo, "2 semanas de uma pessoa".
+  - type: textarea
+    id: pronto
+    attributes:
+      label: Pronto quando
+      description: O que precisa existir para fechar esta issue.
+      value: |
+        - [ ] Pasta do projeto criada, com `projeto.json` e o documento com o resumo (TL;DR)
+        - [ ] Saídas geradas (`node tools/build.js`) sem avisos
+        - [ ] Dados pessoais e confidenciais conferidos (ver `guias/seguranca.md`)

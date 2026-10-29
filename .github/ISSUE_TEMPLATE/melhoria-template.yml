@@ -1,0 +1,62 @@
+name: Melhoria do template
+description: Uma mudança nos arquivos base (roteiros, guias, ferramentas, temas genéricos, AGENTS.md)
+title: "[Template] "
+labels: ["tipo:template", "base"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Esta é a issue do repositório **base**. Vale para o que serve a qualquer pessoa que usa o template.
+        **Nada de dentro de uma organização** (clientes, nomes, projetos internos) pode aparecer aqui: o repositório é público.
+  - type: textarea
+    id: tldr
+    attributes:
+      label: Resumo (TL;DR)
+      description: Qual é o problema, para quem, e o que muda para quem usa o template.
+    validations:
+      required: true
+  - type: dropdown
+    id: onde
+    attributes:
+      label: O que será mexido
+      options:
+        - Roteiro
+        - Guia
+        - Ferramenta (tools/)
+        - Tema genérico
+        - AGENTS.md
+        - Template de issue
+        - Exemplo (projeto exemplo-*)
+        - Outro
+    validations:
+      required: true
+  - type: textarea
+    id: atual
+    attributes:
+      label: Estado atual
+    validations:
+      required: true
+  - type: textarea
+    id: desejado
+    attributes:
+      label: Estado desejado
+    validations:
+      required: true
+  - type: textarea
+    id: origem
+    attributes:
+      label: Origem
+      description: Em que uso real isto apareceu, descrito sem dado interno. Se veio de um repositório de quem usa, diga só que veio de um uso real.
+  - type: textarea
+    id: impacto
+    attributes:
+      label: Impacto em quem já usa
+      description: O que quem já tem o template precisa fazer ao trazer a mudança (por exemplo, rodar de novo um comando).
+  - type: textarea
+    id: aceite
+    attributes:
+      label: Critérios de aceite
+      value: |
+        - [ ] `node tools/build.js projetos/exemplo-ideia` sem avisos
+        - [ ] Nenhum termo interno (conferido)
+        - [ ] README e AGENTS.md atualizados, se for o caso

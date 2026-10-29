@@ -1,0 +1,66 @@
+name: Ajuste ou correção
+description: Um defeito a corrigir ou um padrão a mudar, descrito pelo estado atual e pelo desejado
+title: "[Ajuste] "
+labels: ["tipo:ajuste"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Para algo pequeno. Se o ajuste cresce além de horas ou poucos dias, use "Mudança em software" ou "Novo projeto".
+        Toda issue nova entra no roadmap com o status **Ideia**.
+  - type: dropdown
+    id: tipo
+    attributes:
+      label: O que é
+      options:
+        - Defeito (algo não funciona como deveria)
+        - Ajuste de padrão (algo funciona, mas queremos diferente)
+        - Texto ou documentação
+    validations:
+      required: true
+  - type: textarea
+    id: tldr
+    attributes:
+      label: Resumo (TL;DR)
+      description: Uma ou duas frases, a partir do problema.
+    validations:
+      required: true
+  - type: input
+    id: onde
+    attributes:
+      label: Onde acontece
+      description: O projeto, a ferramenta (`tools/build.js`, por exemplo) ou o arquivo.
+    validations:
+      required: true
+  - type: textarea
+    id: atual
+    attributes:
+      label: Estado atual
+      description: O que acontece hoje. Para um defeito, inclua a mensagem de erro ou o que se vê, copiado, sem dado pessoal nem segredo.
+    validations:
+      required: true
+  - type: textarea
+    id: desejado
+    attributes:
+      label: Estado desejado
+      description: O que deveria acontecer.
+    validations:
+      required: true
+  - type: textarea
+    id: passos
+    attributes:
+      label: Passos para reproduzir
+      description: "Obrigatório para defeito. Passo a passo a partir de um estado conhecido, com o comando, a versão do Node e o sistema operacional. Se não for reproduzível sempre, diga com que frequência acontece e o que já foi tentado."
+      value: |
+        1.
+        2.
+        3.
+        **Esperado:**
+        **Obtido:**
+  - type: textarea
+    id: aceite
+    attributes:
+      label: Critérios de aceite
+      description: Como saberemos que está resolvido. Para um defeito, o próprio passo a passo acima passa a funcionar; se possível, vira um teste.
+      value: |
+        - [ ] 

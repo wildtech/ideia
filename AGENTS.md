@@ -28,6 +28,7 @@ ideia/
 ├── AGENTS.md                 [base] este arquivo
 ├── AGENTS-extra.example.md   [base] modelo do arquivo complementar
 ├── AGENTS-extra.md           [conteúdo] o complemento de quem usa (criado no primeiro projeto; não vem no template)
+├── .github/ISSUE_TEMPLATE/   [base] formulários de issue (novo projeto, mudança em software, ajuste ou correção e melhoria do template)
 ├── README.md                 [base] apresentação e primeiros passos para humanos
 ├── LICENSE                   [base] licença dos documentos, roteiros e temas (CC BY 4.0)
 ├── roteiros/                 [base] conjuntos de perguntas que guiam a escrita e a entrevista (um .txt por roteiro)
@@ -35,7 +36,7 @@ ideia/
 │   ├── tldr.txt              resumo (TL;DR): citação no topo do documento e apresentação curta
 │   ├── divulgacao.txt        material de divulgação: carrossel de redes sociais, a partir do pitch e do resumo
 │   └── video.txt             vídeo em cenas: abertura, cenário, a jornada do protótipo e a chamada, com narração
-├── guias/                    [base] textos de apoio sobre como fazer bem uma coisa (ex.: pitch.md, slides.md, slides-zen-lessig.md, cards.md, video-demonstracao.md, seguranca.md e design-system.md)
+├── guias/                    [base] textos de apoio sobre como fazer bem uma coisa (ex.: pitch.md, slides.md, slides-zen-lessig.md, cards.md, video-demonstracao.md, seguranca.md, design-system.md e issues.md)
 ├── temas/                    [base e conteúdo] identidade visual; uma pasta por tema
 │   └── <tema>/               tema.json (cores, fontes, logo, rodapé, tokens, opções) e, se houver, base.docx, referencia.pdf,
 │                             slides.css, cards.css e cards/ (layouts de card só deste tema)
@@ -508,6 +509,23 @@ Use a CLI `gh` (instalada e autenticada com `gh auth login`). Se a pessoa não u
 - **Confirme antes de escrever.** Mostre o rascunho (repositório, título, descrição) e só crie ou altere issues e PRs depois do OK. Leituras e buscas não precisam de confirmação.
 - **Não apague nada no GitHub** (issues, branches, repositórios) sem pedido explícito.
 - **O `.md` continua sendo a fonte da verdade.** Registre o link da issue ou do PR nas atividades ou em "Documentos de Apoio".
+
+## Issues
+
+O padrão de issues faz parte do template: os formulários ficam em `.github/ISSUE_TEMPLATE/` e o guia `guias/issues.md` explica o porquê. Quando a pessoa pedir para **registrar, planejar ou criar uma tarefa**, use o formulário certo:
+
+| Template | Quando |
+| :--- | :--- |
+| `novo-projeto` | Uma ideia de projeto, para documentar escolhas e entrar no roadmap |
+| `mudanca-software` | Uma mudança em software, escrita como **pitch**: Problema (problem), Apetite (appetite, em horas ou poucos dias), Solução (solution) em atos, Armadilhas (rabbit holes), Fora de escopo (no-gos) e **critérios de aceite** |
+| `ajuste-correcao` | Um defeito ou um padrão a mudar: estado atual, estado desejado e, para defeito, passos para reproduzir |
+| `melhoria-template` | Uma mudança em algo `[base]`; só no repositório `ideia` |
+
+- **Toda issue começa pelo Resumo (TL;DR)** (ver `roteiros/tldr.txt`): o problema, para quem e o que significa estar pronta.
+- **`ideia` ou o repositório de quem usa?** Se a mudança é em algo `[base]`, é do `ideia`; se é de um projeto, de um tema com marca ou do `AGENTS-extra.md`, é do repositório de quem usa. Se nasceu lá e serve a todos, ligue as duas issues. Nada de dentro de uma organização vai para uma issue do `ideia`.
+- **Onde se controlam as tarefas:** por padrão, no GitHub do repositório de quem usa. **Ao pedirem uma tarefa em um projeto, pergunte onde ele controla** (pode ser outra ferramenta), e siga "Integrações opcionais".
+- **Confirme antes de escrever.** Mostre o rascunho da issue e crie só depois do OK. Não apague issues.
+- O roadmap é um GitHub Project com os status **Ideia**, **Pitch**, **Andamento** e **Finalizado**; toda issue nova entra em Ideia.
 
 ## Ajuste ao seu fluxo
 

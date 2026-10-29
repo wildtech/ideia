@@ -85,11 +85,12 @@ Quando o projeto é um **software**, o template recomenda um **protótipo** para
 
 ## Como contribuir
 
-Contribuições são bem-vindas: novos **roteiros**, melhorias nos **temas genéricos**, correções e melhorias nas **ferramentas**, e ajustes de texto. Abra uma *issue* para conversar sobre a ideia ou envie direto um *pull request*.
+Contribuições são bem-vindas: novos **roteiros**, melhorias nos **temas genéricos**, correções e melhorias nas **ferramentas**, e ajustes de texto. Abra uma *issue* (há formulários para melhoria do template, ajuste ou correção, mudança em software e novo projeto; veja `guias/issues.md`) para conversar sobre a ideia ou envie direto um *pull request*.
 
 - **Novo roteiro:** crie `roteiros/<nome>.txt` no mesmo formato dos existentes (uma seção por linha, com a pergunta e as indicações). **Indique no fim do arquivo de onde as perguntas e seções foram retiradas** (um texto, um livro, um modelo), com o link quando existir. Registre o roteiro nas tabelas do `README.md` e do `AGENTS.md`. O `AGENTS.md` ("Criando um novo roteiro") explica o passo a passo.
 - **Tema:** envie um tema **genérico**, sem marca, logo ou endereço de terceiros. Temas com marca ficam nos repositórios de quem os criou.
 - **Ferramentas (`tools/`):** rode `cd tools && npm install` e `node tools/build.js projetos/exemplo-ideia`, e confira o resultado (documento e apresentação) antes de enviar. Mudanças nas ferramentas não devem alterar o resultado dos projetos que já existem.
+- **Issues:** os formulários estão em `.github/ISSUE_TEMPLATE/` e o guia `guias/issues.md` explica quando uma issue é do `ideia` e quando é do repositório de quem usa. Toda issue começa pelo resumo (TL;DR); mudanças em software seguem o pitch e trazem critérios de aceite.
 - **Não envie** projetos pessoais, dados pessoais ou de terceiros, nem conteúdo que você não tenha direito de compartilhar. Os projetos de cada pessoa ficam no repositório dela; aqui entra só a base.
 - **Licença:** ao contribuir, você concorda que o seu trabalho seja licenciado como o restante do repositório (CC BY 4.0 para documentos, roteiros e temas, MIT para `tools/`), com crédito a você quando fizer sentido.
 

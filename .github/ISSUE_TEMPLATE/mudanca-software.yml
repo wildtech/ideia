@@ -1,0 +1,80 @@
+name: Mudança em software
+description: Uma mudança em um protótipo ou software, escrita como um pitch (Shape Up)
+title: "[Software] "
+labels: ["tipo:software"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Uma mudança de software segue a estrutura do **pitch** (`roteiros/pitch.txt`, `guias/pitch.md`).
+        Se não cabe em **horas ou poucos dias**, não é uma mudança: é um projeto, e vai no template "Novo projeto".
+        Toda issue nova entra no roadmap com o status **Ideia**.
+  - type: textarea
+    id: tldr
+    attributes:
+      label: Resumo (TL;DR)
+      description: Qual é o problema, para quem, e o que significa esta mudança estar pronta. Duas ou três frases.
+    validations:
+      required: true
+  - type: input
+    id: projeto
+    attributes:
+      label: Projeto e onde mexe
+      description: A pasta do projeto e, se souber, os arquivos ou as camadas (`src/domain`, `server`, interface).
+      placeholder: projetos/exemplo-todo/prototipo
+    validations:
+      required: true
+  - type: textarea
+    id: problema
+    attributes:
+      label: Problema (problem)
+      description: Uma cena concreta, não uma lista de queixas. Quem está tentando fazer o quê, o que acontece hoje e por que isso é ruim.
+    validations:
+      required: true
+  - type: input
+    id: apetite
+    attributes:
+      label: Apetite (appetite)
+      description: Em horas ou em poucos dias. Se a solução não cabe, reduza o escopo; não aumente o apetite.
+      placeholder: 4 horas
+    validations:
+      required: true
+  - type: textarea
+    id: solucao
+    attributes:
+      label: Solução (solution), em atos
+      description: "O fluxo em atos. Ato 1: entrada. Ato 2: o que acontece. Ato 3: resultado. Cada ato ajuda a pensar nos critérios de aceite abaixo."
+      value: |
+        **Ato 1:**
+        **Ato 2:**
+        **Ato 3:**
+    validations:
+      required: true
+  - type: textarea
+    id: armadilhas
+    attributes:
+      label: Armadilhas (rabbit holes)
+      description: Pontos reais já identificados que, ignorados, viram trabalho não planejado, e a mitigação de cada um.
+  - type: textarea
+    id: fora
+    attributes:
+      label: Fora de escopo (no-gos)
+      description: O que alguém vai sugerir durante o trabalho e deve ser recusado agora.
+  - type: textarea
+    id: aceite
+    attributes:
+      label: Critérios de aceite
+      description: "Cada critério é verificável e vira um teste. Formato: dado..., quando..., então.... Indique o tipo de teste (unitário, API ou jornada) entre colchetes."
+      value: |
+        - [ ] Dado ..., quando ..., então ... [unitário]
+        - [ ] Dado ..., quando ..., então ... [jornada]
+    validations:
+      required: true
+  - type: textarea
+    id: pronto
+    attributes:
+      label: Pronto quando
+      value: |
+        - [ ] Os critérios de aceite têm teste, e os testes passam
+        - [ ] `npm run typecheck`, `npm test` e `npm run verificar` sem falhas
+        - [ ] README do protótipo e documento de origem atualizados
