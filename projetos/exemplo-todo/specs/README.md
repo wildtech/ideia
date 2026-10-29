@@ -6,8 +6,8 @@
 
 | Status | Specs |
 | :--- | :--- |
-| Ideia | 2 |
-| Pitch | 0 |
+| Ideia | 1 |
+| Pitch | 1 |
 | Andamento | 0 |
 | Finalizado | 3 |
 
@@ -19,4 +19,4 @@
 | 002 | [Concluir uma tarefa e voltar atrás](002-concluir-e-voltar.md) | Mudança em software | Finalizado | 2/2 |
 | 003 | [Limpar as tarefas feitas](003-limpar-feitas.md) | Mudança em software | Finalizado | 3/3 |
 | 004 | [Editar o título de uma tarefa](004-editar-titulo.md) | Mudança em software | Ideia | 0/2 |
-| 005 | [Desfazer o limpar das feitas](005-desfazer-limpar.md) | Mudança em software | Ideia | 0/2 |
+| 005 | [Desfazer o limpar das feitas](005-desfazer-limpar.md) | Mudança em software | Pitch | 0/2 |

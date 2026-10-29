@@ -2,7 +2,7 @@
 
 **Roteiro:** spec
 **Tipo:** mudança
-**Status:** Ideia
+**Status:** Pitch
 
 > **Resumo (TL;DR):** O limpar apaga sem volta, e quem clica sem querer perde as tarefas feitas. A ideia é guardar o último limpar por um tempo curto, para a pessoa desfazer. Está pronta quando o desfazer restaura exatamente as tarefas removidas. O apetite ainda não cabe em poucos dias **(?)**.
 
