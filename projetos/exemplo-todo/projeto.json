@@ -2,11 +2,47 @@
   "nome": "Lista de tarefas: pitch e protótipo",
   "tema": "exemplo-todo",
   "saidas": [
-    { "fonte": "exemplo-todo.md", "tipo": "documento", "formatos": ["docx", "html", "pdf"] },
-    { "fonte": "exemplo-todo-slides.md", "tipo": "apresentacao", "formatos": ["html", "pdf"] },
-    { "fonte": "exemplo-todo-carrossel.md", "tipo": "carrossel", "formatos": ["html", "png", "pdf"] },
-    { "fonte": "exemplo-todo-carrossel.md", "tipo": "carrossel", "formato": "9:16", "formatos": ["mp4"] },
-    { "fonte": "exemplo-todo-video.md", "tipo": "video", "formatos": ["mp4"] }
+    {
+      "fonte": "exemplo-todo.md",
+      "tipo": "documento",
+      "formatos": [
+        "docx",
+        "html",
+        "pdf"
+      ]
+    },
+    {
+      "fonte": "exemplo-todo-slides.md",
+      "tipo": "apresentacao",
+      "formatos": [
+        "html",
+        "pdf"
+      ]
+    },
+    {
+      "fonte": "exemplo-todo-carrossel.md",
+      "tipo": "carrossel",
+      "formatos": [
+        "html",
+        "png",
+        "pdf"
+      ]
+    },
+    {
+      "fonte": "exemplo-todo-carrossel.md",
+      "tipo": "carrossel",
+      "formato": "9:16",
+      "formatos": [
+        "mp4"
+      ]
+    },
+    {
+      "fonte": "exemplo-todo-video.md",
+      "tipo": "video",
+      "formatos": [
+        "mp4"
+      ]
+    }
   ],
   "artefatos": [
     {
@@ -15,5 +51,6 @@
       "origem": "exemplo-todo.md",
       "descricao": "Lista de tarefas com duas etapas (A fazer e Feito) e botão de limpar as feitas. React, Vite, TypeScript, API Node e SQLite, com dados fictícios. Ver prototipo/README.md."
     }
-  ]
+  ],
+  "tarefas": "git"
 }
