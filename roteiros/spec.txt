@@ -1,0 +1,21 @@
+Título da spec.
+Uma funcionalidade, ajuste ou defeito, com o número e o nome no arquivo (specs/NNN-nome.md) e o título no # da primeira linha. Uma ideia por spec; se tiver duas, são duas specs.
+Tipo. Uma linha, **Tipo:** mudança, defeito ou ajuste. Mudança é uma funcionalidade nova ou alterada (segue o pitch); defeito é algo que não funciona como deveria; ajuste é algo que funciona, mas queremos diferente.
+Status. Uma linha, **Status:** Ideia, Pitch, Andamento ou Finalizado. Ideia: a spec foi escrita. Pitch: o problema e a solução estão sendo validados. Andamento: está sendo feita. Finalizado: o trabalho terminou e todos os critérios de aceite estão marcados (finalizado não quer dizer entregue em produção). A mudança de status é um commit; o histórico do git alimenta o relatório de fluxo acumulado.
+Resumo (TL;DR). Em citação no topo, começando com **Resumo (TL;DR):**. Qual é o problema, para quem, e o que significa a spec estar pronta. Duas ou três frases, nada que não esteja no restante da spec (roteiro tldr).
+Para o tipo mudança, as seções abaixo seguem o pitch (roteiro pitch), em pequeno.
+1. Problema (problem). Qual história concreta mostra por que o status quo não funciona? Quem está tentando fazer o quê, o que acontece hoje e por que isso é ruim. Uma cena, não uma lista de queixas.
+2. Apetite (appetite). Quanto vale investir, em horas ou poucos dias. Se não cabe, reduza o escopo. Se ainda passar de poucos dias, não é uma spec de mudança: é um projeto, e o pitch completo é o caminho.
+3. Solução (solution). Os elementos centrais, em atos (Ato 1: entrada, Ato 2: o que acontece, Ato 3: resultado). Cada ato ajuda a pensar nos critérios de aceite.
+4. Armadilhas (rabbit holes). Pontos reais já identificados que, ignorados, viram trabalho não planejado, e a mitigação de cada um.
+5. Fora de escopo (no-gos). O que alguém vai sugerir durante o trabalho e deve ser recusado agora.
+Para os tipos defeito e ajuste, as seções são estas.
+1. Onde acontece. A parte do projeto, o arquivo, a tela ou a ferramenta.
+2. Estado atual. O que acontece hoje. Para um defeito, o que se vê, com a mensagem de erro copiada e sem dado pessoal nem segredo.
+3. Estado desejado. O que deveria acontecer.
+4. Passos para reproduzir (só no defeito). Parta de um estado conhecido, um passo por linha, com o comando exato, a versão do Node e o sistema operacional; termine com Esperado e Obtido. Se não acontece sempre, diga com que frequência e o que já foi tentado.
+Critérios de aceite. Em todos os tipos. Uma lista de verificação (- [ ] ...) no formato dado... quando... então..., com o tipo de teste entre colchetes (unitário, API ou jornada). Cada critério é verificável e vira um teste. Ao finalizar, todos estão marcados (- [x] ...).
+Revisão. O problema é uma cena? O apetite cabe em horas ou poucos dias? Cada critério tem um teste possível? O que ainda é dúvida fica marcado com (?).
+Documentos de apoio: o pitch ou o documento de onde a spec nasceu, e os prints (opcional).
+
+Este roteiro vem do pitch do Shape Up, do Basecamp (https://basecamp.com/shapeup/1.5-chapter-06), dos formulários de issue do template (mudança em software e ajuste ou correção) e, para o relatório de fluxo acumulado, do diagrama de fluxo acumulado do Kanban (https://en.wikipedia.org/wiki/Cumulative_flow_diagram).

@@ -6,6 +6,7 @@
 // Com projeto.json: gera cada item de "saidas" (documento: docx/html/pdf; apresentacao: html/pdf com reveal.js;
 // carrossel: html, png (um por card), pdf e mp4 (o reel), para redes sociais; video: mp4 em cenas, com md2video.js).
 // Uma saída pode ter "formato" (por exemplo, "9:16") para gerar o carrossel em outro tamanho.
+// Se o projeto tem uma pasta specs/, confere as specs e gera o índice e o relatório de fluxo acumulado (specs.js).
 // Sem projeto.json (formato antigo): lê <pasta>/<nome>.md e gera docx, html e pdf.
 // O PDF é sempre gerado a partir do HTML. A saída vai para <pasta>/out/.
 
@@ -71,6 +72,15 @@ for (const project of projects) {
         console.error("Falhou: " + tool + " em " + saida.fonte + " (" + project + ")");
       }
     }
+  }
+}
+for (const project of projects) {
+  if (!fs.existsSync(path.join(path.resolve(project), "specs"))) continue;
+  try {
+    run("specs.js", [path.resolve(project)]);
+  } catch (e) {
+    failed = true;
+    console.error("Falhou: specs.js (" + project + ")");
   }
 }
 process.exit(failed ? 1 : 0);

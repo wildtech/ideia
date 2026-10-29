@@ -34,9 +34,10 @@ ideia/
 ├── roteiros/                 [base] conjuntos de perguntas que guiam a escrita e a entrevista (um .txt por roteiro)
 │   ├── iniciativa.txt, businessmodelcanvas.txt, 10-20-30.txt, pdi.txt, pitch.txt
 │   ├── tldr.txt              resumo (TL;DR): citação no topo do documento e apresentação curta
+│   ├── spec.txt              uma spec (funcionalidade, ajuste ou defeito) de um projeto que controla tarefas só em git
 │   ├── divulgacao.txt        material de divulgação: carrossel de redes sociais, a partir do pitch e do resumo
 │   └── video.txt             vídeo em cenas: abertura, cenário, a jornada do protótipo e a chamada, com narração
-├── guias/                    [base] textos de apoio sobre como fazer bem uma coisa (ex.: pitch.md, slides.md, slides-zen-lessig.md, cards.md, video-demonstracao.md, seguranca.md, design-system.md e issues.md)
+├── guias/                    [base] textos de apoio sobre como fazer bem uma coisa (ex.: pitch.md, slides.md, slides-zen-lessig.md, cards.md, video-demonstracao.md, seguranca.md, design-system.md, issues.md e specs.md)
 ├── temas/                    [base e conteúdo] identidade visual; uma pasta por tema
 │   └── <tema>/               tema.json (cores, fontes, logo, rodapé, tokens, opções) e, se houver, base.docx, referencia.pdf,
 │                             slides.css, cards.css e cards/ (layouts de card só deste tema)
@@ -53,11 +54,12 @@ ideia/
 │   ├── md2cards.js           Markdown → carrossel de cards (html, png por card, pdf e o reel em mp4), em 4:5, 1:1, 9:16...
 │   ├── md2video.js           Markdown → vídeo em cenas (mp4 e srt): cartões animados e a jornada gravada do protótipo
 │   ├── cards/                o motor dos cards (motor.js) e os layouts, um .css por layout (cards/layouts/)
-│   ├── novo.js               gera estruturas: projeto, tema, carrossel, vídeo e layout de card
+│   ├── novo.js               gera estruturas: projeto, tema, carrossel, vídeo, spec e layout de card
 │   ├── chrome.js             localiza o Chrome (usado pelo md2pdf.js, pelo md2cards.js e pelo cdp.js)
 │   ├── cdp.js                conversa com o Chrome (DevTools Protocol) para fotografar e gravar quadro a quadro
 │   ├── md2pdf.js             html → pdf (Chrome headless; documentos e slides)
 │   ├── build.js              gera as saídas de um projeto, conforme o projeto.json
+│   ├── specs.js              confere as specs de um projeto (specs/), gera o índice e o relatório de fluxo acumulado
 │   ├── verificar.js          confere segredos e versões (Node e pacotes) de um protótipo
 │   ├── tokens.js             os tokens do design system a partir do tema: cor, fonte, forma, espaço, tipo e movimento
 │   ├── tema-tokens.js        gera o CSS de tokens de um protótipo a partir do tema do projeto (usa o tokens.js)
@@ -70,6 +72,7 @@ ideia/
         ├── projeto.json          tema, saídas e artefatos do projeto
         ├── <projeto>.md          documento completo (fonte da verdade), com o roteiro no topo e um resumo (TL;DR)
         ├── <projeto>-slides.md   apresentação do resumo (opcional)
+        ├── specs/                specs do projeto, quando as tarefas são controladas só em git (opcional): NNN-nome.md e um índice gerado
         ├── apoio/                material de entrada: prints, transcrições, anotações (insumo, não conteúdo)
         ├── out/                  saídas geradas (docx, html e pdf), fora do git; não editar à mão
         └── ...                   artefatos persistentes (ex.: prototipo/) e outros arquivos do projeto
@@ -99,6 +102,7 @@ ideia/
 | `pitch` | Validar um problema e uma solução antes das specs, no formato Shape Up (problema, apetite, solução, armadilhas, fora de escopo); o guia `guias/pitch.md` complementa |
 | `pdi` | Montar um plano de desenvolvimento individual, com o olhar da aprendizagem autodirigida |
 | `tldr` | Resumir um documento: citação no topo do documento e apresentação curta |
+| `spec` | Registrar uma funcionalidade, um ajuste ou um defeito de software, quando o projeto controla as tarefas só em git: uma spec por arquivo em `specs/`, no formato do pitch, com status e critérios de aceite |
 | `divulgacao` | Divulgar o que foi validado: um carrossel de redes sociais (cards 4:5, ou outro formato, e o reel), escrito a partir do pitch e do resumo (TL;DR); a legenda do post sai junto |
 | `video` | Contar em vídeo o que foi validado: cenas de cartão animado e trechos da jornada do protótipo, com narração e legendas, em 16:9 e 9:16 |
 
@@ -260,6 +264,7 @@ Um carrossel é um conjunto de **cards** (por padrão 4:5, 1080x1350, o formato 
 - `tema`: nome de uma pasta em `temas/`.
 - `saidas`: cada item é um `.md` (`fonte`), um `tipo` (`documento`, `apresentacao` ou `carrossel`) e os `formatos`. O PDF sai do HTML. Um projeto pode ter vários documentos.
 - `artefatos` (opcional): registro do que o projeto tem além do Markdown. Não é gerado pelas ferramentas.
+- `tarefas` (opcional): onde o projeto controla as tarefas: `"git"` (specs em `specs/`, ver "Specs"), `"github"` (issues) ou `"jira"`. Sem ele, pergunte.
 - `ajustes` (opcional): sobrescreve opções do tema só neste projeto (por exemplo, `"ajustes": { "footer": ["..."] }`).
 - Formato antigo: um `theme.json` dentro do projeto ainda funciona, mas não é mais o padrão.
 
@@ -523,9 +528,19 @@ O padrão de issues faz parte do template: os formulários ficam em `.github/ISS
 
 - **Toda issue começa pelo Resumo (TL;DR)** (ver `roteiros/tldr.txt`): o problema, para quem e o que significa estar pronta.
 - **`ideia` ou o repositório de quem usa?** Se a mudança é em algo `[base]`, é do `ideia`; se é de um projeto, de um tema com marca ou do `AGENTS-extra.md`, é do repositório de quem usa. Se nasceu lá e serve a todos, ligue as duas issues. Nada de dentro de uma organização vai para uma issue do `ideia`.
-- **Onde se controlam as tarefas:** por padrão, no GitHub do repositório de quem usa. **Ao pedirem uma tarefa em um projeto, pergunte onde ele controla** (pode ser outra ferramenta), e siga "Integrações opcionais".
+- **Onde se controlam as tarefas:** por padrão, no GitHub do repositório de quem usa. **Ao pedirem uma tarefa em um projeto, leia o `"tarefas"` do `projeto.json`; se não existir, pergunte onde ele controla** (pode ser outra ferramenta). Se for `"git"`, crie uma **spec** (ver "Specs"), e não uma issue; se for GitHub ou Jira, siga "Integrações opcionais".
 - **Confirme antes de escrever.** Mostre o rascunho da issue e crie só depois do OK. Não apague issues.
 - O roadmap é um GitHub Project com os status **Ideia**, **Pitch**, **Andamento** e **Finalizado**; toda issue nova entra em Ideia.
+
+## Specs (tarefas só em git)
+
+Quando o projeto não usa GitHub nem Jira (o `projeto.json` tem `"tarefas": "git"`, ou a pessoa diz que o cliente opera só com git), as funcionalidades, os ajustes e os defeitos ficam em `projetos/<projeto>/specs/`, **uma spec por arquivo** (`NNN-nome.md`), seguindo o `roteiros/spec.txt`. O guia `guias/specs.md` explica o porquê e como ler o relatório.
+
+- **Criar:** `node tools/novo.js spec projetos/<projeto> <nome> --tipo mudança|defeito|ajuste --titulo "Título"` cria o arquivo com o próximo número e o status Ideia. Um ajuste ou um defeito entra como uma **nova spec**.
+- **Tipo e status** são duas linhas no topo: `**Tipo:** mudança | defeito | ajuste` e `**Status:** Ideia | Pitch | Andamento | Finalizado`, os mesmos quatro status do roadmap das issues. Uma mudança segue o pitch em pequeno (apetite em horas ou poucos dias, solução em atos, critérios de aceite); um defeito traz estado atual, estado desejado e passos para reproduzir. Toda spec começa pelo Resumo (TL;DR).
+- **Mudar de status** é editar a linha **Status:** e fazer **um commit por mudança**, quando a pessoa pedir (a regra de Git não muda). Finalizado exige todos os critérios de aceite marcados.
+- **Conferir e relatar:** `node tools/specs.js projetos/<projeto>` (o `build.js` também o roda) confere as specs, gera o índice `specs/README.md` (versionado; não se edita à mão; `--conferir` falha se estiver desatualizado) e o relatório `out/specs-relatorio.html`, com o **fluxo acumulado** (cumulative flow diagram) montado do histórico do git.
+- **Não duplique:** se o projeto usa issues, use as issues; as specs são para quem só tem git. Não invente conteúdo: o que não se sabe fica A definir ou **(?)**.
 
 ## Ajuste ao seu fluxo
 

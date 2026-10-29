@@ -13,6 +13,9 @@
 //       <projeto>-carrossel.md seguindo o roteiro divulgacao (um card por passo), e a saída no projeto.json
 //   node tools/novo.js video <pasta-do-projeto>
 //       <projeto>-video.md: abertura, cenário, cenas da jornada e fechamento, e a saída no projeto.json
+//   node tools/novo.js spec <pasta-do-projeto> <nome> [--tipo mudança|defeito|ajuste] [--titulo "Título"]
+//       specs/NNN-<nome>.md (o próximo número) com o status Ideia, seguindo o roteiro spec; marca o projeto.json com
+//       "tarefas": "git". Depois: node tools/specs.js <pasta-do-projeto> (confere, gera o índice e o relatório)
 //   node tools/novo.js layout <nome> [--tema <tema>]
 //       um layout de card novo, a partir de um modelo comentado: tools/cards/layouts/<nome>.css ou, com --tema,
 //       temas/<tema>/cards/<nome>.css (só para aquele tema). Confira no catálogo: node tools/md2cards.js <projeto> --catalogo
@@ -25,7 +28,7 @@ const RAIZ = path.resolve(__dirname, "..");
 const [comando, alvo, ...resto] = process.argv.slice(2);
 const opcao = (nome, padrao) => { const i = resto.indexOf(nome); return i >= 0 ? resto[i + 1] : padrao; };
 
-const AJUDA = "Uso: node tools/novo.js projeto|tema|carrossel|video|layout <nome ou pasta> [opções] (veja o cabeçalho de tools/novo.js)";
+const AJUDA = "Uso: node tools/novo.js projeto|tema|carrossel|video|spec|layout <nome ou pasta> [opções] (veja o cabeçalho de tools/novo.js)";
 const nomeValido = (n) => /^[a-z0-9]+(-[a-z0-9]+)*$/.test(n || "");
 function escrever(arquivo, conteudo) {
   if (fs.existsSync(arquivo)) { console.error(`Já existe: ${path.relative(RAIZ, arquivo)}. Nada foi alterado.`); process.exit(1); }
@@ -204,6 +207,39 @@ function video() {
   console.log(temPrototipo ? "Depois de escrever: cd prototipo && npm run demo:todos, e então node tools/build.js." : "Sem protótipo: o vídeo sai só com cartões animados.");
 }
 
+// ---------- spec ----------
+function spec() {
+  const { pasta } = pastaDoProjeto(alvo);
+  const nome = resto[0];
+  if (!nomeValido(nome)) { console.error("O nome da spec vai em minúsculas, sem acentos e com hífen (por exemplo, nova-tarefa)."); process.exit(1); }
+  const tipo = opcao("--tipo", "mudança");
+  if (!["mudança", "defeito", "ajuste"].includes(tipo)) { console.error("O tipo é mudança, defeito ou ajuste."); process.exit(1); }
+  const dir = path.join(pasta, "specs");
+  const numeros = fs.existsSync(dir) ? fs.readdirSync(dir).map((f) => parseInt(f, 10)).filter((n) => n > 0) : [];
+  const numero = String(Math.max(0, ...numeros) + 1).padStart(3, "0");
+  const titulo = opcao("--titulo", "A definir");
+  const aceite = ["### Critérios de aceite", "", "- [ ] Dado ..., quando ..., então ... [unitário]", "- [ ] Dado ..., quando ..., então ... [jornada]", ""];
+  const corpos = {
+    mudança: ["### Problema (problem)", "", "A definir. Uma cena concreta: quem está tentando fazer o quê, o que acontece hoje e por que isso é ruim.", "",
+      "### Apetite (appetite)", "", "A definir. Em horas ou poucos dias.", "",
+      "### Solução (solution)", "", "**Ato 1:** A definir.", "**Ato 2:** A definir.", "**Ato 3:** A definir.", "",
+      "### Armadilhas (rabbit holes)", "", "A definir.", "",
+      "### Fora de escopo (no-gos)", "", "A definir.", ""],
+    defeito: ["### Onde acontece", "", "A definir.", "", "### Estado atual", "", "A definir.", "", "### Estado desejado", "", "A definir.", "",
+      "### Passos para reproduzir", "", "1. A definir.", "2. A definir.", "**Esperado:** A definir.", "**Obtido:** A definir.", ""],
+    ajuste: ["### Onde acontece", "", "A definir.", "", "### Estado atual", "", "A definir.", "", "### Estado desejado", "", "A definir.", ""],
+  };
+  const md = [`# ${titulo}`, "", "**Roteiro:** spec", `**Tipo:** ${tipo}`, "**Status:** Ideia", "",
+    "> **Resumo (TL;DR):** A definir. O problema, para quem, e o que significa esta spec estar pronta.", "", ...corpos[tipo], ...aceite].join("\n");
+  escrever(path.join(dir, `${numero}-${nome}.md`), md);
+  const pj = path.join(pasta, "projeto.json");
+  if (fs.existsSync(pj)) {
+    const projeto = JSON.parse(fs.readFileSync(pj, "utf8"));
+    if (!projeto.tarefas) { projeto.tarefas = "git"; fs.writeFileSync(pj, JSON.stringify(projeto, null, 2) + "\n"); console.log(`Atualizado: ${path.relative(RAIZ, pj)} ("tarefas": "git")`); }
+  }
+  console.log(`Pronto. Escreva a spec e rode: node tools/specs.js ${path.relative(process.cwd(), pasta) || "."}`);
+}
+
 // ---------- layout ----------
 function layout() {
   if (!nomeValido(alvo)) { console.error("O nome do layout vai em minúsculas, sem acentos e com hífen."); process.exit(1); }
@@ -230,6 +266,6 @@ Um texto de exemplo, para o catálogo.
   console.log(`Use com **Layout:** ${alvo} e confira no catálogo: node tools/md2cards.js <projeto> --catalogo`);
 }
 
-const COMANDOS = { projeto, tema, carrossel, video, layout };
+const COMANDOS = { projeto, tema, carrossel, video, spec, layout };
 if (!COMANDOS[comando] || !alvo) { console.error(AJUDA); process.exit(1); }
 COMANDOS[comando]();
