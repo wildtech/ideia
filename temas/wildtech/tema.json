@@ -25,6 +25,8 @@
     "textStrong": "000000",
     "tableStripe": "F3F3F3",
     "calloutFill": "F3F3F3",
-    "border": "D1D5DB"
+    "border": "D1D5DB",
+    "fundoEscuro": "533838",
+    "destaque": "FB9646"
   }
 }
