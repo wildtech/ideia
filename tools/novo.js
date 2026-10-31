@@ -167,7 +167,10 @@ function carrossel() {
 function video() {
   const { pasta, nome } = pastaDoProjeto(alvo);
   const s = secoesDe(pasta, nome);
-  const temPrototipo = fs.existsSync(path.join(pasta, "prototipo"));
+  // A pasta do software vem do "caminho" do artefato (tipo "prototipo" ou "software"); sem projeto.json, prototipo/ ou software/.
+  const pj = path.join(pasta, "projeto.json");
+  const artefato = fs.existsSync(pj) ? (JSON.parse(fs.readFileSync(pj, "utf8")).artefatos || []).find((a) => ["prototipo", "software"].includes(a.tipo)) : null;
+  const temPrototipo = artefato ? fs.existsSync(path.join(pasta, artefato.caminho || artefato.tipo)) : ["prototipo", "software"].some((d) => fs.existsSync(path.join(pasta, d)));
   const md = [
     "# A definir (o título do vídeo)",
     "",

@@ -7,7 +7,7 @@
 //   "font":    "Open Sans"
 //   "tokens":  { "raio": 6, "espaco": 8, "escalaTipo": 1.25, "alvoToque": 44, "sombra": "0 8px 24px rgba(0,0,0,.12)",
 //                "movimento": { "rapido": 150, "normal": 300, "lento": 600, "curva": "cubic-bezier(.2,.7,.2,1)" } }
-//   "prototipo": { "fundo": "FFFFFF", "suave": "4B5563" }   (o que não tem equivalente nos documentos)
+//   "prototipo": { "fundo": "FFFFFF", "suave": "4B5563" }   (o que não tem equivalente nos documentos; "software" vale igual)
 
 const hex = (c) => String(c).replace("#", "").toUpperCase();
 const rgb = (h) => [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16));
@@ -58,7 +58,7 @@ const PADRAO = {
 /** Os tokens de um tema já resolvido (com o "extends" aplicado, como o loadTheme devolve). */
 function tokensDoTema(theme) {
   const cores = theme.colors || {};
-  const extra = theme.prototipo || {};
+  const extra = theme.software || theme.prototipo || {};
   const tk = theme.tokens || {};
   const c = {
     titulo: hex(cores.titleBlue || cores.textStrong || "111111"),
@@ -97,7 +97,7 @@ function tokensDoTema(theme) {
  * tokens.css, e o catálogo (/ds) do protótipo a mostra, para ler a cadeia tema → token → componente.
  */
 function origens(theme, c) {
-  const cores = theme.colors || {}, extra = theme.prototipo || {}, tk = theme.tokens || {}, mv = tk.movimento || {};
+  const cores = theme.colors || {}, extra = theme.software || theme.prototipo || {}, tk = theme.tokens || {}, mv = tk.movimento || {};
   const de = (tem, chave, regra = "") => `${tem ? `tema: ${chave}` : `padrão: ${chave}`}${regra}`;
   const cor = (chave, ...alt) => {
     const achada = [chave, ...alt].find((k) => cores[k]);

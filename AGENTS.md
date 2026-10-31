@@ -133,7 +133,7 @@ Passos:
    - título da iniciativa;
    - pessoa responsável, com nome e sobrenome (e as outras pessoas envolvidas, se houver);
    - período de acompanhamento e data limite (pode ser "A definir");
-   - se o projeto é um **software** e precisa de um **protótipo** (artefato persistente; ver "Protótipos"). Se sim, proponha a stack padrão, **com o design system** (ver "Design system do protótipo"), e confirme;
+   - se o projeto é um **software** e precisa de um **protótipo** (artefato persistente; ver "Protótipos"). Se sim, pergunte **a palavra**: "protótipo" (para validar a ideia, feito para trocar) ou "software" (algo que vai evoluir); sem resposta, vale **protótipo** (ver "Protótipos"). Proponha a stack padrão, **com o design system** (ver "Design system do protótipo"), e confirme;
    - projeto Jira ou repositório GitHub relacionado, se houver (ver "Integrações opcionais").
 7. **Pedir o material de apoio**, se existir: textos, anotações, transcrições, prints e fotos. Peça para a pessoa colocá-lo em `projetos/<projeto>/apoio/` ou colar na conversa. Avise que **segredos** (senhas, chaves, tokens) **não** devem ser colados nem guardados, e que dados pessoais ou confidenciais precisam de cuidado (ver "Segurança e privacidade").
 8. **Ler o material, entrevistar e escrever o primeiro rascunho.** As imagens são **insumo**: leia o conteúdo delas e transforme em texto no `.md`. O documento gerado não leva imagens; a imagem original fica em `apoio/` e é citada em "Documentos de Apoio".
@@ -269,6 +269,8 @@ Um carrossel é um conjunto de **cards** (por padrão 4:5, 1080x1350, o formato 
 - Formato antigo: um `theme.json` dentro do projeto ainda funciona, mas não é mais o padrão.
 
 ## Protótipos (artefato de software)
+
+**Protótipo ou software: a palavra é de quem desenvolve a ideia.** O artefato de software pode se chamar `"prototipo"` (o padrão, para validar a ideia, feito para trocar) ou `"software"` (algo que vai evoluir): é só uma escolha de **nomenclatura**, registrada no `"tipo"` do artefato no `projeto.json`. A pasta é a do `"caminho"` (`prototipo/` ou `software/`), e a stack, o design system, as jornadas, o vídeo, o `verificar` e a regra de dados fictícios são **os mesmos**; dado real, num software, é uma decisão à parte, regida por "Segurança e privacidade". O assistente **usa a palavra do projeto** nos textos e nas respostas, e o `AGENTS-extra.md` pode mudar o padrão. Nas seções abaixo, "protótipo" vale para os dois.
 
 Quando o projeto é um software, o template recomenda um **protótipo** para validar o fluxo, as regras e as telas **antes** de construir na plataforma de destino. O protótipo é um **artefato**: nasce de um documento (a especificação, em geral um **pitch**), fica versionado em `projetos/<projeto>/prototipo/` e evolui por conta própria. O projeto `projetos/exemplo-todo/` é o **exemplo completo**: um pitch com TL;DR, uma apresentação do resumo e um protótipo de lista de tarefas que segue esta definição. **Crie o protótipo só quando a pessoa pedir**, e registre-o no `projeto.json` (`"tipo": "prototipo"`, `"caminho": "prototipo"` e a `origem`, o documento de onde nasceu).
 

@@ -13,7 +13,7 @@
 // (links e detalhes sobre o escuro) também viram tokens, para o design system e os materiais ficarem alinhados.
 // Além das cores, saem raio, espaçamento, escala de tipo, sombra, alvo de toque e movimento ("tokens" no tema.json;
 // veja tools/tokens.js, que é a fonte única desses valores também para os cards, os reels e o vídeo).
-// Opcionalmente, o tema pode ter "prototipo": { "fundo": "FFFFFF", "suave": "4B5563" } para ajustar o que não tem
+// Opcionalmente, o tema pode ter "prototipo" (ou "software", a palavra que o projeto escolheu): { "fundo": "FFFFFF", "suave": "4B5563" } para ajustar o que não tem
 // equivalente nos documentos.
 
 const fs = require("fs");

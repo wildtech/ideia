@@ -9,7 +9,9 @@
 // projeto.json:
 //   { "nome": "...", "tema": "generico",
 //     "saidas":    [{ "fonte": "x.md", "tipo": "documento" | "apresentacao", "formatos": ["docx","html","pdf"] }],
-//     "artefatos": [{ "tipo": "prototipo", "caminho": "prototipo", "origem": "x.md", "descricao": "..." }] }
+//     "artefatos": [{ "tipo": "prototipo" | "software", "caminho": "prototipo", "origem": "x.md", "descricao": "..." }] }
+//   O "tipo" do artefato de software é a palavra que a pessoa escolheu para ele ("prototipo", o padrão, ou "software"):
+//   só muda o nome; a pasta é a do "caminho" (prototipo/ ou software/) e as regras são as mesmas.
 //   "saidas" são geradas pelas ferramentas em out/ (efêmeras: ficam fora do git e são regeneradas do .md).
 //   "artefatos" também são saídas derivadas de um documento (um protótipo gerado da especificação, por exemplo),
 //   mas PERSISTENTES: são versionados na pasta do projeto, criados fora destas ferramentas (pelo assistente ou à mão)
