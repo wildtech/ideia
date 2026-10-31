@@ -67,6 +67,7 @@ Tudo em `"tokens"` é opcional: o que o tema não declara usa o padrão de `tool
 3. **Monte as telas com `src/ui/`.** Nada de `<button>` solto nem de cor escrita à mão nas telas.
 4. **Crie um componente só quando uma tela precisar dele**, e escreva-o só com tokens. É um protótipo: o suficiente para ser coerente, e não uma biblioteca para manter.
 5. **Olhe o catálogo:** com o `npm run dev`, abra `/ds`. Ele mostra as camadas (de onde vem cada token e quem o usa), as cores, o espaçamento, a escala de tipo, a forma, o movimento, o contraste de cada par de cores e os componentes nos seus estados. Só existe no desenvolvimento (o `build` não o inclui).
+6. **Compartilhe em PDF:** `npm run ds:pdf` imprime o catálogo em `out/<projeto>-design-system.pdf`, com o projeto, o tema e a data no topo. É o documento para quem decide e não roda o protótipo. Como os outros PDFs do `out/`, é descartável: refaça quando o tema ou os componentes mudarem.
 
 ## O contraste
 

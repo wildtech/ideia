@@ -316,6 +316,7 @@ Todo protótipo **já nasce com um design system pequeno**, como sugestão padr�
 - **Componentes em `src/ui/`**, só com os tokens: `Botao`, `Campo`, `Cartao`, `EstadoVazio` e `Alerta`. As telas usam esses componentes, sem `<button>` solto nem cor, raio, espaço ou duração escritos à mão. **Crie um componente só quando uma tela precisar dele.**
 - **Acessibilidade:** contraste de pelo menos 4,5:1 (o gerador avisa e, nos botões preenchidos, escurece a cor do tema só até chegar lá), foco visível, rótulo sempre visível no campo, erro anunciado a leitores de tela e alvo de toque de pelo menos 44 px no celular.
 - **Catálogo (`/ds`)**, só no desenvolvimento: abre com as **camadas** (primitivo no tema, semântico no `tokens.css`, componente em `src/ui/`: de onde vem cada token e quem o usa) e mostra as cores, o espaçamento, a escala de tipo, a forma, o movimento, o contraste dos pares de cores e os componentes nos seus estados. Uma jornada do Playwright confere o contraste.
+- **PDF para compartilhar:** `npm run ds:pdf` imprime o catálogo em `out/<projeto>-design-system.pdf` (A4 deitado, com o projeto, o tema e a data no topo), para quem não roda o protótipo. É saída, como os outros PDFs: refaça quando o tema ou os componentes mudarem. O `build.js` não o gera, porque não roda o protótipo.
 - **O que não é:** uma biblioteca para manter (o protótipo existe para ser jogado fora) nem o design system da plataforma de destino, que pode ser outro. O protótipo mostra a **intenção** (cores, estados, contraste e toque).
 
 ### Dados e repositório
@@ -338,7 +339,7 @@ O protótipo roda sobre o Node e sobre pacotes de terceiros, e a versão de cada
 
 ### README do protótipo
 
-Todo protótipo tem um `README.md` com, nesta ordem: **como rodar** (comandos e portas), **as jornadas** (o que cada comando do Playwright faz), o **vídeo de demonstração** (se houver), **o que o protótipo valida**, **o que ele não valida**, **arquitetura** (a tabela das camadas), **design system** (os tokens do tema, os componentes e o catálogo), **dados de exemplo** (quem mostra o quê), **segurança e versões** (a versão do Node testada e a data, e o resultado do `verificar`) e **pendências conhecidas**. Diga no topo que **todos os dados são fictícios**.
+Todo protótipo tem um `README.md` com, nesta ordem: **como rodar** (comandos e portas), **as jornadas** (o que cada comando do Playwright faz), o **vídeo de demonstração** (se houver), **o que o protótipo valida**, **o que ele não valida**, **arquitetura** (a tabela das camadas), **design system** (os tokens do tema, os componentes, o catálogo e o PDF), **dados de exemplo** (quem mostra o quê), **segurança e versões** (a versão do Node testada e a data, e o resultado do `verificar`) e **pendências conhecidas**. Diga no topo que **todos os dados são fictícios**.
 
 ### Vídeo de demonstração (opcional)
 

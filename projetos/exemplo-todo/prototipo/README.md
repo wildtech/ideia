@@ -83,6 +83,7 @@ O protótipo tem um design system pequeno, em duas partes, e **a identidade vem 
 - **Acessibilidade:** foco visível em tudo que se opera, rótulo sempre visível no campo, erro anunciado a leitores de tela (`role="alert"`) e alvo de toque de pelo menos 44 px no celular (ou em tela estreita).
 - `npm run tokens:conferir` (que o `npm run build` já roda) falha se o `tokens.css` não estiver em dia com o tema.
 - **Catálogo:** com o `npm run dev`, abra `/ds` (por exemplo, `http://localhost:5173/ds`). Ele abre com as **camadas**: cada token, de onde vem no tema e quais componentes e telas o usam (veja o modelo em `guias/design-system.md`). Depois, mostra cada token (cores, espaçamento, tipo, forma e movimento) e o contraste dos pares de cores, e cada componente nos seus estados (a imagem fica em `../imagens/05-design-system.png`). Só existe no desenvolvimento: o `npm run build` não o inclui. Uma jornada confere que todo par de cores passa no contraste mínimo e que a cadeia tema → token → componente aparece (a cor de ação vem da primária e é usada pelo botão).
+- **PDF:** `npm run ds:pdf` sobe o Vite numa porta só dele (5293), abre o `/ds` no Chrome e o imprime em `../out/exemplo-todo-design-system.pdf` (A4 deitado, com as cores e um cabeçalho com o projeto, o tema e a data). É o documento para compartilhar o design system; fica no `out/`, fora do git, e se refaz quando o tema ou os componentes mudarem.
 
 ## Dados de exemplo
 
