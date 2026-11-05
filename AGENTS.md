@@ -37,7 +37,7 @@ ideia/
 │   ├── spec.txt              uma spec (funcionalidade, ajuste ou defeito) de um projeto que controla tarefas só em git
 │   ├── divulgacao.txt        material de divulgação: carrossel de redes sociais, a partir do pitch e do resumo
 │   └── video.txt             vídeo em cenas: abertura, cenário, a jornada do protótipo e a chamada, com narração
-├── guias/                    [base] textos de apoio sobre como fazer bem uma coisa (ex.: pitch.md, slides.md, slides-zen-lessig.md, cards.md, video-demonstracao.md, seguranca.md, design-system.md, issues.md e specs.md)
+├── guias/                    [base] textos de apoio sobre como fazer bem uma coisa (ex.: pitch.md, slides.md, slides-zen-lessig.md, cards.md, video-demonstracao.md, seguranca.md, transcricoes.md, design-system.md, issues.md e specs.md)
 ├── temas/                    [base e conteúdo] identidade visual; uma pasta por tema
 │   └── <tema>/               tema.json (cores, fontes, logo, rodapé, tokens, opções) e, se houver, base.docx, referencia.pdf,
 │                             slides.css, cards.css e cards/ (layouts de card só deste tema)
@@ -136,7 +136,7 @@ Passos:
    - se o projeto é um **software** e precisa de um **protótipo** (artefato persistente; ver "Protótipos"). Se sim, pergunte **a palavra**: "protótipo" (para validar a ideia, feito para trocar) ou "software" (algo que vai evoluir); sem resposta, vale **protótipo** (ver "Protótipos"). Proponha a stack padrão, **com o design system** (ver "Design system do protótipo"), e confirme;
    - projeto Jira ou repositório GitHub relacionado, se houver (ver "Integrações opcionais").
 7. **Pedir o material de apoio**, se existir: textos, anotações, transcrições, prints e fotos. Peça para a pessoa colocá-lo em `projetos/<projeto>/apoio/` ou colar na conversa. Avise que **segredos** (senhas, chaves, tokens) **não** devem ser colados nem guardados, e que dados pessoais ou confidenciais precisam de cuidado (ver "Segurança e privacidade").
-8. **Ler o material, entrevistar e escrever o primeiro rascunho.** As imagens são **insumo**: leia o conteúdo delas e transforme em texto no `.md`. O documento gerado não leva imagens; a imagem original fica em `apoio/` e é citada em "Documentos de Apoio".
+8. **Ler o material, entrevistar e escrever o primeiro rascunho.** As imagens são **insumo**: leia o conteúdo delas e transforme em texto no `.md`. O documento gerado não leva imagens; a imagem original fica em `apoio/` e é citada em "Documentos de Apoio". **Transcrições de reuniões** seguem o `guias/transcricoes.md`: clientes e usuários citados não aparecem com nome, as dúvidas ficam com **(?)** e viram perguntas para a próxima conversa, e o arquivo original com dado de terceiro não é versionado como está.
 9. **Criar os arquivos:** `projetos/<projeto>/<projeto>.md` (com `**Roteiro:** <nome>` no topo e seguindo o roteiro e as regras abaixo) e `projetos/<projeto>/projeto.json` (siga o modelo de "Projeto e saídas", com `"tema": "generico"` a menos que a pessoa ou o `AGENTS-extra.md` indique outro).
 10. **Sugerir o resumo (TL;DR)** e, se fizer sentido, a apresentação (`<projeto>-slides.md`). Quem decide criar é a pessoa.
 11. **Gerar as saídas** (ver "Gerando as saídas"), mostrar o que foi criado e perguntar o que ajustar.
@@ -488,6 +488,7 @@ Estas regras valem para **todos os projetos**, e o `AGENTS-extra.md` só pode re
 
 - **Dado real de pessoas, clientes ou usuários não entra em protótipos** (só dados fictícios) **nem em repositório público**.
 - **O `apoio/` e as imagens podem conter dado pessoal** (nomes, e-mails, telefones, planilhas, rostos). Olhe antes de versionar e corte, borre ou troque o que aparecer. Imagens de terceiros e de pessoas pedem crédito e, quando há rosto ou dado pessoal, autorização.
+- **Transcrições de reuniões:** clientes e usuários citados, ou mostrados numa tela compartilhada, não aparecem nos documentos; o caso é contado de forma abstrata. A transcrição com dado de terceiro é cortada antes de ir para o `apoio/`, ou fica fora do git. O passo a passo está em `guias/transcricoes.md`.
 - **Dado pessoal ou confidencial não vai a um serviço externo** (um modelo de IA, uma ferramenta online) sem a decisão da pessoa. Na conversa com o assistente, escreva o que se sabe sobre o caso, e não o dado em si.
 - **Nada de dentro de uma organização vai para um repositório público.** O `AGENTS-extra.md` diz o que é confidencial na organização.
 - **Na dúvida, pergunte.** Marque com **(?)** e não registre.

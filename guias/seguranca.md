@@ -38,6 +38,7 @@ Ordem importa: **primeiro revogar, depois limpar.**
 
 - **Dados pessoais e confidenciais** (clientes, funcionários, contratos, valores) não entram em protótipos nem em repositório público. No documento, prefira o que se aprende com o caso e não o dado em si, ou anonimize.
 - **O `apoio/` e as imagens** podem conter nomes, e-mails, telefones, planilhas e rostos que ninguém lembra de ter colocado. Olhe cada arquivo antes de versionar, principalmente em repositório público, e corte, borre ou troque o que aparece.
+- **Transcrições de reuniões** guardam nomes de clientes e usuários, o que apareceu em telas compartilhadas e falas atribuídas à pessoa errada. O `guias/transcricoes.md` traz o passo a passo.
 - **Fotos e imagens de terceiros e de pessoas** pedem crédito e, quando há rosto ou dado pessoal, autorização. Registre isso nas notas ou no documento.
 - **Nada de dentro de uma organização vai para um repositório público.** O `AGENTS-extra.md` diz o que é confidencial na sua.
 - **A LGPD vale** para qualquer dado de pessoa real. Na dúvida, não coloque.

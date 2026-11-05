@@ -54,7 +54,7 @@ Se o Chrome não for encontrado, defina a variável `CHROME` com o caminho do ex
 | `AGENTS.md` | Instruções para o agente de IA: onboarding, regras, formato do Markdown, temas e geração |
 | `AGENTS-extra.example.md` | Modelo do arquivo complementar com o que é específico de você ou da sua organização |
 | `roteiros/` | Roteiros: iniciativa, Business Model Canvas, 10-20-30, PDI, pitch, resumo (TL;DR), divulgação e vídeo |
-| `guias/` | Guias de apoio: como escrever um pitch, como escrever slides (dois estilos, imagens e cores sugeridas; o estilo Presentation Zen e método Lessig tem guia próprio), como escolher e criar layouts de cards e gerar reels, como gerar um vídeo em cenas, narrado, a partir de um protótipo, como cuidar de segurança, privacidade e versões (segredos, dados pessoais, Node e pacotes) e como montar o design system de um protótipo a partir do tema |
+| `guias/` | Guias de apoio: como escrever um pitch, como escrever slides (dois estilos, imagens e cores sugeridas; o estilo Presentation Zen e método Lessig tem guia próprio), como escolher e criar layouts de cards e gerar reels, como gerar um vídeo em cenas, narrado, a partir de um protótipo, como cuidar de segurança, privacidade e versões (segredos, dados pessoais, Node e pacotes), como tratar transcrições de reuniões sem expor clientes e usuários e como montar o design system de um protótipo a partir do tema |
 | `temas/generico/` | Tema padrão (logo, fontes, cabeçalho e rodapé de exemplo) |
 | `temas/neutro/` e `temas/exemplo-leve/` | A base dos temas simples e um exemplo genérico de tema só com cores e logo |
 | `temas/exemplo-cc/` | Tema simples do projeto `exemplo-cc`, com o logo e as cores da Creative Commons (só como ilustração) |
