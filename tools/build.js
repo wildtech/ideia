@@ -6,6 +6,8 @@
 // Com projeto.json: gera cada item de "saidas" (documento: docx/html/pdf; apresentacao: html/pdf com reveal.js;
 // carrossel: html, png (um por card), pdf e mp4 (o reel), para redes sociais; video: mp4 em cenas, com md2video.js).
 // Uma saída pode ter "formato" (por exemplo, "9:16") para gerar o carrossel em outro tamanho.
+// "antes" no projeto.json (lista de scripts Node de tools/, por exemplo ["planos.js"]) roda cada um, com a pasta do
+// projeto como argumento, antes de gerar as saídas: um passo próprio de quem usa, sem mexer neste arquivo.
 // Se o projeto tem uma pasta specs/, confere as specs e gera o índice e o relatório de fluxo acumulado (specs.js).
 // Sem projeto.json (formato antigo): lê <pasta>/<nome>.md e gera docx, html e pdf.
 // O PDF é sempre gerado a partir do HTML. A saída vai para <pasta>/out/.
@@ -34,9 +36,25 @@ function saidasDe(projectDir) {
   return [{ fonte: nome + ".md", tipo: "documento", formatos: ["docx", "html", "pdf"] }];
 }
 
+// Scripts de "antes": só os que ficam em tools/ do repositório (nada de caminho de fora nem de comando de shell).
+function passosAntes(projectDir) {
+  const p = path.join(projectDir, "projeto.json");
+  if (!fs.existsSync(p)) return [];
+  const antes = JSON.parse(fs.readFileSync(p, "utf8")).antes || [];
+  return antes.map((nome) => {
+    const abs = path.resolve(__dirname, nome);
+    if (path.dirname(abs) !== __dirname || !abs.endsWith(".js") || !fs.existsSync(abs))
+      throw new Error(`projeto.json: "antes" aceita só scripts .js que existem em tools/ (recebeu "${nome}")`);
+    return nome;
+  });
+}
+
 let failed = false;
 for (const project of projects) {
   const dir = path.resolve(project);
+  for (const passo of passosAntes(dir)) {
+    try { run(passo, [dir]); } catch (e) { failed = true; console.error("Falhou: " + passo + " (antes, " + project + ")"); }
+  }
   for (const saida of saidasDe(dir)) {
     const md = path.join(dir, saida.fonte);
     const base = path.join(dir, "out", path.basename(saida.fonte, ".md"));

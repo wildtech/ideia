@@ -225,6 +225,7 @@ Não use `##`, imagens (`![]()`), blocos de código ou HTML: o compilador não o
 | `evidencia` | Print ou diagrama inteiro em fundo escuro, com o título como legenda de uma linha |
 | `quote` | O título do slide é a citação (até 25 palavras), em fundo escuro, e `**Autor:** nome` vira a assinatura |
 
+- **Layouts de slide de um tema:** um tema pode trazer layouts próprios em `temas/<tema>/slides/<layout>.js` (ver `guias/slides.md`), sem mexer no `md2slides.js`. Um layout com o nome de um layout da base é ignorado, com aviso.
 - Diretivas de slide, uma por linha, logo abaixo do título (podem vir juntas): `**Layout:**`, `**Imagem:** imagens/arquivo.jpg` (caminho relativo ao projeto; a imagem vai **embutida** no html, uma vez só, mesmo que se repita), `**Crédito:** texto ou [link](url)` (linha pequena no canto) e `**Fundo:** escuro` ou `claro` (força o fundo), `**Autor:**` (assinatura do layout `quote`) e `**Oculto:** sim` (o slide fica no Markdown, mas não entra na apresentação nem no PDF, nem na numeração).
 - O compilador avisa quando a frase passa do limite do layout, quando uma imagem não existe, quando ela passa de 700 KB e quando há `**Imagem:**` em um layout que não a mostra. Otimize as imagens antes (por exemplo, 1600 px de largura, em JPEG).
 - Uma citação que começa com `Notas:` vira **nota do apresentador** e não aparece no slide (veja-as abrindo o html com `?showNotes=true`). Use as notas para apontar a seção do documento completo que serve de fonte.
@@ -263,6 +264,7 @@ Um carrossel é um conjunto de **cards** (por padrão 4:5, 1080x1350, o formato 
 
 - `tema`: nome de uma pasta em `temas/`.
 - `saidas`: cada item é um `.md` (`fonte`), um `tipo` (`documento`, `apresentacao` ou `carrossel`) e os `formatos`. O PDF sai do HTML. Um projeto pode ter vários documentos.
+- `antes` (opcional): lista de scripts Node de `tools/` que o `build.js` roda, na ordem, antes de gerar as saídas, com a pasta do projeto como argumento (por exemplo, `"antes": ["meu-passo.js"]`). É o ponto de extensão para um passo próprio de quem usa (gerar um `.md` a partir de outros documentos, por exemplo) sem editar o `build.js`. Só aceita scripts `.js` que existem em `tools/`; nada de comando de shell nem caminho de fora.
 - `artefatos` (opcional): registro do que o projeto tem além do Markdown. Não é gerado pelas ferramentas.
 - `tarefas` (opcional): onde o projeto controla as tarefas: `"git"` (specs em `specs/`, ver "Specs"), `"github"` (issues) ou `"jira"`. Sem ele, pergunte.
 - `ajustes` (opcional): sobrescreve opções do tema só neste projeto (por exemplo, `"ajustes": { "footer": ["..."] }`).

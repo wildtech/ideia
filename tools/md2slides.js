@@ -17,6 +17,7 @@
 //   **Crédito:** texto ou [link](url)     crédito da imagem, em letra pequena no canto
 //   **Fundo:** escuro | claro             força o fundo do slide (a capa com imagem e as seções são escuras por padrão)
 //   **Oculto:** sim                       o slide continua no Markdown, mas não entra na apresentação nem no PDF (e não é numerado)
+//   Layouts próprios de um tema: temas/<tema>/slides/<layout>.js (ver guias/slides.md, "Layouts de slide de um tema")
 //   Layout de citação:
 //     quote                               o título do slide é a citação (grande, em fundo escuro); **Autor:** nome vira a assinatura
 //   As linhas de diretiva podem vir juntas, uma abaixo da outra.
@@ -107,6 +108,23 @@ const MAX_WORDS_FRASE = 14; // no estilo Lessig, a frase do slide é curta
 const MAX_WORDS_QUOTE = 25;
 const NOTAS_RE = /^\*{0,2}Notas( do apresentador)?:\*{0,2}\s*(.*)$/i;
 
+// Layouts de slide próprios do tema: temas/<tema>/slides/<layout>.js, de qualquer tema da cadeia de "extends" (o mais
+// próximo vence). Cada arquivo exporta { layout, campos, css, maxPalavras, avisos(slide), render(slide, ajuda) }.
+// Um layout com o nome de um layout da base é ignorado, com aviso: a base não é sobrescrita.
+const LAYOUTS_DA_BASE = ["capa", "conteudo", "destaque", "fechamento", ...LAYOUTS_NOVOS];
+const LAYOUTS_TEMA = {};
+for (const dir of temaDirs || []) {
+  const pasta = path.join(dir, "slides");
+  if (!fs.existsSync(pasta)) continue;
+  for (const f of fs.readdirSync(pasta).filter((x) => x.endsWith(".js")).sort()) {
+    const mod = require(path.join(pasta, f));
+    const nome = semAcento(mod.layout || path.basename(f, ".js"));
+    if (typeof mod.render !== "function") { console.warn(`Aviso: ${path.join(pasta, f)} não exporta render(slide, ajuda); ignorado.`); continue; }
+    if (LAYOUTS_DA_BASE.includes(nome)) { console.warn(`Aviso: o layout "${nome}" de ${path.join(pasta, f)} tem o nome de um layout da base; ignorado.`); continue; }
+    LAYOUTS_TEMA[nome] = mod;
+  }
+}
+
 function buildSlides(blocks) {
   const slides = [];
   let cur = null;
@@ -117,12 +135,17 @@ function buildSlides(blocks) {
       continue;
     }
     if (b.type === "heading" && b.level <= 3) {
-      cur = { layout: ESTILO === "zen-lessig" ? "frase" : "conteudo", explicit: false, title: b.text, html: "", notes: [], words: 0, image: null, credit: null, dark: null, hidden: false, author: null };
+      cur = { layout: ESTILO === "zen-lessig" ? "frase" : "conteudo", explicit: false, title: b.text, html: "", notes: [], words: 0, image: null, credit: null, dark: null, hidden: false, author: null, campos: [] };
       slides.push(cur);
       continue;
     }
     if (!cur) continue;
-    const add = (html, text) => { cur.html += html; cur.words += (text || "").split(/\s+/).filter(Boolean).length; };
+    const add = (html, text) => {
+      if (LAYOUTS_TEMA[cur.layout] && LAYOUTS_TEMA[cur.layout].campos && cur.campos.length) cur.campos[cur.campos.length - 1].html += html; else cur.html += html;
+      cur.words += (text || "").split(/\s+/).filter(Boolean).length;
+    };
+    // em um layout de tema com "campos", cada #### abre um campo (slide.campos: { titulo, html })
+    if (b.type === "heading" && b.level === 4 && LAYOUTS_TEMA[cur.layout] && LAYOUTS_TEMA[cur.layout].campos) { cur.campos.push({ titulo: b.text, html: "" }); continue; }
     if (b.type === "heading") add(`<h3>${inline(b.text)}</h3>`, b.text);
     else if (b.type === "para") {
       // linhas de diretiva (Layout, Imagem, Crédito, Fundo) configuram o slide; o resto é conteúdo
@@ -295,7 +318,9 @@ html.static-print .reveal section.destaque,html.static-print .reveal section.fec
       console.warn(`Aviso: o slide ${i} ("${s.title}") tem **Imagem:**, mas o layout "${s.layout}" não mostra imagem. Use imagem-direita, imagem-esquerda, imagem-cheia ou evidencia.`);
     if (s.layout === "capa") return;
     const tituloPalavras = s.title.split(/\s+/).filter(Boolean).length;
-    const limite = ["frase", "frase-escura", "secao"].includes(s.layout) ? MAX_WORDS_FRASE : s.layout === "quote" ? MAX_WORDS_QUOTE : s.layout === "evidencia" ? 20 : LAYOUTS_COM_IMAGEM.includes(s.layout) ? 30 : MAX_WORDS;
+    const lt = LAYOUTS_TEMA[s.layout];
+    if (lt && typeof lt.avisos === "function") (lt.avisos(s) || []).forEach((a) => console.warn("Aviso: " + a));
+    const limite = lt && lt.maxPalavras ? lt.maxPalavras : ["frase", "frase-escura", "secao"].includes(s.layout) ? MAX_WORDS_FRASE : s.layout === "quote" ? MAX_WORDS_QUOTE : s.layout === "evidencia" ? 20 : LAYOUTS_COM_IMAGEM.includes(s.layout) ? 30 : MAX_WORDS;
     const palavras = LAYOUTS_NOVOS.includes(s.layout) ? tituloPalavras + s.words : s.words;
     if (palavras > limite) console.warn(`Aviso: o slide ${i} ("${s.title}") tem ${palavras} palavras; acima de ${limite} fica difícil de ler de longe neste layout.`);
   });
@@ -340,6 +365,11 @@ html.static-print .reveal section.destaque,html.static-print .reveal section.fec
   const sections = slides.map((s) => {
     const notas = s.notes.length ? `<aside class="notes">${s.notes.map(esc).join("<br>")}</aside>` : "";
     if (ESTILO === "zen-lessig" && s.layout === "frase" && !s.explicit && s.image) s.layout = "imagem-direita";
+    if (LAYOUTS_TEMA[s.layout]) {
+      const credito = s.credit ? `<div class="credito">${inline(s.credit)}</div>` : "";
+      const cls = (extra) => `nl ${extra || ""} ${s.dark ? "escuro" : ""}`.trim();
+      return LAYOUTS_TEMA[s.layout].render(s, { inline, esc, semAcento, theme, cls, notas, credito });
+    }
     if (LAYOUTS_NOVOS.includes(s.layout) || (s.layout === "capa" && (s.image || ESTILO === "zen-lessig"))) return renderNovo(s, notas);
     if (s.layout === "capa") {
       const capaLogo = logo ? `<img class="capa-logo" src="${logo}" alt="${esc(theme.name || "Logo")}">` : "";
@@ -361,7 +391,8 @@ html.static-print .reveal section.destaque,html.static-print .reveal section.fec
     return css.slice(0, i) + css.slice(j);
   };
   // slides.css de cada tema da cadeia (do mais distante ao mais próximo), se houver
-  const extra = (temaDirs || []).map((d) => path.join(d, "slides.css")).filter((f) => fs.existsSync(f)).map((f) => fs.readFileSync(f, "utf8")).join("\n");
+  const cssLayoutsTema = Object.values(LAYOUTS_TEMA).map((m) => m.css || "").join("\n");
+  const extra = cssLayoutsTema + "\n" + (temaDirs || []).map((d) => path.join(d, "slides.css")).filter((f) => fs.existsSync(f)).map((f) => fs.readFileSync(f, "utf8")).join("\n");
   const titulo = slides[0].layout === "capa" ? slides[0].title : path.basename(mdPath, ".md");
 
   const html = `<!doctype html>

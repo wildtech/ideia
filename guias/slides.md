@@ -129,3 +129,35 @@ Se a marca tem uma cor viva, ela costuma servir de destaque nos slides escuros: 
 - [ ] O que é detalhe foi para o documento?
 - [ ] Há uma nota por slide, com a origem?
 - [ ] O texto tem contraste de 4,5:1 ou mais com o fundo?
+
+## Layouts de slide de um tema
+
+Os layouts da base (conteúdo, destaque, frase, imagem, quote...) ficam no `tools/md2slides.js`. Quando um tema ou uma organização precisa de um layout **só seu**, ele não entra na base: vira um arquivo do tema, e a base continua igual à do template (assim as atualizações do template não dão conflito).
+
+Um arquivo `temas/<tema>/slides/<layout>.js` (em qualquer tema da cadeia de `extends`; o mais próximo vence) exporta:
+
+| Campo | Para que serve |
+| :--- | :--- |
+| `layout` | O nome usado em `**Layout:**` (sem acento é mais simples) |
+| `campos` | Opcional. Se `true`, cada `####` do slide abre um campo (`slide.campos`, com `titulo` e `html`), em vez de virar um subtítulo |
+| `render(slide, ajuda)` | Devolve o html do slide. `slide` traz `title`, `html`, `campos`, `image`, `credit`, `dark`; `ajuda` traz `inline`, `esc`, `semAcento`, `theme`, `cls` (as classes do slide, com `nl` para o quadro de 1280x720), `notas` e `credito` |
+| `css` | Opcional. CSS do layout, acrescentado ao final |
+| `maxPalavras` | Opcional. Acima disso, o compilador avisa de texto demais |
+| `avisos(slide)` | Opcional. Lista de avisos extras (por exemplo, um campo que falta) |
+
+Um exemplo mínimo, que mostra o título e o texto em um quadro:
+
+```js
+module.exports = {
+  layout: "quadro",
+  render: (s, { inline, cls, notas, credito }) =>
+    `<section class="${cls("quadro-s")}"><div class="sl quadro"><h2>${inline(s.title)}</h2>${s.html}</div>${credito}${notas}</section>`,
+  css: ".reveal section.nl .quadro{padding:60px}",
+};
+```
+
+No Markdown: `**Layout:** quadro` abaixo do título do slide. Um layout de tema com o nome de um layout da base é ignorado, com aviso.
+
+### Um passo antes do build
+
+Quando o slide é gerado a partir de outros documentos, um script de `tools/` pode rodar antes: liste-o em `"antes"` no `projeto.json` (`"antes": ["meu-passo.js"]`) e o `build.js` o roda, com a pasta do projeto como argumento, antes de gerar as saídas.
