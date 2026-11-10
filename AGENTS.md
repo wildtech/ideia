@@ -37,7 +37,7 @@ ideia/
 │   ├── spec.txt              uma spec (funcionalidade, ajuste ou defeito) de um projeto que controla tarefas só em git
 │   ├── divulgacao.txt        material de divulgação: carrossel de redes sociais, a partir do pitch e do resumo
 │   └── video.txt             vídeo em cenas: abertura, cenário, a jornada do protótipo e a chamada, com narração
-├── guias/                    [base] textos de apoio sobre como fazer bem uma coisa (ex.: pitch.md, slides.md, slides-zen-lessig.md, cards.md, video-demonstracao.md, seguranca.md, transcricoes.md, design-system.md, issues.md e specs.md)
+├── guias/                    [base] textos de apoio sobre como fazer bem uma coisa (ex.: pitch.md, slides.md, slides-zen-lessig.md, cards.md, video-demonstracao.md, seguranca.md, transcricoes.md, design-system.md, issues.md, specs.md e commits.md)
 ├── temas/                    [base e conteúdo] identidade visual; uma pasta por tema
 │   └── <tema>/               tema.json (cores, fontes, logo, rodapé, tokens, opções) e, se houver, base.docx, referencia.pdf,
 │                             slides.css, cards.css e cards/ (layouts de card só deste tema)
@@ -553,6 +553,8 @@ Quando o projeto não usa GitHub nem Jira (o `projeto.json` tem `"tarefas": "git
 Esta é a regra padrão (a que o criador do template, Daniel Wildt, usa). **Ajuste conforme o seu fluxo no `AGENTS-extra.md`**, por exemplo para dar mais autonomia ao assistente.
 
 - Faça commits **somente quando a pessoa pedir**.
+- **Mensagens em Conventional Commits** (`tipo(escopo): descrição`, em português, uma ideia por commit), como explica o `guias/commits.md`. O `AGENTS-extra.md` pode ajustar escopos e idioma.
+- **Trunk based development é o padrão:** sem branches de longa duração. Os commits vão direto na branch principal (`main`), pequenos e frequentes, e o assistente não cria branch. Quem usa outro fluxo (branches, pull requests) ajusta no `AGENTS-extra.md`.
 - **O push é sempre feito pela pessoa.** Nunca execute `git push`. (Quem quiser mais flexibilidade pode trocar por: "faça o push da branch de trabalho quando a pessoa pedir", ou liberar o push depois do commit.)
 - `.DS_Store`, `node_modules/` e `out/` estão no `.gitignore`. Os arquivos gerados não são versionados; para distribuir um documento, gere de novo a partir do `.md`.
 

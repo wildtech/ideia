@@ -48,7 +48,8 @@ Este arquivo complementa o `AGENTS.md`, que é a base compartilhada do template 
 
 - **Commits:** somente quando a pessoa pedir (padrão). Ajuste se quiser.
 - **Push:** sempre feito pela pessoa (padrão). Ajuste se quiser.
-- **Nomes de branch e mensagens de commit:** A definir.
+- **Branches:** o padrão do template é trunk based development (commits direto na `main`, sem branches de longa duração). Se usar branches ou pull requests, descreva aqui o fluxo e os nomes.
+- **Mensagens de commit:** Conventional Commits (padrão, ver `guias/commits.md`). Ajuste escopos e idioma se precisar.
 
 ## Convenções
 

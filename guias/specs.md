@@ -42,7 +42,7 @@ Toda spec começa pelo Resumo (TL;DR) em citação. Os critérios de aceite são
 | **Andamento** | Está sendo feita |
 | **Finalizado** | O trabalho terminou e todos os critérios de aceite estão marcados. Não quer dizer entregue em produção |
 
-Mudar de status é editar a linha **Status:** e fazer um commit (por exemplo, `spec 003: Andamento`). Uma ideia que não vai adiante pode ficar em Ideia com a explicação escrita na própria spec, ou ser apagada com o motivo na mensagem do commit.
+Mudar de status é editar a linha **Status:** e fazer um commit (por exemplo, `docs(spec): 003 Andamento`, no padrão do `guias/commits.md`). Uma ideia que não vai adiante pode ficar em Ideia com a explicação escrita na própria spec, ou ser apagada com o motivo na mensagem do commit.
 
 ## Conferir, indexar e ver o relatório
 
