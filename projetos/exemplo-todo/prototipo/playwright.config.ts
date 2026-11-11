@@ -21,12 +21,12 @@ export default defineConfig({
     {
       command: "npx tsx server/index.ts",
       env: { PORT: String(API), DB_PATH: "data/e2e.db" },
-      url: `http://localhost:${API}/api/quadro`,
+      url: `http://127.0.0.1:${API}/api/quadro`,
       reuseExistingServer: false,
     },
     {
       command: "npx vite --strictPort",
-      env: { WEB_PORT: String(WEB), API_URL: `http://localhost:${API}` },
+      env: { WEB_PORT: String(WEB), API_URL: `http://127.0.0.1:${API}` },
       url: `http://localhost:${WEB}`,
       reuseExistingServer: false,
     },

@@ -7,11 +7,12 @@ Stack padrão do template: React + Vite + TypeScript, API Node e SQLite (`node:s
 ## Como rodar
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-- A API sobe em `http://localhost:3001` e a interface em `http://localhost:5173` (o Vite escolhe a próxima porta livre se ela estiver ocupada).
+- A API sobe em `http://localhost:3001` e a interface em `http://localhost:5173` (o Vite escolhe a próxima porta livre se ela estiver ocupada). As duas só aceitam conexões deste computador.
+- `npm ci` instala exatamente as versões do `package-lock.json`. Use `npm install` só para adicionar ou atualizar uma dependência, de propósito.
 - O banco fica em `data/todo.db` e é criado com os dados de exemplo na primeira vez. O botão **Reiniciar dados de exemplo** volta tudo ao início.
 - `npm test` roda os testes das regras e da API (Vitest), `npm run typecheck` confere os tipos e `npm run build` gera a versão para publicar.
 - `npm run test:e2e`, `npm run demo` e `npm run capturas` rodam as **jornadas no navegador** (Playwright, veja abaixo). Elas sobem a própria API e a própria interface, em outras portas (3101 e 5273) e com outro banco, então **não atrapalham** quem está com o `npm run dev` aberto.
@@ -92,6 +93,7 @@ O protótipo tem um design system pequeno, em duas partes, e **a identidade vem 
 ## Segurança e versões
 
 - **Nenhum segredo.** O protótipo não usa serviço externo, e a IA é simulada. As variáveis de ambiente aceitas (portas, caminho do banco) estão em `.env.example`, e nenhuma é segredo. Não crie um `.env` com chave de serviço: se um dia for preciso, ela entra só em tempo de execução (veja `guias/seguranca.md`, na raiz do repositório).
+- **A API é só local.** Ela não tem login, então escuta só em `127.0.0.1`, recusa um `Host` que não seja `localhost` (403), aceita POST só com `application/json` (415), limita o corpo a 16 KB (413) e não devolve a mensagem interna de um erro 500. Os testes de API (`server/todo.test.ts`) conferem cada regra. Hospedar o protótipo é outra decisão (veja `guias/seguranca.md`).
 - **Verificação:** `npm run verificar` procura segredos nos arquivos e confere o `.gitignore`, o lockfile e o `engines`. `npm run verificar:rede` também consulta o calendário do Node e roda `npm audit` e `npm outdated`.
 
 | O que | Versão | Verificado em |

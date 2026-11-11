@@ -2,7 +2,8 @@ import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import type { Server } from "node:http";
 import type { AddressInfo } from "node:net";
 import { STAGES } from "../src/domain";
-import { criarServidor } from "./app";
+import { request } from "node:http";
+import { criarServidor, LIMITE_CORPO } from "./app";
 import { EXEMPLOS } from "./sample";
 import { SqliteTodoRepository } from "./sqliteRepository";
 
@@ -73,15 +74,19 @@ describe("limpar feitas", () => {
 describe("API HTTP", () => {
   let servidor: Server;
   let base: string;
+  let porta: number;
 
   beforeEach(async () => {
     servidor = criarServidor(repo);
-    await new Promise<void>((ok) => servidor.listen(0, ok));
-    base = `http://localhost:${(servidor.address() as AddressInfo).port}/api`;
+    await new Promise<void>((ok) => servidor.listen(0, "127.0.0.1", ok));
+    porta = (servidor.address() as AddressInfo).port;
+    base = `http://127.0.0.1:${porta}/api`;
   });
   afterEach(() => new Promise<void>((ok) => servidor.close(() => ok())));
 
-  const post = (caminho: string, corpo: unknown = {}) => fetch(base + caminho, { method: "POST", body: JSON.stringify(corpo) });
+  const JSON_HEADERS = { "content-type": "application/json" };
+  const post = (caminho: string, corpo: unknown = {}) =>
+    fetch(base + caminho, { method: "POST", headers: JSON_HEADERS, body: JSON.stringify(corpo) });
 
   it("devolve o quadro", async () => {
     const q = (await (await fetch(`${base}/quadro`)).json()) as { tarefas: unknown[] };
@@ -100,5 +105,30 @@ describe("API HTTP", () => {
   it("limpa as feitas e informa quantas", async () => {
     const r = (await (await post("/feitas/limpar")).json()) as { removidas: number };
     expect(r.removidas).toBe(EXEMPLOS.filter((e) => e.etapa === "feito").length);
+  });
+
+  it("recusa POST sem application/json (chamada vinda de outro site) e não mexe nos dados", async () => {
+    const r = await fetch(`${base}/feitas/limpar`, { method: "POST", headers: { "content-type": "text/plain" }, body: "{}" });
+    expect(r.status).toBe(415);
+    const q = (await (await fetch(`${base}/quadro`)).json()) as { tarefas: unknown[] };
+    expect(q.tarefas).toHaveLength(EXEMPLOS.length);
+  });
+
+  it("recusa um Host que não é localhost (DNS rebinding)", async () => {
+    const status = await new Promise<number>((ok, falha) => {
+      const req = request({ host: "127.0.0.1", port: porta, path: "/api/quadro", headers: { host: "exemplo.com" } }, (res) => {
+        res.resume();
+        ok(res.statusCode ?? 0);
+      });
+      req.on("error", falha);
+      req.end();
+    });
+    expect(status).toBe(403);
+  });
+
+  it("recusa corpo grande demais e JSON inválido", async () => {
+    expect((await post("/tarefas", { titulo: "x".repeat(LIMITE_CORPO) })).status).toBe(413);
+    const quebrado = await fetch(`${base}/tarefas`, { method: "POST", headers: JSON_HEADERS, body: "{" });
+    expect(quebrado.status).toBe(400);
   });
 });

@@ -1,7 +1,7 @@
 import type { QuadroData, Resultado, StageId, Tarefa, TodoGateway } from "./domain";
 
 async function chamar<T>(caminho: string, corpo?: unknown): Promise<T> {
-  const r = await fetch(`/api${caminho}`, corpo === undefined ? undefined : { method: "POST", body: JSON.stringify(corpo) });
+  const r = await fetch(`/api${caminho}`, corpo === undefined ? undefined : { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(corpo) });
   return (await r.json()) as T;
 }
 
