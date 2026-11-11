@@ -11,7 +11,7 @@ const fs = require("fs");
 const path = require("path");
 const JSZip = require("jszip");
 const { PNG } = require("pngjs");
-const { parse } = require("./md-parse");
+const { parse, linkSeguro } = require("./md-parse");
 
 const [, , projectArg, mdArg, outArg] = process.argv;
 if (!projectArg) {
@@ -51,8 +51,8 @@ function inline(text) {
     if (m[2] !== undefined) out += `<strong>${esc(m[2])}</strong>`;
     else if (m[3] !== undefined) out += `<em>${esc(m[3])}</em>`;
     else if (m[4] !== undefined) out += `<code>${esc(m[4])}</code>`;
-    else if (/^https?:/.test(m[6])) out += `<a href="${esc(m[6])}">${esc(m[5])}</a>`;
-    else out += `<a href="${esc(m[6])}">${esc(m[5])}</a>`;
+    else if (linkSeguro(m[6])) out += `<a href="${esc(m[6])}">${esc(m[5])}</a>`;
+    else out += esc(m[5]);
     last = re.lastIndex;
   }
   return out + esc(text.slice(last));

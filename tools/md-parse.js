@@ -49,4 +49,18 @@ function parse(md) {
   return blocks;
 }
 
-module.exports = { parse, parseList };
+// Esquemas aceitos em [texto](link): http, https, mailto, âncoras (#) e caminhos relativos.
+// Outro esquema (javascript:, data:, file:, vbscript:...) não vira link no html gerado.
+const avisados = new Set();
+function linkSeguro(url) {
+  const u = String(url).trim();
+  const esquema = /^([a-z][a-z0-9+.-]*):/i.exec(u.replace(/[\s\u0000-\u001f]/g, ""));
+  if (!esquema || ["http", "https", "mailto"].includes(esquema[1].toLowerCase())) return true;
+  if (!avisados.has(u)) {
+    avisados.add(u);
+    console.warn(`Aviso: link com esquema não permitido (${esquema[1]}:) virou texto: ${u.slice(0, 80)}`);
+  }
+  return false;
+}
+
+module.exports = { parse, parseList, linkSeguro };
