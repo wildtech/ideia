@@ -51,9 +51,22 @@ O protótipo roda sobre o Node e sobre dezenas de pacotes que alguém mantém. V
 - **`engines`:** o `package.json` declara o piso do Node (`"node": ">=22.13"` no exemplo). O README registra a versão **testada** e a data.
 - **Lockfile:** o `package-lock.json` é versionado, e a instalação limpa usa `npm ci`. Sem ele, duas pessoas instalam versões diferentes.
 - **Poucas dependências**, de mantenedores conhecidos. Cada pacote a mais é mais código de terceiros rodando na sua máquina. Antes de adicionar um, pergunte se um punhado de linhas resolve.
-- **Scripts de instalação** (`postinstall`) rodam código na sua máquina durante o `npm install`. O `verificar` lista os pacotes que fazem isso, para você saber o que esperar (o `esbuild` e o `fsevents` fazem, e é normal).
+- **Scripts de instalação** (`postinstall`) rodam código na sua máquina durante a instalação (`npm ci` ou `npm install`). O `verificar` lista os pacotes que fazem isso, para você saber o que esperar (o `esbuild` e o `fsevents` fazem, e é normal).
 - **Versão recém-publicada:** espere alguns dias antes de adotar uma versão nova de um pacote, especialmente fora das grandes bibliotecas.
 - **Atualize uma coisa por vez**, rodando os testes (`npm test` e `npm run test:e2e`) entre uma e outra. Uma mudança de versão maior (de 6 para 7) é uma decisão: leia o que mudou e registre.
+
+## A API do protótipo é só local
+
+O protótipo não tem login: quem alcança a API lê e altera tudo. Por isso, ela só responde ao próprio computador, e o `exemplo-todo` (`server/app.ts` e `server/index.ts`) mostra como, com um teste para cada regra.
+
+- **Escuta só em `127.0.0.1`.** Sem isso, qualquer computador da mesma rede (o Wi-Fi do escritório, de um café) chega à API.
+- **Recusa um `Host` que não seja `localhost`** (403). Uma página de outro site pode apontar um endereço dela para o seu computador (DNS rebinding); o `Host` denuncia.
+- **Aceita POST só com `application/json`** (415). Uma página aberta no navegador consegue mandar um POST "simples" (texto ou formulário) para `localhost` sem pedir licença; com JSON, o navegador precisa pedir permissão antes (CORS), e a API não a concede. A tela manda o cabeçalho em todas as chamadas (`src/api.ts`).
+- **Limita o corpo** (413), responde 400 a JSON inválido e **não devolve a mensagem interna** num erro 500 (ela vai só para o log).
+- **O proxy do Vite aponta para `127.0.0.1`**, e não para `localhost`, que pode resolver para o IPv6 e não achar a API.
+- **Hospedar é outra conversa.** Para outra pessoa usar o protótipo pela rede, faltam login, papéis, HTTPS e limite de requisições. Isso é um pitch próprio, não um ajuste.
+
+Os geradores de documento também têm uma regra: um link em `[texto](link)` só vira link com `http:`, `https:`, `mailto:`, uma âncora (`#`) ou um caminho relativo. Outro esquema (como `javascript:`) vira texto, com um aviso, para o html distribuído não carregar código.
 
 ## Como verificar
 
@@ -89,3 +102,4 @@ Para ignorar uma linha de propósito (por exemplo, um segredo falso num teste), 
 - [ ] O Node está em suporte, e o `engines` e o README dizem a versão testada?
 - [ ] O lockfile está versionado e o `npm audit` não tem nada alto ou crítico?
 - [ ] Rodei `npm run verificar:rede` e li os avisos?
+- [ ] A API do protótipo escuta só em `127.0.0.1`, recusa `Host` de fora e POST sem JSON?

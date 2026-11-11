@@ -123,7 +123,7 @@ Use este passo a passo quando a pessoa pedir para começar, criar um projeto ou 
 
 Passos:
 
-1. **Verificar o computador.** Confirme que há Node.js (`node --version`) e um navegador Chrome, Chromium ou Edge. Se faltar, explique como instalar, e na primeira vez rode `cd tools && npm install`.
+1. **Verificar o computador.** Confirme que há Node.js (`node --version`) e um navegador Chrome, Chromium ou Edge. Se faltar, explique como instalar, e na primeira vez rode `cd tools && npm ci` (instala exatamente as versões do lockfile).
 2. **Conhecimento complementar.** Leia o `AGENTS-extra.md`, se existir. Se for o **primeiro projeto** e ele não existir, ofereça criá-lo a partir do `AGENTS-extra.example.md` (ver "Conhecimento complementar"), perguntando só o que a pessoa souber.
 3. **Escolher o roteiro.** Pergunte o que a pessoa quer fazer e recomende: documentar uma iniciativa (iniciativa), modelar uma ideia de negócio (businessmodelcanvas), preparar uma apresentação (10-20-30), validar uma ideia antes das specs (pitch) ou montar um plano de desenvolvimento individual (pdi). Se ela quiser outro modelo, veja "Criando um novo roteiro".
 4. **Perguntar como será usado:** **lido** (documento), **apresentado** (slides) ou os dois. Use a sugestão do roteiro como ponto de partida.
@@ -328,6 +328,7 @@ Todo protótipo **já nasce com um design system pequeno**, como sugestão padr�
 - `package.json` **próprio**, dentro de `prototipo/`: não misture com o `tools/`.
 - **Nenhum segredo de serviço externo em arquivo**, nem em `.env` (ver "Segurança e privacidade"). Se o protótipo espera variáveis de ambiente, deixe um `.env.example` só com os nomes.
 - `npm run verificar` (e `npm run verificar:rede`) confere segredos e versões; rode antes de commitar algo relevante e antes de mostrar o protótipo.
+- **A API do protótipo é só local.** Ela não tem login, então: escuta só em `127.0.0.1`; recusa um `Host` que não seja `localhost`, `127.0.0.1` ou `[::1]` (403), contra páginas de outros sites (DNS rebinding); aceita POST só com `content-type: application/json` (415), o que obriga o navegador a pedir permissão (CORS) antes de uma chamada de outro site; limita o tamanho do corpo (413) e não devolve a mensagem interna de um erro 500. O `exemplo-todo` (`server/app.ts`) é a referência, com os testes. **Hospedar** o protótipo (para outra pessoa acessar pela rede) é uma decisão à parte, num pitch próprio: pede login, papéis, HTTPS e limite de requisições.
 
 ### Versões e dependências
 
@@ -449,7 +450,7 @@ O `temas/generico/tema.json` é o modelo de tema completo e o tema **padrão**. 
 Na primeira vez, instale as dependências (precisa de Node.js):
 
 ```bash
-cd tools && npm install
+cd tools && npm ci
 ```
 
 Para gerar todas as saídas de um projeto, a partir da raiz do repositório:

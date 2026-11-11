@@ -24,7 +24,7 @@ O roteiro de tudo é **um Markdown só**, o `<projeto>-video.md` (roteiro `rotei
 
 | O quê | Para quê | Como obter |
 | :--- | :--- | :--- |
-| **Node.js** e as dependências do protótipo | Rodar o protótipo e as jornadas | `npm install` no protótipo |
+| **Node.js** e as dependências do protótipo | Rodar o protótipo e as jornadas | `npm ci` no protótipo |
 | **Google Chrome** | As jornadas usam o Chrome já instalado | O mesmo que gera os PDFs do repositório |
 | **ffmpeg** | Mixar a voz no vídeo e dividir uma gravação | macOS: `brew install ffmpeg`. Linux (Debian e Ubuntu): `sudo apt install ffmpeg`. Windows: `winget install ffmpeg` |
 
