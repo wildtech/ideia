@@ -1,6 +1,6 @@
 # Guia: transcrições de reuniões
 
-Como transformar a transcrição de uma reunião em texto do documento sem expor ninguém e sem inventar o que ninguém disse. Complementa a seção "Segurança e privacidade" do `AGENTS.md` e o `guias/seguranca.md`. O `AGENTS-extra.md` pode **reforçar** estas regras com o que é da sua organização, mas não afrouxá-las.
+Como transformar a transcrição de uma reunião em texto do documento sem expor ninguém e sem inventar o que ninguém disse. Complementa a seção "Segurança e privacidade" do `AGENTS.md` e o `guias/app-seguranca.md`. O `AGENTS-extra.md` pode **reforçar** estas regras com o que é da sua organização, mas não afrouxá-las.
 
 ## Por que uma transcrição pede cuidado
 

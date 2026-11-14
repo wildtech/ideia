@@ -141,10 +141,10 @@ Antes de publicar, confira: dados fictícios, créditos das imagens e nada de se
 - `prototipo/README.md`: como rodar, as jornadas (Playwright), o vídeo de demonstração narrado, o que o protótipo valida, a arquitetura e os dados de exemplo.
 - `exemplo-todo-slides.md`: o resumo (TL;DR) em forma de apresentação.
 - `exemplo-todo-video.md`: o vídeo em cenas (cartões e jornada), com a narração; sai em `out/exemplo-todo-video.mp4` e `out/exemplo-todo-video-9x16.mp4`.
-- `guias/video-demonstracao.md` e `guias/cards.md`: como gerar o vídeo em cenas e como escolher e criar os layouts dos cards e o reel.
+- `guias/app-video-demonstracao.md` e `guias/cards.md`: como gerar o vídeo em cenas e como escolher e criar os layouts dos cards e o reel.
 - `exemplo-todo-carrossel.md`: o carrossel de divulgação (cards 4:5), com a legenda e o texto alternativo; sai em `out/exemplo-todo-carrossel/`, e o reel em `out/exemplo-todo-carrossel-9x16.mp4`.
 - `imagens/`: as capturas de tela do protótipo no desktop e no celular, a montagem das telas de celular, o catálogo do design system e a folha de contato do carrossel (dados fictícios), usadas nos slides. As capturas vêm das jornadas (`npm run capturas` e `npm run capturas:mobile`) e a folha, de `node tools/md2cards.js projetos/exemplo-todo --folha projetos/exemplo-todo/imagens/07-carrossel.png`; todas são versionadas.
-- `roteiros/divulgacao.txt` e `guias/design-system.md`: o roteiro do carrossel e o guia do design system do protótipo.
+- `roteiros/divulgacao.txt` e `guias/app-design-system.md`: o roteiro do carrossel e o guia do design system do protótipo.
 - `specs/`: as funcionalidades do protótipo como specs (três finalizadas e duas ideias para depois, como editar o título e desfazer o limpar), com o índice gerado em `specs/README.md` e o relatório de fluxo acumulado em `out/specs-relatorio.html` (`node tools/specs.js projetos/exemplo-todo`); o `projeto.json` marca `"tarefas": "git"`. Ver `roteiros/spec.txt` e `guias/specs.md`.
 - `roteiros/pitch.txt` e `guias/pitch.md`: o roteiro e o guia do pitch.
 - [Shape Up, capítulo 6: Write the pitch](https://basecamp.com/shapeup/1.5-chapter-06): a origem do formato.

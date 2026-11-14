@@ -109,7 +109,7 @@ function procurarEnv() {
     const preenchidas = linhas.filter((l) => /^\s*(?:export\s+)?[A-Za-z_][A-Za-z0-9_]*\s*=\s*\S/.test(l) && !/^\s*#/.test(l));
     if (preenchidas.length) {
       comValor++;
-      falha(`${f} guarda ${preenchidas.length} valor(es) em arquivo: passe segredos pelo ambiente, em tempo de execução (guias/seguranca.md)`);
+      falha(`${f} guarda ${preenchidas.length} valor(es) em arquivo: passe segredos pelo ambiente, em tempo de execução (guias/app-seguranca.md)`);
     }
   }
   if (!comValor) ok("nenhum .env com valores no disco");

@@ -103,7 +103,7 @@ function legendaHtml(texto, inicio, segundos) {
 }
 
 (async () => {
-  if (spawnSync("ffmpeg", ["-version"], { stdio: "ignore" }).status !== 0) throw new Error("Precisa do ffmpeg (veja guias/video-demonstracao.md).");
+  if (spawnSync("ffmpeg", ["-version"], { stdio: "ignore" }).status !== 0) throw new Error("Precisa do ffmpeg (veja guias/app-video-demonstracao.md).");
   const montador = await motor.criarMontador(contexto);
   const { cards: todos, opcoes } = motor.lerCards(fs.readFileSync(mdPath, "utf8"));
   const cenas = todos.filter((c) => !c.hidden);

@@ -61,7 +61,7 @@ O padrão do template é o **trunk based development**: o projeto não usa branc
 
 ## O que não vai na mensagem
 
-A mensagem fica no histórico para sempre, e o histórico de um repositório público é público. Não coloque **segredos** (chaves, tokens, senhas), **dados pessoais**, nomes de clientes ou usuários, nem nada de dentro de uma organização (ver `guias/seguranca.md`). Se algo assim já entrou em um commit publicado, trate como vazado.
+A mensagem fica no histórico para sempre, e o histórico de um repositório público é público. Não coloque **segredos** (chaves, tokens, senhas), **dados pessoais**, nomes de clientes ou usuários, nem nada de dentro de uma organização (ver `guias/app-seguranca.md`). Se algo assim já entrou em um commit publicado, trate como vazado.
 
 ## O assistente e os commits
 

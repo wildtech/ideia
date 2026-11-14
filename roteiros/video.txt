@@ -10,4 +10,4 @@ Regras do vídeo. Nada novo entra: tudo o que o vídeo diz e mostra existe no do
 Antes de publicar. A voz é sua, ou a voz sintética permite o uso? A música tem licença? Não há segredo, dado pessoal nem nada de dentro da organização na tela? Suba o .srt junto, para quem assiste sem som. A publicação é feita pela pessoa, nunca pelo assistente.
 Documentos de apoio: referência do documento de origem e do protótipo (opcional).
 
-Este roteiro foi criado para este repositório, a partir do roteiro de divulgação (roteiros/divulgacao.txt) e do formato de pitch do Shape Up (Basecamp, https://basecamp.com/shapeup/1.5-chapter-06): o vídeo conta, em cenas, o que o pitch e o protótipo já validaram. O passo a passo está em guias/video-demonstracao.md.
+Este roteiro foi criado para este repositório, a partir do roteiro de divulgação (roteiros/divulgacao.txt) e do formato de pitch do Shape Up (Basecamp, https://basecamp.com/shapeup/1.5-chapter-06): o vídeo conta, em cenas, o que o pitch e o protótipo já validaram. O passo a passo está em guias/app-video-demonstracao.md.

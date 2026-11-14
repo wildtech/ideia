@@ -43,7 +43,7 @@ A jornada é gravada com **legendas** em que as palavras acendem no ritmo da voz
 - **A sincronia** é feita por uma faixa magenta que a página pisca no começo e que é cortada do vídeo final.
 - **Sem o `ffmpeg`**, o vídeo (só com legendas) fica em `demo/demo.webm`.
 - A voz sintetizada do sistema serve para esboçar; para um vídeo de verdade, grave a sua voz nos arquivos de `narracao/`.
-- **Precisa do `ffmpeg`.** O passo a passo completo (instalação, gravar a própria voz, Windows e Linux, o que vai para o git) está em `guias/video-demonstracao.md`, na raiz do repositório.
+- **Precisa do `ffmpeg`.** O passo a passo completo (instalação, gravar a própria voz, Windows e Linux, o que vai para o git) está em `guias/app-video-demonstracao.md`, na raiz do repositório.
 
 ## O que o protótipo valida
 
@@ -83,7 +83,7 @@ O protótipo tem um design system pequeno, em duas partes, e **a identidade vem 
 - **Cor de ação com contraste garantido:** o texto branco de um botão preenchido precisa de 4,5:1 com o fundo. O gerador escurece a cor do tema só até chegar lá (aqui, de `#1F8A70`, que tem 4,26:1, para `#1E846B`, que tem 4,60:1) e avisa se algum par de cores do tema fica abaixo disso.
 - **Acessibilidade:** foco visível em tudo que se opera, rótulo sempre visível no campo, erro anunciado a leitores de tela (`role="alert"`) e alvo de toque de pelo menos 44 px no celular (ou em tela estreita).
 - `npm run tokens:conferir` (que o `npm run build` já roda) falha se o `tokens.css` não estiver em dia com o tema.
-- **Catálogo:** com o `npm run dev`, abra `/ds` (por exemplo, `http://localhost:5173/ds`). Ele abre com as **camadas**: cada token, de onde vem no tema e quais componentes e telas o usam (veja o modelo em `guias/design-system.md`). Depois, mostra cada token (cores, espaçamento, tipo, forma e movimento) e o contraste dos pares de cores, e cada componente nos seus estados (a imagem fica em `../imagens/05-design-system.png`). Só existe no desenvolvimento: o `npm run build` não o inclui. Uma jornada confere que todo par de cores passa no contraste mínimo e que a cadeia tema → token → componente aparece (a cor de ação vem da primária e é usada pelo botão).
+- **Catálogo:** com o `npm run dev`, abra `/ds` (por exemplo, `http://localhost:5173/ds`). Ele abre com as **camadas**: cada token, de onde vem no tema e quais componentes e telas o usam (veja o modelo em `guias/app-design-system.md`). Depois, mostra cada token (cores, espaçamento, tipo, forma e movimento) e o contraste dos pares de cores, e cada componente nos seus estados (a imagem fica em `../imagens/05-design-system.png`). Só existe no desenvolvimento: o `npm run build` não o inclui. Uma jornada confere que todo par de cores passa no contraste mínimo e que a cadeia tema → token → componente aparece (a cor de ação vem da primária e é usada pelo botão).
 - **PDF:** `npm run ds:pdf` sobe o Vite numa porta só dele (5293), abre o `/ds` no Chrome e o imprime em `../out/exemplo-todo-design-system.pdf` (A4 deitado, com as cores e um cabeçalho com o projeto, o tema e a data). É o documento para compartilhar o design system; fica no `out/`, fora do git, e se refaz quando o tema ou os componentes mudarem.
 
 ## Dados de exemplo
@@ -92,8 +92,8 @@ O protótipo tem um design system pequeno, em duas partes, e **a identidade vem 
 
 ## Segurança e versões
 
-- **Nenhum segredo.** O protótipo não usa serviço externo, e a IA é simulada. As variáveis de ambiente aceitas (portas, caminho do banco) estão em `.env.example`, e nenhuma é segredo. Não crie um `.env` com chave de serviço: se um dia for preciso, ela entra só em tempo de execução (veja `guias/seguranca.md`, na raiz do repositório).
-- **A API é só local.** Ela não tem login, então escuta só em `127.0.0.1`, recusa um `Host` que não seja `localhost` (403), aceita POST só com `application/json` (415), limita o corpo a 16 KB (413) e não devolve a mensagem interna de um erro 500. Os testes de API (`server/todo.test.ts`) conferem cada regra. Hospedar o protótipo é outra decisão (veja `guias/seguranca.md`).
+- **Nenhum segredo.** O protótipo não usa serviço externo, e a IA é simulada. As variáveis de ambiente aceitas (portas, caminho do banco) estão em `.env.example`, e nenhuma é segredo. Não crie um `.env` com chave de serviço: se um dia for preciso, ela entra só em tempo de execução (veja `guias/app-seguranca.md`, na raiz do repositório).
+- **A API é só local.** Ela não tem login, então escuta só em `127.0.0.1`, recusa um `Host` que não seja `localhost` (403), aceita POST só com `application/json` (415), limita o corpo a 16 KB (413) e não devolve a mensagem interna de um erro 500. Os testes de API (`server/todo.test.ts`) conferem cada regra. Hospedar o protótipo é outra decisão (veja `guias/app-seguranca.md`).
 - **Verificação:** `npm run verificar` procura segredos nos arquivos e confere o `.gitignore`, o lockfile e o `engines`. `npm run verificar:rede` também consulta o calendário do Node e roda `npm audit` e `npm outdated`.
 
 | O que | Versão | Verificado em |

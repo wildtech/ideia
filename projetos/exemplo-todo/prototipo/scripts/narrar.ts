@@ -79,4 +79,4 @@ for (const { id, texto } of NARRACAO) {
 
 writeFileSync("demo/tempos.json", JSON.stringify(tempos, null, 2));
 if (Object.values(tempos).every((t) => !t.arquivo))
-  console.log("\nSem voz: o vídeo sai só com legendas. Para ter voz, grave os áudios em narracao/<id>.wav, defina TTS_COMANDO ou rode no macOS (veja guias/video-demonstracao.md).");
+  console.log("\nSem voz: o vídeo sai só com legendas. Para ter voz, grave os áudios em narracao/<id>.wav, defina TTS_COMANDO ou rode no macOS (veja guias/app-video-demonstracao.md).");

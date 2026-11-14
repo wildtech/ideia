@@ -22,7 +22,7 @@ for (const v of [HORIZONTAL, VERTICAL]) {
   }
 }
 if (spawnSync("ffmpeg", ["-version"], { stdio: "ignore" }).status !== 0) {
-  console.error("Precisa do ffmpeg (veja guias/video-demonstracao.md).");
+  console.error("Precisa do ffmpeg (veja guias/app-video-demonstracao.md).");
   process.exit(1);
 }
 

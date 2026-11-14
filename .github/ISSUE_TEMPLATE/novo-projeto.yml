@@ -67,4 +67,4 @@ body:
       value: |
         - [ ] Pasta do projeto criada, com `projeto.json` e o documento com o resumo (TL;DR)
         - [ ] Saídas geradas (`node tools/build.js`) sem avisos
-        - [ ] Dados pessoais e confidenciais conferidos (ver `guias/seguranca.md`)
+        - [ ] Dados pessoais e confidenciais conferidos (ver `guias/app-seguranca.md`)

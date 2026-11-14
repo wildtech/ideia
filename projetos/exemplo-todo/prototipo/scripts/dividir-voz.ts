@@ -28,7 +28,7 @@ if (!entrada || !existsSync(entrada)) {
   process.exit(1);
 }
 if (spawnSync("ffmpeg", ["-version"], { stdio: "ignore" }).status !== 0) {
-  console.error("Preciso do ffmpeg para dividir a gravação. Veja guias/video-demonstracao.md.");
+  console.error("Preciso do ffmpeg para dividir a gravação. Veja guias/app-video-demonstracao.md.");
   process.exit(1);
 }
 

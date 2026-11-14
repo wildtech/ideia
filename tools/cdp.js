@@ -93,7 +93,7 @@ async function abrirChrome({ largura, altura }) {
  */
 async function gravarAnimacao({ arquivoHtml, largura, altura, duracao, intervalos = null, saida, fps = 30, audio = null }) {
   const { spawnSync } = require("child_process");
-  if (spawnSync("ffmpeg", ["-version"], { stdio: "ignore" }).status !== 0) throw new Error("Precisa do ffmpeg para gerar vídeo (veja guias/video-demonstracao.md).");
+  if (spawnSync("ffmpeg", ["-version"], { stdio: "ignore" }).status !== 0) throw new Error("Precisa do ffmpeg para gerar vídeo (veja guias/app-video-demonstracao.md).");
   const chrome = await abrirChrome({ largura, altura });
   try {
     await chrome.navegar(require("url").pathToFileURL(arquivoHtml).href);

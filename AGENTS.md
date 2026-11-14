@@ -37,7 +37,7 @@ ideia/
 │   ├── spec.txt              uma spec (funcionalidade, ajuste ou defeito) de um projeto que controla tarefas só em git
 │   ├── divulgacao.txt        material de divulgação: carrossel de redes sociais, a partir do pitch e do resumo
 │   └── video.txt             vídeo em cenas: abertura, cenário, a jornada do protótipo e a chamada, com narração
-├── guias/                    [base] textos de apoio sobre como fazer bem uma coisa (ex.: pitch.md, slides.md, slides-zen-lessig.md, cards.md, video-demonstracao.md, seguranca.md, transcricoes.md, design-system.md, issues.md, specs.md e commits.md)
+├── guias/                    [base] textos de apoio sobre como fazer bem uma coisa (ex.: pitch.md, slides.md, slides-zen-lessig.md, cards.md, transcricoes.md, issues.md, specs.md, commits.md e os que começam com `app-`: app-seguranca.md, app-design-system.md, app-video-demonstracao.md, app-web.md e app-mobile.md)
 ├── temas/                    [base e conteúdo] identidade visual; uma pasta por tema
 │   └── <tema>/               tema.json (cores, fontes, logo, rodapé, tokens, opções) e, se houver, base.docx, referencia.pdf,
 │                             slides.css, cards.css e cards/ (layouts de card só deste tema)
@@ -278,7 +278,7 @@ Quando o projeto é um software, o template recomenda um **protótipo** para val
 
 ### Stack padrão
 
-Use esta stack, a menos que a pessoa ou o `AGENTS-extra.md` decida outra. Registre a decisão (e a data) no documento do projeto, em uma seção como "Stack e estratégia de validação".
+Use esta stack, a menos que a pessoa ou o `AGENTS-extra.md` decida outra. Registre a decisão (e a data) no documento do projeto, em uma seção como "Stack e estratégia de validação". O `guias/app-web.md` explica o porquê de cada escolha e o passo a passo, do pitch ao protótipo rodando.
 
 | Camada | Padrão | Observações |
 | :--- | :--- | :--- |
@@ -291,6 +291,8 @@ Use esta stack, a menos que a pessoa ou o `AGENTS-extra.md` decida outra. Regist
 | Design system | **Tokens gerados do tema** (`src/tokens.css`, por `npm run tokens`) e **componentes** em `src/ui/` | Sugestão padrão: cor, fonte, forma, espaço, tipo e movimento vêm do tema do projeto, os mesmos dos documentos, dos slides, do carrossel e do vídeo. Ver "Design system do protótipo" |
 
 As portas da API e da interface podem ser trocadas por variáveis de ambiente (`PORT`, `API_URL` e `WEB_PORT`), para as jornadas não atrapalharem quem está com o `npm run dev` aberto. Sugeridos, a validar caso a caso: ESLint, Prettier e integração contínua (por exemplo, GitHub Actions).
+
+**App mobile nativo.** Quando o software vai ao celular como app nativo (iOS e Android), a stack é a do `guias/app-mobile.md`: núcleo em Rust com UniFFI, interface em SwiftUI e em Kotlin com Jetpack Compose, SQLite em modo WAL e fila de saída (outbox) para a sincronização offline. Ele vive em **repositório próprio**, e o protótipo web continua sendo o caminho para validar a ideia antes de construir o app. O mesmo núcleo pode alimentar um app de terminal (ver o guia).
 
 ### Arquitetura: feita para trocar
 
@@ -310,9 +312,9 @@ O protótipo existe para **ser jogado fora ou substituído**, então a arquitetu
 
 ### Design system do protótipo
 
-Todo protótipo **já nasce com um design system pequeno**, como sugestão padrão (a pessoa pode dispensá-lo, e o `AGENTS-extra.md` pode trocá-lo). O `exemplo-todo` é o exemplo, e o `guias/design-system.md` explica o porquê e o passo a passo.
+Todo protótipo **já nasce com um design system pequeno**, como sugestão padrão (a pessoa pode dispensá-lo, e o `AGENTS-extra.md` pode trocá-lo). O `exemplo-todo` é o exemplo, e o `guias/app-design-system.md` explica o porquê e o passo a passo.
 
-- **O modelo:** camadas de tokens (primitivo → semântico → componente) e Atomic Design (átomos, moléculas, organismos e telas), explicados no `guias/design-system.md`.
+- **O modelo:** camadas de tokens (primitivo → semântico → componente) e Atomic Design (átomos, moléculas, organismos e telas), explicados no `guias/app-design-system.md`.
 - **O tema é a fonte das cores, da fonte e das medidas.** O `src/tokens.css` é **gerado** do tema do projeto (`npm run tokens`, que usa `tools/tema-tokens.js` e `tools/tokens.js`) e **não se edita à mão**. Além das cores, traz raio, sombra, espaçamento, escala de tipo, alvo de toque e movimento (durações e curva), que o tema pode ajustar em `"tokens"`; `npm run tokens:conferir`, que o `npm run build` já roda, falha se ele estiver desatualizado. Trocar de marca é trocar o tema e gerar de novo.
 - **O tema também dita os materiais:** `fundoEscuro` e `destaque` (no `tema.json`) são o fundo dos slides e dos cards escuros e a cor dos links sobre ele, e viram tokens do protótipo. Sem isso, saem preto e branco. Se o projeto não tem tema, crie um tema simples antes (ver "Temas").
 - **Componentes em `src/ui/`**, só com os tokens: `Botao`, `Campo`, `Cartao`, `EstadoVazio` e `Alerta`. As telas usam esses componentes, sem `<button>` solto nem cor, raio, espaço ou duração escritos à mão. **Crie um componente só quando uma tela precisar dele.**
@@ -352,7 +354,7 @@ O projeto pode ter um **vídeo em cenas**, escrito em `<projeto>-video.md` (rote
 - **Git:** `demo/` e `test-results/` ficam fora do git; `narracao/` (as suas gravações) pode ser versionada; o vídeo **aprovado** vai para `projetos/<projeto>/videos/` e é registrado no `projeto.json` como artefato `"tipo": "video"`.
 - **Cuidado:** voz sintética tem termos de uso, então o vídeo com voz do sistema não vai para o repositório público do template. Música, só com licença que permita o uso, registrada nas notas.
 - **Não invente:** como no carrossel, tudo o que o vídeo diz e mostra existe no documento de origem.
-- **Ofereça o vídeo quando a pessoa pedir uma demonstração**; não o grave sem pedir. O passo a passo (instalação, gravar a própria voz, Windows e Linux) está em `guias/video-demonstracao.md`.
+- **Ofereça o vídeo quando a pessoa pedir uma demonstração**; não o grave sem pedir. O passo a passo (instalação, gravar a própria voz, Windows e Linux) está em `guias/app-video-demonstracao.md`.
 
 ### O que o protótipo valida, e o que não valida
 
@@ -435,7 +437,7 @@ O `temas/generico/tema.json` é o modelo de tema completo e o tema **padrão**. 
 | `estilo` | estilo das apresentações: `"padrao"` (slides de título e conteúdo) ou `"zen-lessig"` (um slide, uma ideia: o slide sem layout vira frase, a capa é escura). Ver `guias/slides.md` | `"padrao"` |
 | `numerarSlides` | mostra o número do slide no canto inferior esquerdo (tela e PDF); útil para apontar ajustes. Pode ir só em `ajustes` do `projeto.json` | `false` |
 | `fundoEscuro` e `destaque` (dentro de `colors`) | cor dos slides e dos cards escuros e cor dos **links** sobre eles, nas apresentações e nos carrosséis (nos slides claros, os links usam `primary`; em todos são sublinhados). O protótipo também os lê, como tokens (ver "Design system do protótipo") | `000000` e `FFFFFF` |
-| `tokens` | forma, espaço, tipo e movimento do design system: `{ "raio": 6, "espaco": 8, "escalaTipo": 1.25, "alvoToque": 44, "sombra": "...", "movimento": { "rapido": 150, "normal": 300, "lento": 600, "curva": "..." } }`, tudo opcional. Valem para o protótipo, os cards, o reel e o vídeo (ver `guias/design-system.md`) | os de `tools/tokens.js` |
+| `tokens` | forma, espaço, tipo e movimento do design system: `{ "raio": 6, "espaco": 8, "escalaTipo": 1.25, "alvoToque": 44, "sombra": "...", "movimento": { "rapido": 150, "normal": 300, "lento": 600, "curva": "..." } }`, tudo opcional. Valem para o protótipo, os cards, o reel e o vídeo (ver `guias/app-design-system.md`) | os de `tools/tokens.js` |
 
 ### Criando um tema a partir de arquivos existentes
 
@@ -478,7 +480,7 @@ Verificação depois de gerar:
 
 ## Segurança e privacidade
 
-Estas regras valem para **todos os projetos**, e o `AGENTS-extra.md` só pode reforçá-las. O porquê, o passo a passo e o que fazer se algo vazar estão em `guias/seguranca.md`.
+Estas regras valem para **todos os projetos**, e o `AGENTS-extra.md` só pode reforçá-las. O porquê, o passo a passo e o que fazer se algo vazar estão em `guias/app-seguranca.md`.
 
 ### Segredos
 

@@ -55,7 +55,7 @@ Com `"mp4"` nos formatos, os cards viram um vídeo: cada um entra com animação
 - **Transição:** `desliza` (padrão), `fade`, `zoom` ou `corte`, com `**Transição:**` no card ou na capa (para todos).
 - **Música:** `**Música:** audio/trilha.mp3` na capa. Use só música com licença que permita o uso, e registre a licença nas notas.
 - **Movimento do tema:** as durações e a curva vêm dos tokens de movimento do tema (`"tokens": { "movimento": ... }`), os mesmos do protótipo.
-- O vídeo é gravado **quadro a quadro** pelo Chrome (sem depender da velocidade do computador) e montado pelo `ffmpeg`, que precisa estar instalado (veja `guias/video-demonstracao.md`).
+- O vídeo é gravado **quadro a quadro** pelo Chrome (sem depender da velocidade do computador) e montado pelo `ffmpeg`, que precisa estar instalado (veja `guias/app-video-demonstracao.md`).
 
 ## Criar um layout novo
 
@@ -93,5 +93,5 @@ Um texto de exemplo.
 
 - Tudo o que está nos cards existe no documento de origem (a regra do resumo).
 - Cada card tem `> Alt:` (texto alternativo) e o post tem `> Legenda:`.
-- Dados fictícios ou autorizados, créditos das imagens e da música, e nada de segredo ou de dado de dentro da organização (veja `guias/seguranca.md`).
+- Dados fictícios ou autorizados, créditos das imagens e da música, e nada de segredo ou de dado de dentro da organização (veja `guias/app-seguranca.md`).
 - **Quem publica é a pessoa**, nunca o assistente.
