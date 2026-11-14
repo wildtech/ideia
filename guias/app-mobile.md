@@ -153,18 +153,9 @@ O que fica no git: o código do núcleo, o código nativo escrito à mão, os sc
 
 Como no protótipo web, as cores e as medidas vêm do **tema do projeto** (`temas/<tema>/tema.json`), lidas por `tools/tokens.js`. No app nativo, os tokens ficam em `Tema.swift` (iOS) e `Tema.kt` (Android). **Hoje eles são copiados à mão** do tema para os dois arquivos. Gerar esses arquivos automaticamente, como o `npm run tokens` faz no protótipo web, é uma pendência **(?)**. Enquanto isso, mantenha o contraste de pelo menos 4,5:1, o alvo de toque de pelo menos 44 pontos e a regra de não escrever cor ou medida solta nas telas.
 
-### Outras interfaces: terminal (TUI)
+### Outras interfaces
 
-O mesmo núcleo em Rust pode alimentar um **app de terminal**, ao lado dos apps de celular. É mais uma interface fina sobre as mesmas regras.
-
-- **Onde fica:** uma crate `tui/` no mesmo workspace, com `ratatui` (a interface) e `crossterm` (teclado e terminal).
-- **Como liga ao núcleo:** chama o núcleo **diretamente como crate Rust**, sem UniFFI (não há fronteira de linguagem para atravessar). Usa o mesmo SQLite e a mesma sincronização, então um registro criado no terminal aparece no celular e vice-versa.
-- **Quando faz sentido:** para quem vive no terminal; para desenvolver e testar as regras rapidamente, sem abrir simulador nem emulador; e em servidores sem tela.
-- **O que muda:**
-    - Não há notificações do sistema. O aviso é o sino do terminal (`\x07`) ou uma mensagem na tela.
-    - O laço de eventos lê o teclado e um **tick** (um relógio que dispara de tempos em tempos), e o `agora` continua sendo passado ao núcleo, como nos apps nativos.
-    - A interface continua fina: a decisão de negócio fica em `use_cases/`.
-- **Teste:** por **snapshot do buffer**, com `ratatui::backend::TestBackend`: a tela é desenhada em memória e o texto resultante é comparado com o esperado.
+O mesmo núcleo pode alimentar um **app de terminal** (ver `guias/app-tui.md`) ou uma **ferramenta de linha de comando** (ver `guias/app-cli.md`), sem UniFFI, como membros do mesmo workspace: chamam o núcleo direto como crate Rust, com o mesmo banco e a mesma sincronização.
 
 ### Pendências conhecidas do padrão
 

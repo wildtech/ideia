@@ -37,7 +37,7 @@ ideia/
 │   ├── spec.txt              uma spec (funcionalidade, ajuste ou defeito) de um projeto que controla tarefas só em git
 │   ├── divulgacao.txt        material de divulgação: carrossel de redes sociais, a partir do pitch e do resumo
 │   └── video.txt             vídeo em cenas: abertura, cenário, a jornada do protótipo e a chamada, com narração
-├── guias/                    [base] textos de apoio sobre como fazer bem uma coisa (ex.: pitch.md, slides.md, slides-zen-lessig.md, cards.md, transcricoes.md, issues.md, specs.md, commits.md e os que começam com `app-`: app-seguranca.md, app-design-system.md, app-video-demonstracao.md, app-web.md e app-mobile.md)
+├── guias/                    [base] textos de apoio sobre como fazer bem uma coisa (ex.: pitch.md, slides.md, slides-zen-lessig.md, cards.md, transcricoes.md, issues.md, specs.md, commits.md e os que começam com `app-`: app-seguranca.md, app-design-system.md, app-video-demonstracao.md, app-web.md, app-mobile.md, app-tui.md e app-cli.md)
 ├── temas/                    [base e conteúdo] identidade visual; uma pasta por tema
 │   └── <tema>/               tema.json (cores, fontes, logo, rodapé, tokens, opções) e, se houver, base.docx, referencia.pdf,
 │                             slides.css, cards.css e cards/ (layouts de card só deste tema)
@@ -292,7 +292,9 @@ Use esta stack, a menos que a pessoa ou o `AGENTS-extra.md` decida outra. Regist
 
 As portas da API e da interface podem ser trocadas por variáveis de ambiente (`PORT`, `API_URL` e `WEB_PORT`), para as jornadas não atrapalharem quem está com o `npm run dev` aberto. Sugeridos, a validar caso a caso: ESLint, Prettier e integração contínua (por exemplo, GitHub Actions).
 
-**App mobile nativo.** Quando o software vai ao celular como app nativo (iOS e Android), a stack é a do `guias/app-mobile.md`: núcleo em Rust com UniFFI, interface em SwiftUI e em Kotlin com Jetpack Compose, SQLite em modo WAL e fila de saída (outbox) para a sincronização offline. Ele vive em **repositório próprio**, e o protótipo web continua sendo o caminho para validar a ideia antes de construir o app. O mesmo núcleo pode alimentar um app de terminal (ver o guia).
+**App mobile nativo.** Quando o software vai ao celular como app nativo (iOS e Android), a stack é a do `guias/app-mobile.md`: núcleo em Rust com UniFFI, interface em SwiftUI e em Kotlin com Jetpack Compose, SQLite em modo WAL e fila de saída (outbox) para a sincronização offline. Ele vive em **repositório próprio**, e o protótipo web continua sendo o caminho para validar a ideia antes de construir o app.
+
+**App de terminal e linha de comando.** Um app de terminal (TUI) segue o `guias/app-tui.md` (Rust, com `ratatui`), e uma aplicação de linha de comando que interage com um sistema ou com um processo segue o `guias/app-cli.md` (Rust como padrão, Node/TypeScript para scripts curtos). Os dois podem usar o mesmo núcleo do app mobile, como crate, sem UniFFI.
 
 ### Arquitetura: feita para trocar
 
