@@ -18,6 +18,7 @@ Este `AGENTS.md` é a **base compartilhada** do template e **não pode ser modif
 - **Modelo:** `AGENTS-extra.example.md` documenta a convenção e traz as seções sugeridas. Não o use diretamente: copie para `AGENTS-extra.md`.
 - **Criação:** no onboarding do **primeiro projeto**, se o `AGENTS-extra.md` não existir, **ofereça criá-lo** a partir do modelo, perguntando só o que a pessoa souber e deixando "A definir" no resto. Crie apenas se ela aceitar.
 - **Manutenção:** quando a pessoa disser algo que é regra permanente (a URL do Jira, o tema que prefere, uma convenção), pergunte se deve registrar no `AGENTS-extra.md`. Mostre o que vai escrever e escreva só depois do OK.
+- **README do ambiente:** o mesmo vale, ao contrário, para o README. O `README-ideia.md` é a base (o manual do template) e não se edita para registrar algo de quem usa; o `README.md` é **conteúdo**: apresenta o ambiente de quem usa (para quem é, que projetos tem, o tema, com quem falar). Numa atualização da base, **nunca sobrescreva o `README.md`**. Ao reescrevê-lo, mantenha a linha de crédito à origem (ver "Licença e crédito").
 
 ## Estrutura do repositório
 
@@ -29,7 +30,8 @@ ideia/
 ├── AGENTS-extra.example.md   [base] modelo do arquivo complementar
 ├── AGENTS-extra.md           [conteúdo] o complemento de quem usa (criado no primeiro projeto; não vem no template)
 ├── .github/ISSUE_TEMPLATE/   [base] formulários de issue (novo projeto, mudança em software, ajuste ou correção e melhoria do template)
-├── README.md                 [base] apresentação e primeiros passos para humanos
+├── README.md                 [conteúdo] apresenta o ambiente de quem usa; no template, um esqueleto curto para reescrever
+├── README-ideia.md           [base] o manual do template para humanos: operar o ambiente, criar um projeto, atualizar e contribuir
 ├── LICENSE                   [base] licença dos documentos, roteiros e temas (CC BY 4.0)
 ├── roteiros/                 [base] conjuntos de perguntas que guiam a escrita e a entrevista (um .txt por roteiro)
 │   ├── iniciativa.txt, businessmodelcanvas.txt, 10-20-30.txt, pdi.txt, pitch.txt
@@ -78,7 +80,7 @@ ideia/
         └── ...                   artefatos persistentes (ex.: prototipo/) e outros arquivos do projeto
 ```
 
-- **Para replicar esta estrutura** para outra pessoa ou equipe: copie os arquivos `[base]`, deixe `projetos/` só com os exemplos (`exemplo-ideia/`, `exemplo-cc/` e `exemplo-todo/`), crie os temas e os projetos de quem vai usar e deixe o `AGENTS-extra.md` nascer no primeiro projeto.
+- **Para replicar esta estrutura** para outra pessoa ou equipe: copie os arquivos `[base]`, deixe `projetos/` só com os exemplos (`exemplo-ideia/`, `exemplo-cc/` e `exemplo-todo/`), crie os temas e os projetos de quem vai usar e deixe o `AGENTS-extra.md` e o `README.md` do ambiente nascerem no primeiro projeto.
 - **Dois lados da mesma moeda:** o que é `[base]` deve ser melhorado na origem do template (https://github.com/wildtech/ideia), e o que é `[conteúdo]` pertence a quem usa.
 
 ### Os conceitos
@@ -124,7 +126,7 @@ Use este passo a passo quando a pessoa pedir para começar, criar um projeto ou 
 Passos:
 
 1. **Verificar o computador.** Confirme que há Node.js (`node --version`) e um navegador Chrome, Chromium ou Edge. Se faltar, explique como instalar, e na primeira vez rode `cd tools && npm ci` (instala exatamente as versões do lockfile).
-2. **Conhecimento complementar.** Leia o `AGENTS-extra.md`, se existir. Se for o **primeiro projeto** e ele não existir, ofereça criá-lo a partir do `AGENTS-extra.example.md` (ver "Conhecimento complementar"), perguntando só o que a pessoa souber.
+2. **Conhecimento complementar.** Leia o `AGENTS-extra.md`, se existir. Se for o **primeiro projeto** e ele não existir, ofereça criá-lo a partir do `AGENTS-extra.example.md` (ver "Conhecimento complementar"), perguntando só o que a pessoa souber. Se o `README.md` ainda for o esqueleto do template, ofereça reescrevê-lo com a visão do ambiente (para quem é, que projetos tem, o tema), mostre o texto e escreva só depois do OK, mantendo a linha de crédito.
 3. **Escolher o roteiro.** Pergunte o que a pessoa quer fazer e recomende: documentar uma iniciativa (iniciativa), modelar uma ideia de negócio (businessmodelcanvas), preparar uma apresentação (10-20-30), validar uma ideia antes das specs (pitch) ou montar um plano de desenvolvimento individual (pdi). Se ela quiser outro modelo, veja "Criando um novo roteiro".
 4. **Perguntar como será usado:** **lido** (documento), **apresentado** (slides) ou os dois. Use a sugestão do roteiro como ponto de partida.
 5. **Escolher o tema.** Se a pessoa não indicar um (nem o `AGENTS-extra.md`), **use o genérico**. Se ela quiser a identidade visual dela, crie um **tema simples**: pergunte as **cores** (a principal e, se quiser, a de destaque), o **logo** (um arquivo png ou jpg, se tiver), a fonte e o texto do rodapé, e crie `temas/<nome>/` com um `tema.json` que herda do `neutro` (ver "Temas"; `node tools/novo.js tema <nome> --primaria <cor> [--destaque <cor>] [--logo <arquivo>]` cria e confere o contraste). **Se ela não souber as cores, proponha as da paleta sugerida em `guias/slides.md`** (com o contraste conferido) e deixe-a confirmar ou trocar. Se o tema for usado em **apresentações**, pergunte o **estilo** (`padrao` ou `zen-lessig`, ver `guias/slides.md`) e registre `"estilo"` no `tema.json`. O da Wildtech é só um exemplo de tema com marca: não o use para a pessoa.
@@ -161,7 +163,7 @@ Um roteiro é um arquivo de texto com a lista de seções, na ordem em que apare
 2. Para cada seção, escreva a pergunta central e uma ou duas indicações.
 3. Salve como `roteiros/<nome>.txt`.
 4. **Indique no fim do arquivo de onde as perguntas e seções foram retiradas** (um texto, um livro, um modelo), com o link quando existir.
-5. Registre o roteiro na tabela "Roteiros disponíveis" deste arquivo (ou no `AGENTS-extra.md`, se for só de quem usa) e no `README.md`.
+5. Registre o roteiro na tabela "Roteiros disponíveis" deste arquivo (ou no `AGENTS-extra.md`, se for só de quem usa) e no `README-ideia.md`.
 
 ## Regras para documentos de projeto
 
@@ -567,10 +569,10 @@ Esta é a regra padrão (a que o criador do template, Daniel Wildt, usa). **Ajus
 
 ## Contribuições
 
-O repositório aceita contribuições (roteiros, temas genéricos, ferramentas e textos). As regras estão na seção "Como contribuir" do `README.md`. Se a pessoa quiser contribuir, ajude-a a:
+O repositório aceita contribuições (roteiros, temas genéricos, ferramentas e textos). As regras estão na seção "Como contribuir" do `README-ideia.md`. Se a pessoa quiser contribuir, ajude-a a:
 
 1. Seguir "Criando um novo roteiro" e **registrar a fonte** das perguntas e seções no fim do arquivo.
-2. Registrar o roteiro nas tabelas do `README.md` e do `AGENTS.md`.
+2. Registrar o roteiro nas tabelas do `README-ideia.md` e do `AGENTS.md`.
 3. Rodar `node tools/build.js projetos/exemplo-ideia` e conferir as saídas.
 4. Preparar o commit e o *pull request* só quando ela pedir e confirmar o conteúdo (com a CLI `gh`, se ela usa GitHub; veja "Integrações opcionais"). Nada de dados pessoais, marcas de terceiros ou projetos pessoais.
 
@@ -578,8 +580,8 @@ Melhorias nos arquivos `[base]` devem ir para a origem do template, e não ficar
 
 ## Licença e crédito
 
-- Documentos, roteiros e temas do template: Creative Commons Atribuição 4.0 (CC BY 4.0), ver `LICENSE`. A licença cobre só os arquivos `[base]`: os projetos e o `AGENTS-extra.md` de quem usa são de quem os criou. O logo da Creative Commons (em `temas/exemplo-cc/`) é marca dela e não está coberto: aparece só como ilustração.
+- Documentos, roteiros e temas do template: Creative Commons Atribuição 4.0 (CC BY 4.0), ver `LICENSE`. A licença cobre só os arquivos `[base]`: os projetos, o `AGENTS-extra.md` e o `README.md` de quem usa são de quem os criou. O logo da Creative Commons (em `temas/exemplo-cc/`) é marca dela e não está coberto: aparece só como ilustração.
 - `tools/`: MIT, ver `tools/LICENSE`.
-- Quem usar, adaptar ou publicar este template ou um derivado deve **dar crédito à origem**: Daniel Wildt / Wildtech, https://github.com/wildtech/ideia. Mantenha esse crédito no README do repositório derivado.
+- Quem usar, adaptar ou publicar este template ou um derivado deve **dar crédito à origem**: Daniel Wildt / Wildtech, https://github.com/wildtech/ideia. Mantenha esse crédito no `README.md` do repositório derivado (o esqueleto do template já traz a linha).
 - A marca, o logo e o endereço da Wildtech não estão incluídos na licença; aparecem só como exemplo de uso.
 - O conteúdo é oferecido como está, sem garantias de qualquer tipo.

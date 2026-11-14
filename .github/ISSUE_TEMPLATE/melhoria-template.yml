@@ -59,4 +59,4 @@ body:
       value: |
         - [ ] `node tools/build.js projetos/exemplo-ideia` sem avisos
         - [ ] Nenhum termo interno (conferido)
-        - [ ] README e AGENTS.md atualizados, se for o caso
+        - [ ] README-ideia.md e AGENTS.md atualizados, se for o caso
